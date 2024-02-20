@@ -1,0 +1,110 @@
+body{
+	margin: 0 auto;
+	background: #fff;
+	font-family: 'Open Sans', sans-serif;
+}
+a{
+	text-decoration: none;
+	color: none;
+}
+
+header{
+	margin: 0 auto;
+	background: #ff6f00;/*color del header*/
+	padding: 20px 0;
+	width: 800px;
+	text-align: center;
+}
+.container-title{ /*contenedor de el titulo en header*/
+	width: 60%;
+	font-size: 22px;
+	color: #fff; /*color de el titulo en header*/
+	font-weight: bold;
+	text-align: left; 
+	display: inline-block;
+}
+header img{ 
+	width: 150px; /*tamaño de imagen*/
+	position: relative;
+	top: 5px;
+}
+.container-data{ /*contenedor del texto en el body*/
+	width: 800px;
+	margin: 0 auto;
+	border: 1px solid #fafafa;
+}
+h2{/*edición de titulo del body "Hello..."*/
+	margin: 0 auto;
+	color: #000;
+	width: 700px;
+	padding: 30px 0;
+}
+h5{/*edición de texto del body*/
+	margin: 0 auto;
+	color: #000;
+	text-align: justify;
+	font-weight: normal;
+	width: 700px;
+	line-height: 23px;
+}
+nav{ /*contenedor de hipervinculos*/
+	margin: 0 auto;
+	width: 600px;
+	padding: 20px 0;
+}
+nav ul a li{ /*edición de hipervinculos*/
+	color: #000;
+	line-height: 30px;
+	font-size: 14px;
+	text-decoration: underline;
+}
+footer{ /*contenedor del footer*/
+	margin: 0 auto;
+	width: 800px;
+	background: #000; /*color del header*/
+	text-align: center;
+	padding: 20px 0;
+}
+h3{
+	margin: 0 auto;
+	width: 700px;
+	color: gray; /*color del texto del header*/
+	font-weight: 400;
+	font-size: 15px;
+}
+
+@media screen and (max-width: 799px){
+	header{
+		width: 100%;
+		background: gray;
+	}
+	.container-data{
+		width: 100%;
+	}
+	footer{
+		width: 100%;
+	}
+	h2{
+		width: 90%;
+	}
+	h5{
+		width: 90%;
+	}
+	nav{
+		width: 90%;
+	}
+	h3{
+		width: 90%;
+	}
+}
+
+
+
+
+
+
+
+
+
+
+
