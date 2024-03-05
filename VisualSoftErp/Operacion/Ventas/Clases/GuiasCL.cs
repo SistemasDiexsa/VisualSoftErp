@@ -76,6 +76,29 @@ namespace VisualSoftErp.Operacion.Ventas.Clases
             catch (Exception ex) { return dt; }
         }
 
+        public DataTable FacturasRecientesGrid()
+        {
+            DataTable dt = new DataTable();
+            try
+            {
+                SqlConnection cnn = new SqlConnection();
+                cnn.ConnectionString = strCnn;
+                cnn.Open();
+
+                SqlCommand cmd = new SqlCommand();
+                cmd.CommandText = "FacturasRecientesGrid";
+                cmd.CommandType = System.Data.CommandType.StoredProcedure;
+                cmd.Connection = cnn;
+
+                SqlDataAdapter sqlAD = new SqlDataAdapter(cmd);
+                sqlAD.Fill(dt);
+                cnn.Close();
+                return dt;
+
+            }
+            catch (Exception ex) { return dt; }
+        }
+
         public string GuiasCrud()
         {
             try

@@ -2,6 +2,7 @@
 using DevExpress.XtraBars;
 using DevExpress.XtraBars.Docking2010.Views;
 using DevExpress.XtraBars.Navigation;
+using DevExpress.XtraBars.Ribbon;
 using DevExpress.XtraEditors;
 using DevExpress.XtraGrid.Columns;
 using DevExpress.XtraNavBar;
@@ -19,13 +20,13 @@ using VisualSoftErp.Operacion.Ventas.Clases;
 
 namespace VisualSoftErp.Operacion.Ventas.Formas
 {
-    public partial class Guías : DevExpress.XtraBars.Ribbon.RibbonForm
+    public partial class Guias : DevExpress.XtraBars.Ribbon.RibbonForm
     {
         int Mes;
         int Año;
         int FolioGuias;
-        public BindingList<detalleCL> detalle;
-        public Guías()
+        public DataTable detalle;
+        public Guias()
         {
             InitializeComponent();
             AgregaAñosNavBar();
@@ -33,17 +34,8 @@ namespace VisualSoftErp.Operacion.Ventas.Formas
             BotonesGrid();
             InitGridViewGuias();
             InitGridViewFacturas();
-            
             navigationFrame.SelectedPageIndex = 0;
             DevExpress.XtraSplashScreen.SplashScreenManager.CloseDefaultWaitForm();
-        }
-
-        public class detalleCL
-        {
-            public int Folio { get; set; }
-            public string SerieFactura { get; set; }
-            public int Factura { get; set; }
-            public string Descripcion { get; set; }
         }
 
         private void AgregaAñosNavBar()
@@ -77,13 +69,14 @@ namespace VisualSoftErp.Operacion.Ventas.Formas
             // COMBO TRANSPORTES
             combosCL cl = new combosCL();
             cl.strTabla = "Transportes";
+            cboTransportes.Properties.DataSource = cl.CargaCombos();
             cboTransportes.Properties.ValueMember = "Clave";
             cboTransportes.Properties.DisplayMember = "Des";
-            cboTransportes.Properties.DataSource = cl.CargaCombos();
+            cboTransportes.Properties.PopupFilterMode = DevExpress.XtraEditors.PopupFilterMode.Contains;
             cboTransportes.Properties.ForceInitialize();
             cboTransportes.Properties.PopulateColumns();
             cboTransportes.Properties.Columns["Clave"].Visible = false;
-            cboTransportes.ItemIndex = 0;
+            cboTransportes.Properties.NullText = "Seleccione un transportista";
         }
 
         private void InitGridViewGuias()
@@ -95,17 +88,6 @@ namespace VisualSoftErp.Operacion.Ventas.Formas
             Mes = 0;
             Año = DateTime.Now.Year;
             LlenarGridGuias(Mes, Año);
-        }
-
-        private void InitGridViewFacturas()
-        {
-            gridViewFacturas.ViewCaption = "Facturas";
-            gridViewFacturas.OptionsView.ShowViewCaption = true;
-            gridViewFacturas.OptionsView.NewItemRowPosition = DevExpress.XtraGrid.Views.Grid.NewItemRowPosition.Top;
-            gridViewFacturas.OptionsNavigation.EnterMoveNextColumn = true;
-            gridViewFacturas.OptionsNavigation.AutoFocusNewRow = true;
-            gridViewFacturas.OptionsBehavior.Editable = true;
-            gridViewFacturas.OptionsView.ShowFooter = true;
         }
 
         public void LlenarGridGuias(int Mes, int Año)
@@ -121,21 +103,46 @@ namespace VisualSoftErp.Operacion.Ventas.Formas
             gridViewGuias.ViewCaption = Mes != 0 ? "GUIAS DE " + clg.NombreDeMes(Mes, 0) + " DEL " + Año.ToString() : "GUIAS DE TODO EL " + Año.ToString();
         }
 
+        private void InitGridViewFacturas()
+        {
+            gridViewFacturas.ViewCaption = "Facturas";
+            gridViewFacturas.OptionsView.ShowViewCaption = true;
+            gridViewFacturas.OptionsSelection.MultiSelectMode = DevExpress.XtraGrid.Views.Grid.GridMultiSelectMode.CheckBoxRowSelect;
+            gridViewFacturas.OptionsSelection.MultiSelect = true;
+            gridViewFacturas.OptionsBehavior.Editable = true;
+            gridViewFacturas.Columns["SerieFactura"].OptionsColumn.ReadOnly = true;
+            gridViewFacturas.Columns["FolioFactura"].OptionsColumn.ReadOnly = true;
+            gridViewFacturas.Columns["Cliente"].OptionsColumn.ReadOnly = true;
+            LlenarGridFacturas();
+        }
+
+        public void LlenarGridFacturas()
+        {
+            GuiasCL cl = new GuiasCL();
+            detalle = cl.FacturasRecientesGrid();
+            detalle.Columns.Add("Descripcion", typeof(string));
+            gridControlFacturas.DataSource = detalle;
+            gridViewFacturas.OptionsView.ShowAutoFilterRow = true;
+            gridViewFacturas.ViewCaption = "Facturas Recientes";
+        }
+
         private void LimpiaCajas()
         {
             txtNumeroGuia.Text = string.Empty;
             dateFecha.DateTime = DateTime.Now;
-            cboTransportes.ItemIndex = 0;
+            cboTransportes.EditValue = null;
             txtSubtotal.Text = string.Empty;
             txtIva.Text = string.Empty;
             txtRetIva.Text= string.Empty;
             txtTotal.Text = string.Empty;
-            detalle = new BindingList<detalleCL>();
-            gridControlFacturas.DataSource = detalle;
+            detalle = new DataTable();
+            gridViewFacturas.ClearSelection();
+            //LlenarGridFacturas();
         }
 
         private void BotonesEditar()
         {
+            ribbonPageGroup2.Visible = false;
             bbiEditar.Visibility = BarItemVisibility.Never;
             bbiNuevo.Visibility = BarItemVisibility.Never;
             bbiEliminar.Visibility = BarItemVisibility.Never;
@@ -146,20 +153,13 @@ namespace VisualSoftErp.Operacion.Ventas.Formas
 
         private void BotonesGrid()
         {
+            ribbonPageGroup2.Visible = true;
             bbiEditar.Visibility = BarItemVisibility.Always;
             bbiNuevo.Visibility = BarItemVisibility.Always;
             bbiEliminar.Visibility = BarItemVisibility.Always;
             bbiCerrar.Visibility = BarItemVisibility.Always;
             bbiGuardar.Visibility = BarItemVisibility.Never;
             bbiRegresar.Visibility = BarItemVisibility.Never;
-        }
-
-        private void InicializaLista()
-        {
-            detalle = new BindingList<detalleCL>();
-            detalle.AllowNew = true;
-            gridControlFacturas.DataSource = detalle;
-            gridControlFacturas.ForceInitialize();
         }
 
         private void SiguienteFolioGuias()
@@ -178,21 +178,22 @@ namespace VisualSoftErp.Operacion.Ventas.Formas
                 MessageBox.Show(result);
             }
         }
+
         private void bbiNuevo_ItemClick(object sender, ItemClickEventArgs e)
         {
             BotonesEditar();
             LimpiaCajas();
+            LlenarGridFacturas();
             SiguienteFolioGuias();
-            InicializaLista();
             navigationFrame.SelectedPageIndex = 1;
         }
 
         private void bbiRegresar_ItemClick(object sender, ItemClickEventArgs e)
         {
+            navigationFrame.SelectedPageIndex = 0;
             LimpiaCajas();
             BotonesGrid();
             LlenarGridGuias(Mes, Año);
-            navigationFrame.SelectedPageIndex = 0;
         }
 
         private void navBarControl_LinkClicked(object sender, DevExpress.XtraNavBar.NavBarLinkEventArgs e)
@@ -287,23 +288,23 @@ namespace VisualSoftErp.Operacion.Ventas.Formas
                     message = "Favor de introducir un Total válido";
 
                 // Facturas;
-                if (gridViewFacturas.RowCount <= 0)
-                    message = "Favor de introducir almenos una factura";
+                if (gridViewFacturas.SelectedRowsCount <= 0)
+                    message = "Favor de seleccionar al menos una factura";
 
-                for(int i = 0; i < gridViewFacturas.RowCount; i++)
+                // Descripcion;
+                int[] selectedRowHandles = gridViewFacturas.GetSelectedRows();
+                foreach (int rowHandle in selectedRowHandles)
                 {
-                    int folioFactura = Convert.ToInt32(gridViewFacturas.GetRowCellValue(i, "Factura"));
-                    string serieFactura = gridViewFacturas.GetRowCellValue(i, "SerieFactura") == null ? string.Empty : gridViewFacturas.GetRowCellValue(i, "SerieFactura").ToString();
-                    GuiasCL cl = new GuiasCL();
-                    cl.intFolioFactura = folioFactura;
-                    cl.strSerieFactura = serieFactura;
-                    string exist = cl.ExistenciaFactura();
-                    if (exist != "OK")
+                    DataRow row = gridViewFacturas.GetDataRow(rowHandle);
+                    if (row != null)
                     {
-                        message = "La factura " + folioFactura.ToString() + " no existe.";
-                        break;
+                        string factura = row["FolioFactura"].ToString();
+                        string descripcion = row["Descripcion"].ToString();
+                        if (descripcion.Length == 0)
+                            message = "Favor de escribir la descripcíón de la factura " + factura;
                     }
                 }
+                
                 return message;
             }
             catch (Exception ex)
@@ -311,17 +312,20 @@ namespace VisualSoftErp.Operacion.Ventas.Formas
                 string line = ex.LineNumber().ToString();
                 return "Error en línea " + line + "\n" + ex.Message;
             }
-        } // Validar todos los campos antes de Guardar
+        }
         private void bbiGuardar_ItemClick(object sender, ItemClickEventArgs e)
         {
             try
             {
+                // VALIDAMOS QUE LA INFORMACIÓN ESTÉ COMPLETA. REGRESA 'OK' O EL ERROR
                 string valida = Valida();
                 if(valida != "OK")
                 {
                     MessageBox.Show(valida);
                     return;
                 }
+
+                // CREAMOS DT PARA SP (GUIAS)
                 DataTable dtGuias = new DataTable("Guias");
                 dtGuias.Columns.Add("Folio", Type.GetType("System.Int32"));
                 dtGuias.Columns.Add("Fecha", Type.GetType("System.DateTime"));
@@ -334,12 +338,14 @@ namespace VisualSoftErp.Operacion.Ventas.Formas
                 dtGuias.Columns.Add("FechaReal", Type.GetType("System.DateTime"));
                 dtGuias.Columns.Add("Numerodeguia", Type.GetType("System.String"));
 
+                // CREAMOS DT PARA SP (FACTURAS)
                 DataTable dtGuiasDetalle = new DataTable("GuiasDetalle");
                 dtGuiasDetalle.Columns.Add("Folio", Type.GetType("System.Int32"));
                 dtGuiasDetalle.Columns.Add("SerieFactura", Type.GetType("System.String"));
                 dtGuiasDetalle.Columns.Add("Factura", Type.GetType("System.Int32"));
                 dtGuiasDetalle.Columns.Add("Descripcion", Type.GetType("System.String"));
 
+                // AGREGAMOS LA INFORMACIÓN AL DT CREADO REFERENTE A LA GUÍA
                 dtGuias.Rows.Add(
                     FolioGuias, 
                     Convert.ToDateTime(dateFecha.Text), 
@@ -353,16 +359,20 @@ namespace VisualSoftErp.Operacion.Ventas.Formas
                     txtNumeroGuia.Text
                 );
 
-                
-                for(int i = 0; i < gridViewFacturas.RowCount; i++)
+                // AGREGAMOS LA INFORMACION AL DT CREADO REFERENTE A LAS FACTURAS
+                int[] selectedRowHandles = gridViewFacturas.GetSelectedRows();
+                foreach (int rowHandle in selectedRowHandles)
                 {
-                    string serieFactura = gridViewFacturas.GetRowCellValue(i, "SerieFactura") == null ? string.Empty : gridViewFacturas.GetRowCellValue(i, "SerieFactura").ToString();
-                    dtGuiasDetalle.Rows.Add(
-                        FolioGuias,
-                        serieFactura,
-                        Convert.ToInt32(gridViewFacturas.GetRowCellValue(i, "Factura")),
-                        gridViewFacturas.GetRowCellValue(i, "Descripcion").ToString()
-                    );
+                    DataRow row = gridViewFacturas.GetDataRow(rowHandle);
+                    if (row != null)
+                    {
+                        dtGuiasDetalle.Rows.Add(
+                            FolioGuias,
+                            row["SerieFactura"].ToString(),
+                            Convert.ToInt32(row["FolioFactura"]),
+                            row["Descripcion"].ToString()
+                        );
+                    }
                 }
 
                 GuiasCL cl = new GuiasCL();
@@ -383,39 +393,6 @@ namespace VisualSoftErp.Operacion.Ventas.Formas
             {
                 int line = ex.LineNumber();
                 MessageBox.Show("Error en linea: " + line.ToString() + "\n" + ex.Message);
-            }
-        }
-
-        private void gridViewFacturas_CellValueChanged(object sender, DevExpress.XtraGrid.Views.Base.CellValueChangedEventArgs e)
-        {
-            try
-            {
-                gridViewFacturas.CellValueChanged -= gridViewFacturas_CellValueChanged;
-                string dato = gridViewFacturas.GetRowCellValue(e.RowHandle, e.Column).ToString();
-                if (e.Column.Name == "gridColumnFolioFactura")
-                {
-                    if (dato.Length > 0)
-                    {
-                        globalCL clg = new globalCL();
-                        if (clg.esNumerico(dato))
-                            gridViewFacturas.SetFocusedRowCellValue("Factura", dato);
-                        else
-                            MessageBox.Show("El dato no puede ser un texto. Ingrese el número de factura");
-                    }
-                }
-                else
-                {
-                    if (e.Column.Name == "gridColumnSerieFactura")
-                        gridViewFacturas.SetFocusedRowCellValue("SerieFactura", dato);
-                    else if (e.Column.Name == "gridColumnDescripcion")
-                        gridViewFacturas.SetFocusedRowCellValue("Descripcion", dato);
-                }
-                gridViewFacturas.CellValueChanged += gridViewFacturas_CellValueChanged;
-            }
-            catch (Exception ex)
-            {
-                string linea = ex.LineNumber().ToString();
-                MessageBox.Show("Error en línea " + linea + ":\n" + ex.Message);
             }
         }
 
@@ -469,7 +446,35 @@ namespace VisualSoftErp.Operacion.Ventas.Formas
             {
                 GuiasCL cl = new GuiasCL();
                 cl.intFolio = FolioGuias;
-                gridControlFacturas.DataSource = cl.LlenaCajasDetalle();
+                DataTable dt = cl.LlenaCajasDetalle();
+                bool facturaEncontrada = false;
+
+                for (int rowIndex = 0; rowIndex < dt.Rows.Count; rowIndex++)
+                {
+                    DataRow dr = dt.Rows[rowIndex];
+                    int factura = Convert.ToInt32(dr["FolioFactura"]);
+                    string descripcion = dr["Descripcion"].ToString();
+                    facturaEncontrada = false;
+                    for(int i = 0; i < gridViewFacturas.RowCount; i++)
+                    {
+                        DataRow facturaGrid = gridViewFacturas.GetDataRow(i);
+                        if (factura == Convert.ToInt32(facturaGrid["FolioFactura"]))
+                        {
+                            gridViewFacturas.SelectRow(i);
+                            int row = gridViewFacturas.LocateByValue("FolioFactura", factura);
+                            gridViewFacturas.SetRowCellValue(row, "Descripcion", descripcion);
+                            facturaEncontrada = true;
+                            break;
+                        }
+                    }
+
+                    if(!facturaEncontrada)
+                    {
+                        detalle.Rows.Add(dr.ItemArray);
+                        int newRow = gridViewFacturas.LocateByValue("FolioFactura", factura);
+                        gridViewFacturas.SelectRow(newRow);
+                    }
+                }
             }
             catch (Exception ex)
             {

@@ -2629,7 +2629,7 @@ namespace VisualSoftErp
         {
             DevExpress.XtraSplashScreen.SplashScreenManager.ShowDefaultWaitForm();
             globalCL.gv_RibbonPage = ribbonPageVentas;
-            Guías frm = new Guías();
+            Guias frm = new Guias();
             this.tabbedView.AddDocument(frm);
         }
     }

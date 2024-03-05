@@ -162,6 +162,8 @@ namespace VisualSoftErp.Catalogos
                 cl.intActivo = swActivo.IsOn ? 1 : 0;
                 cl.intTienda = swTienda.IsOn ? 1 : 0;
                 cl.iFirmaElectronicaSalidas = swIFirmaElectronicaSalidas.IsOn ? 1 : 0;
+                cl.intModificaFamiliasArticulos = swModificaFamiliasArticulos.IsOn ? 1 : 0;
+                cl.intModificaSubFamiliasArticulos = swModificaSubFamiliasArticulos.IsOn ? 1 : 0;
                 Result = cl.UsuariosCrud();
                 if (Result == "OK")
                 {
@@ -241,6 +243,8 @@ namespace VisualSoftErp.Catalogos
                 swActivo.IsOn = cl.intActivo == 1 ? true : false;
                 swTienda.IsOn = cl.intTienda == 1 ? true : false;
                 swIFirmaElectronicaSalidas.IsOn = cl.iFirmaElectronicaSalidas == 1 ? true : false;
+                swModificaFamiliasArticulos.IsOn = cl.intModificaFamiliasArticulos == 1 ? true : false;
+                swModificaSubFamiliasArticulos.IsOn = cl.intModificaSubFamiliasArticulos == 1 ? true : false;
             }
             else
             {

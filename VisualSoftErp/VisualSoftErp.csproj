@@ -1486,11 +1486,11 @@
     <Compile Include="Operacion\Ventas\Formas\GenerarFacturas.designer.cs">
       <DependentUpon>GenerarFacturas.cs</DependentUpon>
     </Compile>
-    <Compile Include="Operacion\Ventas\Formas\Guías.cs">
+    <Compile Include="Operacion\Ventas\Formas\Guias.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Operacion\Ventas\Formas\Guías.Designer.cs">
-      <DependentUpon>Guías.cs</DependentUpon>
+    <Compile Include="Operacion\Ventas\Formas\Guias.Designer.cs">
+      <DependentUpon>Guias.cs</DependentUpon>
     </Compile>
     <Compile Include="Operacion\Ventas\Formas\SurtirPedidos.cs">
       <SubType>Form</SubType>
@@ -2406,8 +2406,8 @@
     <EmbeddedResource Include="Operacion\Ventas\Formas\GenerarFacturas.resx">
       <DependentUpon>GenerarFacturas.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Operacion\Ventas\Formas\Guías.resx">
-      <DependentUpon>Guías.cs</DependentUpon>
+    <EmbeddedResource Include="Operacion\Ventas\Formas\Guias.resx">
+      <DependentUpon>Guias.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Operacion\Ventas\Formas\SurtirPedidos.resx">
       <DependentUpon>SurtirPedidos.cs</DependentUpon>

@@ -758,7 +758,7 @@
             this.repositoryItemZoomTrackBar1});
             this.Ribboncontrol1.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonControlStyle.Office2013;
             this.Ribboncontrol1.ShowApplicationButton = DevExpress.Utils.DefaultBoolean.False;
-            this.Ribboncontrol1.Size = new System.Drawing.Size(1171, 147);
+            this.Ribboncontrol1.Size = new System.Drawing.Size(1482, 147);
             this.Ribboncontrol1.ToolbarLocation = DevExpress.XtraBars.Ribbon.RibbonQuickAccessToolbarLocation.Hidden;
             this.Ribboncontrol1.TransparentEditorsMode = DevExpress.Utils.DefaultBoolean.True;
             // 
@@ -1041,7 +1041,7 @@
             this.documentViewer1.IsMetric = true;
             this.documentViewer1.Location = new System.Drawing.Point(0, 0);
             this.documentViewer1.Name = "documentViewer1";
-            this.documentViewer1.Size = new System.Drawing.Size(1006, 488);
+            this.documentViewer1.Size = new System.Drawing.Size(1317, 663);
             this.documentViewer1.TabIndex = 0;
             // 
             // printPreviewBarItem2
@@ -2358,7 +2358,7 @@
             this.navBarControl.Name = "navBarControl";
             this.navBarControl.OptionsNavPane.ExpandedWidth = 165;
             this.navBarControl.PaintStyleKind = DevExpress.XtraNavBar.NavBarViewKind.NavigationPane;
-            this.navBarControl.Size = new System.Drawing.Size(165, 488);
+            this.navBarControl.Size = new System.Drawing.Size(165, 663);
             this.navBarControl.TabIndex = 0;
             this.navBarControl.Text = "navBarControl";
             this.navBarControl.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.navBarControl_LinkClicked);
@@ -2492,7 +2492,7 @@
             this.navigationPage9});
             this.navigationFrame.RibbonAndBarsMergeStyle = DevExpress.XtraBars.Docking2010.Views.RibbonAndBarsMergeStyle.Always;
             this.navigationFrame.SelectedPage = this.employeesNavigationPage;
-            this.navigationFrame.Size = new System.Drawing.Size(1006, 488);
+            this.navigationFrame.Size = new System.Drawing.Size(1317, 663);
             this.navigationFrame.TabIndex = 0;
             this.navigationFrame.Text = "8";
             // 
@@ -2502,7 +2502,7 @@
             this.employeesNavigationPage.Controls.Add(this.popUpCancelar);
             this.employeesNavigationPage.Controls.Add(this.gridControlPrincipal);
             this.employeesNavigationPage.Name = "employeesNavigationPage";
-            this.employeesNavigationPage.Size = new System.Drawing.Size(1006, 488);
+            this.employeesNavigationPage.Size = new System.Drawing.Size(1317, 663);
             // 
             // officeNavigationBar1
             // 
@@ -2517,10 +2517,10 @@
             this.nviEntregado,
             this.nviCancelados,
             this.nviTodo});
-            this.officeNavigationBar1.Location = new System.Drawing.Point(0, 442);
+            this.officeNavigationBar1.Location = new System.Drawing.Point(0, 617);
             this.officeNavigationBar1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.officeNavigationBar1.Name = "officeNavigationBar1";
-            this.officeNavigationBar1.Size = new System.Drawing.Size(1006, 46);
+            this.officeNavigationBar1.Size = new System.Drawing.Size(1317, 46);
             this.officeNavigationBar1.TabIndex = 4;
             this.officeNavigationBar1.Text = "officeNavigationBar1";
             this.officeNavigationBar1.ItemClick += new DevExpress.XtraBars.Navigation.NavigationBarItemClickEventHandler(this.officeNavigationBar1_ItemClick);
@@ -2701,7 +2701,7 @@
             this.gridControlPrincipal.MainView = this.gridViewPrincipal;
             this.gridControlPrincipal.MenuManager = this.Ribboncontrol1;
             this.gridControlPrincipal.Name = "gridControlPrincipal";
-            this.gridControlPrincipal.Size = new System.Drawing.Size(1006, 488);
+            this.gridControlPrincipal.Size = new System.Drawing.Size(1317, 663);
             this.gridControlPrincipal.TabIndex = 0;
             this.gridControlPrincipal.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridViewPrincipal});
@@ -2717,7 +2717,7 @@
             // 
             this.customersNavigationPage.Controls.Add(this.splitContainerControl1);
             this.customersNavigationPage.Name = "customersNavigationPage";
-            this.customersNavigationPage.Size = new System.Drawing.Size(1006, 488);
+            this.customersNavigationPage.Size = new System.Drawing.Size(1317, 663);
             // 
             // splitContainerControl1
             // 
@@ -2772,7 +2772,7 @@
             // 
             this.splitContainerControl1.Panel2.Controls.Add(this.splitContainerControl2);
             this.splitContainerControl1.Panel2.Text = "Panel2";
-            this.splitContainerControl1.Size = new System.Drawing.Size(1006, 488);
+            this.splitContainerControl1.Size = new System.Drawing.Size(1317, 663);
             this.splitContainerControl1.SplitterPosition = 153;
             this.splitContainerControl1.TabIndex = 0;
             // 
@@ -3187,7 +3187,7 @@
             this.splitContainerControl2.Panel2.Controls.Add(this.txtPdescto);
             this.splitContainerControl2.Panel2.Controls.Add(this.labelControl17);
             this.splitContainerControl2.Panel2.Text = "Panel2";
-            this.splitContainerControl2.Size = new System.Drawing.Size(1006, 323);
+            this.splitContainerControl2.Size = new System.Drawing.Size(1317, 498);
             this.splitContainerControl2.SplitterPosition = 159;
             this.splitContainerControl2.TabIndex = 0;
             // 
@@ -3202,7 +3202,7 @@
             this.repositoryItemLookUpEditArticulo,
             this.repositoryItemTextEditClaveUnidad,
             this.repositoryItemFechadeEntrega});
-            this.gridControlDetalle.Size = new System.Drawing.Size(1006, 152);
+            this.gridControlDetalle.Size = new System.Drawing.Size(1317, 327);
             this.gridControlDetalle.TabIndex = 0;
             this.gridControlDetalle.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridViewDetalle});
@@ -4036,13 +4036,13 @@
             // 
             this.navigationPage4.Controls.Add(this.documentViewer1);
             this.navigationPage4.Name = "navigationPage4";
-            this.navigationPage4.Size = new System.Drawing.Size(1006, 488);
+            this.navigationPage4.Size = new System.Drawing.Size(1317, 663);
             // 
             // navigationPage6
             // 
             this.navigationPage6.Controls.Add(this.splitContainerControl4);
             this.navigationPage6.Name = "navigationPage6";
-            this.navigationPage6.Size = new System.Drawing.Size(1006, 488);
+            this.navigationPage6.Size = new System.Drawing.Size(1317, 663);
             // 
             // splitContainerControl4
             // 
@@ -4060,7 +4060,7 @@
             // 
             this.splitContainerControl4.Panel2.Controls.Add(this.gridControlBitacora);
             this.splitContainerControl4.Panel2.Text = "Panel2";
-            this.splitContainerControl4.Size = new System.Drawing.Size(1006, 488);
+            this.splitContainerControl4.Size = new System.Drawing.Size(1317, 663);
             this.splitContainerControl4.SplitterPosition = 175;
             this.splitContainerControl4.TabIndex = 0;
             // 
@@ -4079,7 +4079,7 @@
             this.gridControlBitacora.MainView = this.gridViewBitacora;
             this.gridControlBitacora.MenuManager = this.Ribboncontrol1;
             this.gridControlBitacora.Name = "gridControlBitacora";
-            this.gridControlBitacora.Size = new System.Drawing.Size(1006, 301);
+            this.gridControlBitacora.Size = new System.Drawing.Size(1317, 476);
             this.gridControlBitacora.TabIndex = 0;
             this.gridControlBitacora.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridViewBitacora});
@@ -4093,7 +4093,7 @@
             // 
             this.navigationPage7.Controls.Add(this.splitContainerControl7);
             this.navigationPage7.Name = "navigationPage7";
-            this.navigationPage7.Size = new System.Drawing.Size(1006, 488);
+            this.navigationPage7.Size = new System.Drawing.Size(1317, 663);
             // 
             // splitContainerControl7
             // 
@@ -4112,7 +4112,7 @@
             // 
             this.splitContainerControl7.Panel2.Controls.Add(this.gridControlHistorial);
             this.splitContainerControl7.Panel2.Text = "Panel2";
-            this.splitContainerControl7.Size = new System.Drawing.Size(1006, 488);
+            this.splitContainerControl7.Size = new System.Drawing.Size(1317, 663);
             this.splitContainerControl7.SplitterPosition = 50;
             this.splitContainerControl7.TabIndex = 1;
             // 
@@ -4121,7 +4121,7 @@
             this.labelControl39.Appearance.Font = new System.Drawing.Font("Tahoma", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelControl39.Appearance.Options.UseFont = true;
             this.labelControl39.Dock = System.Windows.Forms.DockStyle.Right;
-            this.labelControl39.Location = new System.Drawing.Point(920, 0);
+            this.labelControl39.Location = new System.Drawing.Point(1231, 0);
             this.labelControl39.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.labelControl39.Name = "labelControl39";
             this.labelControl39.Size = new System.Drawing.Size(86, 22);
@@ -4135,7 +4135,7 @@
             this.gridControlHistorial.MainView = this.gridViewHistorial;
             this.gridControlHistorial.MenuManager = this.Ribboncontrol1;
             this.gridControlHistorial.Name = "gridControlHistorial";
-            this.gridControlHistorial.Size = new System.Drawing.Size(1006, 426);
+            this.gridControlHistorial.Size = new System.Drawing.Size(1317, 601);
             this.gridControlHistorial.TabIndex = 1;
             this.gridControlHistorial.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridViewHistorial});
@@ -4151,7 +4151,7 @@
             this.navigationPage8.Controls.Add(this.splitContainerControl6);
             this.navigationPage8.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.navigationPage8.Name = "navigationPage8";
-            this.navigationPage8.Size = new System.Drawing.Size(1006, 488);
+            this.navigationPage8.Size = new System.Drawing.Size(1317, 663);
             // 
             // splitContainerControl6
             // 
@@ -4170,7 +4170,7 @@
             // 
             this.splitContainerControl6.Panel2.Controls.Add(this.gridControlCotizaciones);
             this.splitContainerControl6.Panel2.Text = "Panel2";
-            this.splitContainerControl6.Size = new System.Drawing.Size(1006, 488);
+            this.splitContainerControl6.Size = new System.Drawing.Size(1317, 663);
             this.splitContainerControl6.SplitterPosition = 61;
             this.splitContainerControl6.TabIndex = 0;
             // 
@@ -4179,7 +4179,7 @@
             this.labelControl38.Appearance.Font = new System.Drawing.Font("Tahoma", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelControl38.Appearance.Options.UseFont = true;
             this.labelControl38.Dock = System.Windows.Forms.DockStyle.Right;
-            this.labelControl38.Location = new System.Drawing.Point(880, 0);
+            this.labelControl38.Location = new System.Drawing.Point(1191, 0);
             this.labelControl38.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.labelControl38.Name = "labelControl38";
             this.labelControl38.Size = new System.Drawing.Size(126, 22);
@@ -4195,7 +4195,7 @@
             this.gridControlCotizaciones.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.gridControlCotizaciones.MenuManager = this.Ribboncontrol1;
             this.gridControlCotizaciones.Name = "gridControlCotizaciones";
-            this.gridControlCotizaciones.Size = new System.Drawing.Size(1006, 415);
+            this.gridControlCotizaciones.Size = new System.Drawing.Size(1317, 590);
             this.gridControlCotizaciones.TabIndex = 0;
             this.gridControlCotizaciones.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridViewCotizaciones});
@@ -4211,7 +4211,7 @@
             // 
             this.navigationPage9.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.navigationPage9.Name = "navigationPage9";
-            this.navigationPage9.Size = new System.Drawing.Size(1006, 488);
+            this.navigationPage9.Size = new System.Drawing.Size(1317, 663);
             // 
             // barButtonItem3
             // 
@@ -4283,7 +4283,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1171, 635);
+            this.ClientSize = new System.Drawing.Size(1482, 810);
             this.Controls.Add(this.navigationFrame);
             this.Controls.Add(this.navBarControl);
             this.Controls.Add(this.Ribboncontrol1);

@@ -1,6 +1,6 @@
 ﻿namespace VisualSoftErp.Operacion.Ventas.Formas
 {
-    partial class Guías
+    partial class Guias
     {
         /// <summary>
         /// Required designer variable.
@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Guías));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Guias));
             this.ribbonControl = new DevExpress.XtraBars.Ribbon.RibbonControl();
             this.skinRibbonGalleryBarItem = new DevExpress.XtraBars.SkinRibbonGalleryBarItem();
             this.barSubItemNavigation = new DevExpress.XtraBars.BarSubItem();
@@ -50,7 +50,6 @@
             this.navigationPage1 = new DevExpress.XtraBars.Navigation.NavigationPage();
             this.splitContainerControl2 = new DevExpress.XtraEditors.SplitContainerControl();
             this.navBarControl = new DevExpress.XtraNavBar.NavBarControl();
-            this.navBarGroupAño = new DevExpress.XtraNavBar.NavBarGroup();
             this.employeesNavBarGroup = new DevExpress.XtraNavBar.NavBarGroup();
             this.navBarItemEne = new DevExpress.XtraNavBar.NavBarItem();
             this.navBarItemFeb = new DevExpress.XtraNavBar.NavBarItem();
@@ -65,6 +64,7 @@
             this.navBarItemNov = new DevExpress.XtraNavBar.NavBarItem();
             this.navBarItemDic = new DevExpress.XtraNavBar.NavBarItem();
             this.navBarItemTodos = new DevExpress.XtraNavBar.NavBarItem();
+            this.navBarGroupAño = new DevExpress.XtraNavBar.NavBarGroup();
             this.gridControlGuias = new DevExpress.XtraGrid.GridControl();
             this.gridViewGuias = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.navigationPage2 = new DevExpress.XtraBars.Navigation.NavigationPage();
@@ -88,6 +88,7 @@
             this.gridViewFacturas = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.gridColumnSerieFactura = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumnFolioFactura = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn1 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumnDescripcion = new DevExpress.XtraGrid.Columns.GridColumn();
             this.repositoryItemLookUpEditArticulo = new DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit();
             this.repositoryItemMemoEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemMemoEdit();
@@ -351,11 +352,6 @@
             this.navBarControl.Text = "navBarControl";
             this.navBarControl.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.navBarControl_LinkClicked);
             // 
-            // navBarGroupAño
-            // 
-            this.navBarGroupAño.Caption = "Años";
-            this.navBarGroupAño.Name = "navBarGroupAño";
-            // 
             // employeesNavBarGroup
             // 
             this.employeesNavBarGroup.Caption = "Meses";
@@ -440,6 +436,11 @@
             // 
             this.navBarItemTodos.Caption = "Todo";
             this.navBarItemTodos.Name = "navBarItemTodos";
+            // 
+            // navBarGroupAño
+            // 
+            this.navBarGroupAño.Caption = "Años";
+            this.navBarGroupAño.Name = "navBarGroupAño";
             // 
             // gridControlGuias
             // 
@@ -652,11 +653,11 @@
             this.gridViewFacturas.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
             this.gridColumnSerieFactura,
             this.gridColumnFolioFactura,
+            this.gridColumn1,
             this.gridColumnDescripcion});
             this.gridViewFacturas.GridControl = this.gridControlFacturas;
             this.gridViewFacturas.Name = "gridViewFacturas";
             this.gridViewFacturas.OptionsView.ShowGroupPanel = false;
-            this.gridViewFacturas.CellValueChanged += new DevExpress.XtraGrid.Views.Base.CellValueChangedEventHandler(this.gridViewFacturas_CellValueChanged);
             // 
             // gridColumnSerieFactura
             // 
@@ -665,14 +666,25 @@
             this.gridColumnSerieFactura.Name = "gridColumnSerieFactura";
             this.gridColumnSerieFactura.Visible = true;
             this.gridColumnSerieFactura.VisibleIndex = 0;
+            this.gridColumnSerieFactura.Width = 76;
             // 
             // gridColumnFolioFactura
             // 
             this.gridColumnFolioFactura.Caption = "Folio Factura";
-            this.gridColumnFolioFactura.FieldName = "Factura";
+            this.gridColumnFolioFactura.FieldName = "FolioFactura";
             this.gridColumnFolioFactura.Name = "gridColumnFolioFactura";
             this.gridColumnFolioFactura.Visible = true;
             this.gridColumnFolioFactura.VisibleIndex = 1;
+            this.gridColumnFolioFactura.Width = 89;
+            // 
+            // gridColumn1
+            // 
+            this.gridColumn1.Caption = "Cliente";
+            this.gridColumn1.FieldName = "Cliente";
+            this.gridColumn1.Name = "gridColumn1";
+            this.gridColumn1.Visible = true;
+            this.gridColumn1.VisibleIndex = 2;
+            this.gridColumn1.Width = 382;
             // 
             // gridColumnDescripcion
             // 
@@ -681,7 +693,8 @@
             this.gridColumnDescripcion.Name = "gridColumnDescripcion";
             this.gridColumnDescripcion.OptionsColumn.AllowSize = false;
             this.gridColumnDescripcion.Visible = true;
-            this.gridColumnDescripcion.VisibleIndex = 2;
+            this.gridColumnDescripcion.VisibleIndex = 3;
+            this.gridColumnDescripcion.Width = 678;
             // 
             // repositoryItemLookUpEditArticulo
             // 
@@ -819,5 +832,6 @@
         private DevExpress.XtraNavBar.NavBarItem navBarItem2;
         private DevExpress.XtraBars.BarButtonItem bbiCerrar;
         private DevExpress.XtraBars.Ribbon.RibbonPageGroup ribbonPageGroup2;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn1;
     }
 }

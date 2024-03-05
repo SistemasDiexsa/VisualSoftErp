@@ -51,6 +51,8 @@ namespace VisualSoftErp.Clases
         public int intActivo { get; set; }
         public int intTienda { get; set; }
         public int iFirmaElectronicaSalidas { get; set; }
+        public int intModificaFamiliasArticulos {  get; set; }
+        public int intModificaSubFamiliasArticulos  { get; set; }
         #endregion
 
         #region Constructor
@@ -94,9 +96,11 @@ namespace VisualSoftErp.Clases
             intActivo = 0;
             intTienda = 0;
             iFirmaElectronicaSalidas = 0;
+            intModificaFamiliasArticulos = 0;
+            intModificaSubFamiliasArticulos = 0;
         }
-        #endregion
 
+        #endregion
         #region Metodos
         private string loadConnectionString()
         {
@@ -186,6 +190,8 @@ namespace VisualSoftErp.Clases
                 cmd.Parameters.AddWithValue("@prmActivo", intActivo);
                 cmd.Parameters.AddWithValue("@prmTienda", intTienda);
                 cmd.Parameters.AddWithValue("@prmiFirmaElectronicaSalidas", iFirmaElectronicaSalidas);
+                cmd.Parameters.AddWithValue("@prmModificaFamiliasArticulos", intModificaFamiliasArticulos);
+                cmd.Parameters.AddWithValue("@prmModificaSubFamiliasArticulos", intModificaSubFamiliasArticulos);
                 cmd.CommandType = System.Data.CommandType.StoredProcedure;
                 cmd.Connection = cnn;
                 SqlDataReader dr = cmd.ExecuteReader();
@@ -259,6 +265,8 @@ namespace VisualSoftErp.Clases
                     intActivo = Convert.ToInt32(dr["Activo"]);
                     intTienda = Convert.ToInt32(dr["Tienda"]);
                     iFirmaElectronicaSalidas = Convert.ToInt32(dr["FirmaElectronicaSalidas"]);
+                    intModificaFamiliasArticulos = Convert.ToInt32(dr["ModificaFamiliasArticulos"]);
+                    intModificaSubFamiliasArticulos = Convert.ToInt32(dr["ModificaSubFamiliasArticulos"]);
 
                     result = "OK";
                 }

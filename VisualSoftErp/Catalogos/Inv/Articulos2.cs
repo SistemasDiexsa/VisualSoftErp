@@ -27,6 +27,7 @@ namespace VisualSoftErp.Catalogos.Inv
         bool blnSinBaseParacosteo;
         string strArticuloBase = string.Empty;
         bool blCodigoArticulo = false;
+        string strArticuloDB = string.Empty;
         string strLineasID = string.Empty;
         string strFamiliasID = string.Empty;
         string strSubFamiliasID = string.Empty;
@@ -54,14 +55,13 @@ namespace VisualSoftErp.Catalogos.Inv
         #region Metodos
         private void soloLectura()
         {
-            globalCL clG = new globalCL();
-            clG.strPrograma = "0307";
-            if (clG.accesoSoloLectura())
+            globalCL clg = new globalCL();
+            clg.strPrograma = "0307";
+            if (clg.accesoSoloLectura())
             {
                 bbiGuardarr.Enabled = false;
                 bbiEliminarr.Enabled = false;
             }
-
         }
         private void LlenarGrid(int Op)
         {
@@ -85,21 +85,20 @@ namespace VisualSoftErp.Catalogos.Inv
             cboSubFamiliasIDClasificaciones.Properties.ValueMember = "Clave";
             cboSubFamiliasIDClasificaciones.Properties.DisplayMember = "Des";
             cboSubFamiliasIDClasificaciones.Properties.DataSource = cl.CargaCombos();
-            cboSubFamiliasIDClasificaciones.Properties.ForceInitialize();
             cboSubFamiliasIDClasificaciones.Properties.PopupFilterMode = DevExpress.XtraEditors.PopupFilterMode.Contains;
+            cboSubFamiliasIDClasificaciones.Properties.NullText = "Seleccione una familia";
+            cboSubFamiliasIDClasificaciones.Properties.ForceInitialize();
             cboSubFamiliasIDClasificaciones.Properties.PopulateColumns();
             cboSubFamiliasIDClasificaciones.Properties.Columns["Clave"].Visible = false;
-            cboSubFamiliasIDClasificaciones.Properties.NullText = "Seleccione una familia";
 
-            cboSubFamiliasID.Properties.DataSource = cl.CargaCombos();
             cboSubFamiliasID.Properties.ValueMember = "Clave";
             cboSubFamiliasID.Properties.DisplayMember = "Des";
+            cboSubFamiliasID.Properties.DataSource = cl.CargaCombos();
             cboSubFamiliasID.Properties.PopupFilterMode = DevExpress.XtraEditors.PopupFilterMode.Contains;
             cboSubFamiliasID.Properties.NullText = "Seleccione una familia";
             cboSubFamiliasID.Properties.PopulateColumns();
             cboSubFamiliasID.Properties.ForceInitialize();
             // cboSubFamiliasID.Properties.Columns["Clave"].Visible = false;
-
         }
         
         public void llenarcombos()
@@ -131,6 +130,7 @@ namespace VisualSoftErp.Catalogos.Inv
             cboFamilias.Properties.Columns["CodigoArticulo"].Visible = false;
             cboProveedoresID.Properties.NullText = "Seleccione un familia";
 
+            // COMBO UNIDAD
             cboUnidad.Properties.ValueMember = "Clave";
             cboUnidad.Properties.DisplayMember = "Des";
             cl.strTabla = "Unidadesdemedida";
@@ -151,6 +151,7 @@ namespace VisualSoftErp.Catalogos.Inv
             cboTA.Properties.PopulateColumns();
             cboTA.Properties.Columns["Clave"].Visible = false;
 
+            // COMBO PROVEEDORES
             cl.strTabla = "Proveedoresrep";
             cboProveedoresID.Properties.ValueMember = "Clave";
             cboProveedoresID.Properties.DisplayMember = "Des";
@@ -161,6 +162,7 @@ namespace VisualSoftErp.Catalogos.Inv
             cboProveedoresID.Properties.Columns["Clave"].Visible = false;
             cboProveedoresID.Properties.NullText = "Seleccione un proveedor";
 
+            // COMBO MONEDAS
             cl.strTabla = "Monedas";
             cboMonedasID.Properties.ValueMember = "Clave";
             cboMonedasID.Properties.DisplayMember = "Des";
@@ -171,6 +173,7 @@ namespace VisualSoftErp.Catalogos.Inv
             cboMonedasID.Properties.Columns["Clave"].Visible = false;
             cboMonedasID.Properties.NullText = "Seleccione una moneda";
 
+            // COMBO MONEDAS
             cl.strTabla = "Monedas";
             cboMonedaCosto.Properties.ValueMember = "Clave";
             cboMonedaCosto.Properties.DisplayMember = "Des";
@@ -181,7 +184,7 @@ namespace VisualSoftErp.Catalogos.Inv
             cboMonedaCosto.Properties.Columns["Clave"].Visible = false;
             cboMonedaCosto.Properties.NullText = "Seleccione una moneda";
 
-
+            // COMBO UNIDADES DE MEDIDA
             cl.strTabla = "Unidadesdemedida";
             cboUnidaddemedidasecundaria.Properties.ValueMember = "Clave";
             cboUnidaddemedidasecundaria.Properties.DisplayMember = "Des";
@@ -192,6 +195,7 @@ namespace VisualSoftErp.Catalogos.Inv
             cboUnidaddemedidasecundaria.Properties.Columns["Clave"].Visible = false;
             cboUnidaddemedidasecundaria.Properties.NullText = "Seleccione una unidad de medida secundaria";
 
+            // COMBO MARCAS
             cl.strTabla = "Marcas";
             cboMarcasID.Properties.ValueMember = "Clave";
             cboMarcasID.Properties.DisplayMember = "Des";
@@ -202,6 +206,7 @@ namespace VisualSoftErp.Catalogos.Inv
             cboMarcasID.Properties.Columns["Clave"].Visible = false;
             cboMarcasID.Properties.NullText = "Seleccione una marca";
 
+            // COMBO ARTICULOS
             cl.strTabla = "Articulos";
             cboArticulobaseparacosteoID.Properties.ValueMember = "Clave";
             cboArticulobaseparacosteoID.Properties.DisplayMember = "Des";
@@ -212,7 +217,7 @@ namespace VisualSoftErp.Catalogos.Inv
             cboArticulobaseparacosteoID.Properties.Columns["Clave"].Visible = false;
             cboArticulobaseparacosteoID.Properties.NullText = "Seleccione una Articulo base para costeo";
 
-
+            // COMBO CLASIFICACION
             List<tipoCL> tipoL = new List<tipoCL>();
             tipoL.Add(new tipoCL() { Clave = 0, Des = "No aplica" });
             tipoL.Add(new tipoCL() { Clave = 1, Des = "Componente" });
@@ -227,6 +232,7 @@ namespace VisualSoftErp.Catalogos.Inv
             cboClasificacionproduccion.ItemIndex = 0;
             cboClasificacionproduccion.Properties.NullText = "Seleccione una clasificacion de produccion";
 
+            // COMBO TIPO DE CORTE
             List<tipoCL> tipoLL = new List<tipoCL>();
             tipoLL.Add(new tipoCL() { Clave = 0, Des = "No aplica" });
             tipoLL.Add(new tipoCL() { Clave = 1, Des = "Se corta" });
@@ -255,9 +261,7 @@ namespace VisualSoftErp.Catalogos.Inv
             BotonesEdicion();
             boolEditando = false;
             intArticulosID = 0;
-            cboFamilias.EditValue = 0;
             cboFamilias.Enabled = true;
-            cboFamiliasClasificaciones.EditValue = 0;
             cboFamiliasClasificaciones.Enabled = true;
             cboSubFamiliasID.Enabled = true;
             cboSubFamiliasIDClasificaciones.Enabled = true;
@@ -275,8 +279,10 @@ namespace VisualSoftErp.Catalogos.Inv
             txtArticulo.Text = string.Empty;
             txtNombre.Text = string.Empty;
             txtNombreOC.Text = string.Empty;
-            cboFamilias.ItemIndex = 0;
-            cboFamiliasClasificaciones.ItemIndex = 0;
+            // cboFamilias.ItemIndex = 0;
+            cboFamilias.EditValue = null;
+            //cboFamiliasClasificaciones.ItemIndex = 0;
+            cboFamiliasClasificaciones.EditValue = null;
             cboUnidad.ItemIndex = 0;
             cboTA.ItemIndex = 0;
             txtPieps.Text = string.Empty;
@@ -347,6 +353,7 @@ namespace VisualSoftErp.Catalogos.Inv
 
         private void BotonesEdicion()
         {
+            boolEditando = true;
             LimpiaCajas();
             ribbonPageGroupAcciones.Visible = false;
             ribbonPageGroup2.Visible = true;
@@ -593,18 +600,50 @@ namespace VisualSoftErp.Catalogos.Inv
 
         private void Editar()
         {
-
+            // Se tiene que ver el permiso para editar Familias y SubFamilias en ésta función
             BotonesEdicion();
             llenaCajas();
-            boolEditando = true;
-            cboFamiliasClasificaciones.Enabled = false;
-            cboFamilias.Enabled = false;
-            cboSubFamiliasID.Enabled = false;
-            cboSubFamiliasIDClasificaciones.Enabled = false;
+            ModificaFamilias();
             blnSinBaseParacosteo = false;
             xtraTabControl1.SelectedTabPage = xtraTabPage1;
 
         }//Editar()
+
+        private void ModificaFamilias()
+        {
+            UsuariosCL cl = new UsuariosCL();
+            cl.intUsuariosID = globalCL.gv_UsuarioID;
+            String result = cl.UsuariosLlenaCajas();
+            if(result == "OK")
+            {
+                bool modificaFamilias = cl.intModificaFamiliasArticulos == 1 ? true : false;
+                bool modificaSubFamilias = cl.intModificaSubFamiliasArticulos == 1 ? true : false;
+                if(modificaFamilias)
+                {
+                    cboFamilias.Enabled = true;
+                    cboFamiliasClasificaciones.Enabled = true;
+                } else
+                {
+                    cboFamilias.Enabled = false;
+                    cboFamiliasClasificaciones.Enabled = false;
+                }
+
+                if (modificaSubFamilias)
+                {
+                    cboSubFamiliasID.Enabled = true;
+                    cboSubFamiliasIDClasificaciones.Enabled = true;
+                }
+                else
+                {
+                    cboSubFamiliasID.Enabled = false;
+                    cboSubFamiliasIDClasificaciones.Enabled = false;
+                }
+            }
+            else
+            {
+                MessageBox.Show(result);
+            }
+        }
 
         private void llenaCajas()
         {
@@ -614,7 +653,7 @@ namespace VisualSoftErp.Catalogos.Inv
 
             if (result == "OK")
             {
-                txtArticulo.Text = cl.strArticulo;
+                strArticuloDB = cl.strArticulo;
                 txtNombre.Text = cl.strNombre;
                 txtNombreOC.Text = cl.strNombreOC;
                 cboProveedoresID.EditValue = cl.intProveedoresID;
@@ -629,6 +668,7 @@ namespace VisualSoftErp.Catalogos.Inv
 
                 cboFamiliasClasificaciones.EditValue = cl.intFamiliasID;
                 cboSubFamiliasIDClasificaciones.EditValue = cl.intSubFamiliaID;
+                txtArticulo.Text = cl.strArticulo;
                 cboTA.EditValue = cl.intTiposdearticuloID;
 
                 cboUnidad.EditValue = cl.intUnidadesdemedidaID;
@@ -799,14 +839,14 @@ namespace VisualSoftErp.Catalogos.Inv
 
         private void bbiRegresar_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            guardaLayout();
             DevExpress.XtraSplashScreen.SplashScreenManager.ShowDefaultWaitForm("Newsa.net", "Cargando información...");
+            navigationFrame.SelectedPageIndex = 0;
+            guardaLayout();
             ribbonPageGroupAcciones.Visible = true;
             ribbonPageGroup2.Visible = false;
             boolEditando = false;
             LimpiaCajas();
             LlenarGrid(iActivo);
-            navigationFrame.SelectedPageIndex = 0;
             DevExpress.XtraSplashScreen.SplashScreenManager.CloseDefaultWaitForm();
 
         }
@@ -986,46 +1026,51 @@ namespace VisualSoftErp.Catalogos.Inv
 
         private void CargarTxtArticulo()
         {
-            articulosCL articulosCL = new articulosCL();
             utilCL utilCL = new utilCL();
+            string subFam = strSubFamiliasID != "" ? strSubFamiliasID : "0";
             string linea = utilCL.fillNumberString(strLineasID, 2);
             string fam = utilCL.fillNumberString(strFamiliasID, 2);
-            string subFam = strSubFamiliasID != "" ? strSubFamiliasID : "0";
             string famSub = utilCL.fillNumberString(subFam, 2);
-
             string codArticulo = linea + fam + famSub;
-            articulosCL.strConsecutivo = codArticulo;
-            string consecutivo = utilCL.fillNumberString(articulosCL.GetConsecutivo(), 2);
-            codArticulo += consecutivo;
+
             
             if (linea != "00" && fam != "00" && famSub != "00")
+            { 
+                articulosCL articulosCL = new articulosCL();
+                articulosCL.intArticulosID = intArticulosID;
+                articulosCL.intFamiliasID = Convert.ToInt32(strFamiliasID);
+                articulosCL.intSubFamiliaID = Convert.ToInt32(subFam);
+                articulosCL.strArticuloDB = strArticuloDB;
+                articulosCL.strConsecutivo = codArticulo;
+                string consecutivo = utilCL.fillNumberString(articulosCL.GetConsecutivo(), 2);
+                codArticulo += consecutivo;
                 txtArticulo.Text = codArticulo;
+            }
             else
                 txtArticulo.Text = "";
         }
         private void cboFamilias_EditValueChanged(object sender, EventArgs e)
         {
-            //proceso de DE para obtener valor del combo
             DevExpress.XtraEditors.LookUpEdit editor = sender as LookUpEdit;
             DataRowView row = (DataRowView)editor.Properties.GetDataSourceRowByKeyValue(editor.EditValue);
 
             if (row != null)
             {
-
+                // CARGAMOS COMBO DE SUBFAMILIAS 
                 intFamiliaID = Convert.ToInt32(row["Clave"]);
-                strFamiliasID = row["Clave"].ToString();
-                strLineasID = row["lineasID"].ToString();
-                strSubFamiliasID = "";
                 cboSubFamiliasID.EditValue = null;
                 cboSubFamiliasIDClasificaciones.EditValue = null;
                 CargaSubFamilias();
 
+                // CARGAMOS TEXTO ARTICULO
                 blCodigoArticulo = Convert.ToBoolean(row["CodigoArticulo"]);
-
                 if (blCodigoArticulo)
                 {
                     txtArticulo.Enabled = false;
-                    if(txtArticulo.Text == "") CargarTxtArticulo();
+                    strFamiliasID = row["Clave"].ToString();
+                    strLineasID = row["lineasID"].ToString();
+                    strSubFamiliasID = "";
+                    CargarTxtArticulo();
                 }
                 else
                 {
@@ -1045,8 +1090,7 @@ namespace VisualSoftErp.Catalogos.Inv
             if(row != null)
             {
                 strSubFamiliasID = row["Clave"].ToString();
-                if (blCodigoArticulo && !boolEditando) CargarTxtArticulo();
-                // && txtArticulo.Text == ""
+                if (blCodigoArticulo) CargarTxtArticulo();
             }
             cboSubFamiliasID.EditValue = editor.EditValue;
             cboSubFamiliasIDClasificaciones.EditValue = editor.EditValue;

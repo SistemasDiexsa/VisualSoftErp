@@ -93,6 +93,7 @@ namespace VisualSoftErp.Clases
         public int intLinea { get; set; }
         public int intFam { get; set; }
         public string strConsecutivo { get; set; }
+        public string strArticuloDB { get; set; }
 
         #endregion
 
@@ -137,6 +138,7 @@ namespace VisualSoftErp.Clases
             dDimenLargo = 0;
             dDimenAlto = 0;
             dDimenAncho = 0;
+            strArticuloDB = string.Empty;
     }
         #endregion
 
@@ -750,6 +752,10 @@ namespace VisualSoftErp.Clases
 
                 SqlCommand cmd = new SqlCommand();
                 cmd.CommandText = "ArticulosGetConsecutivo";
+                cmd.Parameters.AddWithValue("@prmArticulosID", intArticulosID);
+                cmd.Parameters.AddWithValue("@prmFamiliasID", intFamiliasID);
+                cmd.Parameters.AddWithValue("@prmSubFamiliasID", intSubFamiliaID);
+                cmd.Parameters.AddWithValue("@prmArticuloDB", strArticuloDB);
                 cmd.Parameters.AddWithValue("@prmConsecutivo", strConsecutivo);
                 cmd.CommandType = System.Data.CommandType.StoredProcedure;
                 cmd.Connection = cnn;

@@ -57,6 +57,8 @@
             this.gridControlPrincipal = new DevExpress.XtraGrid.GridControl();
             this.gridViewPrincipal = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.customersNavigationPage = new DevExpress.XtraBars.Navigation.NavigationPage();
+            this.swIFirmaElectronicaSalidas = new DevExpress.XtraEditors.ToggleSwitch();
+            this.labelControl29 = new DevExpress.XtraEditors.LabelControl();
             this.swTienda = new DevExpress.XtraEditors.ToggleSwitch();
             this.swActivo = new DevExpress.XtraEditors.ToggleSwitch();
             this.labelControl27 = new DevExpress.XtraEditors.LabelControl();
@@ -114,8 +116,10 @@
             this.txtNombre = new DevExpress.XtraEditors.TextEdit();
             this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
             this.tabbedView = new DevExpress.XtraBars.Docking2010.Views.Tabbed.TabbedView(this.components);
-            this.labelControl29 = new DevExpress.XtraEditors.LabelControl();
-            this.swIFirmaElectronicaSalidas = new DevExpress.XtraEditors.ToggleSwitch();
+            this.swModificaFamiliasArticulos = new DevExpress.XtraEditors.ToggleSwitch();
+            this.labelControl30 = new DevExpress.XtraEditors.LabelControl();
+            this.swModificaSubFamiliasArticulos = new DevExpress.XtraEditors.ToggleSwitch();
+            this.labelControl31 = new DevExpress.XtraEditors.LabelControl();
             ((System.ComponentModel.ISupportInitialize)(this.ribbonControl)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.officeNavigationBar)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.navigationFrame)).BeginInit();
@@ -124,6 +128,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.gridControlPrincipal)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridViewPrincipal)).BeginInit();
             this.customersNavigationPage.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.swIFirmaElectronicaSalidas.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.swTienda.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.swActivo.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.swFlexArtCompras.Properties)).BeginInit();
@@ -153,7 +158,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.txtLogin.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtNombre.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tabbedView)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.swIFirmaElectronicaSalidas.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.swModificaFamiliasArticulos.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.swModificaSubFamiliasArticulos.Properties)).BeginInit();
             this.SuspendLayout();
             // 
             // ribbonStatusBar
@@ -410,6 +416,10 @@
             // 
             // customersNavigationPage
             // 
+            this.customersNavigationPage.Controls.Add(this.swModificaSubFamiliasArticulos);
+            this.customersNavigationPage.Controls.Add(this.labelControl31);
+            this.customersNavigationPage.Controls.Add(this.swModificaFamiliasArticulos);
+            this.customersNavigationPage.Controls.Add(this.labelControl30);
             this.customersNavigationPage.Controls.Add(this.swIFirmaElectronicaSalidas);
             this.customersNavigationPage.Controls.Add(this.labelControl29);
             this.customersNavigationPage.Controls.Add(this.swTienda);
@@ -470,6 +480,25 @@
             this.customersNavigationPage.Controls.Add(this.labelControl1);
             this.customersNavigationPage.Name = "customersNavigationPage";
             this.customersNavigationPage.Size = new System.Drawing.Size(973, 551);
+            // 
+            // swIFirmaElectronicaSalidas
+            // 
+            this.swIFirmaElectronicaSalidas.EnterMoveNextControl = true;
+            this.swIFirmaElectronicaSalidas.Location = new System.Drawing.Point(847, 432);
+            this.swIFirmaElectronicaSalidas.MenuManager = this.ribbonControl;
+            this.swIFirmaElectronicaSalidas.Name = "swIFirmaElectronicaSalidas";
+            this.swIFirmaElectronicaSalidas.Properties.OffText = "Off";
+            this.swIFirmaElectronicaSalidas.Properties.OnText = "On";
+            this.swIFirmaElectronicaSalidas.Size = new System.Drawing.Size(95, 24);
+            this.swIFirmaElectronicaSalidas.TabIndex = 59;
+            // 
+            // labelControl29
+            // 
+            this.labelControl29.Location = new System.Drawing.Point(634, 437);
+            this.labelControl29.Name = "labelControl29";
+            this.labelControl29.Size = new System.Drawing.Size(142, 13);
+            this.labelControl29.TabIndex = 58;
+            this.labelControl29.Text = "Autorización Entradas/Salidas";
             // 
             // swTienda
             // 
@@ -1000,24 +1029,43 @@
             this.labelControl1.TabIndex = 0;
             this.labelControl1.Text = "Login";
             // 
-            // labelControl29
+            // swModificaFamiliasArticulos
             // 
-            this.labelControl29.Location = new System.Drawing.Point(634, 437);
-            this.labelControl29.Name = "labelControl29";
-            this.labelControl29.Size = new System.Drawing.Size(142, 13);
-            this.labelControl29.TabIndex = 58;
-            this.labelControl29.Text = "Autorización Entradas/Salidas";
+            this.swModificaFamiliasArticulos.EnterMoveNextControl = true;
+            this.swModificaFamiliasArticulos.Location = new System.Drawing.Point(847, 476);
+            this.swModificaFamiliasArticulos.MenuManager = this.ribbonControl;
+            this.swModificaFamiliasArticulos.Name = "swModificaFamiliasArticulos";
+            this.swModificaFamiliasArticulos.Properties.OffText = "Off";
+            this.swModificaFamiliasArticulos.Properties.OnText = "On";
+            this.swModificaFamiliasArticulos.Size = new System.Drawing.Size(95, 24);
+            this.swModificaFamiliasArticulos.TabIndex = 61;
             // 
-            // swIFirmaElectronicaSalidas
+            // labelControl30
             // 
-            this.swIFirmaElectronicaSalidas.EnterMoveNextControl = true;
-            this.swIFirmaElectronicaSalidas.Location = new System.Drawing.Point(847, 432);
-            this.swIFirmaElectronicaSalidas.MenuManager = this.ribbonControl;
-            this.swIFirmaElectronicaSalidas.Name = "swIFirmaElectronicaSalidas";
-            this.swIFirmaElectronicaSalidas.Properties.OffText = "Off";
-            this.swIFirmaElectronicaSalidas.Properties.OnText = "On";
-            this.swIFirmaElectronicaSalidas.Size = new System.Drawing.Size(95, 24);
-            this.swIFirmaElectronicaSalidas.TabIndex = 59;
+            this.labelControl30.Location = new System.Drawing.Point(634, 481);
+            this.labelControl30.Name = "labelControl30";
+            this.labelControl30.Size = new System.Drawing.Size(138, 13);
+            this.labelControl30.TabIndex = 60;
+            this.labelControl30.Text = "Modifica Familias de Articulos";
+            // 
+            // swModificaSubFamiliasArticulos
+            // 
+            this.swModificaSubFamiliasArticulos.EnterMoveNextControl = true;
+            this.swModificaSubFamiliasArticulos.Location = new System.Drawing.Point(847, 511);
+            this.swModificaSubFamiliasArticulos.MenuManager = this.ribbonControl;
+            this.swModificaSubFamiliasArticulos.Name = "swModificaSubFamiliasArticulos";
+            this.swModificaSubFamiliasArticulos.Properties.OffText = "Off";
+            this.swModificaSubFamiliasArticulos.Properties.OnText = "On";
+            this.swModificaSubFamiliasArticulos.Size = new System.Drawing.Size(95, 24);
+            this.swModificaSubFamiliasArticulos.TabIndex = 63;
+            // 
+            // labelControl31
+            // 
+            this.labelControl31.Location = new System.Drawing.Point(634, 516);
+            this.labelControl31.Name = "labelControl31";
+            this.labelControl31.Size = new System.Drawing.Size(156, 13);
+            this.labelControl31.TabIndex = 62;
+            this.labelControl31.Text = "Modifica SubFamilias de Articulos";
             // 
             // Usuarios
             // 
@@ -1042,6 +1090,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.gridViewPrincipal)).EndInit();
             this.customersNavigationPage.ResumeLayout(false);
             this.customersNavigationPage.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.swIFirmaElectronicaSalidas.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.swTienda.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.swActivo.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.swFlexArtCompras.Properties)).EndInit();
@@ -1071,7 +1120,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.txtLogin.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtNombre.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.tabbedView)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.swIFirmaElectronicaSalidas.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.swModificaFamiliasArticulos.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.swModificaSubFamiliasArticulos.Properties)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1165,5 +1215,9 @@
         private DevExpress.XtraBars.BarButtonItem bbiActivar;
         private DevExpress.XtraEditors.LabelControl labelControl29;
         private DevExpress.XtraEditors.ToggleSwitch swIFirmaElectronicaSalidas;
+        private DevExpress.XtraEditors.ToggleSwitch swModificaSubFamiliasArticulos;
+        private DevExpress.XtraEditors.LabelControl labelControl31;
+        private DevExpress.XtraEditors.ToggleSwitch swModificaFamiliasArticulos;
+        private DevExpress.XtraEditors.LabelControl labelControl30;
     }
 }
