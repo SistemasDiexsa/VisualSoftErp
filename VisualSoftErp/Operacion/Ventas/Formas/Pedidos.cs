@@ -1911,7 +1911,6 @@ namespace VisualSoftErp.Catalogos.Ventas
                 groupControl1.Text = "Cancelar pedido " + strSerie + intFolio.ToString();
 
                 //strStatus = "Cancelar";
-
                 //ribbonPageGroupCancelar.Visible = true;
                 //ribbonPageGroup1.Visible = false;
                 //navBarControl.Visible = false;

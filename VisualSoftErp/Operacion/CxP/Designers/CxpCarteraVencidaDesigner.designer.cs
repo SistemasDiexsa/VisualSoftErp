@@ -113,6 +113,7 @@
             this.xrLabel6 = new DevExpress.XtraReports.UI.XRLabel();
             this.xrLabel5 = new DevExpress.XtraReports.UI.XRLabel();
             this.CarteraVencidaTotal = new DevExpress.XtraReports.UI.CalculatedField();
+            this.groupHeaderBand1 = new DevExpress.XtraReports.UI.GroupHeaderBand();
             ((System.ComponentModel.ISupportInitialize)(this.table1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.table2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.table4)).BeginInit();
@@ -285,7 +286,6 @@
             new DevExpress.XtraReports.UI.GroupField("SaldoTotal", DevExpress.XtraReports.UI.XRColumnSortOrder.Descending)});
             this.GroupHeader1.GroupUnion = DevExpress.XtraReports.UI.GroupUnion.WithFirstDetail;
             this.GroupHeader1.HeightF = 29.87488F;
-            this.GroupHeader1.Level = 1;
             this.GroupHeader1.Name = "GroupHeader1";
             // 
             // table1
@@ -873,6 +873,13 @@
             this.CarteraVencidaTotal.Expression = "[Menos15]+[Mayor15]";
             this.CarteraVencidaTotal.Name = "CarteraVencidaTotal";
             // 
+            // groupHeaderBand1
+            // 
+            this.groupHeaderBand1.GroupFields.AddRange(new DevExpress.XtraReports.UI.GroupField[] {
+            new DevExpress.XtraReports.UI.GroupField("ProveedoresId", DevExpress.XtraReports.UI.XRColumnSortOrder.Ascending)});
+            this.groupHeaderBand1.Level = 1;
+            this.groupHeaderBand1.Name = "groupHeaderBand1";
+            // 
             // CxpCarteraVencidaDesigner
             // 
             this.Bands.AddRange(new DevExpress.XtraReports.UI.Band[] {
@@ -884,7 +891,8 @@
             this.GroupFooter1,
             this.PageHeader,
             this.groupFooterBand1,
-            this.ReportFooter});
+            this.ReportFooter,
+            this.groupHeaderBand1});
             this.CalculatedFields.AddRange(new DevExpress.XtraReports.UI.CalculatedField[] {
             this.CarteraVencidaTotal});
             this.ComponentStorage.AddRange(new System.ComponentModel.IComponent[] {
@@ -991,5 +999,6 @@
         private DevExpress.XtraReports.UI.CalculatedField CarteraVencidaTotal;
         private DevExpress.XtraReports.UI.XRLabel xrLabel13;
         private DevExpress.XtraReports.UI.XRLabel xrLabel14;
+        private DevExpress.XtraReports.UI.GroupHeaderBand groupHeaderBand1;
     }
 }

@@ -1318,6 +1318,12 @@
     <Compile Include="Operacion\Ventas\Designers\FacturasDesignerRelacion.Designer.cs">
       <DependentUpon>FacturasDesignerRelacion.cs</DependentUpon>
     </Compile>
+    <Compile Include="Operacion\Ventas\Designers\GuiasDesigner.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Operacion\Ventas\Designers\GuiasDesigner.Designer.cs">
+      <DependentUpon>GuiasDesigner.cs</DependentUpon>
+    </Compile>
     <Compile Include="Operacion\Ventas\Designers\Pedidosformatoimpresion.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -2321,6 +2327,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Operacion\Ventas\Designers\FacturasDesignerRelacion.resx">
       <DependentUpon>FacturasDesignerRelacion.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Operacion\Ventas\Designers\GuiasDesigner.resx">
+      <DependentUpon>GuiasDesigner.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Operacion\Ventas\Designers\Pedidosformatoimpresion.resx">
       <DependentUpon>Pedidosformatoimpresion.cs</DependentUpon>

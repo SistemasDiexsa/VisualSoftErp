@@ -21,8 +21,20 @@ namespace VisualSoftErp.Operacion.Inventarios.Formas
         int intSeq;
         int intRen;
         int intUsuarioID = globalCL.gv_UsuarioID;
-
         public BindingList<detalleCL> detalle;
+        public class tipoCL
+        {
+            public string Clave { get; set; }
+            public string Des { get; set; }
+        }
+        public class detalleCL
+        {
+            public string Articulo { get; set; }
+            public string Descripcion { get; set; }
+            public double Cantidad { get; set; }
+            public double Surtir { get; set; }
+            public string Observacion { get; set; }
+        }
 
         public Movimientosahojadeproduccion()
         {
@@ -78,21 +90,6 @@ namespace VisualSoftErp.Operacion.Inventarios.Formas
             cboMovmiento.EditValue = "S";
         }
 
-        public class tipoCL
-        {
-            public string Clave { get; set; }
-            public string Des { get; set; }
-        }
-
-        public class detalleCL
-        {
-            public string Articulo { get; set; }
-            public string Descripcion { get; set; }
-            public double Cantidad { get; set; }
-            public double Surtir { get; set; }
-            public string Observacion { get; set; }
-        }
-
         private void Inicialisalista()
         {
 
@@ -127,27 +124,6 @@ namespace VisualSoftErp.Operacion.Inventarios.Formas
                 gridColumnObservacion.OptionsColumn.ReadOnly = false;
             }
 
-        }
-
-        private void Nuevo()
-        {
-            txtFolioHP.Text = intFolio.ToString();
-            BotonesEdicion();
-            Inicialisalista();
-            intFolio = 0;
-            strTipo = "";
-            intSeq = 0;
-            intRen = 0;
-
-
-            gridColumnArticulo.OptionsColumn.ReadOnly = true;
-            gridColumnCantidad.OptionsColumn.ReadOnly = true;
-            gridColumnSurtir.OptionsColumn.ReadOnly = false;
-            gridColumnDescripcion.OptionsColumn.ReadOnly = true;
-            gridColumnObservacion.OptionsColumn.ReadOnly = false;
-
-            
-            txtFolioHP.Select();
         }
 
         private void BotonesEdicion()
@@ -186,8 +162,14 @@ namespace VisualSoftErp.Operacion.Inventarios.Formas
                     lblFactorUm2PT.Text = cl.intFactorUm2.ToString();
                     lblNom.Text = cl.strNombre + " Factor:" + cl.intFactorUm2.ToString();
 
-                   
-
+                    // STATUS == 5 ES STATUS CANCELADO
+                    if (cl.strStatus == "5")
+                    {
+                        bbiGuardar.Enabled = false;
+                        MessageBox.Show("Hoja de Producción con status cancelado");
+                    }
+                    else
+                        bbiGuardar.Enabled = true;
                 }
                 else
                 {
@@ -569,7 +551,21 @@ namespace VisualSoftErp.Operacion.Inventarios.Formas
 
         private void bbiNuevo_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            Nuevo();
+            txtFolioHP.Text = intFolio.ToString();
+            BotonesEdicion();
+            Inicialisalista();
+            intFolio = 0;
+            strTipo = "";
+            intSeq = 0;
+            intRen = 0;
+
+            gridColumnArticulo.OptionsColumn.ReadOnly = true;
+            gridColumnCantidad.OptionsColumn.ReadOnly = true;
+            gridColumnSurtir.OptionsColumn.ReadOnly = false;
+            gridColumnDescripcion.OptionsColumn.ReadOnly = true;
+            gridColumnObservacion.OptionsColumn.ReadOnly = false;
+
+            txtFolioHP.Select();
         }
 
         private void bbiRegresar_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)

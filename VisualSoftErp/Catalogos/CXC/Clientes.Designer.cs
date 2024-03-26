@@ -1866,7 +1866,7 @@
             superToolTip14.AllowHtmlText = DevExpress.Utils.DefaultBoolean.True;
             toolTipTitleItem14.Text = "Nombre";
             toolTipItem14.LeftIndent = 6;
-            toolTipItem14.Text = "Es el nombre del cliente, puede tener un máximo de 100 caracteres.";
+            toolTipItem14.Text = "Es el nombre del cliente, puede tener un máximo de 200 caracteres.";
             superToolTip14.Items.Add(toolTipTitleItem14);
             superToolTip14.Items.Add(toolTipItem14);
             this.txtNombre.SuperTip = superToolTip14;

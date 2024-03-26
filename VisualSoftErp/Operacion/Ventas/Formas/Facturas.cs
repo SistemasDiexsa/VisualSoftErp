@@ -1283,11 +1283,7 @@ namespace VisualSoftErp.Catalogos.Ventas
                 else
                 {
                     return strresult;
-                }
-
-                
-
-                   
+                }   
             }
             catch(Exception ex)
             {
@@ -2673,7 +2669,7 @@ namespace VisualSoftErp.Catalogos.Ventas
                 AceptarCambio();
             }
         }
-
+        // C:\VisualSoftErp\Xml33\2024\MAR\134025timbrado.xml
         private void btnBuscaNuevoUUID_Click(object sender, EventArgs e)
         {
             globalCL clg = new globalCL();

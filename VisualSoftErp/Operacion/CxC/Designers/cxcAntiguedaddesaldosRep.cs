@@ -159,10 +159,7 @@ namespace VisualSoftErp.Operacion.CxC.Designers
                 CustomStringConnectionParameters connectionParameters = new CustomStringConnectionParameters(VisualSoftErpConnectionString);
 
                 if (e.ConnectionName == "VisualSoftErpConnectionString")
-                {
                     e.ConnectionParameters = connectionParameters;
-                   
-                }
 
             }
             catch (Exception ex)

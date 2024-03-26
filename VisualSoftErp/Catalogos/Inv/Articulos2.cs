@@ -11,6 +11,7 @@ using DevExpress.XtraEditors;
 using VisualSoftErp.Clases;
 using System.Configuration;
 using System.IO;
+using DevExpress.CodeParser;
 
 namespace VisualSoftErp.Catalogos.Inv
 {
@@ -364,19 +365,15 @@ namespace VisualSoftErp.Catalogos.Inv
 
         private void Guardar()
         {
+            string result = string.Empty;
             try
             {
-                string result = Valida();
+                result = Valida();
 
                 if (result != "OK")
                 {
-                    if (result.Length > 0)
-                    {
-                        MessageBox.Show(result);
-
-                    }
+                    MessageBox.Show(result);
                     return;
-
                 }
 
                 articulosCL cl = new articulosCL();
@@ -463,21 +460,21 @@ namespace VisualSoftErp.Catalogos.Inv
 
                 if (result == "OK")
                 {
-                    MessageBox.Show("Guardado Correctamente");
+                    result = "Guardado Correctamente";
                     if (intArticulosID == 0)
                     {
                         LimpiaCajas();
                     }
-
-                }
-                else
-                {
-                    MessageBox.Show(result);
                 }
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Guardar: " + ex.Message);
+                result = "\nError en línea: " + ex.LineNumber().ToString();
+                result += "\nGuardar: " + ex.Message;
+            }
+            finally
+            {
+                MessageBox.Show(result);
             }
         }//Guardar
 
@@ -486,11 +483,15 @@ namespace VisualSoftErp.Catalogos.Inv
 
             globalCL clg = new globalCL();
 
-            if (intArticulosID == Convert.ToInt32(cboArticulobaseparacosteoID.EditValue))
+            if (!blnSinBaseParacosteo)
             {
-                cboArticulobaseparacosteoID.EditValue = null;
-                return "No se puede poner el mismo artículo como base para costeo";
+                if (intArticulosID == Convert.ToInt32(cboArticulobaseparacosteoID.EditValue))
+                {
+                    cboArticulobaseparacosteoID.EditValue = null;
+                    return "No se puede poner el mismo artículo como base para costeo";
+                }
             }
+            
 
             if (!clg.esNumerico(txtPesoKg.Text))
                 txtPesoKg.Text = "0";
@@ -921,39 +922,41 @@ namespace VisualSoftErp.Catalogos.Inv
                     return;
                 }
 
-
                 articulosCL cl = new articulosCL();
                 cl.intArticulosID = intArticulosID;
                 cl.fFechaalta = Convert.ToDateTime(dateEditFechaCosto.Text);
                 cl.strMonedasID = cboMonedaCosto.EditValue.ToString();
                 cl.dcosto = Convert.ToDecimal(txtCosto.Text);
 
-                if (!clg.esNumerico(txtParidad.Text))
+                if(!(cboMonedaCosto.EditValue.ToString() == "MXN"))
                 {
-                    if (cl.strMonedasID == "MXN")
+                    if (!clg.esNumerico(txtParidad.Text))
                     {
-                        txtParidad.Text = "1";
-                    }
-                    else
-                    {
-                        MessageBox.Show("Teclee la paridad");
+                        txtParidad.Text = string.Empty;
+                        txtParidad.Focus();
+                        MessageBox.Show("Teclee el tipo de Cambio");
                         return;
                     }
                 }
-
+                else
+                {
+                    txtParidad.Text = "1";
+                }
+                
                 cl.dtipodecambio = Convert.ToDecimal(txtParidad.Text);
                 cl.strObs = txtObsCosto.Text;
 
                 string result = cl.ActualizaCostos();
 
-                MessageBox.Show(result);
-
                 if (result == "OK")
                 {
+                    MessageBox.Show("Guardado Correctamente!");
                     gridControlCostos.DataSource = cl.ArticulosCostosGrid();
                 }
-
-
+                else
+                {
+                    MessageBox.Show(result);
+                }
             }
             catch (Exception ex)
             {
@@ -1015,7 +1018,16 @@ namespace VisualSoftErp.Catalogos.Inv
 
         private void simpleButton1_Click(object sender, EventArgs e)
         {
-            blnSinBaseParacosteo = true;
+            if(blnSinBaseParacosteo)
+            {
+                blnSinBaseParacosteo = false;
+                cboArticulobaseparacosteoID.Enabled = true;
+            }
+            else
+            {
+                blnSinBaseParacosteo = true;
+                cboArticulobaseparacosteoID.Enabled = false;
+            }
         }
 
         private void lblArtBaseParaCosteo_Click(object sender, EventArgs e)

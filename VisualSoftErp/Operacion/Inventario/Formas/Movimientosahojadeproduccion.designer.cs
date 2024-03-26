@@ -355,6 +355,7 @@
             // RibbomBar
             // 
             this.RibbomBar.AutoHideEmptyItems = true;
+            this.RibbomBar.EmptyAreaImageOptions.ImagePadding = new System.Windows.Forms.Padding(26, 24, 26, 24);
             this.RibbomBar.ExpandCollapseItem.Id = 0;
             this.RibbomBar.Items.AddRange(new DevExpress.XtraBars.BarItem[] {
             this.RibbomBar.ExpandCollapseItem,
@@ -428,10 +429,10 @@
             this.zoomTrackBarEditItem1,
             this.bbiRegresarImp});
             this.RibbomBar.Location = new System.Drawing.Point(0, 0);
-            this.RibbomBar.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.RibbomBar.MaxItemId = 112;
             this.RibbomBar.MdiMergeStyle = DevExpress.XtraBars.Ribbon.RibbonMdiMergeStyle.Always;
             this.RibbomBar.Name = "RibbomBar";
+            this.RibbomBar.OptionsMenuMinWidth = 283;
             this.RibbomBar.Pages.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPage[] {
             this.ribbonPage,
             this.ribbonPage1,
@@ -441,7 +442,7 @@
             this.repositoryItemZoomTrackBar1});
             this.RibbomBar.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonControlStyle.Office2013;
             this.RibbomBar.ShowApplicationButton = DevExpress.Utils.DefaultBoolean.False;
-            this.RibbomBar.Size = new System.Drawing.Size(1491, 181);
+            this.RibbomBar.Size = new System.Drawing.Size(1278, 147);
             this.RibbomBar.StatusBar = this.ribbonStatusBar;
             this.RibbomBar.ToolbarLocation = DevExpress.XtraBars.Ribbon.RibbonQuickAccessToolbarLocation.Hidden;
             this.RibbomBar.TransparentEditorsMode = DevExpress.Utils.DefaultBoolean.True;
@@ -567,9 +568,8 @@
             this.documentViewer1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.documentViewer1.IsMetric = true;
             this.documentViewer1.Location = new System.Drawing.Point(0, 0);
-            this.documentViewer1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.documentViewer1.Name = "documentViewer1";
-            this.documentViewer1.Size = new System.Drawing.Size(1491, 470);
+            this.documentViewer1.Size = new System.Drawing.Size(1278, 383);
             this.documentViewer1.TabIndex = 0;
             // 
             // ribbonStatusBar
@@ -579,11 +579,10 @@
             this.ribbonStatusBar.ItemLinks.Add(this.printPreviewBarItem52);
             this.ribbonStatusBar.ItemLinks.Add(this.printPreviewStaticItem2);
             this.ribbonStatusBar.ItemLinks.Add(this.zoomTrackBarEditItem1);
-            this.ribbonStatusBar.Location = new System.Drawing.Point(0, 708);
-            this.ribbonStatusBar.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.ribbonStatusBar.Location = new System.Drawing.Point(0, 576);
             this.ribbonStatusBar.Name = "ribbonStatusBar";
             this.ribbonStatusBar.Ribbon = this.RibbomBar;
-            this.ribbonStatusBar.Size = new System.Drawing.Size(1491, 29);
+            this.ribbonStatusBar.Size = new System.Drawing.Size(1278, 23);
             // 
             // printPreviewStaticItem1
             // 
@@ -1712,10 +1711,9 @@
             // officeNavigationBar
             // 
             this.officeNavigationBar.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.officeNavigationBar.Location = new System.Drawing.Point(0, 651);
-            this.officeNavigationBar.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.officeNavigationBar.Location = new System.Drawing.Point(0, 530);
             this.officeNavigationBar.Name = "officeNavigationBar";
-            this.officeNavigationBar.Size = new System.Drawing.Size(1491, 57);
+            this.officeNavigationBar.Size = new System.Drawing.Size(1278, 46);
             this.officeNavigationBar.TabIndex = 1;
             this.officeNavigationBar.Text = "officeNavigationBar";
             // 
@@ -1727,8 +1725,7 @@
             this.navigationFrame.Controls.Add(this.customersNavigationPage);
             this.navigationFrame.Controls.Add(this.navigationPage1);
             this.navigationFrame.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.navigationFrame.Location = new System.Drawing.Point(0, 181);
-            this.navigationFrame.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.navigationFrame.Location = new System.Drawing.Point(0, 147);
             this.navigationFrame.Name = "navigationFrame";
             this.navigationFrame.Pages.AddRange(new DevExpress.XtraBars.Navigation.NavigationPageBase[] {
             this.employeesNavigationPage,
@@ -1736,7 +1733,7 @@
             this.navigationPage1});
             this.navigationFrame.RibbonAndBarsMergeStyle = DevExpress.XtraBars.Docking2010.Views.RibbonAndBarsMergeStyle.Always;
             this.navigationFrame.SelectedPage = this.employeesNavigationPage;
-            this.navigationFrame.Size = new System.Drawing.Size(1491, 470);
+            this.navigationFrame.Size = new System.Drawing.Size(1278, 383);
             this.navigationFrame.TabIndex = 0;
             this.navigationFrame.Text = "navigationFrame";
             // 
@@ -1744,20 +1741,18 @@
             // 
             this.employeesNavigationPage.Controls.Add(this.popUpCancelar);
             this.employeesNavigationPage.Controls.Add(this.gridControlPrincipal);
-            this.employeesNavigationPage.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.employeesNavigationPage.Name = "employeesNavigationPage";
-            this.employeesNavigationPage.Size = new System.Drawing.Size(1491, 470);
+            this.employeesNavigationPage.Size = new System.Drawing.Size(1278, 383);
             // 
             // popUpCancelar
             // 
             this.popUpCancelar.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.Simple;
             this.popUpCancelar.Controls.Add(this.groupControl3);
-            this.popUpCancelar.Location = new System.Drawing.Point(437, 70);
-            this.popUpCancelar.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.popUpCancelar.Location = new System.Drawing.Point(375, 57);
             this.popUpCancelar.Name = "popUpCancelar";
             this.popUpCancelar.ShowCloseButton = true;
             this.popUpCancelar.ShowSizeGrip = true;
-            this.popUpCancelar.Size = new System.Drawing.Size(617, 331);
+            this.popUpCancelar.Size = new System.Drawing.Size(529, 269);
             this.popUpCancelar.TabIndex = 4;
             this.popUpCancelar.Visible = false;
             // 
@@ -1773,121 +1768,107 @@
             this.groupControl3.Controls.Add(this.txtLogin);
             this.groupControl3.Controls.Add(this.labelControl11);
             this.groupControl3.Controls.Add(this.labelControl13);
-            this.groupControl3.Location = new System.Drawing.Point(35, 21);
-            this.groupControl3.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.groupControl3.Location = new System.Drawing.Point(30, 17);
             this.groupControl3.Name = "groupControl3";
-            this.groupControl3.Size = new System.Drawing.Size(547, 287);
+            this.groupControl3.Size = new System.Drawing.Size(469, 233);
             this.groupControl3.TabIndex = 5;
             this.groupControl3.Text = "Cancelar el movimiento";
             // 
             // labelControl14
             // 
-            this.labelControl14.Location = new System.Drawing.Point(36, 127);
-            this.labelControl14.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.labelControl14.Location = new System.Drawing.Point(31, 103);
             this.labelControl14.Name = "labelControl14";
-            this.labelControl14.Size = new System.Drawing.Size(35, 16);
+            this.labelControl14.Size = new System.Drawing.Size(30, 13);
             this.labelControl14.TabIndex = 14;
             this.labelControl14.Text = "Razón";
             // 
             // txtRazondecancelacion
             // 
-            this.txtRazondecancelacion.Location = new System.Drawing.Point(164, 124);
-            this.txtRazondecancelacion.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.txtRazondecancelacion.Location = new System.Drawing.Point(141, 101);
             this.txtRazondecancelacion.MenuManager = this.RibbomBar;
             this.txtRazondecancelacion.Name = "txtRazondecancelacion";
-            this.txtRazondecancelacion.Size = new System.Drawing.Size(245, 64);
+            this.txtRazondecancelacion.Size = new System.Drawing.Size(210, 52);
             this.txtRazondecancelacion.TabIndex = 13;
             // 
             // simpleButton2
             // 
-            this.simpleButton2.Location = new System.Drawing.Point(36, 217);
-            this.simpleButton2.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.simpleButton2.Location = new System.Drawing.Point(31, 176);
             this.simpleButton2.Name = "simpleButton2";
-            this.simpleButton2.Size = new System.Drawing.Size(110, 36);
+            this.simpleButton2.Size = new System.Drawing.Size(94, 29);
             this.simpleButton2.TabIndex = 12;
             this.simpleButton2.Text = "Cerrar";
             this.simpleButton2.Click += new System.EventHandler(this.simpleButton2_Click);
             // 
             // labelControl20
             // 
-            this.labelControl20.Location = new System.Drawing.Point(36, 101);
-            this.labelControl20.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.labelControl20.Location = new System.Drawing.Point(31, 82);
             this.labelControl20.Name = "labelControl20";
-            this.labelControl20.Size = new System.Drawing.Size(55, 16);
+            this.labelControl20.Size = new System.Drawing.Size(46, 13);
             this.labelControl20.TabIndex = 11;
             this.labelControl20.Text = "Password";
             // 
             // labelControl19
             // 
-            this.labelControl19.Location = new System.Drawing.Point(36, 68);
-            this.labelControl19.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.labelControl19.Location = new System.Drawing.Point(31, 55);
             this.labelControl19.Name = "labelControl19";
-            this.labelControl19.Size = new System.Drawing.Size(30, 16);
+            this.labelControl19.Size = new System.Drawing.Size(25, 13);
             this.labelControl19.TabIndex = 10;
             this.labelControl19.Text = "Login";
             // 
             // btnAut
             // 
-            this.btnAut.Location = new System.Drawing.Point(406, 217);
-            this.btnAut.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.btnAut.Location = new System.Drawing.Point(348, 176);
             this.btnAut.Name = "btnAut";
-            this.btnAut.Size = new System.Drawing.Size(110, 36);
+            this.btnAut.Size = new System.Drawing.Size(94, 29);
             this.btnAut.TabIndex = 9;
             this.btnAut.Text = "Cancelar";
             this.btnAut.Click += new System.EventHandler(this.btnAut_Click);
             // 
             // txtPassword
             // 
-            this.txtPassword.Location = new System.Drawing.Point(164, 92);
-            this.txtPassword.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.txtPassword.Location = new System.Drawing.Point(141, 75);
             this.txtPassword.Name = "txtPassword";
             this.txtPassword.Properties.PasswordChar = '*';
-            this.txtPassword.Size = new System.Drawing.Size(245, 22);
+            this.txtPassword.Size = new System.Drawing.Size(210, 20);
             this.txtPassword.TabIndex = 8;
             // 
             // txtLogin
             // 
-            this.txtLogin.Location = new System.Drawing.Point(164, 60);
-            this.txtLogin.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.txtLogin.Location = new System.Drawing.Point(141, 49);
             this.txtLogin.Name = "txtLogin";
-            this.txtLogin.Size = new System.Drawing.Size(245, 22);
+            this.txtLogin.Size = new System.Drawing.Size(210, 20);
             this.txtLogin.TabIndex = 7;
             // 
             // labelControl11
             // 
-            this.labelControl11.Location = new System.Drawing.Point(-136, 74);
-            this.labelControl11.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.labelControl11.Location = new System.Drawing.Point(-117, 60);
             this.labelControl11.Name = "labelControl11";
-            this.labelControl11.Size = new System.Drawing.Size(55, 16);
+            this.labelControl11.Size = new System.Drawing.Size(46, 13);
             this.labelControl11.TabIndex = 6;
             this.labelControl11.Text = "Password";
             // 
             // labelControl13
             // 
-            this.labelControl13.Location = new System.Drawing.Point(-136, 15);
-            this.labelControl13.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.labelControl13.Location = new System.Drawing.Point(-117, 12);
             this.labelControl13.Name = "labelControl13";
-            this.labelControl13.Size = new System.Drawing.Size(30, 16);
+            this.labelControl13.Size = new System.Drawing.Size(25, 13);
             this.labelControl13.TabIndex = 5;
             this.labelControl13.Text = "Login";
             // 
             // gridControlPrincipal
             // 
             this.gridControlPrincipal.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.gridControlPrincipal.EmbeddedNavigator.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.gridControlPrincipal.Location = new System.Drawing.Point(0, 0);
             this.gridControlPrincipal.MainView = this.gridViewPrincipal;
-            this.gridControlPrincipal.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.gridControlPrincipal.MenuManager = this.RibbomBar;
             this.gridControlPrincipal.Name = "gridControlPrincipal";
-            this.gridControlPrincipal.Size = new System.Drawing.Size(1491, 470);
+            this.gridControlPrincipal.Size = new System.Drawing.Size(1278, 383);
             this.gridControlPrincipal.TabIndex = 0;
             this.gridControlPrincipal.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridViewPrincipal});
             // 
             // gridViewPrincipal
             // 
-            this.gridViewPrincipal.DetailHeight = 431;
             this.gridViewPrincipal.GridControl = this.gridControlPrincipal;
             this.gridViewPrincipal.Name = "gridViewPrincipal";
             this.gridViewPrincipal.RowCellClick += new DevExpress.XtraGrid.Views.Grid.RowCellClickEventHandler(this.gridViewPrincipal_RowCellClick);
@@ -1895,16 +1876,14 @@
             // customersNavigationPage
             // 
             this.customersNavigationPage.Controls.Add(this.splitContainerControl2);
-            this.customersNavigationPage.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.customersNavigationPage.Name = "customersNavigationPage";
-            this.customersNavigationPage.Size = new System.Drawing.Size(1491, 470);
+            this.customersNavigationPage.Size = new System.Drawing.Size(1278, 383);
             // 
             // splitContainerControl2
             // 
             this.splitContainerControl2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.splitContainerControl2.Horizontal = false;
             this.splitContainerControl2.Location = new System.Drawing.Point(0, 0);
-            this.splitContainerControl2.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.splitContainerControl2.Name = "splitContainerControl2";
             // 
             // splitContainerControl2.Panel1
@@ -1932,155 +1911,141 @@
             this.splitContainerControl2.Panel2.Appearance.Options.UseBackColor = true;
             this.splitContainerControl2.Panel2.Controls.Add(this.gridControlDetalle);
             this.splitContainerControl2.Panel2.Text = "Panel2";
-            this.splitContainerControl2.Size = new System.Drawing.Size(1491, 470);
+            this.splitContainerControl2.Size = new System.Drawing.Size(1278, 383);
+            this.splitContainerControl2.SplitterPosition = 81;
             this.splitContainerControl2.TabIndex = 2;
             // 
             // lblFactorUm2PT
             // 
-            this.lblFactorUm2PT.Location = new System.Drawing.Point(687, 11);
-            this.lblFactorUm2PT.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.lblFactorUm2PT.Location = new System.Drawing.Point(589, 9);
             this.lblFactorUm2PT.Name = "lblFactorUm2PT";
-            this.lblFactorUm2PT.Size = new System.Drawing.Size(12, 16);
+            this.lblFactorUm2PT.Size = new System.Drawing.Size(12, 13);
             this.lblFactorUm2PT.TabIndex = 69;
             this.lblFactorUm2PT.Text = "...";
             this.lblFactorUm2PT.Visible = false;
             // 
             // lblCantidadPT
             // 
-            this.lblCantidadPT.Location = new System.Drawing.Point(272, 11);
-            this.lblCantidadPT.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.lblCantidadPT.Location = new System.Drawing.Point(233, 9);
             this.lblCantidadPT.Name = "lblCantidadPT";
-            this.lblCantidadPT.Size = new System.Drawing.Size(12, 16);
+            this.lblCantidadPT.Size = new System.Drawing.Size(12, 13);
             this.lblCantidadPT.TabIndex = 68;
             this.lblCantidadPT.Text = "...";
             // 
             // lblNom
             // 
-            this.lblNom.Location = new System.Drawing.Point(374, 8);
-            this.lblNom.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.lblNom.Location = new System.Drawing.Point(321, 6);
             this.lblNom.Name = "lblNom";
-            this.lblNom.Size = new System.Drawing.Size(12, 16);
+            this.lblNom.Size = new System.Drawing.Size(12, 13);
             this.lblNom.TabIndex = 67;
             this.lblNom.Text = "...";
             // 
             // txtFolioHP
             // 
             this.txtFolioHP.EnterMoveNextControl = true;
-            this.txtFolioHP.Location = new System.Drawing.Point(138, 8);
-            this.txtFolioHP.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.txtFolioHP.Location = new System.Drawing.Point(118, 6);
             this.txtFolioHP.MenuManager = this.RibbomBar;
             this.txtFolioHP.Name = "txtFolioHP";
             this.txtFolioHP.Properties.Mask.EditMask = "d";
             this.txtFolioHP.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric;
-            this.txtFolioHP.Size = new System.Drawing.Size(128, 22);
+            this.txtFolioHP.Size = new System.Drawing.Size(110, 20);
             this.txtFolioHP.TabIndex = 66;
             this.txtFolioHP.EditValueChanged += new System.EventHandler(this.txtFolioHP_EditValueChanged);
             this.txtFolioHP.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtFolioHP_KeyPress);
             // 
             // labelControl4
             // 
-            this.labelControl4.Location = new System.Drawing.Point(1111, 23);
-            this.labelControl4.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.labelControl4.Location = new System.Drawing.Point(952, 19);
             this.labelControl4.Name = "labelControl4";
-            this.labelControl4.Size = new System.Drawing.Size(34, 16);
+            this.labelControl4.Size = new System.Drawing.Size(29, 13);
             this.labelControl4.TabIndex = 65;
             this.labelControl4.Text = "Fecha";
             // 
             // labelControl1
             // 
-            this.labelControl1.Location = new System.Drawing.Point(1111, 58);
-            this.labelControl1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.labelControl1.Location = new System.Drawing.Point(952, 47);
             this.labelControl1.Name = "labelControl1";
-            this.labelControl1.Size = new System.Drawing.Size(49, 16);
+            this.labelControl1.Size = new System.Drawing.Size(40, 13);
             this.labelControl1.TabIndex = 64;
             this.labelControl1.Text = "Almacén";
             // 
             // cboAlmacen
             // 
             this.cboAlmacen.EnterMoveNextControl = true;
-            this.cboAlmacen.Location = new System.Drawing.Point(1203, 54);
-            this.cboAlmacen.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.cboAlmacen.Location = new System.Drawing.Point(1031, 44);
             this.cboAlmacen.MenuManager = this.RibbomBar;
             this.cboAlmacen.Name = "cboAlmacen";
             this.cboAlmacen.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.cboAlmacen.Size = new System.Drawing.Size(231, 22);
+            this.cboAlmacen.Size = new System.Drawing.Size(198, 20);
             this.cboAlmacen.TabIndex = 63;
             // 
             // txtFecha
             // 
             this.txtFecha.EditValue = null;
-            this.txtFecha.Location = new System.Drawing.Point(1203, 20);
-            this.txtFecha.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.txtFecha.Location = new System.Drawing.Point(1031, 16);
             this.txtFecha.MenuManager = this.RibbomBar;
             this.txtFecha.Name = "txtFecha";
             this.txtFecha.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.txtFecha.Properties.CalendarTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.txtFecha.Size = new System.Drawing.Size(231, 22);
+            this.txtFecha.Size = new System.Drawing.Size(198, 20);
             this.txtFecha.TabIndex = 62;
             // 
             // txtSeq
             // 
-            this.txtSeq.Location = new System.Drawing.Point(138, 68);
-            this.txtSeq.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.txtSeq.Location = new System.Drawing.Point(118, 55);
             this.txtSeq.MenuManager = this.RibbomBar;
             this.txtSeq.Name = "txtSeq";
-            this.txtSeq.Size = new System.Drawing.Size(128, 22);
+            this.txtSeq.Size = new System.Drawing.Size(110, 20);
             this.txtSeq.TabIndex = 60;
             this.txtSeq.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtSeq_KeyPress);
             // 
             // cboMovmiento
             // 
             this.cboMovmiento.EnterMoveNextControl = true;
-            this.cboMovmiento.Location = new System.Drawing.Point(138, 38);
-            this.cboMovmiento.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.cboMovmiento.Location = new System.Drawing.Point(118, 31);
             this.cboMovmiento.MenuManager = this.RibbomBar;
             this.cboMovmiento.Name = "cboMovmiento";
             this.cboMovmiento.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.cboMovmiento.Size = new System.Drawing.Size(458, 22);
+            this.cboMovmiento.Size = new System.Drawing.Size(393, 20);
             this.cboMovmiento.TabIndex = 59;
             this.cboMovmiento.EditValueChanged += new System.EventHandler(this.cboMovmiento_EditValueChanged);
             // 
             // labelControl17
             // 
-            this.labelControl17.Location = new System.Drawing.Point(30, 41);
-            this.labelControl17.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.labelControl17.Location = new System.Drawing.Point(26, 33);
             this.labelControl17.Name = "labelControl17";
-            this.labelControl17.Size = new System.Drawing.Size(65, 16);
+            this.labelControl17.Size = new System.Drawing.Size(54, 13);
             this.labelControl17.TabIndex = 58;
             this.labelControl17.Text = "Movimiento";
             // 
             // labelControl2
             // 
-            this.labelControl2.Location = new System.Drawing.Point(30, 74);
-            this.labelControl2.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.labelControl2.Location = new System.Drawing.Point(26, 60);
             this.labelControl2.Name = "labelControl2";
-            this.labelControl2.Size = new System.Drawing.Size(22, 16);
+            this.labelControl2.Size = new System.Drawing.Size(18, 13);
             this.labelControl2.TabIndex = 13;
             this.labelControl2.Text = "Seq";
             // 
             // labelControl3
             // 
-            this.labelControl3.Location = new System.Drawing.Point(30, 8);
-            this.labelControl3.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.labelControl3.Location = new System.Drawing.Point(26, 6);
             this.labelControl3.Name = "labelControl3";
-            this.labelControl3.Size = new System.Drawing.Size(46, 16);
+            this.labelControl3.Size = new System.Drawing.Size(38, 13);
             this.labelControl3.TabIndex = 9;
             this.labelControl3.Text = "Folio HP";
             // 
             // gridControlDetalle
             // 
             this.gridControlDetalle.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.gridControlDetalle.EmbeddedNavigator.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.gridControlDetalle.Location = new System.Drawing.Point(0, 0);
             this.gridControlDetalle.MainView = this.gridViewDetalle;
-            this.gridControlDetalle.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.gridControlDetalle.MenuManager = this.RibbomBar;
             this.gridControlDetalle.Name = "gridControlDetalle";
-            this.gridControlDetalle.Size = new System.Drawing.Size(1491, 355);
+            this.gridControlDetalle.Size = new System.Drawing.Size(1278, 290);
             this.gridControlDetalle.TabIndex = 12;
             this.gridControlDetalle.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridViewDetalle});
@@ -2093,7 +2058,6 @@
             this.gridColumnCantidad,
             this.gridColumnSurtir,
             this.gridColumnObservacion});
-            this.gridViewDetalle.DetailHeight = 431;
             this.gridViewDetalle.GridControl = this.gridControlDetalle;
             this.gridViewDetalle.Name = "gridViewDetalle";
             this.gridViewDetalle.OptionsView.ShowGroupPanel = false;
@@ -2102,69 +2066,59 @@
             // 
             this.gridColumnArticulo.Caption = "Articulo";
             this.gridColumnArticulo.FieldName = "Articulo";
-            this.gridColumnArticulo.MinWidth = 23;
             this.gridColumnArticulo.Name = "gridColumnArticulo";
             this.gridColumnArticulo.Visible = true;
             this.gridColumnArticulo.VisibleIndex = 0;
-            this.gridColumnArticulo.Width = 87;
             // 
             // gridColumnDescripcion
             // 
             this.gridColumnDescripcion.Caption = "Descripcion";
             this.gridColumnDescripcion.FieldName = "Descripcion";
-            this.gridColumnDescripcion.MinWidth = 23;
             this.gridColumnDescripcion.Name = "gridColumnDescripcion";
             this.gridColumnDescripcion.Visible = true;
             this.gridColumnDescripcion.VisibleIndex = 1;
-            this.gridColumnDescripcion.Width = 87;
             // 
             // gridColumnCantidad
             // 
             this.gridColumnCantidad.Caption = "Cantidad";
             this.gridColumnCantidad.FieldName = "Cantidad";
-            this.gridColumnCantidad.MinWidth = 23;
             this.gridColumnCantidad.Name = "gridColumnCantidad";
             this.gridColumnCantidad.Visible = true;
             this.gridColumnCantidad.VisibleIndex = 2;
-            this.gridColumnCantidad.Width = 87;
             // 
             // gridColumnSurtir
             // 
             this.gridColumnSurtir.Caption = "Surtir";
             this.gridColumnSurtir.FieldName = "Surtir";
-            this.gridColumnSurtir.MinWidth = 25;
+            this.gridColumnSurtir.MinWidth = 21;
             this.gridColumnSurtir.Name = "gridColumnSurtir";
             this.gridColumnSurtir.Visible = true;
             this.gridColumnSurtir.VisibleIndex = 3;
-            this.gridColumnSurtir.Width = 94;
+            this.gridColumnSurtir.Width = 81;
             // 
             // gridColumnObservacion
             // 
             this.gridColumnObservacion.Caption = "Observacion";
             this.gridColumnObservacion.FieldName = "Observacion";
-            this.gridColumnObservacion.MinWidth = 23;
             this.gridColumnObservacion.Name = "gridColumnObservacion";
             this.gridColumnObservacion.Visible = true;
             this.gridColumnObservacion.VisibleIndex = 4;
-            this.gridColumnObservacion.Width = 87;
             // 
             // navigationPage1
             // 
             this.navigationPage1.Controls.Add(this.documentViewer1);
-            this.navigationPage1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.navigationPage1.Name = "navigationPage1";
-            this.navigationPage1.Size = new System.Drawing.Size(1491, 470);
+            this.navigationPage1.Size = new System.Drawing.Size(1278, 383);
             // 
             // Movimientosahojadeproduccion
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1491, 737);
+            this.ClientSize = new System.Drawing.Size(1278, 599);
             this.Controls.Add(this.navigationFrame);
             this.Controls.Add(this.officeNavigationBar);
             this.Controls.Add(this.ribbonStatusBar);
             this.Controls.Add(this.RibbomBar);
-            this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Name = "Movimientosahojadeproduccion";
             this.Ribbon = this.RibbomBar;
             this.StatusBar = this.ribbonStatusBar;

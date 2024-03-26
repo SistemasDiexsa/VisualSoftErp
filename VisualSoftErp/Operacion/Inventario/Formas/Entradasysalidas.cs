@@ -103,12 +103,8 @@ namespace VisualSoftErp.Operacion.Ventas.Formas
                     else
                     {
                         MessageBox.Show("No se pudo llenarCajasUsuarios: " + globalCL.gv_UsuarioID.ToString());
-                    }
-
-                    
+                    }   
                 }
-
-                    
                 else
                     bbiListaPorAutorizar.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
             }
@@ -1089,7 +1085,7 @@ namespace VisualSoftErp.Operacion.Ventas.Formas
             cl.strSerie = "";
             cl.intFolio = intFolio;
             cl.intTiposdemovimientoinvID = intTM;
-            cl.intUsuarioID = globalCL.gv_UsuarioID; ;
+            cl.intUsuarioID = globalCL.gv_UsuarioID;
             string result = cl.EntradasysalidasAutoriza();
             if (result == "OK")
             {

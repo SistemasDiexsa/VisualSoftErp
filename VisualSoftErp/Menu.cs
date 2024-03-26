@@ -73,9 +73,6 @@ namespace VisualSoftErp
 
         private void CargaAlertas()
         {
-
-            
-
             UsuariosCL cl = new UsuariosCL();
             cl.intUsuariosID = globalCL.gv_UsuarioID;
             string result = cl.UsuariosLlenaCajas();
@@ -111,7 +108,12 @@ namespace VisualSoftErp
 
         private void Form1_Load(object sender, EventArgs e)
         {
-
+           
+        }
+        private void Form1_SizeChanged(object sender, EventArgs e)
+        {
+            globalCL.gv_intAnchoVentana = this.Width;
+            globalCL.gv_intAltoVentana = this.Height;
         }
 
         private void ribbonControl_Merge(object sender, DevExpress.XtraBars.Ribbon.RibbonMergeEventArgs e)
@@ -2632,5 +2634,7 @@ namespace VisualSoftErp
             Guias frm = new Guias();
             this.tabbedView.AddDocument(frm);
         }
+
+        
     }
 }

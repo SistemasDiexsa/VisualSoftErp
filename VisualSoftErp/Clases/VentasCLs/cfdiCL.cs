@@ -544,13 +544,12 @@ namespace VisualSoftErp.Clases
                 // if (strCfdiVer=="3.3")
                 //   vs.ReceptorNombre = pReceptorNombre;
                 // else
-                // {
+                // { }
                 vs.ReceptorNombre = pReceptorNom40;
                 vs.RegimenFiscalReceptor = pReceptorRegimenFiscal;
                 vs.DomicilioFiscalReceptor = pReceptorCP.ToString();
                 // vs.DomicilioFiscalReceptor = "20928";     // DESCOMENTAR PARA PRUEBAS
                 vs.Exportacion40 = "01";
-               // }
                 vs.ReceptorRfc33 = pReceptorRegFed;
 
                 if (intPublicoengeneral==1)

@@ -34,6 +34,8 @@ namespace VisualSoftErp.Clases
         public static int gv_Folio;
         public static string gv_Serie;
         public static string gv_AnticiposOrigen { get; set; }
+        public static int gv_intAnchoVentana { get; set; }
+        public static int gv_intAltoVentana { get; set; }
 
         public int iImpresiondirecta;
         public string sTipologo;
@@ -79,7 +81,7 @@ namespace VisualSoftErp.Clases
         public int intSolicitudesDeRegistro { get; set; }
 
         public DateTime fechaUltimoDiadelMes { get; set; }        
-
+        
         #endregion
         #region Constructor
         public globalCL()
@@ -108,8 +110,6 @@ namespace VisualSoftErp.Clases
             intOrdenesPorAtender = 0;
             intSalidasporautorizar = 0;
             intSolicitudesDeRegistro = 0;
-
-
         }
         #endregion
         #region Metodos
@@ -810,6 +810,68 @@ namespace VisualSoftErp.Clases
             vc.ShowDialog();
         } //Verifica comprobante
 
+        public string EnviaCorreoGeneral(string strEmailTo, string subject, string body, DateTime date, string filePath)
+        {
+            string strambiente = ConfigurationManager.AppSettings["Ambiente"].ToString();
+            if (strambiente == "Desarrollo" || strambiente == "Local")
+                strEmailTo = "sistemas@diexsa.com";
+            try
+            {
+                vsFK.vsFinkok vs = new vsFK.vsFinkok();
+                string strEmail = strEmailTo;
+                string strpdf = string.Empty;
+                string strXml = string.Empty;
+                string Año = date.Year.ToString();
+                int Mes = date.Month;
+
+                if(filePath != "" && File.Exists(filePath))
+                {
+                    // Lee el contenido del archivo en un arreglo de bytes
+                    byte[] fileBytes = File.ReadAllBytes(filePath);
+                    // Convierte los bytes del archivo en base64
+                    string base64File = Convert.ToBase64String(fileBytes);
+                }
+                string strFooter = ConfigurationManager.AppSettings["Footer"].ToString();
+                string strHost = ConfigurationManager.AppSettings["EMailHost"].ToString();
+                string strPort = ConfigurationManager.AppSettings["Emailport"].ToString();
+                string strUserName = ConfigurationManager.AppSettings["Emailusername"].ToString();
+                string strPassword = ConfigurationManager.AppSettings["Emailpassword"].ToString();
+                string strSSL = ConfigurationManager.AppSettings["Emailssl"].ToString();
+                string strLink = ConfigurationManager.AppSettings["Link"].ToString();
+
+                vs.emailFrom = ConfigurationManager.AppSettings["EMailFrom"].ToString();
+                vs.emailFromName = ConfigurationManager.AppSettings["EMailFromName"].ToString();
+                vs.emailSmtpUserName = strUserName;
+                vs.emailSmtpPassword = strPassword;
+                vs.emailSmtpHost = strHost;
+                vs.emailSmtpPort = strPort;
+                vs.emailSSL = strSSL;
+                vs.emailSubject = subject;
+                vs.emailTO = strEmail;
+                vs.emailXML = strXml;
+                vs.emailPDF = strpdf;
+                vs.Bcc = "";
+                vs.emailBody = body;
+
+                string strresult = vs.Enviar_Correo();
+                if (strresult.Substring(0, 28) == "Correo enviado correctamente")
+                {
+                    sDocumento = filePath;
+                    sPara = strEmailTo;
+                    sSubject = subject;
+                    dFechaDoc = date;
+                    string result2 = CorreosEnviadosCrud();
+                    if (result2 != "OK")
+                        return "Enviado correctamente, pero al guardar el envio: " + result2;
+                }
+                return strresult;
+            }
+            catch (Exception ex)
+            {
+                string error = "Error en EnviaCorreoGeneral línea " + ex.LineNumber().ToString() + ":\n" + ex.Message;
+                return error;
+            }
+        }
         public string EnviaCorreo(string strEmailTo,string strSerie,int intFolio,DateTime dFecha,string sDoc)
         {
             try
@@ -899,9 +961,6 @@ namespace VisualSoftErp.Clases
 
                 vsFK.vsFinkok vs = new vsFK.vsFinkok();
 
-                
-
-            
                 string strHost = ConfigurationManager.AppSettings["EMailHost"].ToString();
                 string strPort = ConfigurationManager.AppSettings["Emailport"].ToString();
                 string strUserName = ConfigurationManager.AppSettings["Emailusername"].ToString();
@@ -1120,11 +1179,13 @@ namespace VisualSoftErp.Clases
                 if (!File.Exists(ArchivoXml))
                     ArchivoXml = RutaXML + cl.fFecha.Year.ToString() + "\\" + NombreDeMes(cl.fFecha.Month) + "\\" + serieNueva + folioNuevo + ".xml";
 
+
                 vsFK.vsFinkok vs = new vsFK.vsFinkok();
                 string strUUID = vs.ExtraeValor(ArchivoXml, "tfd:TimbreFiscalDigital", "UUID");
                 if (strUUID.Length > 0)
                     return strUUID;
                 else
+                    MessageBox.Show("RUTA: \n" + ArchivoXml);
                     return "Error: No se pudo leer el nuevo uuid";
             }
             catch (Exception ex)

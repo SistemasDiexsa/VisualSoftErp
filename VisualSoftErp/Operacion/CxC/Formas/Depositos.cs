@@ -1087,25 +1087,34 @@ namespace VisualSoftErp.Catalogos
         //Carga las facturas pendientes de pago para el ciente selecionado
         private void Cargarfacturas()
         {
-            globalCL clg = new globalCL();
-            if (!clg.esNumerico(txtCte2.Text))
-                txtCte2.Text = "0";
+            try
+            {
+                globalCL clg = new globalCL();
+                if (!clg.esNumerico(txtCte2.Text))
+                    txtCte2.Text = "0";
 
-            DepositosCL cl = new DepositosCL();
-            cl.intClientesID = intCliente;
-            cl.intCliente2 = Convert.ToInt32(txtCte2.Text);
-            cl.intUsuarioID = globalCL.gv_UsuarioID;
-            string result = cl.DepositosGeneraAntiguedaddesaldos();
-            if (result == "OK")
-            {
-                gridControlDetalle.DataSource = cl.DepositosCargaFacturas();
-                if (gridViewDetalle.RowCount>1)
-                    cboClientesID.Enabled = false;
+                DepositosCL cl = new DepositosCL();
+                cl.intClientesID = intCliente;
+                cl.intCliente2 = Convert.ToInt32(txtCte2.Text);
+                cl.intUsuarioID = globalCL.gv_UsuarioID;
+                string result = cl.DepositosGeneraAntiguedaddesaldos();
+                if (result == "OK")
+                {
+                    gridControlDetalle.DataSource = cl.DepositosCargaFacturas();
+                    if (gridViewDetalle.RowCount > 1)
+                        cboClientesID.Enabled = false;
+                }
+                else
+                {
+                    MessageBox.Show(result);
+                }
             }
-            else
+            catch(Exception ex)
             {
-                MessageBox.Show(result);
-            }                        
+                string error = "Error en CargarFacturas línea" + ex.LineNumber().ToString() + "\n" + ex.Message;
+                MessageBox.Show(error);
+            }
+                                
         }
 
         private void cboCuentasbancariaID_EditValueChanged(object sender, EventArgs e)
@@ -1500,13 +1509,14 @@ namespace VisualSoftErp.Catalogos
                     else
                     {
                         MessageBox.Show("Cancelado correctamente");
+                        CierraPopUp();
                         bbiCancelar.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
                         LlenarGrid(AñoFiltro,MesFiltro);
                     }                   
                 }
                 else
                 {
-                    MessageBox.Show("vsfk:" + strresult);
+                    MessageBox.Show("vsfk: \n" + strresult);
                 }
             }
             catch(Exception ex)
@@ -1557,7 +1567,7 @@ namespace VisualSoftErp.Catalogos
 
             
             CierraPopUp();
-            if (timbrado==1 && !swInterno.IsOn)
+            if (timbrado == 1 && !swInterno.IsOn)
             {
                 Cancelar();
             }

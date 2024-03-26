@@ -6,6 +6,7 @@ using DevExpress.XtraBars.Ribbon;
 using DevExpress.XtraEditors;
 using DevExpress.XtraGrid.Columns;
 using DevExpress.XtraNavBar;
+using DevExpress.XtraReports.UI;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -15,8 +16,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using VisualSoftErp.Catalogos.CXC;
 using VisualSoftErp.Clases;
+using VisualSoftErp.Operacion.Compras.Clases;
+using VisualSoftErp.Operacion.CxP.Informes;
 using VisualSoftErp.Operacion.Ventas.Clases;
+using VisualSoftErp.Operacion.Ventas.Designers;
 
 namespace VisualSoftErp.Operacion.Ventas.Formas
 {
@@ -64,7 +69,7 @@ namespace VisualSoftErp.Operacion.Ventas.Formas
             }
         }
 
-        private void CargarCombos() 
+        private void CargarCombos()
         {
             // COMBO TRANSPORTES
             combosCL cl = new combosCL();
@@ -113,6 +118,7 @@ namespace VisualSoftErp.Operacion.Ventas.Formas
             gridViewFacturas.Columns["SerieFactura"].OptionsColumn.ReadOnly = true;
             gridViewFacturas.Columns["FolioFactura"].OptionsColumn.ReadOnly = true;
             gridViewFacturas.Columns["Cliente"].OptionsColumn.ReadOnly = true;
+            gridViewFacturas.Columns["Email"].Visible = false;
             LlenarGridFacturas();
         }
 
@@ -132,12 +138,25 @@ namespace VisualSoftErp.Operacion.Ventas.Formas
             dateFecha.DateTime = DateTime.Now;
             cboTransportes.EditValue = null;
             txtSubtotal.Text = string.Empty;
+            txtPorcentajeIva.Text = string.Empty;
             txtIva.Text = string.Empty;
-            txtRetIva.Text= string.Empty;
+            txtPorcentajeRetIva.Text = string.Empty;
+            txtRetIva.Text = string.Empty;
             txtTotal.Text = string.Empty;
             detalle = new DataTable();
             gridViewFacturas.ClearSelection();
             //LlenarGridFacturas();
+        }
+
+        private void BotonesNuevo()
+        {
+            ribbonPageGroup2.Visible = false;
+            bbiEditar.Visibility = BarItemVisibility.Never;
+            bbiNuevo.Visibility = BarItemVisibility.Never;
+            bbiEliminar.Visibility = BarItemVisibility.Never;
+            bbiCerrar.Visibility = BarItemVisibility.Never;
+            bbiGuardar.Visibility = BarItemVisibility.Always;
+            bbiRegresar.Visibility = BarItemVisibility.Always;
         }
 
         private void BotonesEditar()
@@ -148,6 +167,7 @@ namespace VisualSoftErp.Operacion.Ventas.Formas
             bbiEliminar.Visibility = BarItemVisibility.Never;
             bbiCerrar.Visibility = BarItemVisibility.Never;
             bbiGuardar.Visibility = BarItemVisibility.Always;
+            bbiEnviarXCorreo.Visibility = BarItemVisibility.Always;
             bbiRegresar.Visibility = BarItemVisibility.Always;
         }
 
@@ -159,6 +179,7 @@ namespace VisualSoftErp.Operacion.Ventas.Formas
             bbiEliminar.Visibility = BarItemVisibility.Always;
             bbiCerrar.Visibility = BarItemVisibility.Always;
             bbiGuardar.Visibility = BarItemVisibility.Never;
+            bbiEnviarXCorreo.Visibility = BarItemVisibility.Never;
             bbiRegresar.Visibility = BarItemVisibility.Never;
         }
 
@@ -181,7 +202,7 @@ namespace VisualSoftErp.Operacion.Ventas.Formas
 
         private void bbiNuevo_ItemClick(object sender, ItemClickEventArgs e)
         {
-            BotonesEditar();
+            BotonesNuevo();
             LimpiaCajas();
             LlenarGridFacturas();
             SiguienteFolioGuias();
@@ -190,6 +211,7 @@ namespace VisualSoftErp.Operacion.Ventas.Formas
 
         private void bbiRegresar_ItemClick(object sender, ItemClickEventArgs e)
         {
+            popUpEnviarXCorreo.Hide();
             navigationFrame.SelectedPageIndex = 0;
             LimpiaCajas();
             BotonesGrid();
@@ -313,6 +335,7 @@ namespace VisualSoftErp.Operacion.Ventas.Formas
                 return "Error en línea " + line + "\n" + ex.Message;
             }
         }
+
         private void bbiGuardar_ItemClick(object sender, ItemClickEventArgs e)
         {
             try
@@ -382,8 +405,13 @@ namespace VisualSoftErp.Operacion.Ventas.Formas
                 string result = cl.GuiasCrud();
                 if (result == "OK")
                 {
-                    MessageBox.Show("Guardado Exitosamente!");
+                    // AQUÍ DEBE DE CONSIDERARSE QUE SE ENVIARÁ POR CORREO.
+                    DialogResult resultado = MessageBox.Show("Guardado Correctamente! \n¿Deseas enviar por correo?", "Confirmación", MessageBoxButtons.YesNo);
+                    if (resultado == DialogResult.Yes)
+                        EnviarDocXCorreo();
+
                     LimpiaCajas();
+                    LlenarGridFacturas();
                     SiguienteFolioGuias();
                 }
                 else
@@ -408,6 +436,11 @@ namespace VisualSoftErp.Operacion.Ventas.Formas
 
         private void bbiEditar_ItemClick(object sender, ItemClickEventArgs e)
         {
+            if(FolioGuias == 0)
+            {
+                MessageBox.Show("Favor de escoger una guía para editar.");
+                return;
+            }
             BotonesEditar();
             LlenaCajas();
             LlenaCajasDetalle();
@@ -508,6 +541,178 @@ namespace VisualSoftErp.Operacion.Ventas.Formas
                 string linea = ex.LineNumber().ToString();
                 MessageBox.Show("Error en linea: " + linea + "\n" + ex.Message);
             }
+        }
+
+        private void EnviarDocXCorreo()
+        {
+            try
+            {                
+                // AGREGAMOS LA INFORMACION AL PANEL CREADO REFERENTE A LOS CORREOS
+                int[] selectedRowHandles = gridViewFacturas.GetSelectedRows();
+                foreach (int rowHandle in selectedRowHandles)
+                {
+                    DataRow row = gridViewFacturas.GetDataRow(rowHandle);
+                    if (row != null)
+                    {
+                        Label lbL = new Label();
+                        lbL.Text = "Factura: " + row["FolioFactura"].ToString();
+                        lbL.AutoSize = true;
+                        flowLayoutPanelCorreos.Controls.Add(lbL);
+
+                        Label lb = new Label();
+                        lb.Text = "Cliente: " + row["Cliente"].ToString();
+                        lb.AutoSize = true;
+                        flowLayoutPanelCorreos.Controls.Add(lb);
+
+                        TextBox textBox = new TextBox();
+                        textBox.Text = row["Email"].ToString();
+                        textBox.Anchor = AnchorStyles.Left | AnchorStyles.Right;
+                        textBox.Margin = new Padding(0, 0, 0, 5);
+                        flowLayoutPanelCorreos.Controls.Add(textBox);
+                    }
+                }
+
+                // Muestra el pop-up
+                int x = (globalCL.gv_intAnchoVentana - popUpEnviarXCorreo.Width) / 2;
+                int y = (globalCL.gv_intAltoVentana - popUpEnviarXCorreo.Height - 347) / 2;
+                popUpEnviarXCorreo.Location = new Point(x, y);
+                popUpEnviarXCorreo.Show();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Reporte: " + ex.Message);
+            }
+        }
+
+        private void bbiEnviarXCorreo_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            EnviarDocXCorreo();
+        }
+
+        private void bbiRegresarRibbonImpresion_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            popUpEnviarXCorreo.Hide();
+            navigationFrame.SelectedPageIndex = 1;
+            ribbonControl.MergeOwner.SelectedPage = ribbonControl.MergeOwner.TotalPageCategory.GetPageByText(ribbonHome.Text);
+        }
+
+        private void bbiCancelarEnvios_Click(object sender, EventArgs e)
+        {
+            flowLayoutPanelCorreos.Controls.Clear();
+            popUpEnviarXCorreo.Hide();
+        }
+
+        private void bbiConfirmarEnvios_Click(object sender, EventArgs e)
+        {
+            DevExpress.XtraSplashScreen.SplashScreenManager.ShowDefaultWaitForm();
+            try
+            {
+                // AGARRAMOS LOS CORREOS Y LOS ENVIAMOS
+                string result = string.Empty;
+                string subject = string.Empty;
+                foreach (Control control in flowLayoutPanelCorreos.Controls)
+                {
+                    globalCL cl = new globalCL();
+                    if(control is Label)
+                    {
+                        subject = "Guía #" + txtNumeroGuia.Text.ToString();
+
+                    }
+                    string body = "Tu pedido se ha embarcado a la guía #" + txtNumeroGuia.Text + ". <br><br>" +
+                        "Transportista: " + cboTransportes.Text + "<br>" +
+                        "SubTotal: " + txtSubtotal.Text + "<br>" +
+                        "Iva: " + txtIva.Text + "<br>" +
+                        "RetIva: " + txtRetIva.Text + "<br><br>" +
+                        "Cualquier duda favor de comunicarse con nosotros." ;
+                    DateTime date = DateTime.Now;
+                    if (control is TextBox)
+                    {
+                        TextBox tx = (TextBox)control;
+                        result = cl.EnviaCorreoGeneral(tx.Text, subject, body, date, "");
+                        if (result != "OK")
+                            MessageBox.Show(result);
+                    }
+                }
+                if (result == "OK")
+                    MessageBox.Show("Correos enviados correctamente!");
+
+                popUpEnviarXCorreo.Hide();
+                flowLayoutPanelCorreos.Controls.Clear();
+                DevExpress.XtraSplashScreen.SplashScreenManager.CloseDefaultWaitForm();
+            }
+            catch (Exception ex)
+            {
+                string error = "Error en bbiConfirmarEnvios_Click línea " + ex.LineNumber().ToString() + ":\n" + ex.Message;
+                MessageBox.Show(error);
+                DevExpress.XtraSplashScreen.SplashScreenManager.CloseDefaultWaitForm();
+                return;
+            }
+        }
+
+        private void txtPorcentajeIva_KeyDown(object sender, KeyEventArgs e)
+        {
+            if(char.IsLetter((char)e.KeyCode))
+                e.SuppressKeyPress = true;
+        }
+
+        private void txtPorcentajeRetIva_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (char.IsLetter((char)e.KeyCode))
+                e.SuppressKeyPress = true;
+        }
+
+        private void txtSubtotal_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (char.IsLetter((char)e.KeyCode))
+                e.SuppressKeyPress = true;
+        }
+
+        private void txtPorcentajeIva_EditValueChanged(object sender, EventArgs e)
+        {
+            if (txtPorcentajeIva.Text != string.Empty)
+            {
+                decimal subTotal = Convert.ToDecimal(txtSubtotal.Text);
+                decimal porcentajeIva = Convert.ToDecimal(txtPorcentajeIva.Text);
+                decimal iva = Math.Round(subTotal * (porcentajeIva / 100), 2);
+                txtIva.Text = iva.ToString();
+            }
+        }
+
+        private void txtPorcentajeRetIva_EditValueChanged(object sender, EventArgs e)
+        {
+            if(txtPorcentajeRetIva.Text != string.Empty)
+            {
+                decimal subTotal = Convert.ToDecimal(txtSubtotal.Text);
+                decimal porcentajeRetIva = Convert.ToDecimal(txtPorcentajeRetIva.Text);
+                decimal retIva = Math.Round(subTotal * (porcentajeRetIva / 100), 2);
+                txtRetIva.Text = retIva.ToString();
+            }
+        }
+
+        private void txtIva_EditValueChanged(object sender, EventArgs e)
+        {
+            if (txtPorcentajeIva.Text == string.Empty && txtIva.Text != string.Empty)
+            {
+                decimal subTotal = Convert.ToDecimal(txtSubtotal.Text);
+                decimal iva = Convert.ToDecimal(txtIva.Text);
+                decimal porcentajeIva = Math.Round(((iva / subTotal) * 100), 2);
+                txtPorcentajeIva.Text = porcentajeIva.ToString();
+            }
+            if (txtIva.Text != string.Empty && txtRetIva.Text != string.Empty)
+                txtTotal.Text = Math.Round(Convert.ToDecimal(txtSubtotal.Text) + (Convert.ToDecimal(txtIva.Text) + Convert.ToDecimal(txtRetIva.Text)), 2).ToString();
+        }
+
+        private void txtRetIva_EditValueChanged(object sender, EventArgs e)
+        {
+            if (txtPorcentajeRetIva.Text == string.Empty && txtRetIva.Text != string.Empty)
+            {
+                decimal subTotal = Convert.ToDecimal(txtSubtotal.Text);
+                decimal retIva = Convert.ToDecimal(txtRetIva.Text);
+                decimal porcentajeRetIva = Math.Round(((retIva / subTotal) * 100), 2);
+                txtPorcentajeRetIva.Text = porcentajeRetIva.ToString();
+            }
+            if (txtIva.Text != string.Empty && txtRetIva.Text != string.Empty)
+                txtTotal.Text = Math.Round(Convert.ToDecimal(txtSubtotal.Text) + (Convert.ToDecimal(txtIva.Text) + Convert.ToDecimal(txtRetIva.Text)), 2).ToString();
         }
     }
 }
