@@ -35,7 +35,7 @@ namespace VisualSoftErp.Clases
         public int intAlmacendefault { get; set; }
         public int intDepuraoc { get; set; }
         public int intUltimosprecios { get; set; }
-        public string strSerie { get; set; }  public string strPermiso { get; set; }
+        public string strSerie { get; set; } public string strPermiso { get; set; }
         public int intEditarcondicionesdepago { get; set; }
         public string strCapturista { get; set; }
         public int intCancelardepositos { get; set; }
@@ -50,6 +50,14 @@ namespace VisualSoftErp.Clases
         public int intFlexArtCompras { get; set; }
         public int intActivo { get; set; }
         public int intTienda { get; set; }
+        public int intCancelarHP { get; set; }
+        public int intCancelarValesCadenas { get; set; }
+        public int intCancelarAplicacionAnticipos { get; set; }
+        public int intAsignarPolizaTesk { get; set; }
+        public int intCancelarRM { get; set; }
+        public int intCambiarFechaRM { get; set; }
+        public int intCancelarFacturas { get; set; }
+        public int intActualizarExistenciaInventarioFisico { get; set; }
         public int iFirmaElectronicaSalidas { get; set; }
         public int intModificaFamiliasArticulos {  get; set; }
         public int intModificaSubFamiliasArticulos  { get; set; }
@@ -175,20 +183,28 @@ namespace VisualSoftErp.Clases
                 cmd.Parameters.AddWithValue("@prmDepuraoc", intDepuraoc);
                 cmd.Parameters.AddWithValue("@prmUltimosprecios", intUltimosprecios);
                 cmd.Parameters.AddWithValue("@prmSerie", strSerie);
-                cmd.Parameters.AddWithValue("@prmEditarcondicionesdepago", 0);
-                cmd.Parameters.AddWithValue("@prmCapturista", 0);
-                cmd.Parameters.AddWithValue("@prmCancelardepositos", 0);
-                cmd.Parameters.AddWithValue("@prmCancelarpedidos", 0);
-                cmd.Parameters.AddWithValue("@prmCancelarpagoscxp", 0);
-                cmd.Parameters.AddWithValue("@prmCancelarcontrarecibos", 0);
-                cmd.Parameters.AddWithValue("@prmCancelarcompras", 0);
-                cmd.Parameters.AddWithValue("@prmCancelaranticipos", 0);
+                cmd.Parameters.AddWithValue("@prmEditarcondicionesdepago", intEditarcondicionesdepago);
+                cmd.Parameters.AddWithValue("@prmCapturista", strCapturista);
+                cmd.Parameters.AddWithValue("@prmCancelardepositos", intCancelardepositos);
+                cmd.Parameters.AddWithValue("@prmCancelarpedidos", intCancelarpedidos);
+                cmd.Parameters.AddWithValue("@prmCancelarpagoscxp", intCancelarpagoscxp);
+                cmd.Parameters.AddWithValue("@prmCancelarcontrarecibos", intCancelarcontrarecibos);
+                cmd.Parameters.AddWithValue("@prmCancelarcompras", intCancelarcompras);
+                cmd.Parameters.AddWithValue("@prmCancelaranticipos", intCancelaranticipos);
                 cmd.Parameters.AddWithValue("@prmFlexArtArribosProveedor", intFlexArtArribosProveedor);
                 cmd.Parameters.AddWithValue("@prmFlexArtMovimientos", intFlexArtMovimientos);
                 cmd.Parameters.AddWithValue("@prmFlexArtVentas", intFlexArtVentas);
                 cmd.Parameters.AddWithValue("@prmFlexArtCompras", intFlexArtCompras);
                 cmd.Parameters.AddWithValue("@prmActivo", intActivo);
                 cmd.Parameters.AddWithValue("@prmTienda", intTienda);
+                cmd.Parameters.AddWithValue("@prmCancelarHP", intCancelarHP);
+                cmd.Parameters.AddWithValue("@prmCancelarvalescadenas", intCancelarValesCadenas);
+                cmd.Parameters.AddWithValue("@prmCancelaraplicacionanticipos", intCancelarAplicacionAnticipos);
+                cmd.Parameters.AddWithValue("@prmasignarPolizaTesk", intAsignarPolizaTesk);
+                cmd.Parameters.AddWithValue("@prmCancelarRM", intCancelarRM);
+                cmd.Parameters.AddWithValue("@prmCambiarFechaRM", intCambiarFechaRM);
+                cmd.Parameters.AddWithValue("@prmCancelarFacturas", intCancelarFacturas);
+                cmd.Parameters.AddWithValue("@prmActualizarExistenciaInvfisico", intActualizarExistenciaInventarioFisico);
                 cmd.Parameters.AddWithValue("@prmiFirmaElectronicaSalidas", iFirmaElectronicaSalidas);
                 cmd.Parameters.AddWithValue("@prmModificaFamiliasArticulos", intModificaFamiliasArticulos);
                 cmd.Parameters.AddWithValue("@prmModificaSubFamiliasArticulos", intModificaSubFamiliasArticulos);
@@ -258,12 +274,31 @@ namespace VisualSoftErp.Clases
                     intUltimosprecios = Convert.ToInt32(dr["Ultimosprecios"]);
                     strSerie = dr["Serie"].ToString();
 
+                    intEditarcondicionesdepago = Convert.ToInt32(dr["Editarcondicionesdepago"]);
+                    strCapturista = dr["Capturista"].ToString();
+                    intCancelardepositos = Convert.ToInt32(dr["Cancelardepositos"]);
+                    intCancelarpedidos = Convert.ToInt32(dr["Cancelarpedidos"]);
+                    intCancelarpagoscxp = Convert.ToInt32(dr["Cancelarpagoscxp"]);
+                    intCancelarcontrarecibos = Convert.ToInt32(dr["Cancelarcontrarecibos"]);
+                    intCancelarcompras = Convert.ToInt32(dr["Cancelarcompras"]);
+                    intCancelaranticipos = Convert.ToInt32(dr["Cancelaranticipos"]);
+
                     intFlexArtArribosProveedor = Convert.ToInt32(dr["FlexArtArribosProveedor"]);
                     intFlexArtMovimientos = Convert.ToInt32(dr["FlexArtMovimientos"]);
                     intFlexArtVentas = Convert.ToInt32(dr["FlexArtVentas"]);
                     intFlexArtCompras = Convert.ToInt32(dr["FlexArtCompras"]);
                     intActivo = Convert.ToInt32(dr["Activo"]);
                     intTienda = Convert.ToInt32(dr["Tienda"]);
+
+                    intCancelarHP = Convert.ToInt32(dr["CancelarHP"]);
+                    intCancelarValesCadenas = Convert.ToInt32(dr["Cancelarvalescadenas"]);
+                    intCancelarAplicacionAnticipos = Convert.ToInt32(dr["Cancelaraplicacionanticipos"]);
+                    intAsignarPolizaTesk = Convert.ToInt32(dr["asignarPolizaTesk"]);
+                    intCancelarRM = Convert.ToInt32(dr["CancelarRM"]);
+                    intCambiarFechaRM = Convert.ToInt32(dr["CambiarFechaRM"]);
+                    intCancelarFacturas = Convert.ToInt32(dr["CancelarFacturas"]);
+                    intActualizarExistenciaInventarioFisico = Convert.ToInt32(dr["ActualizarExistenciaInvfisico"]);
+
                     iFirmaElectronicaSalidas = Convert.ToInt32(dr["FirmaElectronicaSalidas"]);
                     intModificaFamiliasArticulos = Convert.ToInt32(dr["ModificaFamiliasArticulos"]);
                     intModificaSubFamiliasArticulos = Convert.ToInt32(dr["ModificaSubFamiliasArticulos"]);

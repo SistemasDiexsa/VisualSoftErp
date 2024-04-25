@@ -12,6 +12,7 @@ namespace VisualSoftErp.Clases
     public class FacturasCL
     {
         #region Propiedades
+        string strCnn = globalCL.gv_strcnn;
         public string strSerie { get; set; }
         public int intFolio { get; set; }
         public DataTable dtm { get; set; }
@@ -23,9 +24,6 @@ namespace VisualSoftErp.Clases
         public string strOrigen { get; set; }
         public string sPedidoSerie { get; set; }
         public int intPedidoFolio { get; set; }
-
-        string strCnn = globalCL.gv_strcnn;
-
         public DateTime fFecha { get; set; }
         public string strc_FormaPago { get; set; }
         public string strCondicionesdepago { get; set; }
@@ -44,7 +42,6 @@ namespace VisualSoftErp.Clases
         public string strc_UsoCFDI { get; set; }
         public decimal dTotalmpuestosRetenidos { get; set; }
         public decimal dTotalImpuestosTrasladados { get; set; }
-
         public decimal dPorcentajededescuento { get; set; }
         public string strUUID { get; set; }
         public int intAgentesID { get; set; }
@@ -70,6 +67,7 @@ namespace VisualSoftErp.Clases
         public int intMes { get; set; }
         public int intAño { get; set; }
         public int intDias { get; set; }
+        
         #endregion
 
         #region Constructor
@@ -128,7 +126,6 @@ namespace VisualSoftErp.Clases
             intEje = 0;
             intMes = 0;
             intDias = 0;
-
         }
         #endregion
 

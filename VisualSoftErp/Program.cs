@@ -23,7 +23,7 @@ namespace VisualSoftErp
             Application.SetCompatibleTextRenderingDefault(false);
 
             BonusSkins.Register();
-
+            
             LoginCL cl = new LoginCL();
 
             //AWS_DEX9201028BA

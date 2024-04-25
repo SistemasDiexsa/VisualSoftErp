@@ -82,27 +82,27 @@ namespace VisualSoftErp.Clases
             DataTable dt = new DataTable();
             try
             {
-                SqlConnection cnn = new SqlConnection();
-                cnn.ConnectionString = strCnn;
-                cnn.Open();
+                using(SqlConnection cnn = new SqlConnection(strCnn))
+                {
+                    using(SqlCommand cmd = new SqlCommand("VentasEstadisticaPorLineaFamiliaArticuloParaPronostico", cnn))
+                    {
+                        cmd.CommandType = System.Data.CommandType.StoredProcedure;
+                        cmd.Parameters.AddWithValue("@prmEmp", intEmp);
+                        cmd.Parameters.AddWithValue("@prmSuc", intSuc);
+                        cmd.Parameters.AddWithValue("@prmEje", intEje);
+                        cmd.Parameters.AddWithValue("@prmMes", intMes);
+                        cmd.Parameters.AddWithValue("@prmLin", intLin);
+                        cmd.Parameters.AddWithValue("@prmFam", intFam);
+                        cmd.Parameters.AddWithValue("@prmTipo", intTipo);
+                        cnn.Open();
 
-                SqlCommand cmd = new SqlCommand();
-                cmd.CommandText = "VentasEstadisticaPorLineaFamiliaArticuloParaPronostico";
-                cmd.Parameters.AddWithValue("@prmEmp", intEmp);
-                cmd.Parameters.AddWithValue("@prmSuc", intSuc);
-                cmd.Parameters.AddWithValue("@prmEje", intEje);
-                cmd.Parameters.AddWithValue("@prmMes", intMes);
-                cmd.Parameters.AddWithValue("@prmLin", intLin);
-                cmd.Parameters.AddWithValue("@prmFam", intFam);
-                cmd.Parameters.AddWithValue("@prmTipo", intTipo);
-                cmd.CommandType = System.Data.CommandType.StoredProcedure;
-                cmd.Connection = cnn;
-
-                SqlDataAdapter sqlAD = new SqlDataAdapter(cmd);
-                sqlAD.Fill(dt);
-                cnn.Close();
+                        using (SqlDataAdapter sqlAD = new SqlDataAdapter(cmd))
+                        {
+                            sqlAD.Fill(dt);
+                        }
+                    }
+                }
                 return dt;
-
             }
             catch (Exception ex) { return dt; }
         } //metaporarticuloGrid

@@ -357,6 +357,7 @@ namespace VisualSoftErp.Catalogos
                 dtDepositos.Columns.Add("TeskPoliza", Type.GetType("System.String"));
                 dtDepositos.Columns.Add("RazonCancelacion", Type.GetType("System.String"));
                 dtDepositos.Columns.Add("FechaCancelacion", Type.GetType("System.DateTime"));
+                dtDepositos.Columns.Add("DepositoRecepcion", Type.GetType("System.Int32"));
 
                 //DT para Depositos
                 System.Data.DataTable dtDepositosdetalle = new System.Data.DataTable("Depositosdetalle");
@@ -472,7 +473,8 @@ namespace VisualSoftErp.Catalogos
                 int intC_TipoCadenaPago = 0;                
                 string strStatus = "1";
                 string strHora = txtHora.Text;
-                DateTime fFechaReal = Convert.ToDateTime(DateTime.Now);                
+                DateTime fFechaReal = Convert.ToDateTime(DateTime.Now);
+                int intDepositoRecepcion = swDepositoRecepcion.IsOn ? 1 : 0;
                 dato = String.Empty;
                 if (chkTimbrar.Checked)
                 {
@@ -508,7 +510,8 @@ namespace VisualSoftErp.Catalogos
                     0,
                     "",
                     "",
-                    fFecha
+                    fFecha,
+                    intDepositoRecepcion
                     );
 
                 DepositosCL cl = new DepositosCL();
@@ -815,8 +818,6 @@ namespace VisualSoftErp.Catalogos
             globalCL clG = new globalCL();
             if (strMonedaDelPago != "MXN")
             {
-                
-
                 if (!clG.esNumerico(txtTipodecambio.Text)) {
                     return "Teclee el tipo de cambio";
                 }
@@ -893,7 +894,6 @@ namespace VisualSoftErp.Catalogos
             }
 
 
-
             string result3 = clg.GM_CierredemodulosStatus(Convert.ToDateTime(dateEditFecha.Text).Year, Convert.ToDateTime(dateEditFecha.Text).Month, "CXC");
             if (result3 == "C")
             {
@@ -925,7 +925,7 @@ namespace VisualSoftErp.Catalogos
                 cboC_Formapago.EditValue = cl.strC_Formapago;
                 txtNumerooperacion.Text = cl.strC_Formapago;                
                 txtHora.Text = cl.strHora;
-                
+                swDepositoRecepcion.IsOn = cl.intDepositoRecepcion == 1 ? true : false;
             }
             else
             {
@@ -1042,7 +1042,6 @@ namespace VisualSoftErp.Catalogos
             }
         }
 
-     
         private void txtFolio_EditValueChanged(object sender, EventArgs e)
         {
 
@@ -1649,6 +1648,7 @@ namespace VisualSoftErp.Catalogos
             EnviaCorreo();
         }
 
+        #region FitrosMeses
         private void navBarItemEne_LinkClicked_1(object sender, DevExpress.XtraNavBar.NavBarLinkEventArgs e)
         {
 //            gridViewPrincipal.ActiveFilterString = "[Año]=" + DateTime.Now.Year.ToString() + " And [Mes]=1";
@@ -1732,14 +1732,15 @@ namespace VisualSoftErp.Catalogos
             MesFiltro = 12;
             LlenarGrid(AñoFiltro, MesFiltro);
         }
-
+        
         private void navBarItemTodos_LinkPressed(object sender, DevExpress.XtraNavBar.NavBarLinkEventArgs e)
         {
             //gridViewPrincipal.ActiveFilter.Clear();
             MesFiltro = 0;
             LlenarGrid(AñoFiltro, MesFiltro);
         }
-
+        #endregion FitrosMeses
+        
         private void bbiCargarCxC_ItemClick(object sender, ItemClickEventArgs e)
         {
             Cargarfacturas();
@@ -2007,6 +2008,20 @@ namespace VisualSoftErp.Catalogos
         {
             globalCL clg = new globalCL();
             txtUUIDRelacion.Text = clg.leeUUIDNuevo(txtSerieRelacion.Text, txtSerieRelacion.Text, txtFolioRelacion.Text,intCliente);
+        }
+
+        private void cboC_Formapago_EditValueChanged(object sender, EventArgs e)
+        {
+            DevExpress.XtraEditors.LookUpEdit editor = sender as LookUpEdit;
+            DataRowView row = (DataRowView)editor.Properties.GetDataSourceRowByKeyValue(editor.EditValue);
+            string value = row["Clave"].ToString();
+            if (value == "01")
+                swDepositoRecepcion.Visible = true;
+            else
+            {
+                swDepositoRecepcion.Visible = false;
+                swDepositoRecepcion.IsOn = false;
+            }
         }
     }
 }

@@ -145,7 +145,7 @@ namespace VisualSoftErp.Operacion.Ventas.Formas
             gridViewPrincipal.Columns["Neto"].DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
             gridViewPrincipal.Columns["Neto"].DisplayFormat.FormatString = "c2";
         } //LlenarGrid()
-     
+
         private void CargaCombos()
         {
             combosCL cl = new combosCL();
@@ -241,7 +241,6 @@ namespace VisualSoftErp.Operacion.Ventas.Formas
             cboAlmacen.Properties.PopulateColumns();
             cboAlmacen.Properties.Columns["Clave"].Visible = false;
             cboAlmacen.EditValue = cboAlmacen.Properties.GetDataSourceValue(cboAlmacen.Properties.ValueMember, 0);
-
         }//CargaCombo
 
         private void Inicialisalista()
@@ -420,8 +419,6 @@ namespace VisualSoftErp.Operacion.Ventas.Formas
             }
 
             globalCL clg = new globalCL();
-
-
             string result = clg.GM_CierredemodulosStatus(Convert.ToDateTime(txtFecha.Text).Year, Convert.ToDateTime(txtFecha.Text).Month, "VTA");
             if (result == "C")
             {

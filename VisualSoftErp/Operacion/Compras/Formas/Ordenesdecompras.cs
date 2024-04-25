@@ -1701,7 +1701,6 @@ namespace VisualSoftErp.Catalogos
                 {
                     MessageBox.Show("Este mes está cerrado, no se puede hacer movimientos");
                     return;
-
                 }
 
                 if (strCancelando == "SI")
@@ -1908,6 +1907,17 @@ namespace VisualSoftErp.Catalogos
         {
             lblArtNuevaFecha.Text = gridViewDetalle.GetRowCellValue(gridViewDetalle.FocusedRowHandle, "Descripcion").ToString();
             intNuevaFechaseq = Convert.ToInt32(gridViewDetalle.GetRowCellValue(gridViewDetalle.FocusedRowHandle, "Seq"));
+        }
+
+        private void Ordenesdecompras_Resize(object sender, EventArgs e)
+        {
+            string sizeX = this.Size.Width.ToString();
+            string sizeY = this.Size.Width.ToString();
+            // MessageBox.Show("Este Form tiene medidas de: " + sizeX + ", " + sizeY);
+
+            string sizeSplitPanelX = splitContainerControl1.Size.Width.ToString();
+            string sizeSplitPanelY = splitContainerControl1.Size.Height.ToString();
+            // MessageBox.Show("Este SplitPanel tiene medidas de: " + sizeSplitPanelX + ", " + sizeSplitPanelY);
         }
     }
 }

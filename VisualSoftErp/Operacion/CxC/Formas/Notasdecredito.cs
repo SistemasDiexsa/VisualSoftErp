@@ -1196,7 +1196,6 @@ namespace VisualSoftErp.Operacion.CxC.Formas
                         DevExpress.XtraSplashScreen.SplashScreenManager.CloseDefaultWaitForm();
                         return;
                     }
-                        
                 }
 
                 rutaPDF = ConfigurationManager.AppSettings["pathpdf"].ToString() + "\\" + sYear + "\\" + sMes + "\\";

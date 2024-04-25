@@ -57,6 +57,41 @@
             this.gridControlPrincipal = new DevExpress.XtraGrid.GridControl();
             this.gridViewPrincipal = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.customersNavigationPage = new DevExpress.XtraBars.Navigation.NavigationPage();
+            this.swActualizarExistenciaInventarioFisico = new DevExpress.XtraEditors.ToggleSwitch();
+            this.labelControl47 = new DevExpress.XtraEditors.LabelControl();
+            this.swCambiarFechaRM = new DevExpress.XtraEditors.ToggleSwitch();
+            this.swCancelarFacturas = new DevExpress.XtraEditors.ToggleSwitch();
+            this.labelControl42 = new DevExpress.XtraEditors.LabelControl();
+            this.labelControl43 = new DevExpress.XtraEditors.LabelControl();
+            this.swAsignarPolizaTesk = new DevExpress.XtraEditors.ToggleSwitch();
+            this.swCancelarRM = new DevExpress.XtraEditors.ToggleSwitch();
+            this.labelControl44 = new DevExpress.XtraEditors.LabelControl();
+            this.labelControl45 = new DevExpress.XtraEditors.LabelControl();
+            this.swCancelarAplicacionAnticipos = new DevExpress.XtraEditors.ToggleSwitch();
+            this.labelControl46 = new DevExpress.XtraEditors.LabelControl();
+            this.swCancelarValesCadenas = new DevExpress.XtraEditors.ToggleSwitch();
+            this.labelControl41 = new DevExpress.XtraEditors.LabelControl();
+            this.swCancelarHP = new DevExpress.XtraEditors.ToggleSwitch();
+            this.labelControl40 = new DevExpress.XtraEditors.LabelControl();
+            this.swCancelarCompras = new DevExpress.XtraEditors.ToggleSwitch();
+            this.swCancelarAnticipos = new DevExpress.XtraEditors.ToggleSwitch();
+            this.labelControl38 = new DevExpress.XtraEditors.LabelControl();
+            this.labelControl39 = new DevExpress.XtraEditors.LabelControl();
+            this.swCancelarPagosCXP = new DevExpress.XtraEditors.ToggleSwitch();
+            this.swCancelarContraRecibos = new DevExpress.XtraEditors.ToggleSwitch();
+            this.labelControl36 = new DevExpress.XtraEditors.LabelControl();
+            this.labelControl37 = new DevExpress.XtraEditors.LabelControl();
+            this.swCancelarDepositos = new DevExpress.XtraEditors.ToggleSwitch();
+            this.swCancelarPedidos = new DevExpress.XtraEditors.ToggleSwitch();
+            this.labelControl34 = new DevExpress.XtraEditors.LabelControl();
+            this.labelControl35 = new DevExpress.XtraEditors.LabelControl();
+            this.swEditarCondicionesPago = new DevExpress.XtraEditors.ToggleSwitch();
+            this.labelControl33 = new DevExpress.XtraEditors.LabelControl();
+            this.labelControl32 = new DevExpress.XtraEditors.LabelControl();
+            this.swModificaSubFamiliasArticulos = new DevExpress.XtraEditors.ToggleSwitch();
+            this.labelControl31 = new DevExpress.XtraEditors.LabelControl();
+            this.swModificaFamiliasArticulos = new DevExpress.XtraEditors.ToggleSwitch();
+            this.labelControl30 = new DevExpress.XtraEditors.LabelControl();
             this.swIFirmaElectronicaSalidas = new DevExpress.XtraEditors.ToggleSwitch();
             this.labelControl29 = new DevExpress.XtraEditors.LabelControl();
             this.swTienda = new DevExpress.XtraEditors.ToggleSwitch();
@@ -116,10 +151,7 @@
             this.txtNombre = new DevExpress.XtraEditors.TextEdit();
             this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
             this.tabbedView = new DevExpress.XtraBars.Docking2010.Views.Tabbed.TabbedView(this.components);
-            this.swModificaFamiliasArticulos = new DevExpress.XtraEditors.ToggleSwitch();
-            this.labelControl30 = new DevExpress.XtraEditors.LabelControl();
-            this.swModificaSubFamiliasArticulos = new DevExpress.XtraEditors.ToggleSwitch();
-            this.labelControl31 = new DevExpress.XtraEditors.LabelControl();
+            this.txtCapturista = new DevExpress.XtraEditors.TextEdit();
             ((System.ComponentModel.ISupportInitialize)(this.ribbonControl)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.officeNavigationBar)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.navigationFrame)).BeginInit();
@@ -128,6 +160,23 @@
             ((System.ComponentModel.ISupportInitialize)(this.gridControlPrincipal)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridViewPrincipal)).BeginInit();
             this.customersNavigationPage.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.swActualizarExistenciaInventarioFisico.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.swCambiarFechaRM.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.swCancelarFacturas.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.swAsignarPolizaTesk.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.swCancelarRM.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.swCancelarAplicacionAnticipos.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.swCancelarValesCadenas.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.swCancelarHP.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.swCancelarCompras.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.swCancelarAnticipos.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.swCancelarPagosCXP.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.swCancelarContraRecibos.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.swCancelarDepositos.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.swCancelarPedidos.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.swEditarCondicionesPago.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.swModificaSubFamiliasArticulos.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.swModificaFamiliasArticulos.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.swIFirmaElectronicaSalidas.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.swTienda.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.swActivo.Properties)).BeginInit();
@@ -158,16 +207,15 @@
             ((System.ComponentModel.ISupportInitialize)(this.txtLogin.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtNombre.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tabbedView)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.swModificaFamiliasArticulos.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.swModificaSubFamiliasArticulos.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtCapturista.Properties)).BeginInit();
             this.SuspendLayout();
             // 
             // ribbonStatusBar
             // 
-            this.ribbonStatusBar.Location = new System.Drawing.Point(0, 708);
+            this.ribbonStatusBar.Location = new System.Drawing.Point(0, 722);
             this.ribbonStatusBar.Name = "ribbonStatusBar";
             this.ribbonStatusBar.Ribbon = this.ribbonControl;
-            this.ribbonStatusBar.Size = new System.Drawing.Size(973, 23);
+            this.ribbonStatusBar.Size = new System.Drawing.Size(1686, 23);
             // 
             // ribbonControl
             // 
@@ -198,7 +246,7 @@
             this.ribbonPage1});
             this.ribbonControl.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonControlStyle.Office2013;
             this.ribbonControl.ShowApplicationButton = DevExpress.Utils.DefaultBoolean.False;
-            this.ribbonControl.Size = new System.Drawing.Size(973, 147);
+            this.ribbonControl.Size = new System.Drawing.Size(1686, 147);
             this.ribbonControl.StatusBar = this.ribbonStatusBar;
             this.ribbonControl.ToolbarLocation = DevExpress.XtraBars.Ribbon.RibbonQuickAccessToolbarLocation.Hidden;
             // 
@@ -365,9 +413,9 @@
             // officeNavigationBar
             // 
             this.officeNavigationBar.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.officeNavigationBar.Location = new System.Drawing.Point(0, 698);
+            this.officeNavigationBar.Location = new System.Drawing.Point(0, 712);
             this.officeNavigationBar.Name = "officeNavigationBar";
-            this.officeNavigationBar.Size = new System.Drawing.Size(973, 10);
+            this.officeNavigationBar.Size = new System.Drawing.Size(1686, 10);
             this.officeNavigationBar.TabIndex = 1;
             this.officeNavigationBar.Text = "officeNavigationBar";
             // 
@@ -385,7 +433,7 @@
             this.customersNavigationPage});
             this.navigationFrame.RibbonAndBarsMergeStyle = DevExpress.XtraBars.Docking2010.Views.RibbonAndBarsMergeStyle.Always;
             this.navigationFrame.SelectedPage = this.employeesNavigationPage;
-            this.navigationFrame.Size = new System.Drawing.Size(973, 551);
+            this.navigationFrame.Size = new System.Drawing.Size(1686, 565);
             this.navigationFrame.TabIndex = 0;
             this.navigationFrame.Text = "navigationFrame";
             // 
@@ -393,7 +441,7 @@
             // 
             this.employeesNavigationPage.Controls.Add(this.gridControlPrincipal);
             this.employeesNavigationPage.Name = "employeesNavigationPage";
-            this.employeesNavigationPage.Size = new System.Drawing.Size(973, 551);
+            this.employeesNavigationPage.Size = new System.Drawing.Size(1686, 565);
             // 
             // gridControlPrincipal
             // 
@@ -402,7 +450,7 @@
             this.gridControlPrincipal.MainView = this.gridViewPrincipal;
             this.gridControlPrincipal.MenuManager = this.ribbonControl;
             this.gridControlPrincipal.Name = "gridControlPrincipal";
-            this.gridControlPrincipal.Size = new System.Drawing.Size(973, 551);
+            this.gridControlPrincipal.Size = new System.Drawing.Size(1686, 565);
             this.gridControlPrincipal.TabIndex = 0;
             this.gridControlPrincipal.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridViewPrincipal});
@@ -416,6 +464,38 @@
             // 
             // customersNavigationPage
             // 
+            this.customersNavigationPage.Controls.Add(this.txtCapturista);
+            this.customersNavigationPage.Controls.Add(this.swActualizarExistenciaInventarioFisico);
+            this.customersNavigationPage.Controls.Add(this.labelControl47);
+            this.customersNavigationPage.Controls.Add(this.swCambiarFechaRM);
+            this.customersNavigationPage.Controls.Add(this.swCancelarFacturas);
+            this.customersNavigationPage.Controls.Add(this.labelControl42);
+            this.customersNavigationPage.Controls.Add(this.labelControl43);
+            this.customersNavigationPage.Controls.Add(this.swAsignarPolizaTesk);
+            this.customersNavigationPage.Controls.Add(this.swCancelarRM);
+            this.customersNavigationPage.Controls.Add(this.labelControl44);
+            this.customersNavigationPage.Controls.Add(this.labelControl45);
+            this.customersNavigationPage.Controls.Add(this.swCancelarAplicacionAnticipos);
+            this.customersNavigationPage.Controls.Add(this.labelControl46);
+            this.customersNavigationPage.Controls.Add(this.swCancelarValesCadenas);
+            this.customersNavigationPage.Controls.Add(this.labelControl41);
+            this.customersNavigationPage.Controls.Add(this.swCancelarHP);
+            this.customersNavigationPage.Controls.Add(this.labelControl40);
+            this.customersNavigationPage.Controls.Add(this.swCancelarCompras);
+            this.customersNavigationPage.Controls.Add(this.swCancelarAnticipos);
+            this.customersNavigationPage.Controls.Add(this.labelControl38);
+            this.customersNavigationPage.Controls.Add(this.labelControl39);
+            this.customersNavigationPage.Controls.Add(this.swCancelarPagosCXP);
+            this.customersNavigationPage.Controls.Add(this.swCancelarContraRecibos);
+            this.customersNavigationPage.Controls.Add(this.labelControl36);
+            this.customersNavigationPage.Controls.Add(this.labelControl37);
+            this.customersNavigationPage.Controls.Add(this.swCancelarDepositos);
+            this.customersNavigationPage.Controls.Add(this.swCancelarPedidos);
+            this.customersNavigationPage.Controls.Add(this.labelControl34);
+            this.customersNavigationPage.Controls.Add(this.labelControl35);
+            this.customersNavigationPage.Controls.Add(this.swEditarCondicionesPago);
+            this.customersNavigationPage.Controls.Add(this.labelControl33);
+            this.customersNavigationPage.Controls.Add(this.labelControl32);
             this.customersNavigationPage.Controls.Add(this.swModificaSubFamiliasArticulos);
             this.customersNavigationPage.Controls.Add(this.labelControl31);
             this.customersNavigationPage.Controls.Add(this.swModificaFamiliasArticulos);
@@ -479,7 +559,338 @@
             this.customersNavigationPage.Controls.Add(this.txtNombre);
             this.customersNavigationPage.Controls.Add(this.labelControl1);
             this.customersNavigationPage.Name = "customersNavigationPage";
-            this.customersNavigationPage.Size = new System.Drawing.Size(973, 551);
+            this.customersNavigationPage.Size = new System.Drawing.Size(1686, 565);
+            // 
+            // swActualizarExistenciaInventarioFisico
+            // 
+            this.swActualizarExistenciaInventarioFisico.EnterMoveNextControl = true;
+            this.swActualizarExistenciaInventarioFisico.Location = new System.Drawing.Point(1557, 433);
+            this.swActualizarExistenciaInventarioFisico.MenuManager = this.ribbonControl;
+            this.swActualizarExistenciaInventarioFisico.Name = "swActualizarExistenciaInventarioFisico";
+            this.swActualizarExistenciaInventarioFisico.Properties.OffText = "Off";
+            this.swActualizarExistenciaInventarioFisico.Properties.OnText = "On";
+            this.swActualizarExistenciaInventarioFisico.Size = new System.Drawing.Size(95, 24);
+            this.swActualizarExistenciaInventarioFisico.TabIndex = 95;
+            // 
+            // labelControl47
+            // 
+            this.labelControl47.Location = new System.Drawing.Point(1344, 438);
+            this.labelControl47.Name = "labelControl47";
+            this.labelControl47.Size = new System.Drawing.Size(180, 13);
+            this.labelControl47.TabIndex = 94;
+            this.labelControl47.Text = "Actualizar Existencia Inventario Fisico";
+            // 
+            // swCambiarFechaRM
+            // 
+            this.swCambiarFechaRM.EnterMoveNextControl = true;
+            this.swCambiarFechaRM.Location = new System.Drawing.Point(1557, 349);
+            this.swCambiarFechaRM.MenuManager = this.ribbonControl;
+            this.swCambiarFechaRM.Name = "swCambiarFechaRM";
+            this.swCambiarFechaRM.Properties.OffText = "Off";
+            this.swCambiarFechaRM.Properties.OnText = "On";
+            this.swCambiarFechaRM.Size = new System.Drawing.Size(95, 24);
+            this.swCambiarFechaRM.TabIndex = 93;
+            // 
+            // swCancelarFacturas
+            // 
+            this.swCancelarFacturas.EnterMoveNextControl = true;
+            this.swCancelarFacturas.Location = new System.Drawing.Point(1557, 387);
+            this.swCancelarFacturas.MenuManager = this.ribbonControl;
+            this.swCancelarFacturas.Name = "swCancelarFacturas";
+            this.swCancelarFacturas.Properties.OffText = "Off";
+            this.swCancelarFacturas.Properties.OnText = "On";
+            this.swCancelarFacturas.Size = new System.Drawing.Size(95, 24);
+            this.swCancelarFacturas.TabIndex = 92;
+            // 
+            // labelControl42
+            // 
+            this.labelControl42.Location = new System.Drawing.Point(1344, 392);
+            this.labelControl42.Name = "labelControl42";
+            this.labelControl42.Size = new System.Drawing.Size(87, 13);
+            this.labelControl42.TabIndex = 91;
+            this.labelControl42.Text = "Cancelar Facturas";
+            // 
+            // labelControl43
+            // 
+            this.labelControl43.Location = new System.Drawing.Point(1344, 354);
+            this.labelControl43.Name = "labelControl43";
+            this.labelControl43.Size = new System.Drawing.Size(89, 13);
+            this.labelControl43.TabIndex = 90;
+            this.labelControl43.Text = "Cambiar Fecha RM";
+            // 
+            // swAsignarPolizaTesk
+            // 
+            this.swAsignarPolizaTesk.EnterMoveNextControl = true;
+            this.swAsignarPolizaTesk.Location = new System.Drawing.Point(1557, 276);
+            this.swAsignarPolizaTesk.MenuManager = this.ribbonControl;
+            this.swAsignarPolizaTesk.Name = "swAsignarPolizaTesk";
+            this.swAsignarPolizaTesk.Properties.OffText = "Off";
+            this.swAsignarPolizaTesk.Properties.OnText = "On";
+            this.swAsignarPolizaTesk.Size = new System.Drawing.Size(95, 24);
+            this.swAsignarPolizaTesk.TabIndex = 89;
+            // 
+            // swCancelarRM
+            // 
+            this.swCancelarRM.EnterMoveNextControl = true;
+            this.swCancelarRM.Location = new System.Drawing.Point(1557, 314);
+            this.swCancelarRM.MenuManager = this.ribbonControl;
+            this.swCancelarRM.Name = "swCancelarRM";
+            this.swCancelarRM.Properties.OffText = "Off";
+            this.swCancelarRM.Properties.OnText = "On";
+            this.swCancelarRM.Size = new System.Drawing.Size(95, 24);
+            this.swCancelarRM.TabIndex = 88;
+            // 
+            // labelControl44
+            // 
+            this.labelControl44.Location = new System.Drawing.Point(1344, 319);
+            this.labelControl44.Name = "labelControl44";
+            this.labelControl44.Size = new System.Drawing.Size(60, 13);
+            this.labelControl44.TabIndex = 87;
+            this.labelControl44.Text = "Cancelar RM";
+            // 
+            // labelControl45
+            // 
+            this.labelControl45.Location = new System.Drawing.Point(1344, 281);
+            this.labelControl45.Name = "labelControl45";
+            this.labelControl45.Size = new System.Drawing.Size(91, 13);
+            this.labelControl45.TabIndex = 86;
+            this.labelControl45.Text = "Asignar Poliza Tesk";
+            // 
+            // swCancelarAplicacionAnticipos
+            // 
+            this.swCancelarAplicacionAnticipos.EnterMoveNextControl = true;
+            this.swCancelarAplicacionAnticipos.Location = new System.Drawing.Point(1557, 237);
+            this.swCancelarAplicacionAnticipos.MenuManager = this.ribbonControl;
+            this.swCancelarAplicacionAnticipos.Name = "swCancelarAplicacionAnticipos";
+            this.swCancelarAplicacionAnticipos.Properties.OffText = "Off";
+            this.swCancelarAplicacionAnticipos.Properties.OnText = "On";
+            this.swCancelarAplicacionAnticipos.Size = new System.Drawing.Size(95, 24);
+            this.swCancelarAplicacionAnticipos.TabIndex = 85;
+            // 
+            // labelControl46
+            // 
+            this.labelControl46.Location = new System.Drawing.Point(1344, 242);
+            this.labelControl46.Name = "labelControl46";
+            this.labelControl46.Size = new System.Drawing.Size(138, 13);
+            this.labelControl46.TabIndex = 84;
+            this.labelControl46.Text = "Cancelar Aplicacion Anticipos";
+            // 
+            // swCancelarValesCadenas
+            // 
+            this.swCancelarValesCadenas.EnterMoveNextControl = true;
+            this.swCancelarValesCadenas.Location = new System.Drawing.Point(1557, 199);
+            this.swCancelarValesCadenas.MenuManager = this.ribbonControl;
+            this.swCancelarValesCadenas.Name = "swCancelarValesCadenas";
+            this.swCancelarValesCadenas.Properties.OffText = "Off";
+            this.swCancelarValesCadenas.Properties.OnText = "On";
+            this.swCancelarValesCadenas.Size = new System.Drawing.Size(95, 24);
+            this.swCancelarValesCadenas.TabIndex = 83;
+            // 
+            // labelControl41
+            // 
+            this.labelControl41.Location = new System.Drawing.Point(1344, 204);
+            this.labelControl41.Name = "labelControl41";
+            this.labelControl41.Size = new System.Drawing.Size(115, 13);
+            this.labelControl41.TabIndex = 82;
+            this.labelControl41.Text = "Cancelar Vales Cadenas";
+            // 
+            // swCancelarHP
+            // 
+            this.swCancelarHP.EnterMoveNextControl = true;
+            this.swCancelarHP.Location = new System.Drawing.Point(1202, 509);
+            this.swCancelarHP.MenuManager = this.ribbonControl;
+            this.swCancelarHP.Name = "swCancelarHP";
+            this.swCancelarHP.Properties.OffText = "Off";
+            this.swCancelarHP.Properties.OnText = "On";
+            this.swCancelarHP.Size = new System.Drawing.Size(95, 24);
+            this.swCancelarHP.TabIndex = 81;
+            // 
+            // labelControl40
+            // 
+            this.labelControl40.Location = new System.Drawing.Point(989, 514);
+            this.labelControl40.Name = "labelControl40";
+            this.labelControl40.Size = new System.Drawing.Size(122, 13);
+            this.labelControl40.TabIndex = 80;
+            this.labelControl40.Text = "Cancelar Hoja Producción";
+            // 
+            // swCancelarCompras
+            // 
+            this.swCancelarCompras.EnterMoveNextControl = true;
+            this.swCancelarCompras.Location = new System.Drawing.Point(1202, 432);
+            this.swCancelarCompras.MenuManager = this.ribbonControl;
+            this.swCancelarCompras.Name = "swCancelarCompras";
+            this.swCancelarCompras.Properties.OffText = "Off";
+            this.swCancelarCompras.Properties.OnText = "On";
+            this.swCancelarCompras.Size = new System.Drawing.Size(95, 24);
+            this.swCancelarCompras.TabIndex = 79;
+            // 
+            // swCancelarAnticipos
+            // 
+            this.swCancelarAnticipos.EnterMoveNextControl = true;
+            this.swCancelarAnticipos.Location = new System.Drawing.Point(1202, 470);
+            this.swCancelarAnticipos.MenuManager = this.ribbonControl;
+            this.swCancelarAnticipos.Name = "swCancelarAnticipos";
+            this.swCancelarAnticipos.Properties.OffText = "Off";
+            this.swCancelarAnticipos.Properties.OnText = "On";
+            this.swCancelarAnticipos.Size = new System.Drawing.Size(95, 24);
+            this.swCancelarAnticipos.TabIndex = 78;
+            // 
+            // labelControl38
+            // 
+            this.labelControl38.Location = new System.Drawing.Point(989, 475);
+            this.labelControl38.Name = "labelControl38";
+            this.labelControl38.Size = new System.Drawing.Size(88, 13);
+            this.labelControl38.TabIndex = 77;
+            this.labelControl38.Text = "Cancelar Anticipos";
+            // 
+            // labelControl39
+            // 
+            this.labelControl39.Location = new System.Drawing.Point(989, 437);
+            this.labelControl39.Name = "labelControl39";
+            this.labelControl39.Size = new System.Drawing.Size(87, 13);
+            this.labelControl39.TabIndex = 76;
+            this.labelControl39.Text = "Cancelar Compras";
+            // 
+            // swCancelarPagosCXP
+            // 
+            this.swCancelarPagosCXP.EnterMoveNextControl = true;
+            this.swCancelarPagosCXP.Location = new System.Drawing.Point(1202, 349);
+            this.swCancelarPagosCXP.MenuManager = this.ribbonControl;
+            this.swCancelarPagosCXP.Name = "swCancelarPagosCXP";
+            this.swCancelarPagosCXP.Properties.OffText = "Off";
+            this.swCancelarPagosCXP.Properties.OnText = "On";
+            this.swCancelarPagosCXP.Size = new System.Drawing.Size(95, 24);
+            this.swCancelarPagosCXP.TabIndex = 75;
+            // 
+            // swCancelarContraRecibos
+            // 
+            this.swCancelarContraRecibos.EnterMoveNextControl = true;
+            this.swCancelarContraRecibos.Location = new System.Drawing.Point(1202, 387);
+            this.swCancelarContraRecibos.MenuManager = this.ribbonControl;
+            this.swCancelarContraRecibos.Name = "swCancelarContraRecibos";
+            this.swCancelarContraRecibos.Properties.OffText = "Off";
+            this.swCancelarContraRecibos.Properties.OnText = "On";
+            this.swCancelarContraRecibos.Size = new System.Drawing.Size(95, 24);
+            this.swCancelarContraRecibos.TabIndex = 74;
+            // 
+            // labelControl36
+            // 
+            this.labelControl36.Location = new System.Drawing.Point(989, 392);
+            this.labelControl36.Name = "labelControl36";
+            this.labelControl36.Size = new System.Drawing.Size(118, 13);
+            this.labelControl36.TabIndex = 73;
+            this.labelControl36.Text = "Cancelar Contra Recibos";
+            // 
+            // labelControl37
+            // 
+            this.labelControl37.Location = new System.Drawing.Point(989, 354);
+            this.labelControl37.Name = "labelControl37";
+            this.labelControl37.Size = new System.Drawing.Size(96, 13);
+            this.labelControl37.TabIndex = 72;
+            this.labelControl37.Text = "Cancelar Pagos CxP";
+            // 
+            // swCancelarDepositos
+            // 
+            this.swCancelarDepositos.EnterMoveNextControl = true;
+            this.swCancelarDepositos.Location = new System.Drawing.Point(1202, 276);
+            this.swCancelarDepositos.MenuManager = this.ribbonControl;
+            this.swCancelarDepositos.Name = "swCancelarDepositos";
+            this.swCancelarDepositos.Properties.OffText = "Off";
+            this.swCancelarDepositos.Properties.OnText = "On";
+            this.swCancelarDepositos.Size = new System.Drawing.Size(95, 24);
+            this.swCancelarDepositos.TabIndex = 71;
+            // 
+            // swCancelarPedidos
+            // 
+            this.swCancelarPedidos.EnterMoveNextControl = true;
+            this.swCancelarPedidos.Location = new System.Drawing.Point(1202, 314);
+            this.swCancelarPedidos.MenuManager = this.ribbonControl;
+            this.swCancelarPedidos.Name = "swCancelarPedidos";
+            this.swCancelarPedidos.Properties.OffText = "Off";
+            this.swCancelarPedidos.Properties.OnText = "On";
+            this.swCancelarPedidos.Size = new System.Drawing.Size(95, 24);
+            this.swCancelarPedidos.TabIndex = 70;
+            // 
+            // labelControl34
+            // 
+            this.labelControl34.Location = new System.Drawing.Point(989, 319);
+            this.labelControl34.Name = "labelControl34";
+            this.labelControl34.Size = new System.Drawing.Size(82, 13);
+            this.labelControl34.TabIndex = 69;
+            this.labelControl34.Text = "Cancelar Pedidos";
+            // 
+            // labelControl35
+            // 
+            this.labelControl35.Location = new System.Drawing.Point(989, 281);
+            this.labelControl35.Name = "labelControl35";
+            this.labelControl35.Size = new System.Drawing.Size(92, 13);
+            this.labelControl35.TabIndex = 68;
+            this.labelControl35.Text = "Cancelar Depositos";
+            // 
+            // swEditarCondicionesPago
+            // 
+            this.swEditarCondicionesPago.EnterMoveNextControl = true;
+            this.swEditarCondicionesPago.Location = new System.Drawing.Point(1202, 199);
+            this.swEditarCondicionesPago.MenuManager = this.ribbonControl;
+            this.swEditarCondicionesPago.Name = "swEditarCondicionesPago";
+            this.swEditarCondicionesPago.Properties.OffText = "Off";
+            this.swEditarCondicionesPago.Properties.OnText = "On";
+            this.swEditarCondicionesPago.Size = new System.Drawing.Size(95, 24);
+            this.swEditarCondicionesPago.TabIndex = 67;
+            // 
+            // labelControl33
+            // 
+            this.labelControl33.Location = new System.Drawing.Point(989, 242);
+            this.labelControl33.Name = "labelControl33";
+            this.labelControl33.Size = new System.Drawing.Size(50, 13);
+            this.labelControl33.TabIndex = 65;
+            this.labelControl33.Text = "Capturista";
+            // 
+            // labelControl32
+            // 
+            this.labelControl32.Location = new System.Drawing.Point(989, 204);
+            this.labelControl32.Name = "labelControl32";
+            this.labelControl32.Size = new System.Drawing.Size(130, 13);
+            this.labelControl32.TabIndex = 64;
+            this.labelControl32.Text = "Editar Condiciones de Pago";
+            // 
+            // swModificaSubFamiliasArticulos
+            // 
+            this.swModificaSubFamiliasArticulos.EnterMoveNextControl = true;
+            this.swModificaSubFamiliasArticulos.Location = new System.Drawing.Point(847, 511);
+            this.swModificaSubFamiliasArticulos.MenuManager = this.ribbonControl;
+            this.swModificaSubFamiliasArticulos.Name = "swModificaSubFamiliasArticulos";
+            this.swModificaSubFamiliasArticulos.Properties.OffText = "Off";
+            this.swModificaSubFamiliasArticulos.Properties.OnText = "On";
+            this.swModificaSubFamiliasArticulos.Size = new System.Drawing.Size(95, 24);
+            this.swModificaSubFamiliasArticulos.TabIndex = 63;
+            // 
+            // labelControl31
+            // 
+            this.labelControl31.Location = new System.Drawing.Point(634, 516);
+            this.labelControl31.Name = "labelControl31";
+            this.labelControl31.Size = new System.Drawing.Size(156, 13);
+            this.labelControl31.TabIndex = 62;
+            this.labelControl31.Text = "Modifica SubFamilias de Articulos";
+            // 
+            // swModificaFamiliasArticulos
+            // 
+            this.swModificaFamiliasArticulos.EnterMoveNextControl = true;
+            this.swModificaFamiliasArticulos.Location = new System.Drawing.Point(847, 476);
+            this.swModificaFamiliasArticulos.MenuManager = this.ribbonControl;
+            this.swModificaFamiliasArticulos.Name = "swModificaFamiliasArticulos";
+            this.swModificaFamiliasArticulos.Properties.OffText = "Off";
+            this.swModificaFamiliasArticulos.Properties.OnText = "On";
+            this.swModificaFamiliasArticulos.Size = new System.Drawing.Size(95, 24);
+            this.swModificaFamiliasArticulos.TabIndex = 61;
+            // 
+            // labelControl30
+            // 
+            this.labelControl30.Location = new System.Drawing.Point(634, 481);
+            this.labelControl30.Name = "labelControl30";
+            this.labelControl30.Size = new System.Drawing.Size(138, 13);
+            this.labelControl30.TabIndex = 60;
+            this.labelControl30.Text = "Modifica Familias de Articulos";
             // 
             // swIFirmaElectronicaSalidas
             // 
@@ -1029,49 +1440,20 @@
             this.labelControl1.TabIndex = 0;
             this.labelControl1.Text = "Login";
             // 
-            // swModificaFamiliasArticulos
+            // txtCapturista
             // 
-            this.swModificaFamiliasArticulos.EnterMoveNextControl = true;
-            this.swModificaFamiliasArticulos.Location = new System.Drawing.Point(847, 476);
-            this.swModificaFamiliasArticulos.MenuManager = this.ribbonControl;
-            this.swModificaFamiliasArticulos.Name = "swModificaFamiliasArticulos";
-            this.swModificaFamiliasArticulos.Properties.OffText = "Off";
-            this.swModificaFamiliasArticulos.Properties.OnText = "On";
-            this.swModificaFamiliasArticulos.Size = new System.Drawing.Size(95, 24);
-            this.swModificaFamiliasArticulos.TabIndex = 61;
-            // 
-            // labelControl30
-            // 
-            this.labelControl30.Location = new System.Drawing.Point(634, 481);
-            this.labelControl30.Name = "labelControl30";
-            this.labelControl30.Size = new System.Drawing.Size(138, 13);
-            this.labelControl30.TabIndex = 60;
-            this.labelControl30.Text = "Modifica Familias de Articulos";
-            // 
-            // swModificaSubFamiliasArticulos
-            // 
-            this.swModificaSubFamiliasArticulos.EnterMoveNextControl = true;
-            this.swModificaSubFamiliasArticulos.Location = new System.Drawing.Point(847, 511);
-            this.swModificaSubFamiliasArticulos.MenuManager = this.ribbonControl;
-            this.swModificaSubFamiliasArticulos.Name = "swModificaSubFamiliasArticulos";
-            this.swModificaSubFamiliasArticulos.Properties.OffText = "Off";
-            this.swModificaSubFamiliasArticulos.Properties.OnText = "On";
-            this.swModificaSubFamiliasArticulos.Size = new System.Drawing.Size(95, 24);
-            this.swModificaSubFamiliasArticulos.TabIndex = 63;
-            // 
-            // labelControl31
-            // 
-            this.labelControl31.Location = new System.Drawing.Point(634, 516);
-            this.labelControl31.Name = "labelControl31";
-            this.labelControl31.Size = new System.Drawing.Size(156, 13);
-            this.labelControl31.TabIndex = 62;
-            this.labelControl31.Text = "Modifica SubFamilias de Articulos";
+            this.txtCapturista.Location = new System.Drawing.Point(1202, 240);
+            this.txtCapturista.MenuManager = this.ribbonControl;
+            this.txtCapturista.Name = "txtCapturista";
+            this.txtCapturista.Properties.MaxLength = 5;
+            this.txtCapturista.Size = new System.Drawing.Size(95, 20);
+            this.txtCapturista.TabIndex = 96;
             // 
             // Usuarios
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(973, 731);
+            this.ClientSize = new System.Drawing.Size(1686, 745);
             this.Controls.Add(this.navigationFrame);
             this.Controls.Add(this.officeNavigationBar);
             this.Controls.Add(this.ribbonStatusBar);
@@ -1090,6 +1472,23 @@
             ((System.ComponentModel.ISupportInitialize)(this.gridViewPrincipal)).EndInit();
             this.customersNavigationPage.ResumeLayout(false);
             this.customersNavigationPage.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.swActualizarExistenciaInventarioFisico.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.swCambiarFechaRM.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.swCancelarFacturas.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.swAsignarPolizaTesk.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.swCancelarRM.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.swCancelarAplicacionAnticipos.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.swCancelarValesCadenas.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.swCancelarHP.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.swCancelarCompras.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.swCancelarAnticipos.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.swCancelarPagosCXP.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.swCancelarContraRecibos.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.swCancelarDepositos.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.swCancelarPedidos.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.swEditarCondicionesPago.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.swModificaSubFamiliasArticulos.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.swModificaFamiliasArticulos.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.swIFirmaElectronicaSalidas.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.swTienda.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.swActivo.Properties)).EndInit();
@@ -1120,8 +1519,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.txtLogin.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtNombre.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.tabbedView)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.swModificaFamiliasArticulos.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.swModificaSubFamiliasArticulos.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtCapturista.Properties)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1219,5 +1617,37 @@
         private DevExpress.XtraEditors.LabelControl labelControl31;
         private DevExpress.XtraEditors.ToggleSwitch swModificaFamiliasArticulos;
         private DevExpress.XtraEditors.LabelControl labelControl30;
+        private DevExpress.XtraEditors.LabelControl labelControl32;
+        private DevExpress.XtraEditors.LabelControl labelControl33;
+        private DevExpress.XtraEditors.ToggleSwitch swCancelarCompras;
+        private DevExpress.XtraEditors.ToggleSwitch swCancelarAnticipos;
+        private DevExpress.XtraEditors.LabelControl labelControl38;
+        private DevExpress.XtraEditors.LabelControl labelControl39;
+        private DevExpress.XtraEditors.ToggleSwitch swCancelarPagosCXP;
+        private DevExpress.XtraEditors.ToggleSwitch swCancelarContraRecibos;
+        private DevExpress.XtraEditors.LabelControl labelControl36;
+        private DevExpress.XtraEditors.LabelControl labelControl37;
+        private DevExpress.XtraEditors.ToggleSwitch swCancelarDepositos;
+        private DevExpress.XtraEditors.ToggleSwitch swCancelarPedidos;
+        private DevExpress.XtraEditors.LabelControl labelControl34;
+        private DevExpress.XtraEditors.LabelControl labelControl35;
+        private DevExpress.XtraEditors.ToggleSwitch swEditarCondicionesPago;
+        private DevExpress.XtraEditors.ToggleSwitch swCambiarFechaRM;
+        private DevExpress.XtraEditors.ToggleSwitch swCancelarFacturas;
+        private DevExpress.XtraEditors.LabelControl labelControl42;
+        private DevExpress.XtraEditors.LabelControl labelControl43;
+        private DevExpress.XtraEditors.ToggleSwitch swAsignarPolizaTesk;
+        private DevExpress.XtraEditors.ToggleSwitch swCancelarRM;
+        private DevExpress.XtraEditors.LabelControl labelControl44;
+        private DevExpress.XtraEditors.LabelControl labelControl45;
+        private DevExpress.XtraEditors.ToggleSwitch swCancelarAplicacionAnticipos;
+        private DevExpress.XtraEditors.LabelControl labelControl46;
+        private DevExpress.XtraEditors.ToggleSwitch swCancelarValesCadenas;
+        private DevExpress.XtraEditors.LabelControl labelControl41;
+        private DevExpress.XtraEditors.ToggleSwitch swCancelarHP;
+        private DevExpress.XtraEditors.LabelControl labelControl40;
+        private DevExpress.XtraEditors.ToggleSwitch swActualizarExistenciaInventarioFisico;
+        private DevExpress.XtraEditors.LabelControl labelControl47;
+        private DevExpress.XtraEditors.TextEdit txtCapturista;
     }
 }

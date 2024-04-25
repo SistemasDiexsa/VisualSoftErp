@@ -1,12 +1,15 @@
-﻿using DevExpress.Mvvm.Native;
+﻿using DevExpress.Charts.Native;
+using DevExpress.Mvvm.Native;
 using DevExpress.XtraBars;
 using DevExpress.XtraBars.Docking2010.Views;
 using DevExpress.XtraBars.Navigation;
 using DevExpress.XtraBars.Ribbon;
+using DevExpress.XtraCharts;
 using DevExpress.XtraEditors;
 using DevExpress.XtraGrid.Columns;
 using DevExpress.XtraNavBar;
 using DevExpress.XtraReports.UI;
+using DevExpress.XtraRichEdit.Layout.Engine;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -31,6 +34,7 @@ namespace VisualSoftErp.Operacion.Ventas.Formas
         int Año;
         int FolioGuias;
         public DataTable detalle;
+        public DataTable correos;
         public Guias()
         {
             InitializeComponent();
@@ -545,6 +549,11 @@ namespace VisualSoftErp.Operacion.Ventas.Formas
 
         private void EnviarDocXCorreo()
         {
+            correos = new DataTable();
+            correos.Columns.Add("Cliente", typeof(string));
+            correos.Columns.Add("Correo", typeof(string));
+            correos.Columns.Add("Factura", typeof(string));
+            
             try
             {                
                 // AGREGAMOS LA INFORMACION AL PANEL CREADO REFERENTE A LOS CORREOS
@@ -552,15 +561,11 @@ namespace VisualSoftErp.Operacion.Ventas.Formas
                 foreach (int rowHandle in selectedRowHandles)
                 {
                     DataRow row = gridViewFacturas.GetDataRow(rowHandle);
+                    DataRow cliente = correos.NewRow();
                     if (row != null)
                     {
-                        Label lbL = new Label();
-                        lbL.Text = "Factura: " + row["FolioFactura"].ToString();
-                        lbL.AutoSize = true;
-                        flowLayoutPanelCorreos.Controls.Add(lbL);
-
                         Label lb = new Label();
-                        lb.Text = "Cliente: " + row["Cliente"].ToString();
+                        lb.Text = "Cliente: " + row["Cliente"].ToString() + " Factura: " + row["FolioFactura"].ToString();
                         lb.AutoSize = true;
                         flowLayoutPanelCorreos.Controls.Add(lb);
 
@@ -569,10 +574,14 @@ namespace VisualSoftErp.Operacion.Ventas.Formas
                         textBox.Anchor = AnchorStyles.Left | AnchorStyles.Right;
                         textBox.Margin = new Padding(0, 0, 0, 5);
                         flowLayoutPanelCorreos.Controls.Add(textBox);
+
+                        cliente["Cliente"] = row["Cliente"].ToString();
+                        cliente["Correo"] = row["Email"].ToString();
+                        cliente["Factura"] = row["FolioFactura"].ToString();
+                        correos.Rows.Add(cliente);
                     }
                 }
 
-                // Muestra el pop-up
                 int x = (globalCL.gv_intAnchoVentana - popUpEnviarXCorreo.Width) / 2;
                 int y = (globalCL.gv_intAltoVentana - popUpEnviarXCorreo.Height - 347) / 2;
                 popUpEnviarXCorreo.Location = new Point(x, y);
@@ -607,34 +616,37 @@ namespace VisualSoftErp.Operacion.Ventas.Formas
             DevExpress.XtraSplashScreen.SplashScreenManager.ShowDefaultWaitForm();
             try
             {
-                // AGARRAMOS LOS CORREOS Y LOS ENVIAMOS
                 string result = string.Empty;
+                string body = string.Empty;
                 string subject = string.Empty;
+                int rowIndex = 0;
+                
                 foreach (Control control in flowLayoutPanelCorreos.Controls)
                 {
                     globalCL cl = new globalCL();
-                    if(control is Label)
-                    {
-                        subject = "Guía #" + txtNumeroGuia.Text.ToString();
-
-                    }
-                    string body = "Tu pedido se ha embarcado a la guía #" + txtNumeroGuia.Text + ". <br><br>" +
-                        "Transportista: " + cboTransportes.Text + "<br>" +
-                        "SubTotal: " + txtSubtotal.Text + "<br>" +
-                        "Iva: " + txtIva.Text + "<br>" +
-                        "RetIva: " + txtRetIva.Text + "<br><br>" +
-                        "Cualquier duda favor de comunicarse con nosotros." ;
-                    DateTime date = DateTime.Now;
                     if (control is TextBox)
                     {
-                        TextBox tx = (TextBox)control;
-                        result = cl.EnviaCorreoGeneral(tx.Text, subject, body, date, "");
-                        if (result != "OK")
-                            MessageBox.Show(result);
+                        // Obtener el TextBox y su valor actualizado
+                        TextBox textBox = (TextBox)control;
+                        string nuevoCorreo = textBox.Text;
+                        correos.Rows[rowIndex]["Correo"] = nuevoCorreo;
+                        subject = "Pedido con Factura #" + correos.Rows[rowIndex]["Factura"].ToString();
+                        body =  "Tu pedido con Factura #" + correos.Rows[rowIndex]["Factura"].ToString() + " se ha embarcado a la Guía #" + txtNumeroGuia.Text.ToString() + 
+                                "<br><br>" + 
+                                "Cualquier duda respecto a tu envío contacta directo a la paquetería.";
+                        DateTime date = DateTime.Now;
+                        if (cl.esEmail(nuevoCorreo))
+                        {
+                            result = cl.EnviaCorreoGeneral(correos.Rows[rowIndex]["Correo"].ToString(), subject, body, date, "", "G", "", 0);
+                            if (result != "OK")
+                                MessageBox.Show(result);
+                        }
+                        else if (nuevoCorreo != string.Empty)
+                            MessageBox.Show("No es un correo válido: \n" + nuevoCorreo);
+                        
+                        rowIndex++; 
                     }
                 }
-                if (result == "OK")
-                    MessageBox.Show("Correos enviados correctamente!");
 
                 popUpEnviarXCorreo.Hide();
                 flowLayoutPanelCorreos.Controls.Clear();
@@ -713,6 +725,30 @@ namespace VisualSoftErp.Operacion.Ventas.Formas
             }
             if (txtIva.Text != string.Empty && txtRetIva.Text != string.Empty)
                 txtTotal.Text = Math.Round(Convert.ToDecimal(txtSubtotal.Text) + (Convert.ToDecimal(txtIva.Text) + Convert.ToDecimal(txtRetIva.Text)), 2).ToString();
+        }
+
+        private void txtSubtotal_EditValueChanged(object sender, EventArgs e)
+        {
+            if(txtSubtotal.Text != string.Empty)
+            {
+                decimal subTotal = Convert.ToDecimal(txtSubtotal.Text);
+                
+                if(txtPorcentajeIva.Text != string.Empty)
+                {
+                    decimal porcentajeIva = Convert.ToDecimal(txtPorcentajeIva.Text);
+                    decimal iva = Math.Round(subTotal * (porcentajeIva / 100), 2);
+                    txtIva.Text = iva.ToString();
+                }
+                if(txtPorcentajeRetIva.Text != string.Empty)
+                {
+                    decimal porcentajeRetIva = Convert.ToDecimal(txtPorcentajeRetIva.Text);
+                    decimal retIva = Math.Round(subTotal * (porcentajeRetIva / 100), 2);
+                    txtRetIva.Text = retIva.ToString();
+                }
+
+                if (txtIva.Text != string.Empty && txtRetIva.Text != string.Empty)
+                    txtTotal.Text = Math.Round(Convert.ToDecimal(txtSubtotal.Text) + (Convert.ToDecimal(txtIva.Text) + Convert.ToDecimal(txtRetIva.Text)), 2).ToString();
+            }
         }
     }
 }

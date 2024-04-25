@@ -6,6 +6,7 @@ using System.Drawing;
 using System.Text;
 using System.Linq;
 using System.Threading.Tasks;
+using System.Configuration;
 using System.Windows.Forms;
 using DevExpress.XtraEditors;
 using VisualSoftErp.Clases;
@@ -13,6 +14,9 @@ using System.IO;
 using static DevExpress.Xpo.Helpers.AssociatedCollectionCriteriaHelper;
 using VisualSoftErp.Herramientas.Formas;
 using DevExpress.Utils.UI.Localization;
+using DevExpress.Mvvm;
+using DevExpress.XtraGrid.Views.Grid;
+using VisualSoftErp.Catalogos;
 
 namespace VisualSoftErp.Operacion.Compras.Formas
 {
@@ -79,13 +83,10 @@ namespace VisualSoftErp.Operacion.Compras.Formas
             cboMoneda.Properties.Columns["Clave"].Visible = false;
         }
        
-
         private void bbiCerrar_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
             this.Close();
         }
-
-        
 
         private void cargaRM()
         {
@@ -101,7 +102,6 @@ namespace VisualSoftErp.Operacion.Compras.Formas
             }
         }
 
- 
         private void bbiCargarRM_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
             gridControl1.DataSource = null;
@@ -115,7 +115,8 @@ namespace VisualSoftErp.Operacion.Compras.Formas
 
             if (result == "OK")
                 Guardar();
-            else MessageBox.Show(result);  
+            else 
+                MessageBox.Show(result);  
               
         }
 
@@ -156,13 +157,14 @@ namespace VisualSoftErp.Operacion.Compras.Formas
                 cl.decCargoVario = Convert.ToDecimal(TxtCargoVario.Text);
 
                 string result = cl.ComprasValidar();
-                MessageBox.Show(result);
 
                 if (result == "OK")
                 {
+                    MessageBox.Show("Guardado Correctamente!");
                     limpiacajas();
                 }
-
+                else
+                    MessageBox.Show(result);
             }
             catch(Exception ex)
             {
@@ -266,17 +268,18 @@ namespace VisualSoftErp.Operacion.Compras.Formas
             }
             if (tNeto != Convert.ToDecimal(txtNeto.Text))
             {
-                Decimal cargoV = Convert.ToDecimal(TxtCargoVario.Text) * (1 + (pIvaProv/100)) ;
-                if (tNeto + cargoV != Convert.ToDecimal(txtNeto.Text)) 
+                Decimal totalFactura = Convert.ToDecimal(txtNeto.Text);
+                Decimal limSup = totalFactura + 0.10M;
+                Decimal limInf = totalFactura - 0.10M;
+                Decimal cargoV = Convert.ToDecimal(TxtCargoVario.Text) * (1 + (pIvaProv/100));
+                Decimal totalRM = tNeto + cargoV;
+
+                if (!(totalRM >= limInf && totalRM <= limSup)) 
                 {
                     return "No concuerda el neto de la factura: " + txtNeto.Text + " Contra el de la recepción de mercancía:" + tNeto.ToString() + " mas el cargo vario: " + TxtCargoVario.Text;
-
                 }
-                             
-          
-            
             }
-                return "OK";
+            return "OK";
         }
 
         private void bbiNuevo_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
@@ -284,7 +287,7 @@ namespace VisualSoftErp.Operacion.Compras.Formas
             limpiacajas();
         }
 
-        private void cboProveedores_EditValueChanged_1(object sender, EventArgs e)
+        private void cboProveedores_EditValueChanged(object sender, EventArgs e)
         {
            // limpiacajas();
             object orow = cboProveedores.Properties.GetDataSourceRowByKeyValue(cboProveedores.EditValue);
@@ -294,6 +297,9 @@ namespace VisualSoftErp.Operacion.Compras.Formas
                 pIvaProv = Convert.ToDecimal(((DataRowView)orow)["Piva"]);
                 cboMoneda.EditValue = ((DataRowView)orow)["MonedasID"].ToString();
                 strRFCemisor = ((DataRowView)orow)["RFC"].ToString();
+                gridControl1.DataSource = null;
+                gridControl2.DataSource = null;
+                cargaRM();
             }
         }
 
@@ -313,9 +319,18 @@ namespace VisualSoftErp.Operacion.Compras.Formas
                 cl.strSerie = serieRM;
                 cl.intFolio = folioRM;
                 gridControl2.DataSource = cl.RecepciondemercanciaOCGrid();
-
+                gridView2.Columns["Serie"].OptionsColumn.ReadOnly = true;
+                gridView2.Columns["Folio"].OptionsColumn.ReadOnly = true;
+                gridView2.Columns["Seq"].OptionsColumn.ReadOnly = true;
+                gridView2.Columns["Articulos"].OptionsColumn.ReadOnly = true;
+                gridView2.Columns["UM"].OptionsColumn.ReadOnly = true;
+                gridView2.Columns["Nombre"].OptionsColumn.ReadOnly = true;
+                gridView2.Columns["Cantidad"].OptionsColumn.ReadOnly = true;
+                gridView2.Columns["Importe"].OptionsColumn.ReadOnly = true;
+                gridView2.Columns["Iva"].OptionsColumn.ReadOnly = true;
+                gridView2.Columns["Neto"].OptionsColumn.ReadOnly = true;
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
             }
@@ -509,6 +524,152 @@ namespace VisualSoftErp.Operacion.Compras.Formas
                 }
                 DevExpress.XtraSplashScreen.SplashScreenManager.CloseDefaultWaitForm();
             };
+        }
+
+        private void bbiCorregirCostos_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            DialogResult dialog = MessageBox.Show("¿Está seguro de corregir los costos de la RM: " + serieRM.ToString() + folioRM.ToString(), "Confirmación", MessageBoxButtons.YesNo);
+            if (dialog == DialogResult.Yes)
+            {
+                DateTime date = DateTime.Now;
+                // DT ENCABEZADO
+                DataTable dtRM = new DataTable();
+                dtRM.Columns.Add("Serie", Type.GetType("System.String"));
+                dtRM.Columns.Add("Folio", Type.GetType("System.Int32"));
+                dtRM.Columns.Add("Comprasserie", Type.GetType("System.String"));
+                dtRM.Columns.Add("ComprasFolio", Type.GetType("System.Int32"));
+                dtRM.Columns.Add("ContrarecibosFolio", Type.GetType("System.Int32"));
+                dtRM.Columns.Add("ContrarecibosSeq", Type.GetType("System.Int32"));
+                dtRM.Columns.Add("OrdendecompraSerie", Type.GetType("System.String"));
+                dtRM.Columns.Add("Ordedecomprafolio", Type.GetType("System.Int32"));
+                dtRM.Columns.Add("Status", Type.GetType("System.Int32"));
+                dtRM.Columns.Add("Fecha", Type.GetType("System.DateTime"));
+                dtRM.Columns.Add("FechaCancelacion", Type.GetType("System.DateTime"));
+                dtRM.Columns.Add("Motivocancelacion", Type.GetType("System.String"));
+                dtRM.Columns.Add("Observaciones", Type.GetType("System.String"));
+                dtRM.Columns.Add("Validado", Type.GetType("System.Int32"));
+                dtRM.Columns.Add("Fechavalidacion", Type.GetType("System.DateTime"));
+                dtRM.Columns.Add("UsuariosID", Type.GetType("System.Int32"));
+                dtRM.Columns.Add("FechaReal", Type.GetType("System.DateTime"));
+                dtRM.Columns.Add("ProveedoresID", Type.GetType("System.Int32"));
+                dtRM.Columns.Add("Subtotal", Type.GetType("System.Decimal"));
+                dtRM.Columns.Add("Iva", Type.GetType("System.Decimal"));
+                dtRM.Columns.Add("Neto", Type.GetType("System.Decimal"));
+                dtRM.Columns.Add("AlmacenesID", Type.GetType("System.Int32"));
+                dtRM.Columns.Add("CargoVario", Type.GetType("System.Decimal"));
+                decimal gSubtotal = 0.00M;
+                decimal gIva = 0.00M;
+                decimal gNeto = 0.00M;
+
+                // DT DETALLE
+                DataTable dtRMdetalle = new DataTable();
+                dtRMdetalle.Columns.Add("Serie", Type.GetType("System.String"));
+                dtRMdetalle.Columns.Add("Folio", Type.GetType("System.Int32"));
+                dtRMdetalle.Columns.Add("Seq", Type.GetType("System.Int32"));
+                dtRMdetalle.Columns.Add("Cantidad", Type.GetType("System.Decimal"));
+                dtRMdetalle.Columns.Add("ArticulosID", Type.GetType("System.Int32"));
+                dtRMdetalle.Columns.Add("Precio", Type.GetType("System.Decimal"));
+                dtRMdetalle.Columns.Add("importe", Type.GetType("System.Decimal"));
+                dtRMdetalle.Columns.Add("Iva", Type.GetType("System.Decimal"));
+                dtRMdetalle.Columns.Add("Ieps", Type.GetType("System.Decimal"));
+                dtRMdetalle.Columns.Add("Costoum2", Type.GetType("System.Decimal"));
+                dtRMdetalle.Columns.Add("Factorum2", Type.GetType("System.Decimal"));
+                dtRMdetalle.Columns.Add("PIva", Type.GetType("System.Decimal"));
+                dtRMdetalle.Columns.Add("PIeps", Type.GetType("System.Decimal"));
+                dtRMdetalle.Columns.Add("Descuento", Type.GetType("System.Decimal"));
+                dtRMdetalle.Columns.Add("PDescuento", Type.GetType("System.Decimal"));
+                dtRMdetalle.Columns.Add("OCSerie", Type.GetType("System.String"));
+                dtRMdetalle.Columns.Add("OCNumero", Type.GetType("System.Int32"));
+                dtRMdetalle.Columns.Add("OCSeq", Type.GetType("System.Int32"));
+                dtRMdetalle.Columns.Add("Neto", Type.GetType("System.Decimal"));
+                
+                int seq = 0;
+                int articulosID = 0;
+                int cantidad = 0;
+                decimal precio = 0.00M;
+                decimal importe = 0.00M;
+                decimal iva = 0.00M;
+                decimal neto = 0.00M;
+
+                // LLENAMOS DT DETALLE
+                for(int i = 0; i < gridView2.RowCount; i++)
+                {
+                    // DETALLE
+                    serieRM = gridView2.GetRowCellValue(i, "Serie").ToString();
+                    folioRM = Convert.ToInt32(gridView2.GetRowCellValue(i, "Folio"));
+                    seq = Convert.ToInt32(gridView2.GetRowCellValue(i, "Seq"));
+                    articulosID = Convert.ToInt32(gridView2.GetRowCellValue(i, "Articulos"));
+                    cantidad = Convert.ToInt32(gridView2.GetRowCellValue(i, "Cantidad"));
+                    precio = Convert.ToDecimal(gridView2.GetRowCellValue(i, "Precio"));
+                    importe = Convert.ToDecimal(gridView2.GetRowCellValue(i, "Importe"));
+                    iva = Convert.ToDecimal(gridView2.GetRowCellValue(i, "Iva"));
+                    neto = Convert.ToDecimal(gridView2.GetRowCellValue(i, "Neto"));
+                    // ENCABEZADO
+                    gSubtotal += importe;
+                    gIva += iva;
+                    gNeto += neto;
+                    // SE LLENA DATATABLE DETALLE
+                    dtRMdetalle.Rows.Add(serieRM, folioRM, seq,
+                                        cantidad, articulosID, precio,
+                                        importe, iva, 0,
+                                        0, 0, 0,
+                                        0, 0, 0,
+                                        "", 0, 0,
+                                        neto);
+                }
+                
+                // LLENAMOS DT ENCABEZADO
+                dtRM.Rows.Add(serieRM, folioRM,
+                            "", 0, 0,
+                            0, "", 0,
+                            0, date, date,
+                            "", "", 0,
+                            date, 0, date,
+                            0, gSubtotal, gIva,
+                            gNeto, 0, 0);
+
+                // SE MANDA A GUARDAR
+                RecepciondemercanciaCL cl = new RecepciondemercanciaCL();
+                cl.strSerie = serieRM;
+                cl.intFolio = folioRM;
+                cl.dtRM = dtRM;
+                cl.dtRMDet = dtRMdetalle;
+                cl.strMaquina = Environment.MachineName;
+                cl.intUsuarioID = globalCL.gv_UsuarioID;
+                cl.strPrograma = "0123";
+
+                string result = cl.RecepcionMercanciaCorreccionCostos();
+                if(result == "OK")
+                {
+                    cargaRM();
+                    LlenaOC();
+                    MessageBox.Show("Guardado Correctamente!");
+                }
+                else
+                    MessageBox.Show(result);                
+            }
+        }
+
+        private void gridView2_CellValueChanged(object sender, DevExpress.XtraGrid.Views.Base.CellValueChangedEventArgs e)
+        {
+            GridView gridView = sender as GridView;
+            if(gridView != null)
+            {
+                globalCL global = new globalCL();
+                string columnName = e.Column.FieldName;
+                if (columnName == "Precio" && global.esNumerico(e.Value.ToString())) 
+                {
+                    int cantidad = Convert.ToInt32(gridView.GetRowCellValue(e.RowHandle, "Cantidad"));
+                    decimal precio = Convert.ToDecimal(e.Value);
+                    decimal importe = Convert.ToDecimal(precio * cantidad);
+                    decimal iva = importe * 0.16M;
+                    decimal neto = importe + iva;
+
+                    gridView2.SetRowCellValue(e.RowHandle, "Importe", importe);
+                    gridView2.SetRowCellValue(e.RowHandle, "Iva", iva);
+                    gridView2.SetRowCellValue(e.RowHandle, "Neto", neto);
+                }
+            }
         }
     }
 }

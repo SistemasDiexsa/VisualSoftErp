@@ -414,24 +414,18 @@ namespace VisualSoftErp.Catalogos
 
                             dPIva = Convert.ToDecimal(gridViewOCdetalle.GetRowCellValue(i, "Piva"));
                             dPIeps = Convert.ToDecimal(gridViewOCdetalle.GetRowCellValue(i, "Pieps"));
-                          
-
                             dIva = Math.Round(dimporte * (dPIva / 100),2);
                             dIeps = Math.Round(dimporte * (dPIeps / 100),2);
                             decNetogrid = dimporte + dIva + dIeps;
 
                             dtRMdetalle.Rows.Add(strSerie, intFolio, intSeq, dCantidad, intArticulosID, dPrecio, dimporte, dIva, dIeps, 0, 0, dPIva, dPIeps, dDescuento, dPDescuento, strSerieOC, intFolioOC, intSeq, decNetogrid);
 
-
                             decTotSubtotal += dimporte;
                             decTotIva += dIva;
                             decTotIeps += dIeps;
                             decTotDescuento += dDescuento;
                         }
-
                     }
-
-                  
                 }
                 decTotNeto += decTotSubtotal + decTotIva + decTotIeps;
 

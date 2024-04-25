@@ -3321,7 +3321,7 @@
             this.gridColumnIva.AppearanceCell.Options.UseTextOptions = true;
             this.gridColumnIva.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
             this.gridColumnIva.Caption = "Iva";
-            this.gridColumnIva.DisplayFormat.FormatString = "{0:c2}";
+            this.gridColumnIva.DisplayFormat.FormatString = "{0:c4}";
             this.gridColumnIva.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
             this.gridColumnIva.FieldName = "Iva";
             this.gridColumnIva.ImageOptions.Alignment = System.Drawing.StringAlignment.Far;

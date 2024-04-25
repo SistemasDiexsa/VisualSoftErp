@@ -17,6 +17,7 @@ using Outlook = Microsoft.Office.Interop.Outlook;
 using System.Net.NetworkInformation;
 using System.Xml;
 using System.Net;
+using vsFK.Cancelar22;
 
 namespace VisualSoftErp.Clases
 {
@@ -810,7 +811,7 @@ namespace VisualSoftErp.Clases
             vc.ShowDialog();
         } //Verifica comprobante
 
-        public string EnviaCorreoGeneral(string strEmailTo, string subject, string body, DateTime date, string filePath)
+        public string EnviaCorreoGeneral(string strEmailTo, string subject, string body, DateTime date, string filePath, string doc, string serie, int folio)
         {
             string strambiente = ConfigurationManager.AppSettings["Ambiente"].ToString();
             if (strambiente == "Desarrollo" || strambiente == "Local")
@@ -856,13 +857,15 @@ namespace VisualSoftErp.Clases
                 string strresult = vs.Enviar_Correo();
                 if (strresult.Substring(0, 28) == "Correo enviado correctamente")
                 {
-                    sDocumento = filePath;
+                    sDocumento = doc;
+                    sSerie = serie;
+                    iFolio = folio;
                     sPara = strEmailTo;
                     sSubject = subject;
                     dFechaDoc = date;
                     string result2 = CorreosEnviadosCrud();
                     if (result2 != "OK")
-                        return "Enviado correctamente, pero al guardar el envio: " + result2;
+                        return "Enviado correctamente a " + strEmailTo + ", pero al guardar el envio: " + result2;
                 }
                 return strresult;
             }

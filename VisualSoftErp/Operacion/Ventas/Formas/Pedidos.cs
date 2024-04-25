@@ -1689,9 +1689,9 @@ namespace VisualSoftErp.Catalogos.Ventas
                     piva = 0;
                 }
 
-                descuento = Math.Round(importe * (porcentaje / 100), 2);
-                iva = Math.Round((importe - descuento) * (piva / 100), 2);
-                neto = Math.Round(importe - descuento + iva, 2);
+                descuento = Math.Round(importe * (porcentaje / 100), 4);
+                iva = Math.Round((importe - descuento) * (piva / 100), 4);
+                neto = Math.Round(importe - descuento + iva, 4);
 
                 gridViewDetalle.FocusedRowHandle = renglon;
 

@@ -835,7 +835,14 @@ namespace VisualSoftErp
                     ribbonPageTienda.Visible = true;
                     ribbonPageGroupHerramientasConsultas.Visible = true;
                     break;
-                
+                case "ribbonPageGroupCCPCat":
+                    ribbonPageCCP.Visible = true;
+                    ribbonPageGroupCCP.Visible = true;
+                    break;
+                case "ribbonPageGroupCCP":
+                    ribbonPageCCP.Visible = true;
+                    ribbonPageGroupCCP.Visible = true;
+                    break;
 
 
             }
@@ -938,6 +945,9 @@ namespace VisualSoftErp
                 case "0235":
                     bbi0235.Visibility = BarItemVisibility.Always;
                     break;
+                case "0236":
+                    bbi0236.Visibility = BarItemVisibility.Always;
+                    break;
                 case "0301"://Inventarios
                     bbi0301.Visibility = BarItemVisibility.Always;
                     break;
@@ -964,6 +974,9 @@ namespace VisualSoftErp
                     break;
                 case "0309":
                     bbi0309.Visibility = BarItemVisibility.Always;
+                    break;
+                case "0310":
+                    bbi0310.Visibility = BarItemVisibility.Always;
                     break;
                 case "0311":
                     bbi0311.Visibility = BarItemVisibility.Always;
@@ -1130,6 +1143,9 @@ namespace VisualSoftErp
                 case "0446":
                     bbi0446.Visibility = BarItemVisibility.Always;
                     break;
+                case "0447":
+                    bbi0447.Visibility = BarItemVisibility.Always;
+                    break;
                 case "0501"://CXC
                     bbi0501.Visibility = BarItemVisibility.Always;
                     break;
@@ -1223,6 +1239,9 @@ namespace VisualSoftErp
                     break;
                 case "0539":
                     bbi0539.Visibility = BarItemVisibility.Always;
+                    break;
+                case "0540":
+                    bbi0540.Visibility = BarItemVisibility.Always;
                     break;
                 case "0601"://Herramientas
                     bbi0601.Visibility = BarItemVisibility.Always;
@@ -2496,6 +2515,14 @@ namespace VisualSoftErp
             this.tabbedView.AddDocument(frm);
         }
 
+        private void bbi0540_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            DevExpress.XtraSplashScreen.SplashScreenManager.ShowDefaultWaitForm();
+            globalCL.gv_RibbonPage = ribbonPageCxC;
+            CorteDia frm = new CorteDia();
+            this.tabbedView.AddDocument(frm);   
+        }
+
         private void bbi1022_ItemClick(object sender, ItemClickEventArgs e)
         {
             DevExpress.XtraSplashScreen.SplashScreenManager.ShowDefaultWaitForm();
@@ -2611,7 +2638,7 @@ namespace VisualSoftErp
             this.tabbedView.AddDocument(frm);
         }
 
-        private void barButtonItem42_ItemClick(object sender, ItemClickEventArgs e)
+        private void bbi0236_ItemClick(object sender, ItemClickEventArgs e)
         {            
             DevExpress.XtraSplashScreen.SplashScreenManager.ShowDefaultWaitForm();
             globalCL.gv_RibbonPage = ribbonPageVentas;
@@ -2635,6 +2662,12 @@ namespace VisualSoftErp
             this.tabbedView.AddDocument(frm);
         }
 
-        
+        private void bbi0447_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            DevExpress.XtraSplashScreen.SplashScreenManager.ShowDefaultWaitForm();
+            globalCL.gv_RibbonPage = ribbonPageVentas;
+            VentasTipoPago frm = new VentasTipoPago();
+            this.tabbedView.AddDocument(frm);
+        }
     }
 }

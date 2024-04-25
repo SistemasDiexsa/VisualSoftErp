@@ -47,8 +47,8 @@
             this.hyperLinkEdit1 = new DevExpress.XtraEditors.HyperLinkEdit();
             this.popupContainerControl1 = new DevExpress.XtraEditors.PopupContainerControl();
             this.groupControl1 = new DevExpress.XtraEditors.GroupControl();
-            this.labelControl4 = new DevExpress.XtraEditors.LabelControl();
             this.simpleButton1 = new DevExpress.XtraEditors.SimpleButton();
+            this.labelControl4 = new DevExpress.XtraEditors.LabelControl();
             ((System.ComponentModel.ISupportInitialize)(this.pELogo.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtLogin.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ribbonControl1)).BeginInit();
@@ -64,14 +64,15 @@
             // pELogo
             // 
             this.pELogo.EditValue = global::VisualSoftErp.Properties.Resources.VS_grande;
-            this.pELogo.Location = new System.Drawing.Point(538, 398);
+            this.pELogo.Location = new System.Drawing.Point(461, 323);
+            this.pELogo.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.pELogo.Name = "pELogo";
             this.pELogo.Properties.AppearanceFocused.Options.UseTextOptions = true;
             this.pELogo.Properties.AppearanceFocused.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
             this.pELogo.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
             this.pELogo.Properties.ShowCameraMenuItem = DevExpress.XtraEditors.Controls.CameraMenuItemVisibility.Auto;
             this.pELogo.Properties.SizeMode = DevExpress.XtraEditors.Controls.PictureSizeMode.Stretch;
-            this.pELogo.Size = new System.Drawing.Size(118, 24);
+            this.pELogo.Size = new System.Drawing.Size(101, 20);
             this.pELogo.TabIndex = 0;
             this.pELogo.EditValueChanged += new System.EventHandler(this.pELogo_EditValueChanged);
             // 
@@ -81,9 +82,10 @@
             this.labelControl1.Appearance.ForeColor = System.Drawing.Color.Gray;
             this.labelControl1.Appearance.Options.UseFont = true;
             this.labelControl1.Appearance.Options.UseForeColor = true;
-            this.labelControl1.Location = new System.Drawing.Point(142, 206);
+            this.labelControl1.Location = new System.Drawing.Point(122, 167);
+            this.labelControl1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.labelControl1.Name = "labelControl1";
-            this.labelControl1.Size = new System.Drawing.Size(48, 24);
+            this.labelControl1.Size = new System.Drawing.Size(39, 19);
             this.labelControl1.TabIndex = 1;
             this.labelControl1.Text = "Login";
             // 
@@ -93,25 +95,28 @@
             this.labelControl2.Appearance.ForeColor = System.Drawing.Color.Gray;
             this.labelControl2.Appearance.Options.UseFont = true;
             this.labelControl2.Appearance.Options.UseForeColor = true;
-            this.labelControl2.Location = new System.Drawing.Point(142, 263);
+            this.labelControl2.Location = new System.Drawing.Point(122, 214);
+            this.labelControl2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.labelControl2.Name = "labelControl2";
-            this.labelControl2.Size = new System.Drawing.Size(84, 24);
+            this.labelControl2.Size = new System.Drawing.Size(67, 19);
             this.labelControl2.TabIndex = 2;
             this.labelControl2.Text = "Password";
             // 
             // txtLogin
             // 
             this.txtLogin.EnterMoveNextControl = true;
-            this.txtLogin.Location = new System.Drawing.Point(274, 206);
+            this.txtLogin.Location = new System.Drawing.Point(235, 167);
+            this.txtLogin.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txtLogin.MenuManager = this.ribbonControl1;
             this.txtLogin.Name = "txtLogin";
             this.txtLogin.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 12F);
             this.txtLogin.Properties.Appearance.Options.UseFont = true;
-            this.txtLogin.Size = new System.Drawing.Size(272, 30);
+            this.txtLogin.Size = new System.Drawing.Size(233, 26);
             this.txtLogin.TabIndex = 5;
             // 
             // ribbonControl1
             // 
+            this.ribbonControl1.EmptyAreaImageOptions.ImagePadding = new System.Windows.Forms.Padding(26, 24, 26, 24);
             this.ribbonControl1.ExpandCollapseItem.Id = 0;
             this.ribbonControl1.Items.AddRange(new DevExpress.XtraBars.BarItem[] {
             this.ribbonControl1.ExpandCollapseItem,
@@ -121,11 +126,13 @@
             this.barHeaderItem1,
             this.barHeaderVersion});
             this.ribbonControl1.Location = new System.Drawing.Point(0, 0);
+            this.ribbonControl1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.ribbonControl1.MaxItemId = 5;
             this.ribbonControl1.Name = "ribbonControl1";
+            this.ribbonControl1.OptionsMenuMinWidth = 283;
             this.ribbonControl1.Pages.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPage[] {
             this.ribbonPage1});
-            this.ribbonControl1.Size = new System.Drawing.Size(668, 174);
+            this.ribbonControl1.Size = new System.Drawing.Size(573, 140);
             this.ribbonControl1.StatusBar = this.ribbonStatusBar1;
             // 
             // bbiCerrar
@@ -174,59 +181,65 @@
             // 
             this.ribbonStatusBar1.ItemLinks.Add(this.barHeaderItem1);
             this.ribbonStatusBar1.ItemLinks.Add(this.barHeaderVersion);
-            this.ribbonStatusBar1.Location = new System.Drawing.Point(0, 428);
+            this.ribbonStatusBar1.Location = new System.Drawing.Point(0, 349);
+            this.ribbonStatusBar1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.ribbonStatusBar1.Name = "ribbonStatusBar1";
             this.ribbonStatusBar1.Ribbon = this.ribbonControl1;
-            this.ribbonStatusBar1.Size = new System.Drawing.Size(668, 36);
+            this.ribbonStatusBar1.Size = new System.Drawing.Size(573, 28);
             // 
             // txtPassword
             // 
             this.txtPassword.EnterMoveNextControl = true;
-            this.txtPassword.Location = new System.Drawing.Point(274, 260);
+            this.txtPassword.Location = new System.Drawing.Point(235, 211);
+            this.txtPassword.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txtPassword.MenuManager = this.ribbonControl1;
             this.txtPassword.Name = "txtPassword";
             this.txtPassword.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 12F);
             this.txtPassword.Properties.Appearance.Options.UseFont = true;
             this.txtPassword.Properties.PasswordChar = '*';
-            this.txtPassword.Size = new System.Drawing.Size(272, 30);
+            this.txtPassword.Size = new System.Drawing.Size(233, 26);
             this.txtPassword.TabIndex = 6;
             this.txtPassword.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtPassword_KeyPress);
             // 
             // swPassword
             // 
-            this.swPassword.Location = new System.Drawing.Point(394, 398);
+            this.swPassword.Location = new System.Drawing.Point(338, 323);
+            this.swPassword.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.swPassword.MenuManager = this.ribbonControl1;
             this.swPassword.Name = "swPassword";
             this.swPassword.Properties.OffText = "No";
             this.swPassword.Properties.OnText = "Sí";
-            this.swPassword.Size = new System.Drawing.Size(102, 28);
+            this.swPassword.Size = new System.Drawing.Size(87, 24);
             this.swPassword.TabIndex = 8;
             // 
             // labelControl3
             // 
-            this.labelControl3.Location = new System.Drawing.Point(274, 404);
+            this.labelControl3.Location = new System.Drawing.Point(235, 328);
+            this.labelControl3.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.labelControl3.Name = "labelControl3";
-            this.labelControl3.Size = new System.Drawing.Size(111, 16);
+            this.labelControl3.Size = new System.Drawing.Size(93, 13);
             this.labelControl3.TabIndex = 9;
             this.labelControl3.Text = "Recordar password";
             // 
             // hyperLinkEdit1
             // 
             this.hyperLinkEdit1.EditValue = "Cambiar password";
-            this.hyperLinkEdit1.Location = new System.Drawing.Point(4, 402);
+            this.hyperLinkEdit1.Location = new System.Drawing.Point(3, 327);
+            this.hyperLinkEdit1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.hyperLinkEdit1.MenuManager = this.ribbonControl1;
             this.hyperLinkEdit1.Name = "hyperLinkEdit1";
             this.hyperLinkEdit1.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
-            this.hyperLinkEdit1.Size = new System.Drawing.Size(125, 20);
+            this.hyperLinkEdit1.Size = new System.Drawing.Size(107, 18);
             this.hyperLinkEdit1.TabIndex = 12;
             this.hyperLinkEdit1.OpenLink += new DevExpress.XtraEditors.Controls.OpenLinkEventHandler(this.hyperLinkEdit1_OpenLink);
             // 
             // popupContainerControl1
             // 
             this.popupContainerControl1.Controls.Add(this.groupControl1);
-            this.popupContainerControl1.Location = new System.Drawing.Point(212, 206);
+            this.popupContainerControl1.Location = new System.Drawing.Point(182, 167);
+            this.popupContainerControl1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.popupContainerControl1.Name = "popupContainerControl1";
-            this.popupContainerControl1.Size = new System.Drawing.Size(303, 151);
+            this.popupContainerControl1.Size = new System.Drawing.Size(260, 123);
             this.popupContainerControl1.TabIndex = 15;
             // 
             // groupControl1
@@ -237,35 +250,38 @@
             this.groupControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupControl1.GroupStyle = DevExpress.Utils.GroupStyle.Card;
             this.groupControl1.Location = new System.Drawing.Point(0, 0);
+            this.groupControl1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.groupControl1.Name = "groupControl1";
-            this.groupControl1.Size = new System.Drawing.Size(303, 151);
+            this.groupControl1.Size = new System.Drawing.Size(260, 123);
             this.groupControl1.TabIndex = 0;
             this.groupControl1.Text = "Aviso!";
             // 
-            // labelControl4
-            // 
-            this.labelControl4.Location = new System.Drawing.Point(20, 57);
-            this.labelControl4.Name = "labelControl4";
-            this.labelControl4.Size = new System.Drawing.Size(260, 16);
-            this.labelControl4.TabIndex = 0;
-            this.labelControl4.Text = "Está en modo de pruebas, avise a sistemas!!!";
-            // 
             // simpleButton1
             // 
-            this.simpleButton1.Location = new System.Drawing.Point(204, 117);
+            this.simpleButton1.Location = new System.Drawing.Point(175, 95);
+            this.simpleButton1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.simpleButton1.Name = "simpleButton1";
-            this.simpleButton1.Size = new System.Drawing.Size(94, 29);
+            this.simpleButton1.Size = new System.Drawing.Size(81, 24);
             this.simpleButton1.TabIndex = 1;
             this.simpleButton1.Text = "Cerrar";
             this.simpleButton1.Click += new System.EventHandler(this.simpleButton1_Click_1);
+            // 
+            // labelControl4
+            // 
+            this.labelControl4.Location = new System.Drawing.Point(17, 46);
+            this.labelControl4.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.labelControl4.Name = "labelControl4";
+            this.labelControl4.Size = new System.Drawing.Size(219, 13);
+            this.labelControl4.TabIndex = 0;
+            this.labelControl4.Text = "Está en modo de pruebas, avise a sistemas!!!";
             // 
             // Login
             // 
             this.Appearance.BackColor = System.Drawing.Color.White;
             this.Appearance.Options.UseBackColor = true;
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(668, 464);
+            this.ClientSize = new System.Drawing.Size(573, 377);
             this.Controls.Add(this.popupContainerControl1);
             this.Controls.Add(this.hyperLinkEdit1);
             this.Controls.Add(this.labelControl3);
@@ -277,6 +293,7 @@
             this.Controls.Add(this.labelControl2);
             this.Controls.Add(this.labelControl1);
             this.Controls.Add(this.pELogo);
+            this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Name = "Login";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Login";

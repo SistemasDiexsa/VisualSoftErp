@@ -311,8 +311,6 @@ namespace VisualSoftErp.Clases
             catch (Exception ex) { return dt; }
         } //remisionesGrid
 
-        
-
         public string RecepciondemercanciaCancelar()
         {
             try
@@ -352,6 +350,48 @@ namespace VisualSoftErp.Clases
                 return ex.Message;
             }
         } // Public Class Eliminar
+
+        public string RecepcionMercanciaCorreccionCostos()
+        {
+            string result = string.Empty;
+            try
+            {
+                using(SqlConnection cnn = new SqlConnection(strCnn))
+                {
+                    using(SqlCommand cmd = new SqlCommand("CorregirCostosValidarCompras", cnn))
+                    {
+                        cmd.CommandType = CommandType.StoredProcedure;
+                        cmd.Parameters.AddWithValue("@prmRecepcionMercancia", dtRM);
+                        cmd.Parameters.AddWithValue("@prmRecepcionMercanciaDetalle", dtRMDet);
+                        cmd.Parameters.AddWithValue("@prmSerie", strSerie);
+                        cmd.Parameters.AddWithValue("@prmFolio", intFolio);
+                        cmd.Parameters.AddWithValue("@prmMaquina", strMaquina);
+                        cmd.Parameters.AddWithValue("@prmUsuario", intUsuarioID);
+                        cmd.Parameters.AddWithValue("@prmPrograma", strPrograma);
+                        cnn.Open();
+                        using(SqlDataReader dr = cmd.ExecuteReader())
+                        {
+                            if(dr.HasRows)
+                            {
+                                while(dr.Read())
+                                {
+                                    result = dr["result"].ToString();
+                                }
+                            }
+                            else
+                            {
+                                result = "no read";
+                            }
+                        }
+                    }
+                }
+            } 
+            catch (Exception ex)
+            {
+                result = ex.Message;
+            }
+            return result;
+        }
 
         #endregion
     }

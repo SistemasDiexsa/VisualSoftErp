@@ -267,7 +267,7 @@ namespace VisualSoftErp.Operacion.Inventarios.Formas
                 {
                     rep.Parameters["parameter1"].Value = intFolio;        //Emp
                     rep.Parameters["parameter1"].Visible = false;
- 
+                    
                     ReportPrintTool rpt = new DevExpress.XtraReports.UI.ReportPrintTool(rep);
                     rpt.Print();
                     return;
@@ -276,7 +276,7 @@ namespace VisualSoftErp.Operacion.Inventarios.Formas
                 {
                     rep.Parameters["parameter1"].Value = intFolio;        //Emp
                     rep.Parameters["parameter1"].Visible = false;
-   
+
                     documentViewer1.DocumentSource = rep;
                     rep.CreateDocument();
                     navBarControl.Visible = false;

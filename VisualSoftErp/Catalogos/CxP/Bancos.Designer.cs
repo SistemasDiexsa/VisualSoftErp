@@ -61,6 +61,7 @@
             this.labelControl2 = new DevExpress.XtraEditors.LabelControl();
             this.txtNombre = new DevExpress.XtraEditors.TextEdit();
             this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
+            this.swActivo = new DevExpress.XtraEditors.ToggleSwitch();
             ((System.ComponentModel.ISupportInitialize)(this.tabbedView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ribbonControl)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.officeNavigationBar)).BeginInit();
@@ -73,6 +74,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.txtRfc.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtClaveSat.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtNombre.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.swActivo.Properties)).BeginInit();
             this.SuspendLayout();
             // 
             // ribbonControl
@@ -101,7 +103,7 @@
             this.ribbonPage1});
             this.ribbonControl.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonControlStyle.Office2013;
             this.ribbonControl.ShowApplicationButton = DevExpress.Utils.DefaultBoolean.False;
-            this.ribbonControl.Size = new System.Drawing.Size(790, 204);
+            this.ribbonControl.Size = new System.Drawing.Size(790, 147);
             this.ribbonControl.StatusBar = this.ribbonStatusBar;
             this.ribbonControl.ToolbarLocation = DevExpress.XtraBars.Ribbon.RibbonQuickAccessToolbarLocation.Hidden;
             // 
@@ -212,9 +214,9 @@
             // ribbonPageGroup
             // 
             this.ribbonPageGroup.AllowTextClipping = false;
+            this.ribbonPageGroup.CaptionButtonVisible = DevExpress.Utils.DefaultBoolean.False;
             this.ribbonPageGroup.ItemLinks.Add(this.skinRibbonGalleryBarItem);
             this.ribbonPageGroup.Name = "ribbonPageGroup";
-            this.ribbonPageGroup.ShowCaptionButton = false;
             this.ribbonPageGroup.Text = "Appearance";
             // 
             // ribbonPage1
@@ -238,15 +240,15 @@
             // 
             // ribbonStatusBar
             // 
-            this.ribbonStatusBar.Location = new System.Drawing.Point(0, 566);
+            this.ribbonStatusBar.Location = new System.Drawing.Point(0, 576);
             this.ribbonStatusBar.Name = "ribbonStatusBar";
             this.ribbonStatusBar.Ribbon = this.ribbonControl;
-            this.ribbonStatusBar.Size = new System.Drawing.Size(790, 33);
+            this.ribbonStatusBar.Size = new System.Drawing.Size(790, 23);
             // 
             // officeNavigationBar
             // 
             this.officeNavigationBar.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.officeNavigationBar.Location = new System.Drawing.Point(0, 520);
+            this.officeNavigationBar.Location = new System.Drawing.Point(0, 530);
             this.officeNavigationBar.Name = "officeNavigationBar";
             this.officeNavigationBar.Size = new System.Drawing.Size(790, 46);
             this.officeNavigationBar.TabIndex = 1;
@@ -259,14 +261,14 @@
             this.navigationFrame.Controls.Add(this.employeesNavigationPage);
             this.navigationFrame.Controls.Add(this.customersNavigationPage);
             this.navigationFrame.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.navigationFrame.Location = new System.Drawing.Point(0, 204);
+            this.navigationFrame.Location = new System.Drawing.Point(0, 147);
             this.navigationFrame.Name = "navigationFrame";
             this.navigationFrame.Pages.AddRange(new DevExpress.XtraBars.Navigation.NavigationPageBase[] {
             this.employeesNavigationPage,
             this.customersNavigationPage});
             this.navigationFrame.RibbonAndBarsMergeStyle = DevExpress.XtraBars.Docking2010.Views.RibbonAndBarsMergeStyle.Always;
             this.navigationFrame.SelectedPage = this.employeesNavigationPage;
-            this.navigationFrame.Size = new System.Drawing.Size(790, 316);
+            this.navigationFrame.Size = new System.Drawing.Size(790, 383);
             this.navigationFrame.TabIndex = 0;
             this.navigationFrame.Text = "navigationFrame";
             // 
@@ -274,7 +276,7 @@
             // 
             this.employeesNavigationPage.Controls.Add(this.gridControlPrincipal);
             this.employeesNavigationPage.Name = "employeesNavigationPage";
-            this.employeesNavigationPage.Size = new System.Drawing.Size(790, 316);
+            this.employeesNavigationPage.Size = new System.Drawing.Size(790, 383);
             // 
             // gridControlPrincipal
             // 
@@ -283,7 +285,7 @@
             this.gridControlPrincipal.MainView = this.gridViewPrincipal;
             this.gridControlPrincipal.MenuManager = this.ribbonControl;
             this.gridControlPrincipal.Name = "gridControlPrincipal";
-            this.gridControlPrincipal.Size = new System.Drawing.Size(790, 316);
+            this.gridControlPrincipal.Size = new System.Drawing.Size(790, 383);
             this.gridControlPrincipal.TabIndex = 0;
             this.gridControlPrincipal.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridViewPrincipal});
@@ -297,6 +299,7 @@
             // 
             // customersNavigationPage
             // 
+            this.customersNavigationPage.Controls.Add(this.swActivo);
             this.customersNavigationPage.Controls.Add(this.txtRfc);
             this.customersNavigationPage.Controls.Add(this.labelControl3);
             this.customersNavigationPage.Controls.Add(this.txtClaveSat);
@@ -304,7 +307,7 @@
             this.customersNavigationPage.Controls.Add(this.txtNombre);
             this.customersNavigationPage.Controls.Add(this.labelControl1);
             this.customersNavigationPage.Name = "customersNavigationPage";
-            this.customersNavigationPage.Size = new System.Drawing.Size(790, 316);
+            this.customersNavigationPage.Size = new System.Drawing.Size(790, 383);
             // 
             // txtRfc
             // 
@@ -313,7 +316,7 @@
             this.txtRfc.MenuManager = this.ribbonControl;
             this.txtRfc.Name = "txtRfc";
             this.txtRfc.Properties.MaxLength = 3;
-            this.txtRfc.Size = new System.Drawing.Size(316, 26);
+            this.txtRfc.Size = new System.Drawing.Size(316, 20);
             this.txtRfc.TabIndex = 5;
             // 
             // labelControl3
@@ -331,7 +334,7 @@
             this.txtClaveSat.MenuManager = this.ribbonControl;
             this.txtClaveSat.Name = "txtClaveSat";
             this.txtClaveSat.Properties.MaxLength = 3;
-            this.txtClaveSat.Size = new System.Drawing.Size(623, 26);
+            this.txtClaveSat.Size = new System.Drawing.Size(623, 20);
             this.txtClaveSat.TabIndex = 3;
             // 
             // labelControl2
@@ -349,7 +352,7 @@
             this.txtNombre.MenuManager = this.ribbonControl;
             this.txtNombre.Name = "txtNombre";
             this.txtNombre.Properties.MaxLength = 3;
-            this.txtNombre.Size = new System.Drawing.Size(623, 26);
+            this.txtNombre.Size = new System.Drawing.Size(623, 20);
             this.txtNombre.TabIndex = 0;
             // 
             // labelControl1
@@ -359,6 +362,17 @@
             this.labelControl1.Size = new System.Drawing.Size(37, 13);
             this.labelControl1.TabIndex = 2;
             this.labelControl1.Text = "Nombre";
+            // 
+            // swActivo
+            // 
+            this.swActivo.Location = new System.Drawing.Point(98, 202);
+            this.swActivo.MenuManager = this.ribbonControl;
+            this.swActivo.Name = "swActivo";
+            this.swActivo.Properties.OffText = "Inactivo";
+            this.swActivo.Properties.OnText = "Activo";
+            this.swActivo.Size = new System.Drawing.Size(126, 24);
+            this.swActivo.TabIndex = 7;
+            this.swActivo.TabStop = false;
             // 
             // Bancos
             // 
@@ -387,6 +401,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.txtRfc.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtClaveSat.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtNombre.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.swActivo.Properties)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -424,5 +439,6 @@
         private DevExpress.XtraEditors.LabelControl labelControl2;
         private DevExpress.XtraEditors.TextEdit txtRfc;
         private DevExpress.XtraEditors.LabelControl labelControl3;
+        private DevExpress.XtraEditors.ToggleSwitch swActivo;
     }
 }

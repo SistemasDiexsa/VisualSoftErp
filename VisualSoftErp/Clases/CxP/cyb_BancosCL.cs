@@ -13,12 +13,11 @@ namespace VisualSoftErp.Clases
     {
         #region Propiedades
         string strCnn = globalCL.gv_strcnn;
-
-        
         public int intBancosID { get; set; }
         public string strNombre { get; set; }
         public string strClaveSat { get; set; }
         public string strRfc { get; set; }
+        public int intActivo { get; set; }
         #endregion
 
         #region Constructor
@@ -28,6 +27,7 @@ namespace VisualSoftErp.Clases
             strNombre = string.Empty;
             strClaveSat = string.Empty;
             strRfc = string.Empty;
+            intActivo = 0;
         }
         #endregion
 
@@ -86,6 +86,7 @@ namespace VisualSoftErp.Clases
                 cmd.Parameters.AddWithValue("@prmNombre", strNombre);
                 cmd.Parameters.AddWithValue("@prmClaveSat", strClaveSat);
                 cmd.Parameters.AddWithValue("@prmRfc", strRfc);
+                cmd.Parameters.AddWithValue("@prmActivo", intActivo);
                 cmd.CommandType = System.Data.CommandType.StoredProcedure;
                 cmd.Connection = cnn;
                 SqlDataReader dr = cmd.ExecuteReader();
@@ -132,6 +133,7 @@ namespace VisualSoftErp.Clases
                     strNombre = dr["Nombre"].ToString();
                     strClaveSat = dr["ClaveSat"].ToString();
                     strRfc = dr["Rfc"].ToString();
+                    intActivo = dr["Activo"] == DBNull.Value  ? 0 : Convert.ToInt32(dr["Activo"]);
                     result = "OK";
                 }
                 else

@@ -64,6 +64,7 @@ namespace VisualSoftErp.Catalogos.Ventas
             txtNombre.Text = string.Empty;
             txtClaveSat.Text = string.Empty;
             txtRfc.Text = string.Empty;
+            swActivo.IsOn = false;
         }
 
         private void bbiGuardar_ItemClick(Object sender, DevExpress.XtraBars.ItemClickEventArgs e)
@@ -86,6 +87,7 @@ namespace VisualSoftErp.Catalogos.Ventas
                 cl.strNombre = txtNombre.Text;
                 cl.strClaveSat = txtClaveSat.Text;
                 cl.strRfc = txtRfc.Text;
+                cl.intActivo = swActivo.IsOn ? 1 : 0;
                 Result = cl.cyb_BancosCrud();
                 if (Result == "OK")
                 {
@@ -133,6 +135,7 @@ namespace VisualSoftErp.Catalogos.Ventas
                 txtNombre.Text = cl.strNombre;
                 txtClaveSat.Text = cl.strClaveSat;
                 txtRfc.Text = cl.strRfc;
+                swActivo.IsOn = cl.intActivo == 1 ? true : false;
             }
             else
             {

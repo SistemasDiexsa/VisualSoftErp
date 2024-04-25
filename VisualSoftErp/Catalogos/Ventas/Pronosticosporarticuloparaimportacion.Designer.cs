@@ -53,7 +53,6 @@
             this.labelControl2 = new DevExpress.XtraEditors.LabelControl();
             this.txtA = new DevExpress.XtraEditors.TextEdit();
             this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
-            this.txtM = new DevExpress.XtraEditors.TextEdit();
             this.labelControl6 = new DevExpress.XtraEditors.LabelControl();
             this.cboTipo = new DevExpress.XtraEditors.LookUpEdit();
             this.labelControl4 = new DevExpress.XtraEditors.LabelControl();
@@ -83,24 +82,24 @@
             this.gridColumnTotal = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumnPromedio = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumnProyectado = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.cboMeses = new DevExpress.XtraEditors.LookUpEdit();
             ((System.ComponentModel.ISupportInitialize)(this.tabbedView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ribbonControl)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.navigationFrame)).BeginInit();
             this.navigationFrame.SuspendLayout();
             this.employeesNavigationPage.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.txtA.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtM.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cboTipo.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cboFamilia.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cboLinea.Properties)).BeginInit();
             this.customersNavigationPage.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridControlDetalle)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridViewDetalle)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cboMeses.Properties)).BeginInit();
             this.SuspendLayout();
             // 
             // ribbonControl
             // 
-            this.ribbonControl.EmptyAreaImageOptions.ImagePadding = new System.Windows.Forms.Padding(35, 37, 35, 37);
             this.ribbonControl.ExpandCollapseItem.Id = 0;
             this.ribbonControl.Items.AddRange(new DevExpress.XtraBars.BarItem[] {
             this.ribbonControl.ExpandCollapseItem,
@@ -115,17 +114,15 @@
             this.bbiRegresar,
             this.bbiPrevio});
             this.ribbonControl.Location = new System.Drawing.Point(0, 0);
-            this.ribbonControl.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.ribbonControl.MaxItemId = 51;
             this.ribbonControl.MdiMergeStyle = DevExpress.XtraBars.Ribbon.RibbonMdiMergeStyle.Always;
             this.ribbonControl.Name = "ribbonControl";
-            this.ribbonControl.OptionsMenuMinWidth = 385;
             this.ribbonControl.Pages.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPage[] {
             this.ribbonPage,
             this.ribbonPage1});
             this.ribbonControl.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonControlStyle.Office2013;
             this.ribbonControl.ShowApplicationButton = DevExpress.Utils.DefaultBoolean.False;
-            this.ribbonControl.Size = new System.Drawing.Size(1330, 181);
+            this.ribbonControl.Size = new System.Drawing.Size(1140, 147);
             this.ribbonControl.StatusBar = this.ribbonStatusBar;
             this.ribbonControl.ToolbarLocation = DevExpress.XtraBars.Ribbon.RibbonQuickAccessToolbarLocation.Hidden;
             // 
@@ -247,11 +244,10 @@
             // 
             // ribbonStatusBar
             // 
-            this.ribbonStatusBar.Location = new System.Drawing.Point(0, 708);
-            this.ribbonStatusBar.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.ribbonStatusBar.Location = new System.Drawing.Point(0, 576);
             this.ribbonStatusBar.Name = "ribbonStatusBar";
             this.ribbonStatusBar.Ribbon = this.ribbonControl;
-            this.ribbonStatusBar.Size = new System.Drawing.Size(1330, 29);
+            this.ribbonStatusBar.Size = new System.Drawing.Size(1140, 23);
             // 
             // navigationFrame
             // 
@@ -260,152 +256,128 @@
             this.navigationFrame.Controls.Add(this.employeesNavigationPage);
             this.navigationFrame.Controls.Add(this.customersNavigationPage);
             this.navigationFrame.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.navigationFrame.Location = new System.Drawing.Point(0, 181);
-            this.navigationFrame.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.navigationFrame.Location = new System.Drawing.Point(0, 147);
             this.navigationFrame.Name = "navigationFrame";
             this.navigationFrame.Pages.AddRange(new DevExpress.XtraBars.Navigation.NavigationPageBase[] {
             this.employeesNavigationPage,
             this.customersNavigationPage});
             this.navigationFrame.RibbonAndBarsMergeStyle = DevExpress.XtraBars.Docking2010.Views.RibbonAndBarsMergeStyle.Always;
             this.navigationFrame.SelectedPage = this.employeesNavigationPage;
-            this.navigationFrame.Size = new System.Drawing.Size(1330, 527);
+            this.navigationFrame.Size = new System.Drawing.Size(1140, 429);
             this.navigationFrame.TabIndex = 0;
             this.navigationFrame.Text = "navigationFrame";
             // 
             // employeesNavigationPage
             // 
+            this.employeesNavigationPage.Controls.Add(this.cboMeses);
             this.employeesNavigationPage.Controls.Add(this.labelControl2);
             this.employeesNavigationPage.Controls.Add(this.txtA);
             this.employeesNavigationPage.Controls.Add(this.labelControl1);
-            this.employeesNavigationPage.Controls.Add(this.txtM);
             this.employeesNavigationPage.Controls.Add(this.labelControl6);
             this.employeesNavigationPage.Controls.Add(this.cboTipo);
             this.employeesNavigationPage.Controls.Add(this.labelControl4);
             this.employeesNavigationPage.Controls.Add(this.labelControl3);
             this.employeesNavigationPage.Controls.Add(this.cboFamilia);
             this.employeesNavigationPage.Controls.Add(this.cboLinea);
-            this.employeesNavigationPage.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.employeesNavigationPage.Name = "employeesNavigationPage";
-            this.employeesNavigationPage.Size = new System.Drawing.Size(1330, 527);
+            this.employeesNavigationPage.Size = new System.Drawing.Size(1140, 429);
             // 
             // labelControl2
             // 
-            this.labelControl2.Location = new System.Drawing.Point(48, 74);
-            this.labelControl2.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.labelControl2.Location = new System.Drawing.Point(41, 60);
             this.labelControl2.Name = "labelControl2";
-            this.labelControl2.Size = new System.Drawing.Size(91, 16);
+            this.labelControl2.Size = new System.Drawing.Size(78, 13);
             this.labelControl2.TabIndex = 26;
             this.labelControl2.Text = "Año a proyectar";
             // 
             // txtA
             // 
-            this.txtA.Location = new System.Drawing.Point(160, 70);
-            this.txtA.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.txtA.Location = new System.Drawing.Point(137, 57);
             this.txtA.MenuManager = this.ribbonControl;
             this.txtA.Name = "txtA";
-            this.txtA.Properties.Mask.EditMask = "d";
-            this.txtA.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric;
-            this.txtA.Size = new System.Drawing.Size(117, 22);
+            this.txtA.Properties.MaskSettings.Set("MaskManagerType", typeof(DevExpress.Data.Mask.NumericMaskManager));
+            this.txtA.Properties.MaskSettings.Set("mask", "d");
+            this.txtA.Size = new System.Drawing.Size(148, 20);
             this.txtA.TabIndex = 25;
+            this.txtA.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtA_KeyPress);
             // 
             // labelControl1
             // 
-            this.labelControl1.Location = new System.Drawing.Point(48, 117);
-            this.labelControl1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.labelControl1.Location = new System.Drawing.Point(41, 95);
             this.labelControl1.Name = "labelControl1";
-            this.labelControl1.Size = new System.Drawing.Size(92, 16);
+            this.labelControl1.Size = new System.Drawing.Size(78, 13);
             this.labelControl1.TabIndex = 24;
             this.labelControl1.Text = "Mes a proyectar";
             // 
-            // txtM
-            // 
-            this.txtM.Location = new System.Drawing.Point(160, 113);
-            this.txtM.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.txtM.MenuManager = this.ribbonControl;
-            this.txtM.Name = "txtM";
-            this.txtM.Properties.Mask.EditMask = "d";
-            this.txtM.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric;
-            this.txtM.Size = new System.Drawing.Size(117, 22);
-            this.txtM.TabIndex = 23;
-            // 
             // labelControl6
             // 
-            this.labelControl6.Location = new System.Drawing.Point(48, 252);
-            this.labelControl6.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.labelControl6.Location = new System.Drawing.Point(41, 205);
             this.labelControl6.Name = "labelControl6";
-            this.labelControl6.Size = new System.Drawing.Size(25, 16);
+            this.labelControl6.Size = new System.Drawing.Size(20, 13);
             this.labelControl6.TabIndex = 22;
             this.labelControl6.Text = "Tipo";
             // 
             // cboTipo
             // 
-            this.cboTipo.Location = new System.Drawing.Point(160, 249);
-            this.cboTipo.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.cboTipo.Location = new System.Drawing.Point(137, 202);
             this.cboTipo.MenuManager = this.ribbonControl;
             this.cboTipo.Name = "cboTipo";
             this.cboTipo.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.cboTipo.Size = new System.Drawing.Size(877, 22);
+            this.cboTipo.Size = new System.Drawing.Size(752, 20);
             this.cboTipo.TabIndex = 21;
             // 
             // labelControl4
             // 
-            this.labelControl4.Location = new System.Drawing.Point(48, 206);
-            this.labelControl4.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.labelControl4.Location = new System.Drawing.Point(41, 167);
             this.labelControl4.Name = "labelControl4";
-            this.labelControl4.Size = new System.Drawing.Size(41, 16);
+            this.labelControl4.Size = new System.Drawing.Size(32, 13);
             this.labelControl4.TabIndex = 20;
             this.labelControl4.Text = "Familia";
             // 
             // labelControl3
             // 
-            this.labelControl3.Location = new System.Drawing.Point(48, 159);
-            this.labelControl3.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.labelControl3.Location = new System.Drawing.Point(41, 129);
             this.labelControl3.Name = "labelControl3";
-            this.labelControl3.Size = new System.Drawing.Size(30, 16);
+            this.labelControl3.Size = new System.Drawing.Size(25, 13);
             this.labelControl3.TabIndex = 19;
             this.labelControl3.Text = "Linea";
             // 
             // cboFamilia
             // 
-            this.cboFamilia.Location = new System.Drawing.Point(160, 202);
-            this.cboFamilia.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.cboFamilia.Location = new System.Drawing.Point(137, 164);
             this.cboFamilia.MenuManager = this.ribbonControl;
             this.cboFamilia.Name = "cboFamilia";
             this.cboFamilia.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.cboFamilia.Size = new System.Drawing.Size(877, 22);
+            this.cboFamilia.Size = new System.Drawing.Size(752, 20);
             this.cboFamilia.TabIndex = 18;
             // 
             // cboLinea
             // 
-            this.cboLinea.Location = new System.Drawing.Point(160, 156);
-            this.cboLinea.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.cboLinea.Location = new System.Drawing.Point(137, 127);
             this.cboLinea.MenuManager = this.ribbonControl;
             this.cboLinea.Name = "cboLinea";
             this.cboLinea.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.cboLinea.Size = new System.Drawing.Size(877, 22);
+            this.cboLinea.Size = new System.Drawing.Size(752, 20);
             this.cboLinea.TabIndex = 17;
             this.cboLinea.EditValueChanged += new System.EventHandler(this.cboLinea_EditValueChanged);
             // 
             // customersNavigationPage
             // 
             this.customersNavigationPage.Controls.Add(this.gridControlDetalle);
-            this.customersNavigationPage.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.customersNavigationPage.Name = "customersNavigationPage";
-            this.customersNavigationPage.Size = new System.Drawing.Size(1330, 527);
+            this.customersNavigationPage.Size = new System.Drawing.Size(1140, 429);
             // 
             // gridControlDetalle
             // 
             this.gridControlDetalle.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.gridControlDetalle.EmbeddedNavigator.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.gridControlDetalle.Location = new System.Drawing.Point(0, 0);
             this.gridControlDetalle.MainView = this.gridViewDetalle;
-            this.gridControlDetalle.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.gridControlDetalle.MenuManager = this.ribbonControl;
             this.gridControlDetalle.Name = "gridControlDetalle";
-            this.gridControlDetalle.Size = new System.Drawing.Size(1330, 527);
+            this.gridControlDetalle.Size = new System.Drawing.Size(1140, 429);
             this.gridControlDetalle.TabIndex = 0;
             this.gridControlDetalle.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridViewDetalle});
@@ -433,7 +405,6 @@
             this.gridColumnTotal,
             this.gridColumnPromedio,
             this.gridColumnProyectado});
-            this.gridViewDetalle.DetailHeight = 431;
             this.gridViewDetalle.GridControl = this.gridControlDetalle;
             this.gridViewDetalle.Name = "gridViewDetalle";
             this.gridViewDetalle.OptionsView.ShowGroupPanel = false;
@@ -443,49 +414,39 @@
             // 
             this.gridColumnNomLin.Caption = "Linea";
             this.gridColumnNomLin.FieldName = "NomLin";
-            this.gridColumnNomLin.MinWidth = 23;
             this.gridColumnNomLin.Name = "gridColumnNomLin";
             this.gridColumnNomLin.Visible = true;
             this.gridColumnNomLin.VisibleIndex = 0;
-            this.gridColumnNomLin.Width = 87;
             // 
             // gridColumnNomFam
             // 
             this.gridColumnNomFam.Caption = "Familia";
             this.gridColumnNomFam.FieldName = "NomFam";
-            this.gridColumnNomFam.MinWidth = 23;
             this.gridColumnNomFam.Name = "gridColumnNomFam";
             this.gridColumnNomFam.Visible = true;
             this.gridColumnNomFam.VisibleIndex = 1;
-            this.gridColumnNomFam.Width = 87;
             // 
             // gridColumnArticulosID
             // 
             this.gridColumnArticulosID.Caption = "ArticulosID";
             this.gridColumnArticulosID.FieldName = "ArticulosID";
-            this.gridColumnArticulosID.MinWidth = 23;
             this.gridColumnArticulosID.Name = "gridColumnArticulosID";
-            this.gridColumnArticulosID.Width = 87;
             // 
             // gridColumnArticulo
             // 
             this.gridColumnArticulo.Caption = "Articulo";
             this.gridColumnArticulo.FieldName = "Articulo";
-            this.gridColumnArticulo.MinWidth = 23;
             this.gridColumnArticulo.Name = "gridColumnArticulo";
             this.gridColumnArticulo.Visible = true;
             this.gridColumnArticulo.VisibleIndex = 2;
-            this.gridColumnArticulo.Width = 87;
             // 
             // gridColumnNomArt
             // 
             this.gridColumnNomArt.Caption = "Descripcion";
             this.gridColumnNomArt.FieldName = "NomArt";
-            this.gridColumnNomArt.MinWidth = 23;
             this.gridColumnNomArt.Name = "gridColumnNomArt";
             this.gridColumnNomArt.Visible = true;
             this.gridColumnNomArt.VisibleIndex = 3;
-            this.gridColumnNomArt.Width = 87;
             // 
             // gridColumnEne
             // 
@@ -493,11 +454,9 @@
             this.gridColumnEne.DisplayFormat.FormatString = "{0:n0}";
             this.gridColumnEne.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
             this.gridColumnEne.FieldName = "Ene";
-            this.gridColumnEne.MinWidth = 23;
             this.gridColumnEne.Name = "gridColumnEne";
             this.gridColumnEne.Visible = true;
             this.gridColumnEne.VisibleIndex = 4;
-            this.gridColumnEne.Width = 87;
             // 
             // gridColumnFeb
             // 
@@ -505,11 +464,9 @@
             this.gridColumnFeb.DisplayFormat.FormatString = "{0:n0}";
             this.gridColumnFeb.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
             this.gridColumnFeb.FieldName = "Feb";
-            this.gridColumnFeb.MinWidth = 23;
             this.gridColumnFeb.Name = "gridColumnFeb";
             this.gridColumnFeb.Visible = true;
             this.gridColumnFeb.VisibleIndex = 5;
-            this.gridColumnFeb.Width = 87;
             // 
             // gridColumnMar
             // 
@@ -517,11 +474,9 @@
             this.gridColumnMar.DisplayFormat.FormatString = "{0:n0}";
             this.gridColumnMar.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
             this.gridColumnMar.FieldName = "Mar";
-            this.gridColumnMar.MinWidth = 23;
             this.gridColumnMar.Name = "gridColumnMar";
             this.gridColumnMar.Visible = true;
             this.gridColumnMar.VisibleIndex = 6;
-            this.gridColumnMar.Width = 87;
             // 
             // gridColumnAbr
             // 
@@ -529,11 +484,9 @@
             this.gridColumnAbr.DisplayFormat.FormatString = "{0:n0}";
             this.gridColumnAbr.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
             this.gridColumnAbr.FieldName = "Abr";
-            this.gridColumnAbr.MinWidth = 23;
             this.gridColumnAbr.Name = "gridColumnAbr";
             this.gridColumnAbr.Visible = true;
             this.gridColumnAbr.VisibleIndex = 7;
-            this.gridColumnAbr.Width = 87;
             // 
             // gridColumnMay
             // 
@@ -541,11 +494,9 @@
             this.gridColumnMay.DisplayFormat.FormatString = "{0:n0}";
             this.gridColumnMay.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
             this.gridColumnMay.FieldName = "May";
-            this.gridColumnMay.MinWidth = 23;
             this.gridColumnMay.Name = "gridColumnMay";
             this.gridColumnMay.Visible = true;
             this.gridColumnMay.VisibleIndex = 8;
-            this.gridColumnMay.Width = 87;
             // 
             // gridColumnJun
             // 
@@ -553,11 +504,9 @@
             this.gridColumnJun.DisplayFormat.FormatString = "{0:n0}";
             this.gridColumnJun.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
             this.gridColumnJun.FieldName = "Jun";
-            this.gridColumnJun.MinWidth = 23;
             this.gridColumnJun.Name = "gridColumnJun";
             this.gridColumnJun.Visible = true;
             this.gridColumnJun.VisibleIndex = 9;
-            this.gridColumnJun.Width = 87;
             // 
             // gridColumnJul
             // 
@@ -565,11 +514,9 @@
             this.gridColumnJul.DisplayFormat.FormatString = "{0:n0}";
             this.gridColumnJul.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
             this.gridColumnJul.FieldName = "Jul";
-            this.gridColumnJul.MinWidth = 23;
             this.gridColumnJul.Name = "gridColumnJul";
             this.gridColumnJul.Visible = true;
             this.gridColumnJul.VisibleIndex = 10;
-            this.gridColumnJul.Width = 87;
             // 
             // gridColumnAgo
             // 
@@ -577,11 +524,9 @@
             this.gridColumnAgo.DisplayFormat.FormatString = "{0:n0}";
             this.gridColumnAgo.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
             this.gridColumnAgo.FieldName = "Ago";
-            this.gridColumnAgo.MinWidth = 23;
             this.gridColumnAgo.Name = "gridColumnAgo";
             this.gridColumnAgo.Visible = true;
             this.gridColumnAgo.VisibleIndex = 11;
-            this.gridColumnAgo.Width = 87;
             // 
             // gridColumnSep
             // 
@@ -589,11 +534,9 @@
             this.gridColumnSep.DisplayFormat.FormatString = "{0:n0}";
             this.gridColumnSep.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
             this.gridColumnSep.FieldName = "Sep";
-            this.gridColumnSep.MinWidth = 23;
             this.gridColumnSep.Name = "gridColumnSep";
             this.gridColumnSep.Visible = true;
             this.gridColumnSep.VisibleIndex = 12;
-            this.gridColumnSep.Width = 87;
             // 
             // gridColumnOct
             // 
@@ -601,11 +544,9 @@
             this.gridColumnOct.DisplayFormat.FormatString = "{0:n0}";
             this.gridColumnOct.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
             this.gridColumnOct.FieldName = "Oct";
-            this.gridColumnOct.MinWidth = 23;
             this.gridColumnOct.Name = "gridColumnOct";
             this.gridColumnOct.Visible = true;
             this.gridColumnOct.VisibleIndex = 13;
-            this.gridColumnOct.Width = 87;
             // 
             // gridColumnNov
             // 
@@ -613,11 +554,9 @@
             this.gridColumnNov.DisplayFormat.FormatString = "{0:n0}";
             this.gridColumnNov.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
             this.gridColumnNov.FieldName = "Nov";
-            this.gridColumnNov.MinWidth = 23;
             this.gridColumnNov.Name = "gridColumnNov";
             this.gridColumnNov.Visible = true;
             this.gridColumnNov.VisibleIndex = 14;
-            this.gridColumnNov.Width = 87;
             // 
             // gridColumnDic
             // 
@@ -625,11 +564,9 @@
             this.gridColumnDic.DisplayFormat.FormatString = "{0:n0}";
             this.gridColumnDic.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
             this.gridColumnDic.FieldName = "Dic";
-            this.gridColumnDic.MinWidth = 23;
             this.gridColumnDic.Name = "gridColumnDic";
             this.gridColumnDic.Visible = true;
             this.gridColumnDic.VisibleIndex = 15;
-            this.gridColumnDic.Width = 87;
             // 
             // gridColumnTotal
             // 
@@ -637,11 +574,9 @@
             this.gridColumnTotal.DisplayFormat.FormatString = "{0:n0}";
             this.gridColumnTotal.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
             this.gridColumnTotal.FieldName = "Total";
-            this.gridColumnTotal.MinWidth = 23;
             this.gridColumnTotal.Name = "gridColumnTotal";
             this.gridColumnTotal.Visible = true;
             this.gridColumnTotal.VisibleIndex = 16;
-            this.gridColumnTotal.Width = 87;
             // 
             // gridColumnPromedio
             // 
@@ -649,11 +584,9 @@
             this.gridColumnPromedio.DisplayFormat.FormatString = "{0:n0}";
             this.gridColumnPromedio.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
             this.gridColumnPromedio.FieldName = "Promedio";
-            this.gridColumnPromedio.MinWidth = 23;
             this.gridColumnPromedio.Name = "gridColumnPromedio";
             this.gridColumnPromedio.Visible = true;
             this.gridColumnPromedio.VisibleIndex = 17;
-            this.gridColumnPromedio.Width = 87;
             // 
             // gridColumnProyectado
             // 
@@ -661,21 +594,28 @@
             this.gridColumnProyectado.DisplayFormat.FormatString = "{0:n0}";
             this.gridColumnProyectado.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
             this.gridColumnProyectado.FieldName = "Proyectado";
-            this.gridColumnProyectado.MinWidth = 23;
             this.gridColumnProyectado.Name = "gridColumnProyectado";
             this.gridColumnProyectado.Visible = true;
             this.gridColumnProyectado.VisibleIndex = 18;
-            this.gridColumnProyectado.Width = 87;
+            // 
+            // cboMeses
+            // 
+            this.cboMeses.Location = new System.Drawing.Point(137, 92);
+            this.cboMeses.MenuManager = this.ribbonControl;
+            this.cboMeses.Name = "cboMeses";
+            this.cboMeses.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.cboMeses.Size = new System.Drawing.Size(148, 20);
+            this.cboMeses.TabIndex = 27;
             // 
             // Pronosticosporarticuloparaimportacion
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1330, 737);
+            this.ClientSize = new System.Drawing.Size(1140, 599);
             this.Controls.Add(this.navigationFrame);
             this.Controls.Add(this.ribbonStatusBar);
             this.Controls.Add(this.ribbonControl);
-            this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Name = "Pronosticosporarticuloparaimportacion";
             this.Ribbon = this.ribbonControl;
             this.StatusBar = this.ribbonStatusBar;
@@ -687,13 +627,13 @@
             this.employeesNavigationPage.ResumeLayout(false);
             this.employeesNavigationPage.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.txtA.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtM.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.cboTipo.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.cboFamilia.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.cboLinea.Properties)).EndInit();
             this.customersNavigationPage.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.gridControlDetalle)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridViewDetalle)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cboMeses.Properties)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -731,7 +671,6 @@
         private DevExpress.XtraEditors.LabelControl labelControl2;
         private DevExpress.XtraEditors.TextEdit txtA;
         private DevExpress.XtraEditors.LabelControl labelControl1;
-        private DevExpress.XtraEditors.TextEdit txtM;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumnNomLin;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumnNomFam;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumnArticulosID;
@@ -753,5 +692,6 @@
         private DevExpress.XtraGrid.Columns.GridColumn gridColumnPromedio;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumnProyectado;
         private DevExpress.XtraBars.BarButtonItem bbiPrevio;
+        private DevExpress.XtraEditors.LookUpEdit cboMeses;
     }
 }

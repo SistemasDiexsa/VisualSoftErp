@@ -101,10 +101,30 @@ namespace VisualSoftErp.Catalogos
             swUltimosprecios.IsOn = false;
             cboSerie.EditValue = null;
 
+            swEditarCondicionesPago.IsOn = false;
+            txtCapturista.Text = string.Empty;
+            swCancelarDepositos.IsOn = false;
+            swCancelarPedidos.IsOn = false;
+            swCancelarPagosCXP.IsOn = false;
+            swCancelarContraRecibos.IsOn = false;
+            swCancelarCompras.IsOn = false;
+            swCancelarAnticipos.IsOn = false;
+
             swFlexArtArribosProveedor.IsOn = false;
             swFlexArtCompras.IsOn = false;
             swFlexArtMovimientos.IsOn = false;
-            swFlexArtVentas.IsOn = false;  swActivo.IsOn = false;  swTienda.IsOn = false;
+            swFlexArtVentas.IsOn = false;  
+            swActivo.IsOn = false;  
+            swTienda.IsOn = false;
+
+            swCancelarHP.IsOn = false;
+            swCancelarValesCadenas.IsOn = false;
+            swCancelarAplicacionAnticipos.IsOn = false;
+            swAsignarPolizaTesk.IsOn = false;
+            swCancelarRM.IsOn = false;
+            swCambiarFechaRM.IsOn = false;
+            swCancelarFacturas.IsOn = false;
+            swActualizarExistenciaInventarioFisico.IsOn = false;
 
         }
 
@@ -147,20 +167,32 @@ namespace VisualSoftErp.Catalogos
                 cl.intDepuraoc = swDepuraoc.IsOn ? 1 : 0;
                 cl.intUltimosprecios = swUltimosprecios.IsOn ? 1 : 0;
                 cl.strSerie = cboSerie.EditValue.ToString();
-                //cl.intEditarcondicionesdepago = intNO;
-                //cl.strCapturista = txtCapturista.Text;
-                //cl.intCancelardepositos = intNO;
-                //cl.intCancelarpedidos = intNO;
-                //cl.intCancelarpagoscxp = intNO;
-                //cl.intCancelarcontrarecibos = intNO;
-                //cl.intCancelarcompras = intNO;
-                //cl.intCancelaranticipos = intNO;
+                
+                cl.intEditarcondicionesdepago = swEditarCondicionesPago.IsOn ? 1 : 0;
+                cl.strCapturista = txtCapturista.Text;
+                cl.intCancelardepositos = swCancelarDepositos.IsOn ? 1 : 0;
+                cl.intCancelarpedidos = swCancelarPedidos.IsOn ? 1 : 0;
+                cl.intCancelarpagoscxp = swCancelarPagosCXP.IsOn ? 1 : 0;
+                cl.intCancelarcontrarecibos = swCancelarContraRecibos.IsOn ? 1 : 0;
+                cl.intCancelarcompras = swCancelarCompras.IsOn ? 1 : 0;
+                cl.intCancelaranticipos = swCancelarAnticipos.IsOn ? 1 : 0;
+                
                 cl.intFlexArtArribosProveedor = swFlexArtArribosProveedor.IsOn ? 1 : 0;
                 cl.intFlexArtMovimientos = swFlexArtMovimientos.IsOn ? 1 : 0;
                 cl.intFlexArtVentas = swFlexArtVentas.IsOn ? 1 : 0;
                 cl.intFlexArtCompras = swFlexArtCompras.IsOn ? 1 : 0;
                 cl.intActivo = swActivo.IsOn ? 1 : 0;
                 cl.intTienda = swTienda.IsOn ? 1 : 0;
+                
+                cl.intCancelarHP = swCancelarHP.IsOn ? 1 : 0;
+                cl.intCancelarValesCadenas = swCancelarValesCadenas.IsOn ? 1 : 0;
+                cl.intCancelarAplicacionAnticipos = swCancelarAplicacionAnticipos.IsOn ? 1 : 0;
+                cl.intAsignarPolizaTesk = swAsignarPolizaTesk.IsOn ? 1 : 0;
+                cl.intCancelarRM = swCancelarRM.IsOn ? 1 : 0;
+                cl.intCambiarFechaRM = swCambiarFechaRM.IsOn ? 1 : 0;
+                cl.intCancelarFacturas = swCancelarFacturas.IsOn ? 1 : 0;
+                cl.intActualizarExistenciaInventarioFisico = swActualizarExistenciaInventarioFisico.IsOn ? 1 : 0;
+                
                 cl.iFirmaElectronicaSalidas = swIFirmaElectronicaSalidas.IsOn ? 1 : 0;
                 cl.intModificaFamiliasArticulos = swModificaFamiliasArticulos.IsOn ? 1 : 0;
                 cl.intModificaSubFamiliasArticulos = swModificaSubFamiliasArticulos.IsOn ? 1 : 0;
@@ -236,12 +268,32 @@ namespace VisualSoftErp.Catalogos
                 swDepuraoc.IsOn = cl.intDepuraoc == 1 ? true : false;
                 swUltimosprecios.IsOn = cl.intUltimosprecios == 1 ? true : false;
                 cboSerie.EditValue = cl.strSerie;
+
+                swEditarCondicionesPago.IsOn = cl.intEditarcondicionesdepago == 1 ? true : false;
+                txtCapturista.Text = cl.strCapturista;
+                swCancelarDepositos.IsOn = cl.intCancelardepositos == 1 ? true : false;
+                swCancelarPedidos.IsOn = cl.intCancelarpedidos == 1 ? true : false;
+                swCancelarPagosCXP.IsOn = cl.intCancelarpagoscxp == 1 ? true : false;
+                swCancelarContraRecibos.IsOn = cl.intCancelarcontrarecibos == 1 ? true : false;
+                swCancelarCompras.IsOn = cl.intCancelarcompras == 1 ? true : false;
+                swCancelarAnticipos.IsOn = cl.intCancelaranticipos == 1 ? true : false;
+
                 swFlexArtArribosProveedor.IsOn = cl.intFlexArtArribosProveedor == 1 ? true : false;
                 swFlexArtCompras.IsOn = cl.intFlexArtCompras == 1 ? true : false;
                 swFlexArtMovimientos.IsOn = cl.intFlexArtMovimientos == 1 ? true : false;
                 swFlexArtVentas.IsOn = cl.intFlexArtVentas == 1 ? true : false;
                 swActivo.IsOn = cl.intActivo == 1 ? true : false;
                 swTienda.IsOn = cl.intTienda == 1 ? true : false;
+
+                swCancelarHP.IsOn = cl.intCancelarHP == 1 ? true : false;
+                swCancelarValesCadenas.IsOn = cl.intCancelarValesCadenas == 1 ? true : false;
+                swCancelarAplicacionAnticipos.IsOn = cl.intCancelarAplicacionAnticipos == 1 ? true : false;
+                swAsignarPolizaTesk.IsOn = cl.intAsignarPolizaTesk == 1 ? true : false;
+                swCancelarRM.IsOn = cl.intCancelarRM == 1 ? true : false;
+                swCambiarFechaRM.IsOn = cl.intCambiarFechaRM == 1 ? true : false;
+                swCancelarFacturas.IsOn = cl.intCancelarFacturas == 1 ? true : false;
+                swActualizarExistenciaInventarioFisico.IsOn = cl.intActualizarExistenciaInventarioFisico == 1 ? true : false;                
+
                 swIFirmaElectronicaSalidas.IsOn = cl.iFirmaElectronicaSalidas == 1 ? true : false;
                 swModificaFamiliasArticulos.IsOn = cl.intModificaFamiliasArticulos == 1 ? true : false;
                 swModificaSubFamiliasArticulos.IsOn = cl.intModificaSubFamiliasArticulos == 1 ? true : false;
@@ -389,5 +441,6 @@ namespace VisualSoftErp.Catalogos
                 MessageBox.Show(Result);
             }
         }
+
     }
 }

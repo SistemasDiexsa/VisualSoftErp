@@ -44,6 +44,7 @@ namespace VisualSoftErp.Clases
         public int iParcialidad { get; set; }
         public int intAño { get; set; }
         public int intMes { get; set; }
+        public int intDepositoRecepcion { get; set; }
         #endregion
 
         #region Constructor
@@ -69,6 +70,7 @@ namespace VisualSoftErp.Clases
             fFechaReal = DateTime.Now;
             dTipodecambio = 0;
             intID = 0;
+            intDepositoRecepcion = 0;
         }
         #endregion
 
@@ -328,6 +330,7 @@ namespace VisualSoftErp.Clases
                     strStatus = dr["Status"].ToString();
                     strHora = dr["Hora"].ToString();
                     fFechaReal = Convert.ToDateTime(dr["FechaReal"]);
+                    intDepositoRecepcion = dr["DepositoRecepcion"] == DBNull.Value ? 0 : Convert.ToInt32(dr["DepositoRecepcion"]);
                     result = "OK";
                 }
                 else

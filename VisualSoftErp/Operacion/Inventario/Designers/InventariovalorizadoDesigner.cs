@@ -165,11 +165,17 @@ namespace VisualSoftErp.Operacion.Inventarios.Designers
             }
         }
 
-        private void tableCell3_BeforePrint(object sender, System.Drawing.Printing.PrintEventArgs e)
+        private void xrLabel5_BeforePrint(object sender, System.Drawing.Printing.PrintEventArgs e)
         {
-            tableCell3.BackColor = Color.FromArgb(gbr, gbg, gbb);
-            tableCell3.ForeColor = Color.FromArgb(gfr, gfg, gfb);
+            if (Convert.ToInt32(parameter6.Value) == 0)
+                xrLabel5.Text = "Todos";
         }
+
+        //private void tableCell3_BeforePrint(object sender, System.Drawing.Printing.PrintEventArgs e)
+        //{
+        //    tableCell3.BackColor = Color.FromArgb(gbr, gbg, gbb);
+        //    tableCell3.ForeColor = Color.FromArgb(gfr, gfg, gfb);
+        //}
 
         private void calculatedFieldValor_GetValue(object sender, GetValueEventArgs e)
         {

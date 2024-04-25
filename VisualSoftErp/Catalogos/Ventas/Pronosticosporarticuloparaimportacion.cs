@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using DevExpress.XtraEditors;
 using VisualSoftErp.Clases;
+using VisualSoftErp.Operacion.Compras.Clases;
 
 namespace VisualSoftErp.Operacion.Ventas.Formas
 {
@@ -20,12 +21,9 @@ namespace VisualSoftErp.Operacion.Ventas.Formas
         public Pronosticosporarticuloparaimportacion()
         {
             InitializeComponent();
-
             txtA.Text = DateTime.Now.Year.ToString();
-            txtM.Text = DateTime.Now.Month.ToString();
             Cargacombos();
             gridViewDetalle.OptionsView.ShowAutoFilterRow = true;
-
             DevExpress.XtraSplashScreen.SplashScreenManager.CloseDefaultWaitForm();
         }
 
@@ -35,6 +33,7 @@ namespace VisualSoftErp.Operacion.Ventas.Formas
             globalCL clg = new globalCL();
             BindingSource src = new BindingSource();
 
+            // COMBO LINEAS
             cboLinea.Properties.ValueMember = "Clave";
             cboLinea.Properties.DisplayMember = "Des";
             cl.strTabla = "Lineas";
@@ -47,6 +46,7 @@ namespace VisualSoftErp.Operacion.Ventas.Formas
             cboLinea.Properties.Columns["Clave"].Visible = false;
             cboLinea.ItemIndex = 1;
 
+            // COMBO TIPO DE ARTICULO
             cboTipo.Properties.ValueMember = "Clave";
             cboTipo.Properties.DisplayMember = "Des";
             cl.strTabla = "Tiposdearticulo";
@@ -59,8 +59,33 @@ namespace VisualSoftErp.Operacion.Ventas.Formas
             cboTipo.Properties.Columns["Clave"].Visible = false;
             cboTipo.ItemIndex = 0;
 
+            // COMBO FAMILIAS
             cboFamilia.Properties.NullText = "";
 
+            // COMBO MESES
+            List<ClaseGenricaCL> ListadoMeses = new List<ClaseGenricaCL>();
+            ListadoMeses.Add(new ClaseGenricaCL() { Clave = "1", Des = "Enero" });
+            ListadoMeses.Add(new ClaseGenricaCL() { Clave = "2", Des = "Febrero" });
+            ListadoMeses.Add(new ClaseGenricaCL() { Clave = "3", Des = "Marzo" });
+            ListadoMeses.Add(new ClaseGenricaCL() { Clave = "4", Des = "Abril" });
+            ListadoMeses.Add(new ClaseGenricaCL() { Clave = "5", Des = "Mayo" });
+            ListadoMeses.Add(new ClaseGenricaCL() { Clave = "6", Des = "Junio" });
+            ListadoMeses.Add(new ClaseGenricaCL() { Clave = "7", Des = "Julio" });
+            ListadoMeses.Add(new ClaseGenricaCL() { Clave = "8", Des = "Agosto" });
+            ListadoMeses.Add(new ClaseGenricaCL() { Clave = "9", Des = "Septiembre" });
+            ListadoMeses.Add(new ClaseGenricaCL() { Clave = "10", Des = "Octubre" });
+            ListadoMeses.Add(new ClaseGenricaCL() { Clave = "11", Des = "Noviembre" });
+            ListadoMeses.Add(new ClaseGenricaCL() { Clave = "12", Des = "Diciembre" });
+            cboMeses.Properties.ValueMember = "Clave";
+            cboMeses.Properties.DisplayMember = "Des";
+            cboMeses.Properties.DataSource = ListadoMeses;
+            cboMeses.Properties.PopupFilterMode = DevExpress.XtraEditors.PopupFilterMode.Contains;
+            cboMeses.Properties.ForceInitialize();
+            cboMeses.Properties.PopulateColumns();
+            cboMeses.Properties.Columns["Clave"].Visible = false;
+            cboMeses.Properties.Columns["Value"].Visible = false;
+            cboMeses.Properties.Columns["Description"].Visible = false;
+            cboMeses.ItemIndex = DateTime.Now.Month;
         }
 
         private void CargaComboFamilias()
@@ -206,17 +231,13 @@ namespace VisualSoftErp.Operacion.Ventas.Formas
             try
             {
                 MetaporarticuloCL cl = new MetaporarticuloCL();
-
                 int Mes = 0;
                 int Año = 0;
-
                 Año= Convert.ToInt32(txtA.Text);
+                Mes = Convert.ToInt32(cboMeses.EditValue);
 
-                Mes = Convert.ToInt32(txtM.Text);
                 if (Mes > 1)
-                {
                     Mes = Mes - 1;
-                }
                 else
                 {
                     Mes = 12;
@@ -236,13 +257,8 @@ namespace VisualSoftErp.Operacion.Ventas.Formas
                 int promedio = 0;
                 int total = 0;
                 
-                    
-
-
                 for (int i = 0; i <= gridViewDetalle.RowCount - 1; i++)
                 {
-                                       
-
                     promedio = Convert.ToInt32(gridViewDetalle.GetRowCellValue(i, "Ene"));
                     promedio = promedio + Convert.ToInt32(gridViewDetalle.GetRowCellValue(i, "Feb"));
                     promedio = promedio + Convert.ToInt32(gridViewDetalle.GetRowCellValue(i, "Mar"));
@@ -262,8 +278,6 @@ namespace VisualSoftErp.Operacion.Ventas.Formas
                     if (promedio > 0)
                     {
                         promedio = total / Mes;
-
-                        
                         gridViewDetalle.SetFocusedRowCellValue("Promedio", promedio);
                     }                                            
                 }
@@ -274,7 +288,7 @@ namespace VisualSoftErp.Operacion.Ventas.Formas
 
                 gridViewDetalle.OptionsView.ShowViewCaption = true;
 
-                gridViewDetalle.ViewCaption = "PRONOSTICO PARA " + clg.NombreDeMes(Convert.ToInt32(txtM.Text), 0) + " DEL " + txtA.Text;
+                gridViewDetalle.ViewCaption = "PRONOSTICO PARA " + clg.NombreDeMes(Convert.ToInt32(cboMeses.EditValue), 0) + " DEL " + txtA.Text;
                 gridViewDetalle.FocusedRowHandle = 0;
             }
             catch (Exception ex)
@@ -311,7 +325,7 @@ namespace VisualSoftErp.Operacion.Ventas.Formas
                     return;
                 }
 
-                int intM = Convert.ToInt32(txtM.Text);
+                int intM = Convert.ToInt32(cboMeses.EditValue);
                 int intA = Convert.ToInt32(txtA.Text);
                 int intArticulosID = 0;
                 string dato = "";
@@ -607,6 +621,14 @@ namespace VisualSoftErp.Operacion.Ventas.Formas
         private void bbiPrevio_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
             gridControlDetalle.ShowRibbonPrintPreview();
+        }
+
+        private void txtA_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar))
+            {
+                e.Handled = true;
+            }
         }
     }
 }
