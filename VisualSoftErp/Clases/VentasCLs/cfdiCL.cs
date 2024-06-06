@@ -7,6 +7,7 @@ using System.Linq;
 using System.Web;
 using System.Data;
 using System.Windows.Forms;
+using System.Web.ModelBinding;
 
 namespace VisualSoftErp.Clases
 {
@@ -531,7 +532,7 @@ namespace VisualSoftErp.Clases
 
                 // PARA FACTURAR AL SERVER DE PRUEBAS
                 string ambiente = ConfigurationManager.AppSettings["Ambiente"];
-                if (ambiente != "Productivo") 
+                if (ambiente != "Productivo")
                 {
                     vs.EmisorNombre33 = "ESCUELA KEMPER URGATE";
                     vs.EmisorRfc33 = "EKU9003173C9";
@@ -548,7 +549,7 @@ namespace VisualSoftErp.Clases
                 vs.ReceptorNombre = pReceptorNom40;
                 vs.RegimenFiscalReceptor = pReceptorRegimenFiscal;
                 vs.DomicilioFiscalReceptor = pReceptorCP.ToString();
-                // vs.DomicilioFiscalReceptor = "20928";     // DESCOMENTAR PARA PRUEBAS
+                // vs.DomicilioFiscalReceptor = "20928";     // DESCOMENTAR PARA PRUEBAS EN DESARROLLO
                 vs.Exportacion40 = "01";
                 vs.ReceptorRfc33 = pReceptorRegFed;
 
@@ -792,9 +793,9 @@ namespace VisualSoftErp.Clases
                 //   strresult = vs.cfdi33(); //sellado y firmado                    
                 //else
 
-                if (pEmisorRegFed == "EKU9003173C9")
+                if (ambiente == "Desarrollo" || pEmisorRegFed == "EKU9003173C9")
                 {
-                    MessageBox.Show("Modo demo. Avise a Sistemas.");
+                    MessageBox.Show("Se encuentra en el servidor de pruebas. Avise a Sistemas.", "Modo Demo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 }
 
                 strresult = vs.cfdi40(); //sellado y firmado   
@@ -812,7 +813,7 @@ namespace VisualSoftErp.Clases
                         return "Este folio ya se timbró previamente";
                     }
 
-                    if (pEmisorRegFed == "EKU9003173C9")
+                    if (pEmisorRegFed == "EKU9003173C9" || ambiente == "Desarrollo")
                     {
                         strresult = vs.DemoTimbrado("jzambrano@live.com.mx", "Jzg1411*", strXml, strrutaxmltimbrado);
                     }                            
@@ -858,17 +859,17 @@ namespace VisualSoftErp.Clases
                     }
                     else
                     {
-                        return strresult;
-                        }
+                        return "Error en vs.Timbra: " + strresult;
+                    }
                 }
-                    else {
-                        return strresult;
-                    }                                                              
-                } // Try
-                catch(Exception ex)
-                {
-                    return ex.Message;
-                }
+                else {
+                    return "Error en vs.cfdi40: " + strresult;
+                }                                                              
+            } // Try
+            catch(Exception ex)
+            {
+                return "Error en GeneraCfdi33: " + ex.Message + "\n línea: " + ex.LineNumber().ToString();
+            }
         } //GeneraCfdi33
 
     } //public class cfdiCL

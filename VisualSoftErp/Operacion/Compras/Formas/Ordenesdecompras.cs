@@ -209,6 +209,7 @@ namespace VisualSoftErp.Catalogos
             public string Cantidaddepurada { get; set; }
             public decimal Neto { get; set; }
         }
+
         private void Inicialisalista()
         {
             detalle = new BindingList<detalleCL>();
@@ -358,7 +359,6 @@ namespace VisualSoftErp.Catalogos
             //repositoryItemLookUpEditArticulos.Columns["NombreOC"].Visible = false;
         }
        
-
         private void Nuevo()
         {
             Editando = false;
@@ -419,8 +419,6 @@ namespace VisualSoftErp.Catalogos
             txtCorrespondencia.Text = Correspondenciaa;
             txtDiastraslado.Text = 0.ToString();
         }
-
-      
 
         private void Guardar()
         {
@@ -891,8 +889,6 @@ namespace VisualSoftErp.Catalogos
             }
 
         }//DetalleLlenaCajas
-
-       
 
         private void Editar()
         {
@@ -1543,6 +1539,7 @@ namespace VisualSoftErp.Catalogos
                 }
             }
         }
+        
         private void bbiImprimir_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
             if (!Editando)

@@ -648,7 +648,7 @@ namespace VisualSoftErp.Operacion.Ventas.Formas
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Timbrar: " + ex.Message);
+                MessageBox.Show("Al timbrar: " + ex.Message);
                 return "Error";
             }
 
@@ -682,12 +682,12 @@ namespace VisualSoftErp.Operacion.Ventas.Formas
                     serieFac = serieElectronica;
 
                
-                    Result = Timbrar();   // Se manda llamar Timbrar aunque sea serie C (timbrada en eDoc) por que se ocupa llenar DtDetalle, pero al final no timbra
-                    if (Result != "OK")
-                    {
-                        MessageBox.Show("Al timbrar: " + Result);
-                        return;
-                    }
+                Result = Timbrar();   // Se manda llamar Timbrar aunque sea serie C (timbrada en eDoc) por que se ocupa llenar DtDetalle, pero al final no timbra
+                if (Result != "OK")
+                {
+                    MessageBox.Show("Timbrar() regresa: " + Result, "Error al Timbrar", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
 
                 string sCondicion = String.Empty;
                 System.Data.DataTable dtFacturas = new System.Data.DataTable("Facturas");

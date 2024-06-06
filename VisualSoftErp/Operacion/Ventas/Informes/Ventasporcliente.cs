@@ -36,7 +36,6 @@ namespace VisualSoftErp.Operacion.Ventas.Informes
             this.Close();
         }
 
-
         private void Reporte()
         {
             try

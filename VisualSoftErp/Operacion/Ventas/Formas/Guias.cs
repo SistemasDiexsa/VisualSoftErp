@@ -515,8 +515,7 @@ namespace VisualSoftErp.Operacion.Ventas.Formas
             }
             catch (Exception ex)
             {
-                string linea = ex.LineNumber().ToString();
-                MessageBox.Show("Error en linea: " + linea + "\n" + ex.Message);
+                MessageBox.Show("Error en linea: " + ex.LineNumber().ToString() + "\n" + ex.Message, "Llenar");
             }
         }
 

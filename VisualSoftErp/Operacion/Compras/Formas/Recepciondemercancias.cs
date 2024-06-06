@@ -103,7 +103,6 @@ namespace VisualSoftErp.Catalogos
             }
         }
 
-
         private void CargaCombos()
         {
             combosCL cl = new combosCL();
@@ -152,8 +151,6 @@ namespace VisualSoftErp.Catalogos
             //con esta lina de codigo ponemos los autofiltros
             gridViewPrincipal.OptionsView.ShowAutoFilterRow = true;
         } //LlenarGrid()
-
-
 
         private void Nuevo()
         {
@@ -735,12 +732,14 @@ namespace VisualSoftErp.Catalogos
         private void bbiCargarordenes_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
             CargaOC();
-
         }
 
         private void cboProveedor_EditValueChanged(object sender, EventArgs e)
         {
-
+            LookUpEdit cboProveedor = sender as LookUpEdit;
+            if(cboProveedor != null && !cboProveedor.EditorContainsFocus)
+                CargaOC();
+            
         }
 
         private void gridViewOrdenesCompras_RowClick(object sender, DevExpress.XtraGrid.Views.Grid.RowClickEventArgs e)
@@ -776,27 +775,27 @@ namespace VisualSoftErp.Catalogos
                     return;
                 }
 
-                    if (intFolioOC == 0)
-                    {
-                        MessageBox.Show("Selecciona una Orden de compra");
-                    }
-                    else
-                    {
-                        RecepciondemercanciaCL cl = new RecepciondemercanciaCL();
-                        cl.strSerie = strSerieOC;
-                        cl.intFolio = intFolioOC;
-                        gridControlOCdetalle.DataSource = cl.OrdenComprasDetalle();
+                if (intFolioOC == 0)
+                {
+                    MessageBox.Show("Selecciona una Orden de compra");
+                }
+                else
+                {
+                    RecepciondemercanciaCL cl = new RecepciondemercanciaCL();
+                    cl.strSerie = strSerieOC;
+                    cl.intFolio = intFolioOC;
+                    gridControlOCdetalle.DataSource = cl.OrdenComprasDetalle();
 
-                        globalCL clg = new globalCL();
-                        clg.strGridLayout = "gridRecepciondemercanciaocdetalle";
-                        clg.restoreLayout(gridViewPrincipal);
+                    globalCL clg = new globalCL();
+                    clg.strGridLayout = "gridRecepciondemercanciaocdetalle";
+                    clg.restoreLayout(gridViewPrincipal);
 
 
-                        BotonesRecepcionMercancia();
-                        CargoComboAlmacen();
+                    BotonesRecepcionMercancia();
+                    CargoComboAlmacen();
 
-                        lblRecibiendo.Text = "Recibiendo la OC: " + strSerieOC + intFolioOC.ToString() + " de " + cboProveedor.Text;
-                    }                
+                    lblRecibiendo.Text = "Recibiendo la OC: " + strSerieOC + intFolioOC.ToString() + " de " + cboProveedor.Text;
+                }                
 
             }
             catch (Exception ex)

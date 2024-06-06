@@ -73,8 +73,6 @@ namespace VisualSoftErp.Operacion.Inventarios.Formas
             return "OK";
         }
 
-       
-
         private void Reporte()
         {
             String Result = Valida();
@@ -170,5 +168,6 @@ namespace VisualSoftErp.Operacion.Inventarios.Formas
             ribbonControl.MergeOwner.SelectedPage = ribbonControl.MergeOwner.TotalPageCategory.GetPageByText(ribbonPageHome.Text);
             navigationFrame.SelectedPageIndex = 0;
         }
+
     }
 }

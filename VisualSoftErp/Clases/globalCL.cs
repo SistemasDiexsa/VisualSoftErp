@@ -152,8 +152,6 @@ namespace VisualSoftErp.Clases
         {
             try
             {
-                
-
                 DataTable table = (DataTable)src.DataSource;
                 DataRow dr = table.NewRow();
                 dr["Des"] = "Todos";

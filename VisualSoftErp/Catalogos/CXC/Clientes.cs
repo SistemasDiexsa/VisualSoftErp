@@ -511,13 +511,13 @@ namespace VisualSoftErp.Catalogos.CXC
                 }
                 else
                 {
-                    MessageBox.Show(result);
+                    MessageBox.Show("Error al Intentar Guardar: \n" + result);
                 }
             }
             catch (Exception ex)
             {
                 int linenum = ex.LineNumber();
-                MessageBox.Show("Guardar: " + ex.Message + " LN:" + linenum.ToString());
+                MessageBox.Show("Function Guardar: " + ex.Message + " LN:" + linenum.ToString());
             }
         }//Guardar
 

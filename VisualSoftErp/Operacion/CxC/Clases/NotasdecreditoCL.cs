@@ -562,7 +562,7 @@ namespace VisualSoftErp.Clases
 
                 strRutaXMLNCR = vs.RutaXML33 + "NCRSINTIMBRAR" + intFolio.ToString() + ".XML";
                 strRutaXMLTimbradoNCR = vs.RutaXML33 + "NCR" + intFolio.ToString() + ".xml";
-
+                
                 vs.MetodoPago33 = "PUE";
 
                 //RECEPTOR

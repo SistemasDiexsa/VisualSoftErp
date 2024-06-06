@@ -114,7 +114,6 @@
             this.bbi0307 = new DevExpress.XtraBars.BarButtonItem();
             this.bbi0308 = new DevExpress.XtraBars.BarButtonItem();
             this.bbi0320 = new DevExpress.XtraBars.BarButtonItem();
-            this.bbi0321 = new DevExpress.XtraBars.BarButtonItem();
             this.barButtonItem37 = new DevExpress.XtraBars.BarButtonItem();
             this.barSubItem1 = new DevExpress.XtraBars.BarSubItem();
             this.bbiInventarioFisico = new DevExpress.XtraBars.BarSubItem();
@@ -122,6 +121,7 @@
             this.bbi0323 = new DevExpress.XtraBars.BarButtonItem();
             this.bbi0324 = new DevExpress.XtraBars.BarButtonItem();
             this.bbi0325 = new DevExpress.XtraBars.BarButtonItem();
+            this.bbi0321 = new DevExpress.XtraBars.BarButtonItem();
             this.bbi0330 = new DevExpress.XtraBars.BarButtonItem();
             this.bbi0331 = new DevExpress.XtraBars.BarButtonItem();
             this.bbi0332 = new DevExpress.XtraBars.BarButtonItem();
@@ -272,6 +272,7 @@
             this.bbi0427 = new DevExpress.XtraBars.BarButtonItem();
             this.bbi0447 = new DevExpress.XtraBars.BarButtonItem();
             this.bbi0540 = new DevExpress.XtraBars.BarButtonItem();
+            this.bbi0139 = new DevExpress.XtraBars.BarButtonItem();
             this.ribbonPageInicio = new DevExpress.XtraBars.Ribbon.RibbonPage();
             this.ribbonPageGroup = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.ribbonPageGroupOpciones = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
@@ -320,6 +321,7 @@
             this.toastNotificationsManager1 = new DevExpress.XtraBars.ToastNotifications.ToastNotificationsManager(this.components);
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
+            this.bbi0448 = new DevExpress.XtraBars.BarButtonItem();
             ((System.ComponentModel.ISupportInitialize)(this.ribbonControl)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dockManager)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tabbedView)).BeginInit();
@@ -419,7 +421,6 @@
             this.bbi0307,
             this.bbi0308,
             this.bbi0320,
-            this.bbi0321,
             this.barButtonItem37,
             this.barSubItem1,
             this.bbiInventarioFisico,
@@ -576,9 +577,12 @@
             this.bbi0138,
             this.bbi0427,
             this.bbi0447,
-            this.bbi0540});
+            this.bbi0540,
+            this.bbi0139,
+            this.bbi0321,
+            this.bbi0448});
             this.ribbonControl.Location = new System.Drawing.Point(0, 0);
-            this.ribbonControl.MaxItemId = 291;
+            this.ribbonControl.MaxItemId = 294;
             this.ribbonControl.MdiMergeStyle = DevExpress.XtraBars.Ribbon.RibbonMdiMergeStyle.Always;
             this.ribbonControl.Name = "ribbonControl";
             this.ribbonControl.Pages.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPage[] {
@@ -1254,13 +1258,6 @@
             this.bbi0320.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
             this.bbi0320.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.bbi0320_ItemClick);
             // 
-            // bbi0321
-            // 
-            this.bbi0321.Caption = "Inventario fisico listar";
-            this.bbi0321.Id = 119;
-            this.bbi0321.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("bbi0321.ImageOptions.SvgImage")));
-            this.bbi0321.Name = "bbi0321";
-            // 
             // barButtonItem37
             // 
             this.barButtonItem37.Caption = "barButtonItem37";
@@ -1282,7 +1279,8 @@
             new DevExpress.XtraBars.LinkPersistInfo(this.bbi0322),
             new DevExpress.XtraBars.LinkPersistInfo(this.bbi0323),
             new DevExpress.XtraBars.LinkPersistInfo(this.bbi0324),
-            new DevExpress.XtraBars.LinkPersistInfo(this.bbi0325)});
+            new DevExpress.XtraBars.LinkPersistInfo(this.bbi0325),
+            new DevExpress.XtraBars.LinkPersistInfo(this.bbi0321)});
             this.bbiInventarioFisico.Name = "bbiInventarioFisico";
             this.bbiInventarioFisico.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
             // 
@@ -1317,6 +1315,14 @@
             this.bbi0325.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("bbi0325.ImageOptions.SvgImage")));
             this.bbi0325.Name = "bbi0325";
             this.bbi0325.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.bbi0325_ItemClick);
+            // 
+            // bbi0321
+            // 
+            this.bbi0321.Caption = "Etiquetas SKU";
+            this.bbi0321.Id = 292;
+            this.bbi0321.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("bbi0321.ImageOptions.SvgImage")));
+            this.bbi0321.Name = "bbi0321";
+            this.bbi0321.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.bbi0321_ItemClick);
             // 
             // bbi0330
             // 
@@ -2630,6 +2636,15 @@
             this.bbi0540.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
             this.bbi0540.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.bbi0540_ItemClick);
             // 
+            // bbi0139
+            // 
+            this.bbi0139.Caption = "Precio de Insumos";
+            this.bbi0139.Id = 291;
+            this.bbi0139.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("bbi0139.ImageOptions.SvgImage")));
+            this.bbi0139.Name = "bbi0139";
+            this.bbi0139.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
+            this.bbi0139.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.bbi0139_ItemClick);
+            // 
             // ribbonPageInicio
             // 
             this.ribbonPageInicio.Groups.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPageGroup[] {
@@ -2690,6 +2705,7 @@
             this.ribbonPageGroupComprasInformes.ItemLinks.Add(this.bbi0136);
             this.ribbonPageGroupComprasInformes.ItemLinks.Add(this.bbi0137);
             this.ribbonPageGroupComprasInformes.ItemLinks.Add(this.bbi0138);
+            this.ribbonPageGroupComprasInformes.ItemLinks.Add(this.bbi0139);
             this.ribbonPageGroupComprasInformes.Name = "ribbonPageGroupComprasInformes";
             this.ribbonPageGroupComprasInformes.Text = "Informes";
             this.ribbonPageGroupComprasInformes.Visible = false;
@@ -2852,6 +2868,7 @@
             this.ribbonPageGroupVentasInformes.ItemLinks.Add(this.bbi0446);
             this.ribbonPageGroupVentasInformes.ItemLinks.Add(this.bbi0443);
             this.ribbonPageGroupVentasInformes.ItemLinks.Add(this.bbi0444);
+            this.ribbonPageGroupVentasInformes.ItemLinks.Add(this.bbi0448);
             this.ribbonPageGroupVentasInformes.Name = "ribbonPageGroupVentasInformes";
             this.ribbonPageGroupVentasInformes.Text = "Informes";
             this.ribbonPageGroupVentasInformes.Visible = false;
@@ -3134,6 +3151,14 @@
             this.backgroundWorker1.DoWork += new System.ComponentModel.DoWorkEventHandler(this.backgroundWorker1_DoWork);
             this.backgroundWorker1.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.backgroundWorker1_RunWorkerCompleted);
             // 
+            // bbi0448
+            // 
+            this.bbi0448.Caption = "Ventas por Línea";
+            this.bbi0448.Id = 293;
+            this.bbi0448.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("bbi0448.ImageOptions.SvgImage")));
+            this.bbi0448.Name = "bbi0448";
+            this.bbi0448.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.bbi0448_ItemClick);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -3266,7 +3291,6 @@
         private DevExpress.XtraBars.BarButtonItem bbi0307;
         private DevExpress.XtraBars.BarButtonItem bbi0308;
         private DevExpress.XtraBars.BarButtonItem bbi0320;
-        private DevExpress.XtraBars.BarButtonItem bbi0321;
         private DevExpress.XtraBars.BarButtonItem barButtonItem37;
         private DevExpress.XtraBars.BarSubItem barSubItem1;
         private DevExpress.XtraBars.BarSubItem bbiInventarioFisico;
@@ -3452,5 +3476,8 @@
         private DevExpress.XtraBars.BarButtonItem bbi0427;
         private DevExpress.XtraBars.BarButtonItem bbi0447;
         private DevExpress.XtraBars.BarButtonItem bbi0540;
+        private DevExpress.XtraBars.BarButtonItem bbi0139;
+        private DevExpress.XtraBars.BarButtonItem bbi0321;
+        private DevExpress.XtraBars.BarButtonItem bbi0448;
     }
 }

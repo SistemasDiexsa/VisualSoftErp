@@ -32,7 +32,7 @@ namespace VisualSoftErp.Catalogos
         int intCliente;
         public bool blNuevo;
         int intCuentasbancariasID;
-        int intUsuarioID = 1; //NO DEJAR FIJO 
+        int intUsuarioID = globalCL.gv_UsuarioID;
         string Rfcbanco;
         string Cuentabancariabeneficiario;
         string Rfcbancoordenante;
@@ -197,6 +197,7 @@ namespace VisualSoftErp.Catalogos
             cboC_Formapago.Properties.Columns["Clave"].Visible = false;
             cboC_Formapago.Properties.NullText = "Seleccione la forma de pago";
         }
+
         private void bbiNuevo_ItemClick(Object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
             DevExpress.XtraSplashScreen.SplashScreenManager.ShowDefaultWaitForm("Configurando detalle", "espere por favor...");
@@ -300,7 +301,6 @@ namespace VisualSoftErp.Catalogos
 
         private void bbiGuardar_ItemClick(Object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            
             Guardar();
         }              
 
@@ -520,7 +520,7 @@ namespace VisualSoftErp.Catalogos
                 cl.intFolio = Convert.ToInt32(txtFolio.Text);               
                 cl.dtm = dtDepositos;
                 cl.dtd = dtDepositosdetalle;
-                cl.intUsuarioID = 1;
+                cl.intUsuarioID = intUsuarioID;
                 cl.strMaquina = Environment.MachineName;
                 cl.strPrograma = "0520";
                 string result = cl.DepositosCrud();
@@ -696,7 +696,6 @@ namespace VisualSoftErp.Catalogos
                     vs.CampoExtra3 = cl.strC_Formapago;
                     vs.CampoExtraP5 = cl.dImporte.ToString("c2");
                 }
-
                 else
                 {
                     MessageBox.Show("No se pudo leer el depósito: " + serie + Folio.ToString() + "   " + result);

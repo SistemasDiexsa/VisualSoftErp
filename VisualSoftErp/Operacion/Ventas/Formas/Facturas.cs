@@ -1797,13 +1797,13 @@ namespace VisualSoftErp.Catalogos.Ventas
                 else
                 {
                     DevExpress.XtraSplashScreen.SplashScreenManager.CloseDefaultWaitForm();
-                    MessageBox.Show(result);
+                    MessageBox.Show("Al timbrar: " + result, "Error al timbrar", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
             else
             {
                 DevExpress.XtraSplashScreen.SplashScreenManager.CloseDefaultWaitForm();
-                MessageBox.Show(result);
+                MessageBox.Show(result, "Error en datos", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
 
             bbiGuardar.Visibility = DevExpress.XtraBars.BarItemVisibility.Always;

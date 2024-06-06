@@ -39,22 +39,6 @@ namespace VisualSoftErp.Operacion.Inventarios.Informes
                 dfb = cl.dfb;
                 stipoLogo = cl.sTipologo;
             }
-
-
-            
-
-        }
-
-        private void xrPictureBoxLogo_BeforePrint(object sender, System.Drawing.Printing.PrintEventArgs e)
-        {
-            
-
-        }
-
-        private void xrLblEmp_BeforePrint(object sender, System.Drawing.Printing.PrintEventArgs e)
-        {
-            
-
         }
 
         private void tableCell3_BeforePrint(object sender, System.Drawing.Printing.PrintEventArgs e)
@@ -67,11 +51,6 @@ namespace VisualSoftErp.Operacion.Inventarios.Informes
         {
             tableCell4.BackColor = Color.FromArgb(dbr, dbg, dbb);
             tableCell4.ForeColor = Color.FromArgb(dfr, dfg, dfb);
-        }
-
-        private void tableCell5_BeforePrint(object sender, System.Drawing.Printing.PrintEventArgs e)
-        {
-           
         }
 
         private void tableCell6_BeforePrint(object sender, System.Drawing.Printing.PrintEventArgs e)

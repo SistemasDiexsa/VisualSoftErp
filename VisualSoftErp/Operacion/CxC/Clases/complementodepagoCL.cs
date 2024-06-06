@@ -5,6 +5,7 @@ using System.Data;
 using System.IO;
 using System.Linq;
 using System.Web;
+using System.Windows.Forms;
 using VisualSoftErp.Clases;
 
 
@@ -45,7 +46,7 @@ namespace ViajesNet.Clases
         //-------------------------- COMPLEMENTO DE PAGO -----------------------
         public string TimbraCfdi33Complemento(GridView grid) { 
 
-        try {
+            try {
 
               
                 vsFK.vsFinkok vs = new vsFK.vsFinkok();
@@ -446,34 +447,32 @@ namespace ViajesNet.Clases
                                 return "No se pudo leer el Neto, xml:" + strRutaXmlTimbradoCFDI + " Fac:" + strCFDISerie + strCFDIFolio;
                             }
 
-                        decNeto = Convert.ToDecimal(strNeto);
+                            decNeto = Convert.ToDecimal(strNeto);
 
 
-                        if (strUUID.Length == 0)
+                            if (strUUID.Length == 0)
                             {                                
                                 return "No se pudo leer el UUID de la factura(425), xml:" + strRutaXmlTimbradoCFDI + " Fac:" + strCFDISerie + strCFDIFolio;
                             }
 
-                        //Pendiente manejar pagos con distinta moneda
-                        strTCFac = "";
+                            //Pendiente manejar pagos con distinta moneda
+                            strTCFac = "";
                        
 
-                        if (strMonedaFac != pMoneda)
-                        {
-                            dblEquivalencia = Convert.ToDouble(decSaldo / decImporte);
-                        }
-                        else
-                            dblEquivalencia = 1;
+                            if (strMonedaFac != pMoneda)
+                                dblEquivalencia = Convert.ToDouble(decSaldo / decImporte);
+                            else
+                                dblEquivalencia = 1;
 
-                        vs.set_idDocumento(0, intrenglons, strUUID);
+                            vs.set_idDocumento(0, intrenglons, strUUID);
                             vs.set_SeriePago(0, intrenglons, strCFDISerie);
                             vs.set_FolioPago(0, intrenglons, strCFDIFolio);
                             vs.set_monedaDR(0, intrenglons, strMonedaFac);
                             vs.set_tipoCambioDR(0, intrenglons, strTCFac);
                             vs.set_metodoPagoDR(0, intrenglons, strMPFac);
-                        vs.set_EquivalenciaDR(0, intrenglons, dblEquivalencia.ToString("0.0000000000"));
+                            vs.set_EquivalenciaDR(0, intrenglons, dblEquivalencia.ToString("N0"));
 
-                        clb.strSerie = strCFDISerie;
+                            clb.strSerie = strCFDISerie;
                             clb.intFolio = Convert.ToInt32(strCFDIFolio);
                             strResult = clb.Depositosparcialidades();
                             if (strResult != "OK")
@@ -776,7 +775,7 @@ namespace ViajesNet.Clases
                             vs.set_monedaDR(1, intRenglonesFactoraje, strMonedaFac);
                             vs.set_tipoCambioDR(1, intRenglonesFactoraje, strTCFac);
                             vs.set_metodoPagoDR(1, intRenglonesFactoraje, strMPFac);
-                            vs.set_EquivalenciaDR(1, intRenglonesFactoraje, dblEquivalencia.ToString());
+                            vs.set_EquivalenciaDR(1, intRenglonesFactoraje, dblEquivalencia.ToString("N0"));
 
                             clb.strSerie = strCFDISerie;
                             clb.intFolio = Convert.ToInt32(strCFDIFolio);
@@ -999,7 +998,7 @@ namespace ViajesNet.Clases
 
                     strRutaXmlTimbrado = strRutaXml + strSerie + pFolio.ToString() + ".xml"; ;
                     strRutaXml = strRutaXml + strSerie + pFolio.ToString() + "sintimbrar.xml";
-                    
+
                     if (strEmisorRfc == "EKU9003173C9") {
                         strResult = vs.DemoTimbrado("jzambrano@live.com.mx", "Jzg1411*", strRutaXml, strRutaXmlTimbrado);
                     }

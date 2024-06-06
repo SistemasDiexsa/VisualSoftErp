@@ -144,8 +144,7 @@
     <Reference Include="VerificacionDeComprobantes">
       <HintPath>..\..\VerificacionDeComprobantes\VerificacionDeComprobantesDll\bin\Debug\VerificacionDeComprobantes.dll</HintPath>
     </Reference>
-    <Reference Include="VSFiltroFechas, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
+    <Reference Include="VSFiltroFechas">
       <HintPath>..\..\VSFiltrosFecha\VSFiltroFechas\bin\Debug\VSFiltroFechas.dll</HintPath>
     </Reference>
     <Reference Include="vsFK, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
@@ -682,6 +681,12 @@
     <Compile Include="Operacion\Compras\Designers\RelaciondeordenesdecompraDesigner.Designer.cs">
       <DependentUpon>RelaciondeordenesdecompraDesigner.cs</DependentUpon>
     </Compile>
+    <Compile Include="Operacion\Compras\Designers\PrecioInsumosRepDesigner.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Operacion\Compras\Designers\PrecioInsumosRepDesigner.Designer.cs">
+      <DependentUpon>PrecioInsumosRepDesigner.cs</DependentUpon>
+    </Compile>
     <Compile Include="Operacion\Compras\Formas\Validarcompras.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -735,6 +740,12 @@
     </Compile>
     <Compile Include="Operacion\Compras\Informes\IncrementalesRep.designer.cs">
       <DependentUpon>IncrementalesRep.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Operacion\Compras\Informes\PrecioInsumos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Operacion\Compras\Informes\PrecioInsumos.Designer.cs">
+      <DependentUpon>PrecioInsumos.cs</DependentUpon>
     </Compile>
     <Compile Include="Operacion\Compras\Informes\Relaciondecomprasporarticulo.cs">
       <SubType>Form</SubType>
@@ -1051,6 +1062,12 @@
     <Compile Include="Operacion\Inventario\Designers\EntradasysalidasformatoImpresion.Designer.cs">
       <DependentUpon>EntradasysalidasformatoImpresion.cs</DependentUpon>
     </Compile>
+    <Compile Include="Operacion\Inventario\Designers\EtiquetasSKUDesigner.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Operacion\Inventario\Designers\EtiquetasSKUDesigner.Designer.cs">
+      <DependentUpon>EtiquetasSKUDesigner.cs</DependentUpon>
+    </Compile>
     <Compile Include="Operacion\Inventario\Designers\InventariocomparativoDesigner.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -1122,6 +1139,12 @@
     </Compile>
     <Compile Include="Operacion\Inventario\Formas\Entradasysalidas.designer.cs">
       <DependentUpon>Entradasysalidas.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Operacion\Inventario\Formas\EtiquetasSKU.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Operacion\Inventario\Formas\EtiquetasSKU.Designer.cs">
+      <DependentUpon>EtiquetasSKU.cs</DependentUpon>
     </Compile>
     <Compile Include="Operacion\Inventario\Formas\Hojadeproduccion.cs">
       <SubType>Form</SubType>
@@ -1456,6 +1479,12 @@
     <Compile Include="Operacion\Ventas\Designers\VentasEstadisticaporSucursalDetalladoDesigner.Designer.cs">
       <DependentUpon>VentasEstadisticaporSucursalDetalladoDesigner.cs</DependentUpon>
     </Compile>
+    <Compile Include="Operacion\Ventas\Designers\VentasLineasDesigner.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Operacion\Ventas\Designers\VentasLineasDesigner.Designer.cs">
+      <DependentUpon>VentasLineasDesigner.cs</DependentUpon>
+    </Compile>
     <Compile Include="Operacion\Ventas\Designers\VentasporarticuloclienteDesigner.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -1587,6 +1616,12 @@
     </Compile>
     <Compile Include="Operacion\Ventas\Informes\VentasEstadisticaPorSucursal.Designer.cs">
       <DependentUpon>VentasEstadisticaPorSucursal.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Operacion\Ventas\Informes\VentasLineas.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Operacion\Ventas\Informes\VentasLineas.Designer.cs">
+      <DependentUpon>VentasLineas.cs</DependentUpon>
     </Compile>
     <Compile Include="Operacion\Ventas\Informes\Ventasporarticulocliente.cs">
       <SubType>Form</SubType>
@@ -2067,6 +2102,9 @@
     <EmbeddedResource Include="Operacion\Compras\Designers\RelaciondeordenesdecompraDesigner.resx">
       <DependentUpon>RelaciondeordenesdecompraDesigner.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Operacion\Compras\Designers\PrecioInsumosRepDesigner.resx">
+      <DependentUpon>PrecioInsumosRepDesigner.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Operacion\Compras\Formas\Validarcompras.resx">
       <DependentUpon>Validarcompras.cs</DependentUpon>
     </EmbeddedResource>
@@ -2093,6 +2131,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Operacion\Compras\Informes\IncrementalesRep.resx">
       <DependentUpon>IncrementalesRep.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Operacion\Compras\Informes\PrecioInsumos.resx">
+      <DependentUpon>PrecioInsumos.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Operacion\Compras\Informes\Relaciondecomprasporarticulo.resx">
       <DependentUpon>Relaciondecomprasporarticulo.cs</DependentUpon>
@@ -2241,6 +2282,9 @@
     <EmbeddedResource Include="Operacion\Inventario\Designers\EntradasysalidasformatoImpresion.resx">
       <DependentUpon>EntradasysalidasformatoImpresion.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Operacion\Inventario\Designers\EtiquetasSKUDesigner.resx">
+      <DependentUpon>EtiquetasSKUDesigner.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Operacion\Inventario\Designers\InventariocomparativoDesigner.resx">
       <DependentUpon>InventariocomparativoDesigner.cs</DependentUpon>
     </EmbeddedResource>
@@ -2277,6 +2321,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Operacion\Inventario\Formas\Entradasysalidas.resx">
       <DependentUpon>Entradasysalidas.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Operacion\Inventario\Formas\EtiquetasSKU.resx">
+      <DependentUpon>EtiquetasSKU.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Operacion\Inventario\Formas\Hojadeproduccion.resx">
       <DependentUpon>Hojadeproduccion.cs</DependentUpon>
@@ -2434,6 +2481,9 @@
     <EmbeddedResource Include="Operacion\Ventas\Designers\VentasEstadisticaporSucursalDetalladoDesigner.resx">
       <DependentUpon>VentasEstadisticaporSucursalDetalladoDesigner.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Operacion\Ventas\Designers\VentasLineasDesigner.resx">
+      <DependentUpon>VentasLineasDesigner.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Operacion\Ventas\Designers\VentasporarticuloclienteDesigner.resx">
       <DependentUpon>VentasporarticuloclienteDesigner.cs</DependentUpon>
     </EmbeddedResource>
@@ -2499,6 +2549,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Operacion\Ventas\Informes\VentasEstadisticaPorSucursal.resx">
       <DependentUpon>VentasEstadisticaPorSucursal.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Operacion\Ventas\Informes\VentasLineas.resx">
+      <DependentUpon>VentasLineas.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Operacion\Ventas\Informes\Ventasporarticulocliente.resx">
       <DependentUpon>Ventasporarticulocliente.cs</DependentUpon>

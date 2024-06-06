@@ -59,8 +59,8 @@ namespace VisualSoftErp.Operacion.CxC.Informes
             }
             else
             {
-                fechaInicial = tpFecha.Value;
-                fechaFinal = tpFecha.Value;
+                fechaInicial = tpFecha.Value.Date;
+                fechaFinal = tpFecha.Value.Date;
             }
 
             globalCL cl = new globalCL();

@@ -778,6 +778,35 @@ namespace VisualSoftErp.Clases
                 return ex.Message;
             }
         }
+
+        public DataTable ArticulosEtiquetasSKU()
+        {
+            DataTable dt = new DataTable();
+            using (SqlConnection connection = new SqlConnection(globalCL.gv_strcnn))
+            {
+                try
+                {
+                    connection.Open();
+                    string SP = "ArticulosEtiquetasSKU";
+                    using (SqlCommand cmd = new SqlCommand(SP, connection))
+                    {
+                        cmd.CommandType = CommandType.StoredProcedure;
+                        cmd.Parameters.AddWithValue("@prmLineasID", intLinea);
+                        cmd.Parameters.AddWithValue("@prmFamiliasID", intFamiliasID);
+                        cmd.Parameters.AddWithValue("@prmSubFamiliasID", intSubFamiliaID);
+                        using (SqlDataReader reader = cmd.ExecuteReader())
+                        {
+                            dt.Load(reader);
+                        }
+                    }
+                }
+                catch (Exception ex)
+                {
+                    return dt;
+                }
+            }
+            return dt;
+        }
         #endregion
     }
 }

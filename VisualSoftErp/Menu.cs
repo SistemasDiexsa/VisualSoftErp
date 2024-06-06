@@ -42,6 +42,7 @@ using VisualSoftErp.Operacion.Tienda;
 using VisualSoftErp.Operacion.Inventario.Informes;
 using VisualSoftErp.Operacion.Tesk;
 using VisualSoftErp.CCP.Catalogos;
+using VisualSoftErp.Operacion.Inventario.Formas;
 
 namespace VisualSoftErp
 {
@@ -891,6 +892,9 @@ namespace VisualSoftErp
                 case "0138":
                     bbi0138.Visibility = BarItemVisibility.Always;
                     break;
+                case "0139":
+                    bbi0139.Visibility = BarItemVisibility.Always;
+                    break;
                 case "0201"://CXP
                     bbi0201.Visibility = BarItemVisibility.Always;
                     break;
@@ -1577,6 +1581,14 @@ namespace VisualSoftErp
             DevExpress.XtraSplashScreen.SplashScreenManager.ShowDefaultWaitForm();
             globalCL.gv_RibbonPage = ribbonPageInventarios;
             Entradasysalidas frm = new Entradasysalidas();
+            this.tabbedView.AddDocument(frm);
+        }
+
+        private void bbi0321_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            DevExpress.XtraSplashScreen.SplashScreenManager.ShowDefaultWaitForm();
+            globalCL.gv_RibbonPage = ribbonPageInventarios;
+            EtiquetasSKU frm = new EtiquetasSKU();
             this.tabbedView.AddDocument(frm);
         }
 
@@ -2417,6 +2429,15 @@ namespace VisualSoftErp
             this.tabbedView.AddDocument(frm);
         }
 
+        private void bbi0139_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            DevExpress.XtraSplashScreen.SplashScreenManager.ShowDefaultWaitForm();
+            globalCL.gv_RibbonPage = ribbonPageCompras;
+            PrecioInsumos frm = new PrecioInsumos();
+            this.tabbedView.AddDocument(frm);
+             
+        }
+
         private void bbi1009_ItemClick(object sender, ItemClickEventArgs e)
         {
             DevExpress.XtraSplashScreen.SplashScreenManager.ShowDefaultWaitForm();
@@ -2667,6 +2688,14 @@ namespace VisualSoftErp
             DevExpress.XtraSplashScreen.SplashScreenManager.ShowDefaultWaitForm();
             globalCL.gv_RibbonPage = ribbonPageVentas;
             VentasTipoPago frm = new VentasTipoPago();
+            this.tabbedView.AddDocument(frm);
+        }
+
+        private void bbi0448_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            DevExpress.XtraSplashScreen.SplashScreenManager.ShowDefaultWaitForm();
+            globalCL.gv_RibbonPage = ribbonPageVentas;
+            VentasLineas frm = new VentasLineas();
             this.tabbedView.AddDocument(frm);
         }
     }

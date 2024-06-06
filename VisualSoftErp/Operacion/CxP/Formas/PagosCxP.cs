@@ -78,7 +78,6 @@ namespace VisualSoftErp.Operacion.CxP.Formas
             try
             {
                 DevExpress.XtraSplashScreen.SplashScreenManager.CloseDefaultWaitForm();
-
             }
             catch
             {
@@ -338,7 +337,7 @@ namespace VisualSoftErp.Operacion.CxP.Formas
                 MessageBox.Show("SiguienteID :" + result);
             }
 
-        }//SguienteID
+        }//SiguienteID
 
         private void bbiGuardar_ItemClick(Object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
@@ -517,7 +516,7 @@ namespace VisualSoftErp.Operacion.CxP.Formas
 
 
 
-        private string Valida()
+        private string Valida() 
         {
         
             if (txtFolio.Text.Length == 0)
@@ -585,7 +584,7 @@ namespace VisualSoftErp.Operacion.CxP.Formas
             foreach (int i in gridViewDetalle.GetSelectedRows())
             {
                 monedaCxP = gridViewDetalle.GetRowCellValue(i, "Moneda").ToString();
-                if (strMonedaDelPago!=monedaCxP)
+                if (strMonedaDelPago != monedaCxP)
                 {
                     diferenteMoneda = true;
                 }
@@ -758,7 +757,6 @@ namespace VisualSoftErp.Operacion.CxP.Formas
             gridControlPrincipal.ShowRibbonPrintPreview();
         }
 
-
         private void txtFolio_EditValueChanged(object sender, EventArgs e)
         {
 
@@ -768,7 +766,6 @@ namespace VisualSoftErp.Operacion.CxP.Formas
         {
 
         }
-
 
         private void bbiCargarfacturas_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
@@ -915,6 +912,8 @@ namespace VisualSoftErp.Operacion.CxP.Formas
                 }
 
                 txtCuentaordenante.Text = cta;
+                Cargarfacturas();
+                
             }
 
         }
