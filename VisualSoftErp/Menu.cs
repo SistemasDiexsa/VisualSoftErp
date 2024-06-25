@@ -1053,8 +1053,11 @@ namespace VisualSoftErp
                 case "0336":
                     bbi0336.Visibility = BarItemVisibility.Always;
                     break;
-                              
-                case "0401"://Ventas
+                case "0343":
+                    bbi0343.Visibility = BarItemVisibility.Always;
+                    break;
+                //Ventas
+                case "0401":
                     bbi0401.Visibility = BarItemVisibility.Always;
                     break;
                 case "0402":
@@ -1150,7 +1153,12 @@ namespace VisualSoftErp
                 case "0447":
                     bbi0447.Visibility = BarItemVisibility.Always;
                     break;
-                case "0501"://CXC
+                case "0448":
+                    bbi0448.Visibility = BarItemVisibility.Always;
+                    break;
+                
+                //CXC
+                case "0501":
                     bbi0501.Visibility = BarItemVisibility.Always;
                     break;
                 case "0502":
@@ -1247,7 +1255,8 @@ namespace VisualSoftErp
                 case "0540":
                     bbi0540.Visibility = BarItemVisibility.Always;
                     break;
-                case "0601"://Herramientas
+                //Herramientas
+                case "0601":
                     bbi0601.Visibility = BarItemVisibility.Always;
                     break;
                 case "0602":
@@ -2696,6 +2705,14 @@ namespace VisualSoftErp
             DevExpress.XtraSplashScreen.SplashScreenManager.ShowDefaultWaitForm();
             globalCL.gv_RibbonPage = ribbonPageVentas;
             VentasLineas frm = new VentasLineas();
+            this.tabbedView.AddDocument(frm);
+        }
+
+        private void bbi0343_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            DevExpress.XtraSplashScreen.SplashScreenManager.ShowDefaultWaitForm();
+            globalCL.gv_RibbonPage = ribbonPageVentas;
+            Ciclicos frm = new Ciclicos();
             this.tabbedView.AddDocument(frm);
         }
     }

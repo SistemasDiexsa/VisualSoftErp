@@ -2420,6 +2420,7 @@
             // gridColumnDescripcion
             // 
             this.gridColumnDescripcion.Caption = "Descripción";
+            this.gridColumnDescripcion.ColumnEdit = this.repositoryItemLookUpEditArticulo;
             this.gridColumnDescripcion.FieldName = "Descripcion";
             this.gridColumnDescripcion.Name = "gridColumnDescripcion";
             this.gridColumnDescripcion.Visible = true;

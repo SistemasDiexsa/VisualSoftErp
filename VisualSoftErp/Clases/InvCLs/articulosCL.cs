@@ -94,6 +94,7 @@ namespace VisualSoftErp.Clases
         public int intFam { get; set; }
         public string strConsecutivo { get; set; }
         public string strArticuloDB { get; set; }
+        
 
         #endregion
 
@@ -139,6 +140,7 @@ namespace VisualSoftErp.Clases
             dDimenAlto = 0;
             dDimenAncho = 0;
             strArticuloDB = string.Empty;
+
     }
         #endregion
 

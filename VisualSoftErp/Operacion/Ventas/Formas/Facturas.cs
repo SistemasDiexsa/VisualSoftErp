@@ -312,6 +312,7 @@ namespace VisualSoftErp.Catalogos.Ventas
             cboCliente.Properties.Columns["Cuentaordenante"].Visible = false;
             cboCliente.Properties.Columns["cFormapagoDepositos"].Visible = false;
             cboCliente.Properties.Columns["Moneda"].Visible = false;
+            cboCliente.Properties.Columns["CanalesdeventaID"].Visible = false;
             cboCliente.Properties.NullText = "Seleccione un cliente";// con esta liena podemos poner una desceripcion al cbo 
 
             cl.strTabla = "Monedas";
@@ -410,6 +411,16 @@ namespace VisualSoftErp.Catalogos.Ventas
             cboAlmacen.Properties.PopulateColumns();
             cboAlmacen.Properties.Columns["Clave"].Visible = false;
             cboAlmacen.EditValue = cboAlmacen.Properties.GetDataSourceValue(cboAlmacen.Properties.ValueMember, 0);
+
+            cl.strTabla = "Canalesdeventa";
+            cboCanalVentas.Properties.ValueMember = "Clave";
+            cboCanalVentas.Properties.DisplayMember = "Des";
+            cboCanalVentas.Properties.DataSource = cl.CargaCombos();
+            cboCanalVentas.Properties.PopupFilterMode = DevExpress.XtraEditors.PopupFilterMode.Contains;
+            cboCanalVentas.Properties.ForceInitialize();
+            cboCanalVentas.Properties.PopulateColumns();
+            cboCanalVentas.Properties.Columns["Clave"].Visible = false;
+            cboCanalVentas.Properties.NullText = "Seleccione una Canal de venta";
 
         }
 
@@ -892,6 +903,7 @@ namespace VisualSoftErp.Catalogos.Ventas
                 dtFacturas.Columns.Add("Seriefacturarelacionada", Type.GetType("System.String"));
                 dtFacturas.Columns.Add("Foliofacturarelacionada", Type.GetType("System.Int32"));
                 dtFacturas.Columns.Add("Tesk", Type.GetType("System.Int32"));
+                dtFacturas.Columns.Add("CanalesdeventaID", Type.GetType("System.Int32"));
 
                 //Extraemos totales del xml para guardar en la factura
                 string serie= cboSerie.EditValue.ToString();
@@ -983,7 +995,9 @@ namespace VisualSoftErp.Catalogos.Ventas
                     txtOrdendecompra.Text,
                     txtSeriefacturarelacionada.Text,
                     txtFolioacturarelacionada.Text,
-                    0);
+                    0,
+                    cboCanalVentas.EditValue
+                );
 
                 FacturasCL cl = new FacturasCL();
                 cl.strSerie = cboSerie.EditValue.ToString();
@@ -1151,6 +1165,7 @@ namespace VisualSoftErp.Catalogos.Ventas
                 txtFecha.Text = cl.fFecha.ToShortDateString();
 
                 cboAgente.EditValue = cl.intAgentesID;
+                cboCanalVentas.EditValue = cl.intCanalesdeventaID;
 
                 cboCondicionesdepago.SelectedItem = cl.strCondicionesdepago;
                 if (cl.intExportacion == 1) { swExportacion.IsOn = true; }
@@ -1412,7 +1427,7 @@ namespace VisualSoftErp.Catalogos.Ventas
                     strTo = ((DataRowView)row)["EMail"].ToString();
                     strNombreCliente = ((DataRowView)row)["Des"].ToString();
                     intClienteID = Convert.ToInt32(((DataRowView)row)["Clave"]);
-
+                    cboCanalVentas.EditValue = Convert.ToInt32(((DataRowView)row)["CanalesdeventaID"]);
                 }
 
                 if (blNuevo)

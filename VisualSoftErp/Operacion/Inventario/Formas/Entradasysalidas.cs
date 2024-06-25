@@ -673,23 +673,43 @@ namespace VisualSoftErp.Operacion.Ventas.Formas
         {
             try
             {
+                this.gridViewDetalle.CellValueChanged -= new DevExpress.XtraGrid.Views.Base.CellValueChangedEventHandler(this.gridViewDetalle_CellValueChanged);
                 //Sacamos datos del artículo
                 if (e.Column.Name == "gridColumnArticulo")
                 {
                     articulosCL cl = new articulosCL();
                     string art = gridViewDetalle.GetRowCellValue(gridViewDetalle.FocusedRowHandle, "Articulo").ToString();
-                    if (art.Length > 0) //validamos que haya algo en la celda
+                    //validamos que haya algo en la celda
+                    if (art.Length > 0)
                     {
                         cl.intArticulosID = Convert.ToInt32(art);
                         string result = cl.articulosLlenaCajas();
                         if (result == "OK")
                         {
-                            gridViewDetalle.SetFocusedRowCellValue("Descripcion", cl.strNombre);
-
+                            gridViewDetalle.SetFocusedRowCellValue("Descripcion", cl.intArticulosID);
+                            string desc = gridViewDetalle.GetRowCellDisplayText(gridViewDetalle.FocusedRowHandle, "Descripcion");
+                            if(desc.Length <= 0 )
+                            {
+                                gridViewDetalle.SetFocusedRowCellValue("Articulo", "");
+                                MessageBox.Show("Artículo no encontrado");
+                            }
                         }
+
                     }
                 }
-
+                if(e.Column.Name == "gridColumnDescripcion")
+                {
+                    articulosCL cl = new articulosCL();
+                    int articulosID = Convert.ToInt32(gridViewDetalle.GetRowCellValue(gridViewDetalle.FocusedRowHandle, "Descripcion"));
+                    if(articulosID > 0)
+                    {
+                        cl.intArticulosID = articulosID;
+                        string result = cl.articulosLlenaCajas();
+                        if(result == "OK")
+                            gridViewDetalle.SetFocusedRowCellValue("Articulo", cl.intArticulosID);
+                    }
+                }
+                this.gridViewDetalle.CellValueChanged += new DevExpress.XtraGrid.Views.Base.CellValueChangedEventHandler(this.gridViewDetalle_CellValueChanged);
             }
             catch (Exception ex)
             {

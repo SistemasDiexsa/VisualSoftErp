@@ -42,26 +42,13 @@ namespace VisualSoftErp
                 {
                     string path = "c:\\VisualSoftErp\\";
                     if (Directory.Exists(path))
-                    {
                         Application.Run(new Login());
-                    }
                     else
-                    {
                         Application.Run(new WizzardForm());
-                    }
-
-                    
                 }
             }
             else
-            {
                 MessageBox.Show("No se pudo leer la tabla de empresas, verifique la base de datos, si está en nube debe tener internet");                
-            }
-           
-           
         }
-
-
-        
     }
 }

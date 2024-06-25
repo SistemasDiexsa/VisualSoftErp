@@ -501,6 +501,8 @@
             this.ribbonPageGroup2 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.barButtonItem8 = new DevExpress.XtraBars.BarButtonItem();
             this.barButtonItem9 = new DevExpress.XtraBars.BarButtonItem();
+            this.labelControl42 = new DevExpress.XtraEditors.LabelControl();
+            this.cboCanalVentas = new DevExpress.XtraEditors.LookUpEdit();
             ((System.ComponentModel.ISupportInitialize)(this.tabbedView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.Ribboncontrol1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemTextEdit1)).BeginInit();
@@ -624,6 +626,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.splitContainerControl3.Panel2)).BeginInit();
             this.splitContainerControl3.SuspendLayout();
             this.navigationPage5.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.cboCanalVentas.Properties)).BeginInit();
             this.SuspendLayout();
             // 
             // Ribboncontrol1
@@ -3162,6 +3165,8 @@
             // 
             this.splitContainerControl2.Panel2.Appearance.BackColor = System.Drawing.Color.SteelBlue;
             this.splitContainerControl2.Panel2.Appearance.Options.UseBackColor = true;
+            this.splitContainerControl2.Panel2.Controls.Add(this.cboCanalVentas);
+            this.splitContainerControl2.Panel2.Controls.Add(this.labelControl42);
             this.splitContainerControl2.Panel2.Controls.Add(this.txtRazonCambioPrecio);
             this.splitContainerControl2.Panel2.Controls.Add(this.lblRazonCambioPrecio);
             this.splitContainerControl2.Panel2.Controls.Add(this.popUpCxC);
@@ -3416,7 +3421,7 @@
             // txtRazonCambioPrecio
             // 
             this.txtRazonCambioPrecio.EnterMoveNextControl = true;
-            this.txtRazonCambioPrecio.Location = new System.Drawing.Point(96, 97);
+            this.txtRazonCambioPrecio.Location = new System.Drawing.Point(96, 105);
             this.txtRazonCambioPrecio.MenuManager = this.Ribboncontrol1;
             this.txtRazonCambioPrecio.Name = "txtRazonCambioPrecio";
             this.txtRazonCambioPrecio.Size = new System.Drawing.Size(639, 47);
@@ -3428,7 +3433,7 @@
             // 
             this.lblRazonCambioPrecio.Appearance.ForeColor = System.Drawing.Color.White;
             this.lblRazonCambioPrecio.Appearance.Options.UseForeColor = true;
-            this.lblRazonCambioPrecio.Location = new System.Drawing.Point(96, 78);
+            this.lblRazonCambioPrecio.Location = new System.Drawing.Point(96, 86);
             this.lblRazonCambioPrecio.Name = "lblRazonCambioPrecio";
             this.lblRazonCambioPrecio.Size = new System.Drawing.Size(71, 13);
             this.lblRazonCambioPrecio.TabIndex = 77;
@@ -3799,7 +3804,7 @@
             // 
             // labelControl6
             // 
-            this.labelControl6.Location = new System.Drawing.Point(3, 30);
+            this.labelControl6.Location = new System.Drawing.Point(6, 51);
             this.labelControl6.Name = "labelControl6";
             this.labelControl6.Size = new System.Drawing.Size(71, 13);
             this.labelControl6.TabIndex = 76;
@@ -3808,7 +3813,7 @@
             // txtObservaciones
             // 
             this.txtObservaciones.EnterMoveNextControl = true;
-            this.txtObservaciones.Location = new System.Drawing.Point(96, 11);
+            this.txtObservaciones.Location = new System.Drawing.Point(96, 33);
             this.txtObservaciones.MenuManager = this.Ribboncontrol1;
             this.txtObservaciones.Name = "txtObservaciones";
             this.txtObservaciones.Size = new System.Drawing.Size(639, 47);
@@ -4279,6 +4284,24 @@
             this.barButtonItem9.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("barButtonItem9.ImageOptions.LargeImage")));
             this.barButtonItem9.Name = "barButtonItem9";
             // 
+            // labelControl42
+            // 
+            this.labelControl42.Location = new System.Drawing.Point(6, 9);
+            this.labelControl42.Name = "labelControl42";
+            this.labelControl42.Size = new System.Drawing.Size(78, 13);
+            this.labelControl42.TabIndex = 79;
+            this.labelControl42.Text = "Canal de Ventas";
+            // 
+            // cboCanalVentas
+            // 
+            this.cboCanalVentas.Location = new System.Drawing.Point(96, 6);
+            this.cboCanalVentas.MenuManager = this.Ribboncontrol1;
+            this.cboCanalVentas.Name = "cboCanalVentas";
+            this.cboCanalVentas.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.cboCanalVentas.Size = new System.Drawing.Size(334, 20);
+            this.cboCanalVentas.TabIndex = 80;
+            // 
             // Pedidos
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -4421,6 +4444,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.splitContainerControl3)).EndInit();
             this.splitContainerControl3.ResumeLayout(false);
             this.navigationPage5.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.cboCanalVentas.Properties)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -4743,5 +4767,7 @@
         private DevExpress.XtraEditors.ToggleSwitch swPublico;
         private DevExpress.XtraEditors.LabelControl labelControl41;
         private DevExpress.XtraEditors.LabelControl lblFac;
+        private DevExpress.XtraEditors.LookUpEdit cboCanalVentas;
+        private DevExpress.XtraEditors.LabelControl labelControl42;
     }
 }

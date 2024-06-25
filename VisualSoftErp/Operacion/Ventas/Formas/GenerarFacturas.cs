@@ -162,6 +162,7 @@ namespace VisualSoftErp.Operacion.Ventas.Formas
             cboCliente.Properties.Columns["Plazo"].Visible = false;
             cboCliente.Properties.Columns["Desglosardescuentoalfacturar"].Visible = false;
             cboCliente.Properties.Columns["SerieEle"].Visible = false;
+            cboCliente.Properties.Columns["CanalesdeventaID"].Visible = false;
             cboCliente.Properties.NullText = "Seleccione un cliente";// con esta liena podemos poner una desceripcion al cbo 
 
             cl.strTabla = "Monedas";
@@ -241,6 +242,16 @@ namespace VisualSoftErp.Operacion.Ventas.Formas
             cboAlmacen.Properties.PopulateColumns();
             cboAlmacen.Properties.Columns["Clave"].Visible = false;
             cboAlmacen.EditValue = cboAlmacen.Properties.GetDataSourceValue(cboAlmacen.Properties.ValueMember, 0);
+
+            cl.strTabla = "Canalesdeventa";
+            cboCanalVentas.Properties.ValueMember = "Clave";
+            cboCanalVentas.Properties.DisplayMember = "Des";
+            cboCanalVentas.Properties.DataSource = cl.CargaCombos();
+            cboCanalVentas.Properties.PopupFilterMode = DevExpress.XtraEditors.PopupFilterMode.Contains;
+            cboCanalVentas.Properties.ForceInitialize();
+            cboCanalVentas.Properties.PopulateColumns();
+            cboCanalVentas.Properties.Columns["Clave"].Visible = false;
+            cboCanalVentas.Properties.NullText = "Seleccione una Canal de venta";
         }//CargaCombo
 
         private void Inicialisalista()
@@ -389,6 +400,10 @@ namespace VisualSoftErp.Operacion.Ventas.Formas
             if (gridViewDetalle.RowCount == 1)
             {
                 return "Capture al menos un renglon";
+            }
+            if (cboCanalVentas.EditValue == null)
+            {
+                return "Capture el canal de venta";
             }
             if (txtFolioacturarelacionada.Text.Length==0)
             {
@@ -728,6 +743,7 @@ namespace VisualSoftErp.Operacion.Ventas.Formas
                 dtFacturas.Columns.Add("Foliofacturarelacionada", Type.GetType("System.Int32"));
                 dtFacturas.Columns.Add("Tesk", Type.GetType("System.Int32"));
                 dtFacturas.Columns.Add("Publicoengeneral", Type.GetType("System.Int32"));
+                dtFacturas.Columns.Add("CanalesdeventaID", Type.GetType("System.Int32"));
                 #endregion dtFacturas
 
 
@@ -884,7 +900,9 @@ namespace VisualSoftErp.Operacion.Ventas.Formas
                     txtSeriefacturarelacionada.Text, 
                     Convert.ToInt32(txtFolioacturarelacionada.Text),
                     0,
-                    intPublicoengeneral);
+                    intPublicoengeneral,
+                    cboCanalVentas.EditValue
+                );
 
 
                 FacturasCL cl = new FacturasCL();
@@ -1051,7 +1069,8 @@ namespace VisualSoftErp.Operacion.Ventas.Formas
                     lblPedido.Text = "PEDIDO: " + Convert.ToString(dtFacturasDetalle.Rows[0]["Serie"])  + Convert.ToString(dtFacturasDetalle.Rows[0]["Folio"]);
                     cboSerie.EditValue = Convert.ToString(dtFacturasDetalle.Rows[0]["Serie"]);
                     cboCliente.EditValue = Convert.ToInt32(dtFacturasDetalle.Rows[0]["ClientesID"]);
-           
+                    cboCanalVentas.EditValue = Convert.ToInt32(dtFacturasDetalle.Rows[0]["CanalesdeventaID"]);
+
                     txtFecha.Text = DateTime.Now.ToShortDateString();
 
                     //txtAgente se llena de cliente
@@ -1185,6 +1204,7 @@ namespace VisualSoftErp.Operacion.Ventas.Formas
                     intDesglosardescuentoalfacturar = Convert.ToInt32(((DataRowView)orow)["Desglosardescuentoalfacturar"]); 
                     addenda = ((DataRowView)orow)["Addenda"].ToString();
                     serieElectronica = ((DataRowView)orow)["SerieEle"].ToString();
+                    cboCanalVentas.EditValue = Convert.ToInt32(((DataRowView)orow)["CanalesdeventaID"]);
                     if (serieElectronica.Length > 0)
                     {
                         lblSerieEle.Text = serieElectronica;

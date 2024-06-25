@@ -67,7 +67,8 @@ namespace VisualSoftErp.Clases
         public int intMes { get; set; }
         public int intAño { get; set; }
         public int intDias { get; set; }
-        
+        public int intCanalesdeventaID { get; set; }
+
         #endregion
 
         #region Constructor
@@ -324,6 +325,7 @@ namespace VisualSoftErp.Clases
                     intAgentesID = Convert.ToInt32(dr["AgentesID"]);
                     intStatus = Convert.ToInt32(dr["Status"]);
                     intPlazo = Convert.ToInt32(dr["Plazo"]);
+                    intCanalesdeventaID = Convert.ToInt32(dr["CanalesdeventaID"]);
                     //  fFechaCancelacion = Convert.ToDateTime(dr["FechaCancelacion"]);
                     //     strRazonCancelacion = dr["RazonCancelacion"].ToString();
                     intUsuariosID = Convert.ToInt32(dr["UsuariosID"]);

@@ -80,9 +80,9 @@ namespace VisualSoftErp.Operacion.Ventas.Informes
             }
         }
 
-        private void ImpresionVentasDetalleClienteConArticulos(int ImpDirecto)
+        private void ImpresionVentasDetalleClienteResumen(int ImpDirecto)
         {
-            VentasDesignerVentasporclienteDetalleConArticulos rep = new VentasDesignerVentasporclienteDetalleConArticulos();
+            VentasDesignerVentasporclienteResumen rep = new VentasDesignerVentasporclienteResumen();
             if (ImpDirecto == 1)
             {
 
@@ -94,12 +94,12 @@ namespace VisualSoftErp.Operacion.Ventas.Informes
                 rep.Parameters["parameter3"].Visible = false;
                 rep.Parameters["parameter4"].Value = Agentes;
                 rep.Parameters["parameter4"].Visible = false;
-                rep.Parameters["parameter5"].Value = CanalVents;
+                rep.Parameters["parameter5"].Value = Incluirclientespresu;
                 rep.Parameters["parameter5"].Visible = false;
-                //rep.Parameters["parameter6"].Value = CanalVents;
-                //rep.Parameters["parameter6"].Visible = false;
-                rep.Parameters["parameter6"].Value = "x";     //Duumy
+                rep.Parameters["parameter6"].Value = CanalVents;
                 rep.Parameters["parameter6"].Visible = false;
+                rep.Parameters["parameter7"].Value = "x";     //Duumy
+                rep.Parameters["parameter7"].Visible = false;
                 ReportPrintTool rpt = new DevExpress.XtraReports.UI.ReportPrintTool(rep);
                 rpt.Print();
                 return;
@@ -114,12 +114,12 @@ namespace VisualSoftErp.Operacion.Ventas.Informes
                 rep.Parameters["parameter3"].Visible = false;
                 rep.Parameters["parameter4"].Value = Agentes;
                 rep.Parameters["parameter4"].Visible = false;
-                rep.Parameters["parameter5"].Value = CanalVents;
+                rep.Parameters["parameter5"].Value = Incluirclientespresu;
                 rep.Parameters["parameter5"].Visible = false;
-                //rep.Parameters["parameter6"].Value = CanalVents;
-                //rep.Parameters["parameter6"].Visible = false;
-                rep.Parameters["parameter6"].Value = "x";     //Duumy
+                rep.Parameters["parameter6"].Value = CanalVents;
                 rep.Parameters["parameter6"].Visible = false;
+                rep.Parameters["parameter7"].Value = "x";     //Duumy
+                rep.Parameters["parameter7"].Visible = false;
                 documentViewer1.DocumentSource = rep;
                 rep.CreateDocument();
                 ribbonControl.MergeOwner.SelectedPage = ribbonControl.MergeOwner.TotalPageCategory.GetPageByText(ribbonPageImpresion.Text);
@@ -174,9 +174,9 @@ namespace VisualSoftErp.Operacion.Ventas.Informes
             }
         }
 
-        private void ImpresionVentasDetalleClienteResumen(int ImpDirecto)
+        private void ImpresionVentasDetalleClienteConArticulos(int ImpDirecto)
         {
-            VentasDesignerVentasporclienteResumen rep = new VentasDesignerVentasporclienteResumen();
+            VentasDesignerVentasporclienteDetalleConArticulos rep = new VentasDesignerVentasporclienteDetalleConArticulos();
             if (ImpDirecto == 1)
             {
 
@@ -188,12 +188,12 @@ namespace VisualSoftErp.Operacion.Ventas.Informes
                 rep.Parameters["parameter3"].Visible = false;
                 rep.Parameters["parameter4"].Value = Agentes;
                 rep.Parameters["parameter4"].Visible = false;
-                rep.Parameters["parameter5"].Value = Incluirclientespresu;
+                rep.Parameters["parameter5"].Value = CanalVents;
                 rep.Parameters["parameter5"].Visible = false;
-                rep.Parameters["parameter6"].Value = CanalVents;
+                //rep.Parameters["parameter6"].Value = CanalVents;
+                //rep.Parameters["parameter6"].Visible = false;
+                rep.Parameters["parameter6"].Value = "x";     //Duumy
                 rep.Parameters["parameter6"].Visible = false;
-                rep.Parameters["parameter7"].Value = "x";     //Duumy
-                rep.Parameters["parameter7"].Visible = false;
                 ReportPrintTool rpt = new DevExpress.XtraReports.UI.ReportPrintTool(rep);
                 rpt.Print();
                 return;
@@ -208,12 +208,12 @@ namespace VisualSoftErp.Operacion.Ventas.Informes
                 rep.Parameters["parameter3"].Visible = false;
                 rep.Parameters["parameter4"].Value = Agentes;
                 rep.Parameters["parameter4"].Visible = false;
-                rep.Parameters["parameter5"].Value = Incluirclientespresu;
+                rep.Parameters["parameter5"].Value = CanalVents;
                 rep.Parameters["parameter5"].Visible = false;
-                rep.Parameters["parameter6"].Value = CanalVents;
+                //rep.Parameters["parameter6"].Value = CanalVents;
+                //rep.Parameters["parameter6"].Visible = false;
+                rep.Parameters["parameter6"].Value = "x";     //Duumy
                 rep.Parameters["parameter6"].Visible = false;
-                rep.Parameters["parameter7"].Value = "x";     //Duumy
-                rep.Parameters["parameter7"].Visible = false;
                 documentViewer1.DocumentSource = rep;
                 rep.CreateDocument();
                 ribbonControl.MergeOwner.SelectedPage = ribbonControl.MergeOwner.TotalPageCategory.GetPageByText(ribbonPageImpresion.Text);

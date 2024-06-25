@@ -89,7 +89,7 @@ namespace VisualSoftErp.Clases.VentasCLs
         public string strAddenda { get; set; }
 
         public string strRazonCambioPrecio { get; set; }
-
+        public int intCanalesdeventaID { get; set; }
 
         #endregion
 
@@ -362,6 +362,7 @@ namespace VisualSoftErp.Clases.VentasCLs
                     strOrdenTienda = dr["OrdenTienda"].ToString();
                     intPublicoengeneral = Convert.ToInt32(dr["Publicoengeneral"]);
                     Factura = dr["Factura"].ToString();
+                    intCanalesdeventaID = Convert.ToInt32(dr["CanalesdeventaID"]);
 
                     result = "OK";
                 }

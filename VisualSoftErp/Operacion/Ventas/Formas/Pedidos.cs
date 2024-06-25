@@ -196,6 +196,7 @@ namespace VisualSoftErp.Catalogos.Ventas
             cboCliente.Properties.Columns["TransportesID"].Visible = false;
             cboCliente.Properties.Columns["Addenda"].Visible = false;
             cboCliente.Properties.Columns["Desglosardescuentoalfacturar"].Visible = false;
+            cboCliente.Properties.Columns["CanalesdeventaID"].Visible = false;
 
             cboCliente.Properties.NullText = "Seleccione un cliente";
 
@@ -267,6 +268,15 @@ namespace VisualSoftErp.Catalogos.Ventas
             cboTransportes.Properties.NullText = "Seleccione un transporte";
             txtFechaEntrega.Properties.NullText = "Seleccione fecha de entrega";
 
+            cl.strTabla = "Canalesdeventa"; 
+            cboCanalVentas.Properties.ValueMember = "Clave";
+            cboCanalVentas.Properties.DisplayMember = "Des";
+            cboCanalVentas.Properties.DataSource = cl.CargaCombos();
+            cboCanalVentas.Properties.PopupFilterMode = DevExpress.XtraEditors.PopupFilterMode.Contains;
+            cboCanalVentas.Properties.ForceInitialize();
+            cboCanalVentas.Properties.PopulateColumns();
+            cboCanalVentas.Properties.Columns["Clave"].Visible = false;
+            cboCanalVentas.Properties.NullText = "Seleccione una Canal de venta";
         }
 
         private void Inicialisalista()
@@ -405,6 +415,7 @@ namespace VisualSoftErp.Catalogos.Ventas
             txtFechaEntrega.Text = DateTime.Now.ToShortDateString();
             bbiInfoCxC.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
             sucursal = 0;
+            cboCanalVentas.EditValue = null;
         }//LimpiaCajas
 
         private void SiguienteID()
@@ -481,6 +492,10 @@ namespace VisualSoftErp.Catalogos.Ventas
                 if (txtOrdendecompra.Text.Length == 0)
                 {
                     return "El campo órden de compra no puede ir vacio";
+                }
+                if (cboCanalVentas.EditValue == null)
+                {
+                    return "Capture el canal de venta";
                 }
                 try
                 {
@@ -713,6 +728,7 @@ namespace VisualSoftErp.Catalogos.Ventas
         {
             e.Form.Icon = this.Icon;
         }
+        
         private void Guardar()
         {
            
@@ -755,6 +771,7 @@ namespace VisualSoftErp.Catalogos.Ventas
                 dtPedidos.Columns.Add("Sucursal", Type.GetType("System.Int32"));
                 dtPedidos.Columns.Add("Fechareal", Type.GetType("System.DateTime"));
                 dtPedidos.Columns.Add("Publicoengeneral", Type.GetType("System.Int32"));
+                dtPedidos.Columns.Add("CanalesdeventaID", Type.GetType("System.Int32"));
 
                 // dtPedidos.Rows.Add(pSerie, pFolio, pFecha, pClientesID, pAgentesID, pSubtotal, pIva, pRetIva, pIeps, pNeto, pDescuento, pObservaciones, pCondicionesdepago, pPlazo, pStatus, pFechacancelacion, pRazoncancelacion, pUsuariosID, pTransportesID, pMonedasID, pAlmacenesID, pOc, pFechaestimadadeentrega, pTipodecambio, pExportacion, pStatuscxc, pStatusexistencia, pStatusexistenciaparcial, pStatusbajocosto, pDepurado, pRazondepurado, pFechadepurado, pUsuariodepurado);
 
@@ -914,7 +931,8 @@ namespace VisualSoftErp.Catalogos.Ventas
                     pUsuariodepurado,
                     sucursal,
                     DateTime.Now,
-                    swPublico.IsOn ? 1:0
+                    swPublico.IsOn ? 1:0,
+                    cboCanalVentas.EditValue
                     );
                 
                 PedidosCL cl = new PedidosCL();
@@ -1016,6 +1034,7 @@ namespace VisualSoftErp.Catalogos.Ventas
                 txtPlazo.Text = cl.intPlazo.ToString();
                 txtFecha.Text = cl.fFecha.ToShortDateString();
                 cboCondicionesdepago.SelectedIndex = Convert.ToInt32(cl.strCondicionesdepago);
+                cboCanalVentas.EditValue = cl.intCanalesdeventaID;
 
                 if (cl.intExportacion == 1) { swExportacion.IsOn = true; }
                 else { swExportacion.IsOn = false; }
@@ -1307,6 +1326,7 @@ namespace VisualSoftErp.Catalogos.Ventas
                     intClienteID = Convert.ToInt32(((DataRowView)orow)["Clave"]);
                     intAgenteID = Convert.ToInt32(((DataRowView)orow)["AgentesID"]);
                     Transporte = Convert.ToInt32(((DataRowView)orow)["TransportesID"]);
+                    cboCanalVentas.EditValue = Convert.ToInt32(((DataRowView)orow)["CanalesdeventaID"]);
                     cboAgente.EditValue = intAgenteID;
 
                     int intPlazo = Convert.ToInt32(((DataRowView)orow)["Plazo"]);

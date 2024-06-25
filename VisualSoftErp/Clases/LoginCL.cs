@@ -359,9 +359,9 @@ namespace VisualSoftErp.Clases
                 else if (strambiente == "Local")
                 {
                     server = "DIEXSASIST\\SQLEXPRESS";
-                    catalogo = "DiexsaErp";
+                    catalogo = "_DiexsaErp";
                     user = "DiexsaUser";
-                    pass = "dx2024*";
+                    pass = "DiexsaUser";
                 }
 
 

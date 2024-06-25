@@ -35,11 +35,13 @@ namespace VisualSoftErp.Operacion.CxC.Informes
             Reporte();
             DevExpress.XtraSplashScreen.SplashScreenManager.CloseDefaultWaitForm();
         }
+
         private void bbiRegresar_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
             ribbonControl.MergeOwner.SelectedPage = ribbonControl.MergeOwner.TotalPageCategory.GetPageByText(ribbonPageHome.Text);
             navigationFrame.SelectedPageIndex = 0;
         }
+
         private void swFechaRango_Toggled(object sender, EventArgs e)
         {
             if(swFechaRango.IsOn)

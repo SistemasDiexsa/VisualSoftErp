@@ -429,6 +429,7 @@
     <Compile Include="Clases\HerrramientasCLs\correosCL.cs" />
     <Compile Include="Clases\HerrramientasCLs\DatosdecontrolCL.cs" />
     <Compile Include="Clases\InvCLs\ArticulosGruposAuxiliarCL.cs" />
+    <Compile Include="Clases\InvCLs\CiclicosCL.cs" />
     <Compile Include="Clases\InvCLs\KitsCL.cs" />
     <Compile Include="Clases\InvCLs\SubFamiliasCL.cs" />
     <Compile Include="Clases\InvCLs\UbicacionesCL.cs" />
@@ -1127,6 +1128,12 @@
     </Compile>
     <Compile Include="Operacion\Inventario\Formas\Ajustes.designer.cs">
       <DependentUpon>Ajustes.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Operacion\Inventario\Formas\Ciclicos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Operacion\Inventario\Formas\Ciclicos.Designer.cs">
+      <DependentUpon>Ciclicos.cs</DependentUpon>
     </Compile>
     <Compile Include="Operacion\Inventario\Formas\Componentes.cs">
       <SubType>Form</SubType>
@@ -2315,6 +2322,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Operacion\Inventario\Formas\Ajustes.resx">
       <DependentUpon>Ajustes.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Operacion\Inventario\Formas\Ciclicos.resx">
+      <DependentUpon>Ciclicos.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Operacion\Inventario\Formas\Componentes.resx">
       <DependentUpon>Componentes.cs</DependentUpon>
