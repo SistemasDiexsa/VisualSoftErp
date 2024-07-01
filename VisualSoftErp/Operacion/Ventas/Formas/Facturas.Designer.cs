@@ -391,6 +391,8 @@
             this.gridViewPrincipal = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.customersNavigationPage = new DevExpress.XtraBars.Navigation.NavigationPage();
             this.splitContainerControl1 = new DevExpress.XtraEditors.SplitContainerControl();
+            this.cboCanalVentas = new DevExpress.XtraEditors.LookUpEdit();
+            this.labelControl42 = new DevExpress.XtraEditors.LabelControl();
             this.cboAgente = new DevExpress.XtraEditors.LookUpEdit();
             this.cboAlmacen = new DevExpress.XtraEditors.LookUpEdit();
             this.labelControl29 = new DevExpress.XtraEditors.LabelControl();
@@ -487,8 +489,6 @@
             this.navigationPage2 = new DevExpress.XtraBars.Navigation.NavigationPage();
             this.splitContainerControl3 = new DevExpress.XtraEditors.SplitContainerControl();
             this.pdfBarController1 = new DevExpress.XtraPdfViewer.Bars.PdfBarController(this.components);
-            this.cboCanalVentas = new DevExpress.XtraEditors.LookUpEdit();
-            this.labelControl42 = new DevExpress.XtraEditors.LabelControl();
             ((System.ComponentModel.ISupportInitialize)(this.tabbedView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.RibbonControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemTextEdit1)).BeginInit();
@@ -521,6 +521,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.splitContainerControl1.Panel2)).BeginInit();
             this.splitContainerControl1.Panel2.SuspendLayout();
             this.splitContainerControl1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.cboCanalVentas.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cboAgente.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cboAlmacen.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtPlazo.Properties)).BeginInit();
@@ -571,7 +572,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.splitContainerControl3.Panel2)).BeginInit();
             this.splitContainerControl3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pdfBarController1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.cboCanalVentas.Properties)).BeginInit();
             this.SuspendLayout();
             // 
             // RibbonControl1
@@ -728,7 +728,7 @@
             this.repositoryItemPageNumberEdit1});
             this.RibbonControl1.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonControlStyle.Office2013;
             this.RibbonControl1.ShowApplicationButton = DevExpress.Utils.DefaultBoolean.False;
-            this.RibbonControl1.Size = new System.Drawing.Size(1279, 147);
+            this.RibbonControl1.Size = new System.Drawing.Size(1493, 147);
             this.RibbonControl1.StatusBar = this.ribbonStatusBar;
             this.RibbonControl1.ToolbarLocation = DevExpress.XtraBars.Ribbon.RibbonQuickAccessToolbarLocation.Hidden;
             this.RibbonControl1.TransparentEditorsMode = DevExpress.Utils.DefaultBoolean.True;
@@ -1012,7 +1012,7 @@
             this.documentViewer1.IsMetric = true;
             this.documentViewer1.Location = new System.Drawing.Point(0, 0);
             this.documentViewer1.Name = "documentViewer1";
-            this.documentViewer1.Size = new System.Drawing.Size(1114, 557);
+            this.documentViewer1.Size = new System.Drawing.Size(1328, 609);
             this.documentViewer1.TabIndex = 0;
             // 
             // ribbonStatusBar
@@ -1026,10 +1026,10 @@
             this.ribbonStatusBar.ItemLinks.Add(this.printPreviewBarItem52);
             this.ribbonStatusBar.ItemLinks.Add(this.printPreviewStaticItem2);
             this.ribbonStatusBar.ItemLinks.Add(this.zoomTrackBarEditItem1);
-            this.ribbonStatusBar.Location = new System.Drawing.Point(0, 704);
+            this.ribbonStatusBar.Location = new System.Drawing.Point(0, 756);
             this.ribbonStatusBar.Name = "ribbonStatusBar";
             this.ribbonStatusBar.Ribbon = this.RibbonControl1;
-            this.ribbonStatusBar.Size = new System.Drawing.Size(1279, 23);
+            this.ribbonStatusBar.Size = new System.Drawing.Size(1493, 23);
             // 
             // progressBarEditItem1
             // 
@@ -2508,7 +2508,7 @@
             this.navBarControl.Name = "navBarControl";
             this.navBarControl.OptionsNavPane.ExpandedWidth = 165;
             this.navBarControl.PaintStyleKind = DevExpress.XtraNavBar.NavBarViewKind.NavigationPane;
-            this.navBarControl.Size = new System.Drawing.Size(165, 557);
+            this.navBarControl.Size = new System.Drawing.Size(165, 609);
             this.navBarControl.TabIndex = 0;
             this.navBarControl.Text = "navBarControl";
             this.navBarControl.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.navBarControl_LinkClicked);
@@ -2638,7 +2638,7 @@
             this.navigationPage6});
             this.navigationFrame.RibbonAndBarsMergeStyle = DevExpress.XtraBars.Docking2010.Views.RibbonAndBarsMergeStyle.Always;
             this.navigationFrame.SelectedPage = this.employeesNavigationPage;
-            this.navigationFrame.Size = new System.Drawing.Size(1114, 557);
+            this.navigationFrame.Size = new System.Drawing.Size(1328, 609);
             this.navigationFrame.TabIndex = 0;
             this.navigationFrame.Text = "8";
             // 
@@ -2647,7 +2647,7 @@
             this.employeesNavigationPage.Controls.Add(this.groupControlCan);
             this.employeesNavigationPage.Controls.Add(this.gridControlPrincipal);
             this.employeesNavigationPage.Name = "employeesNavigationPage";
-            this.employeesNavigationPage.Size = new System.Drawing.Size(1114, 557);
+            this.employeesNavigationPage.Size = new System.Drawing.Size(1328, 609);
             // 
             // groupControlCan
             // 
@@ -2892,7 +2892,7 @@
             this.gridControlPrincipal.MainView = this.gridViewPrincipal;
             this.gridControlPrincipal.MenuManager = this.RibbonControl1;
             this.gridControlPrincipal.Name = "gridControlPrincipal";
-            this.gridControlPrincipal.Size = new System.Drawing.Size(1114, 557);
+            this.gridControlPrincipal.Size = new System.Drawing.Size(1328, 609);
             this.gridControlPrincipal.TabIndex = 0;
             this.gridControlPrincipal.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridViewPrincipal});
@@ -2909,7 +2909,7 @@
             // 
             this.customersNavigationPage.Controls.Add(this.splitContainerControl1);
             this.customersNavigationPage.Name = "customersNavigationPage";
-            this.customersNavigationPage.Size = new System.Drawing.Size(1114, 557);
+            this.customersNavigationPage.Size = new System.Drawing.Size(1328, 609);
             // 
             // splitContainerControl1
             // 
@@ -2955,9 +2955,29 @@
             // 
             this.splitContainerControl1.Panel2.Controls.Add(this.splitContainerControl2);
             this.splitContainerControl1.Panel2.Text = "Panel2";
-            this.splitContainerControl1.Size = new System.Drawing.Size(1114, 557);
+            this.splitContainerControl1.Size = new System.Drawing.Size(1328, 609);
             this.splitContainerControl1.SplitterPosition = 151;
             this.splitContainerControl1.TabIndex = 0;
+            // 
+            // cboCanalVentas
+            // 
+            this.cboCanalVentas.Location = new System.Drawing.Point(122, 120);
+            this.cboCanalVentas.Name = "cboCanalVentas";
+            this.cboCanalVentas.Properties.Appearance.BackColor = System.Drawing.Color.White;
+            this.cboCanalVentas.Properties.Appearance.Options.UseBackColor = true;
+            this.cboCanalVentas.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.cboCanalVentas.Properties.ReadOnly = true;
+            this.cboCanalVentas.Size = new System.Drawing.Size(174, 20);
+            this.cboCanalVentas.TabIndex = 84;
+            // 
+            // labelControl42
+            // 
+            this.labelControl42.Location = new System.Drawing.Point(6, 123);
+            this.labelControl42.Name = "labelControl42";
+            this.labelControl42.Size = new System.Drawing.Size(78, 13);
+            this.labelControl42.TabIndex = 83;
+            this.labelControl42.Text = "Canal de Ventas";
             // 
             // cboAgente
             // 
@@ -3246,7 +3266,7 @@
             this.splitContainerControl2.Panel2.Controls.Add(this.cboMetododepago);
             this.splitContainerControl2.Panel2.Controls.Add(this.labelControl4);
             this.splitContainerControl2.Panel2.Text = "Panel2";
-            this.splitContainerControl2.Size = new System.Drawing.Size(1114, 394);
+            this.splitContainerControl2.Size = new System.Drawing.Size(1328, 446);
             this.splitContainerControl2.SplitterPosition = 166;
             this.splitContainerControl2.TabIndex = 0;
             // 
@@ -3260,7 +3280,7 @@
             this.gridControlDetalle.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
             this.repositoryItemLookUpEditArticulo,
             this.repositoryItemMemoEdit1});
-            this.gridControlDetalle.Size = new System.Drawing.Size(1114, 216);
+            this.gridControlDetalle.Size = new System.Drawing.Size(1328, 268);
             this.gridControlDetalle.TabIndex = 0;
             this.gridControlDetalle.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridViewDetalle});
@@ -3796,14 +3816,14 @@
             // 
             this.navigationPage4.Controls.Add(this.documentViewer1);
             this.navigationPage4.Name = "navigationPage4";
-            this.navigationPage4.Size = new System.Drawing.Size(1114, 557);
+            this.navigationPage4.Size = new System.Drawing.Size(1328, 609);
             // 
             // navigationPage5
             // 
             this.navigationPage5.Controls.Add(this.gridControlMovsFac);
             this.navigationPage5.Controls.Add(this.lblMovsFac);
             this.navigationPage5.Name = "navigationPage5";
-            this.navigationPage5.Size = new System.Drawing.Size(1114, 557);
+            this.navigationPage5.Size = new System.Drawing.Size(1328, 609);
             // 
             // gridControlMovsFac
             // 
@@ -3812,7 +3832,7 @@
             this.gridControlMovsFac.MainView = this.gridViewMovsFac;
             this.gridControlMovsFac.MenuManager = this.RibbonControl1;
             this.gridControlMovsFac.Name = "gridControlMovsFac";
-            this.gridControlMovsFac.Size = new System.Drawing.Size(1114, 534);
+            this.gridControlMovsFac.Size = new System.Drawing.Size(1328, 586);
             this.gridControlMovsFac.TabIndex = 1;
             this.gridControlMovsFac.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridViewMovsFac});
@@ -3838,7 +3858,7 @@
             // 
             this.navigationPage6.Controls.Add(this.pdfViewer1);
             this.navigationPage6.Name = "navigationPage6";
-            this.navigationPage6.Size = new System.Drawing.Size(1114, 557);
+            this.navigationPage6.Size = new System.Drawing.Size(1328, 609);
             // 
             // pdfViewer1
             // 
@@ -3846,7 +3866,7 @@
             this.pdfViewer1.Location = new System.Drawing.Point(0, 0);
             this.pdfViewer1.MenuManager = this.RibbonControl1;
             this.pdfViewer1.Name = "pdfViewer1";
-            this.pdfViewer1.Size = new System.Drawing.Size(1114, 557);
+            this.pdfViewer1.Size = new System.Drawing.Size(1328, 609);
             this.pdfViewer1.TabIndex = 0;
             // 
             // barButtonItem3
@@ -3909,31 +3929,11 @@
             this.pdfBarController1.BarItems.Add(this.pdfExactZoomListBarSubItem1);
             this.pdfBarController1.Control = this.pdfViewer1;
             // 
-            // cboCanalVentas
-            // 
-            this.cboCanalVentas.Location = new System.Drawing.Point(122, 120);
-            this.cboCanalVentas.Name = "cboCanalVentas";
-            this.cboCanalVentas.Properties.Appearance.BackColor = System.Drawing.Color.White;
-            this.cboCanalVentas.Properties.Appearance.Options.UseBackColor = true;
-            this.cboCanalVentas.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.cboCanalVentas.Properties.ReadOnly = true;
-            this.cboCanalVentas.Size = new System.Drawing.Size(174, 20);
-            this.cboCanalVentas.TabIndex = 84;
-            // 
-            // labelControl42
-            // 
-            this.labelControl42.Location = new System.Drawing.Point(6, 123);
-            this.labelControl42.Name = "labelControl42";
-            this.labelControl42.Size = new System.Drawing.Size(78, 13);
-            this.labelControl42.TabIndex = 83;
-            this.labelControl42.Text = "Canal de Ventas";
-            // 
             // Facturas
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1279, 727);
+            this.ClientSize = new System.Drawing.Size(1493, 779);
             this.Controls.Add(this.navigationFrame);
             this.Controls.Add(this.navBarControl);
             this.Controls.Add(this.ribbonStatusBar);
@@ -3976,6 +3976,7 @@
             this.splitContainerControl1.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainerControl1)).EndInit();
             this.splitContainerControl1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.cboCanalVentas.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.cboAgente.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.cboAlmacen.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtPlazo.Properties)).EndInit();
@@ -4028,7 +4029,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.splitContainerControl3)).EndInit();
             this.splitContainerControl3.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pdfBarController1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.cboCanalVentas.Properties)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 

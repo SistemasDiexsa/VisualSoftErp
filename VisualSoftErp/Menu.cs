@@ -2715,5 +2715,13 @@ namespace VisualSoftErp
             Ciclicos frm = new Ciclicos();
             this.tabbedView.AddDocument(frm);
         }
+
+        private void bbi0537_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            DevExpress.XtraSplashScreen.SplashScreenManager.ShowDefaultWaitForm();
+            globalCL.gv_RibbonPage = ribbonPageVentas;
+            Comisiones frm = new Comisiones();
+            this.tabbedView.AddDocument(frm);
+        }
     }
 }

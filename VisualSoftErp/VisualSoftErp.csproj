@@ -910,6 +910,13 @@
     <Compile Include="Operacion\CxC\Informes\RelaciondepagosCxC.Designer.cs">
       <DependentUpon>RelaciondepagosCxC.cs</DependentUpon>
     </Compile>
+    <Compile Include="Operacion\Ventas\Clases\ComisionesCL.cs" />
+    <Compile Include="Operacion\Ventas\Informes\Comisiones.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Operacion\Ventas\Informes\Comisiones.Designer.cs">
+      <DependentUpon>Comisiones.cs</DependentUpon>
+    </Compile>
     <Compile Include="Operacion\CxP\CarteraVencidaCxP02.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -2198,6 +2205,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Operacion\CxC\Informes\clientesRetenidos.resx">
       <DependentUpon>clientesRetenidos.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Operacion\Ventas\Informes\Comisiones.resx">
+      <DependentUpon>Comisiones.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Operacion\CxC\Informes\CorteDia.resx">
       <DependentUpon>CorteDia.cs</DependentUpon>

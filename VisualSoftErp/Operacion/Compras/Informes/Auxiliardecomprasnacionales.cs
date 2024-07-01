@@ -13,6 +13,7 @@ using VisualSoftErp.Clases;
 using DevExpress.XtraGrid;
 using DevExpress.Data;
 using DevExpress.XtraGrid.Columns;
+using DevExpress.XtraLayout.Utils;
 
 /// <summary>
 /// 1. Poner columnas en consumo
@@ -555,7 +556,7 @@ namespace VisualSoftErp.Operacion.Compras.Informes
                 DataTable dt2 = new DataTable();
 
                 DataRow[] drCExiste;
-                dt= cl.AuxiliarNacionalAuxiliar();
+                dt  = cl.AuxiliarNacionalAuxiliar();
                 dt2 = cl.AuxiliarNacionalAuxiliar();
 
                 bool existeArt = false;
@@ -572,10 +573,11 @@ namespace VisualSoftErp.Operacion.Compras.Informes
                 decimal Sugerido = 0;
                 int Adicional = 0;
                 decimal Pronostico = 0;
-
+                int articuloCiclo = 0;
 
                 foreach (DataRow dr in dt2.Rows)
                 {
+                    articuloCiclo = Convert.ToInt32(dr["ID"]);
                     tipoArt = Convert.ToInt32(dr["tipoArticulo"]);
                     if (tipoArt == 4)
                     {
@@ -619,8 +621,9 @@ namespace VisualSoftErp.Operacion.Compras.Informes
                             Componente = Convert.ToInt32(drC["Componente"]);
 
 
-                            drCExiste = dt.Select("ID=" + Componente.ToString());
-                            // Display column 1 of the found row.
+                            // drCExiste = dt.Select("ID=" + Componente.ToString());
+                                drCExiste = dt.Select("ID = '" + Componente.ToString() + "'");
+
 
                             existeArt = false;
                             try
@@ -662,7 +665,7 @@ namespace VisualSoftErp.Operacion.Compras.Informes
                             if (Sugerido < 0)
                                 Sugerido = 0;
 
-
+                            string nombre = drC["Nombre"].ToString();
                             if (existeArt)
                             {
                                 Pronostico = Convert.ToDecimal(drCExiste[0]["Pronostico"]);
@@ -684,8 +687,6 @@ namespace VisualSoftErp.Operacion.Compras.Informes
                                     DiasTotales,
                                     Convert.ToInt32(drC["DiasStock"]),
                                     drC["Proveedor"], 1, 3);
-                                //
-                                
                             }                           
                         }                        
                     }
@@ -699,7 +700,7 @@ namespace VisualSoftErp.Operacion.Compras.Informes
                 clg.strGridLayout = "gridACNAuxiliar";
                 clg.restoreLayout(gridViewConsumo);
 
-                if (Convert.ToInt32(txtPedido.Text)>0)
+                if (Convert.ToInt32(txtPedido.Text) > 0)
                 {
                     gridViewAux.OptionsView.ShowViewCaption = true;
                     gridViewAux.ViewCaption = "PEDIDO :" + txtPedido.Text;
@@ -753,19 +754,12 @@ namespace VisualSoftErp.Operacion.Compras.Informes
                     if (Sugerido < 0)
                         Sugerido = 0;
 
-
                     gridViewAux.FocusedRowHandle = i;
                     gridViewAux.SetFocusedRowCellValue("TotalExistencia", TEx);
                     gridViewAux.SetFocusedRowCellValue("Diferencia", Dif);
                     gridViewAux.SetFocusedRowCellValue("Reorden", Reorden);
                     gridViewAux.SetFocusedRowCellValue("Sugerido", Sugerido);
-
-
-
-
-
                 }
-
                 navigationFrame.SelectedPageIndex = 2;
             }
             catch (Exception ex)

@@ -116,7 +116,6 @@ namespace VisualSoftErp.Operacion.Ventas.Informes
             cboAgente.Properties.Columns["Clave"].Visible = false;
             cboAgente.Properties.NullText = "Seleccione un Agente";
 
-
             //Canalesdeventa
             cboCanaldeventa.Properties.ValueMember = "Clave";
             cboCanaldeventa.Properties.DisplayMember = "Des";
