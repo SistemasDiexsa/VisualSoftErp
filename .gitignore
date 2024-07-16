@@ -365,3 +365,5 @@ FodyWeavers.xsd
 
 # Ignorar archivo específico en el directorio padre
 ./Clases/LoginCL.cs
+/VisualSoftErp/App.config
+/VisualSoftErp/Clases/LoginCL.cs
