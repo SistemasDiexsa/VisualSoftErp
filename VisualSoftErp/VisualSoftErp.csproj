@@ -605,6 +605,7 @@
     </Compile>
     <Compile Include="Operacion\Compras\Clases\ComprasCL.cs" />
     <Compile Include="Operacion\Compras\Clases\ClaseGenricaCL.cs" />
+    <Compile Include="Operacion\Compras\Clases\CosteosArticulosCL.cs" />
     <Compile Include="Operacion\Compras\Clases\IncrementalesCL.cs" />
     <Compile Include="Operacion\Compras\Clases\OrdenesdecomprasCL.cs" />
     <Compile Include="Operacion\Compras\Clases\RecepciondemercanciaCL.cs">
@@ -729,6 +730,12 @@
     </Compile>
     <Compile Include="Operacion\Compras\Informes\Comprasrelacion.Designer.cs">
       <DependentUpon>Comprasrelacion.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Operacion\Compras\Informes\CosteosArticulos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Operacion\Compras\Informes\CosteosArticulos.Designer.cs">
+      <DependentUpon>CosteosArticulos.cs</DependentUpon>
     </Compile>
     <Compile Include="Operacion\Compras\Informes\EstadisticaPorProveedor.cs">
       <SubType>Form</SubType>
@@ -911,6 +918,24 @@
       <DependentUpon>RelaciondepagosCxC.cs</DependentUpon>
     </Compile>
     <Compile Include="Operacion\Ventas\Clases\ComisionesCL.cs" />
+    <Compile Include="Operacion\Ventas\Designers\ArticulosAlmacenDesigner.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Operacion\Ventas\Designers\ArticulosAlmacenDesigner.Designer.cs">
+      <DependentUpon>ArticulosAlmacenDesigner.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Operacion\Ventas\Designers\ComisionesDesigner.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Operacion\Ventas\Designers\ComisionesDesigner.Designer.cs">
+      <DependentUpon>ComisionesDesigner.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Operacion\Ventas\Formas\ArticulosAlmacen.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Operacion\Ventas\Formas\ArticulosAlmacen.Designer.cs">
+      <DependentUpon>ArticulosAlmacen.cs</DependentUpon>
+    </Compile>
     <Compile Include="Operacion\Ventas\Informes\Comisiones.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -2140,6 +2165,9 @@
     <EmbeddedResource Include="Operacion\Compras\Informes\Comprasrelacion.resx">
       <DependentUpon>Comprasrelacion.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Operacion\Compras\Informes\CosteosArticulos.resx">
+      <DependentUpon>CosteosArticulos.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Operacion\Compras\Informes\EstadisticaPorProveedor.resx">
       <DependentUpon>EstadisticaPorProveedor.cs</DependentUpon>
     </EmbeddedResource>
@@ -2205,6 +2233,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Operacion\CxC\Informes\clientesRetenidos.resx">
       <DependentUpon>clientesRetenidos.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Operacion\Ventas\Designers\ArticulosAlmacenDesigner.resx">
+      <DependentUpon>ArticulosAlmacenDesigner.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Operacion\Ventas\Designers\ComisionesDesigner.resx">
+      <DependentUpon>ComisionesDesigner.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Operacion\Ventas\Formas\ArticulosAlmacen.resx">
+      <DependentUpon>ArticulosAlmacen.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Operacion\Ventas\Informes\Comisiones.resx">
       <DependentUpon>Comisiones.cs</DependentUpon>

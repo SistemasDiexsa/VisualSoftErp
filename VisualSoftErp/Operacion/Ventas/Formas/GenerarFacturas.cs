@@ -646,7 +646,7 @@ namespace VisualSoftErp.Operacion.Ventas.Formas
 
                 string result = string.Empty;
                 cl.pFolioPedido = intPedidoFolio;
-                if (serieElectronica.Length == 0)
+                if (serieElectronica.Length == 0 && !swNoTimbrar.IsOn)
                     result = cl.GeneraCfdi33(dtFacturasDetalle,blnCCE, intPublicoengeneral,lblCfdiVer.Text);// este es lo ultimo que se manda llamar despues de llenar los valores que ocupa la clase cfdicl
                 else
                     result = "OK";
@@ -674,16 +674,6 @@ namespace VisualSoftErp.Operacion.Ventas.Formas
         {
             try
             {
-
-                if (swNoTimbrar.IsOn)
-                {
-                    DialogResult resultnt = MessageBox.Show("Seleccionó NO timbrar, esta correcto?", strStatus, MessageBoxButtons.YesNo);
-                    if (resultnt.ToString() != "Yes")
-                    {
-                        return;
-                    }
-                }
-
                 String Result = Valida();
                 if (Result != "OK")
                 {
@@ -696,7 +686,15 @@ namespace VisualSoftErp.Operacion.Ventas.Formas
                 else
                     serieFac = serieElectronica;
 
-               
+                if (swNoTimbrar.IsOn)
+                {
+                    DialogResult resultnt = MessageBox.Show("Seleccionó NO timbrar, esta correcto?", strStatus, MessageBoxButtons.YesNo);
+                    if (resultnt.ToString() != "Yes")
+                    {
+                        return;
+                    }
+                }
+                
                 Result = Timbrar();   // Se manda llamar Timbrar aunque sea serie C (timbrada en eDoc) por que se ocupa llenar DtDetalle, pero al final no timbra
                 if (Result != "OK")
                 {
@@ -886,7 +884,6 @@ namespace VisualSoftErp.Operacion.Ventas.Formas
                     pTotalImpuestosTrasladados,
                     uuid, 
                     intAgenteID, 
-
                     intStatus, 
                     txtPlazo.Text,
                     FechaCancelacion, 
@@ -985,10 +982,10 @@ namespace VisualSoftErp.Operacion.Ventas.Formas
                 }
                 else
                 {                    
-                    diccionarioErroresCL cle = new diccionarioErroresCL();
-                    cle.strmensaje = result;
-                    string strMsg = cle.mensajePropio();
-                    MessageBox.Show("Error al guardar:" + strMsg);
+                    //diccionarioErroresCL cle = new diccionarioErroresCL();
+                    //cle.strmensaje = result;
+                    //string strMsg = cle.mensajePropio();
+                    MessageBox.Show("Error al guardar:" + result);
                 }
             }
             catch (Exception ex)
@@ -1073,7 +1070,8 @@ namespace VisualSoftErp.Operacion.Ventas.Formas
 
                     txtFecha.Text = DateTime.Now.ToShortDateString();
 
-                    //txtAgente se llena de cliente
+                    txtAgente.Text = dtFacturasDetalle.Rows[0]["AgentesID"].ToString();
+                    intAgenteID = Convert.ToInt32(dtFacturasDetalle.Rows[0]["AgentesID"]);
                     //cboCondicionesdepago.SelectedItem = cl.strCondicionesdepago;
                     //if (cl.intExportacion == 1) { swExportacion.IsOn = true; }
                     //else { swExportacion.IsOn = false; }
@@ -1246,8 +1244,8 @@ namespace VisualSoftErp.Operacion.Ventas.Formas
             string result = cl.ClientesLlenaCajas();
             if (result == "OK")
             {
-                txtAgente.Text = cl.strAgente;
-                intAgenteID = cl.intAgentesID;
+                //txtAgente.Text = cl.strAgente;
+                //intAgenteID = cl.intAgentesID;
 
 
                 if (cl.intPlazo > 0)

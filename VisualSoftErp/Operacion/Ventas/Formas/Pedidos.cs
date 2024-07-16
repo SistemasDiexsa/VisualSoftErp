@@ -1035,7 +1035,7 @@ namespace VisualSoftErp.Catalogos.Ventas
                 txtFecha.Text = cl.fFecha.ToShortDateString();
                 cboCondicionesdepago.SelectedIndex = Convert.ToInt32(cl.strCondicionesdepago);
                 cboCanalVentas.EditValue = cl.intCanalesdeventaID;
-
+                cboAgente.EditValue = cl.intAgentesID;
                 if (cl.intExportacion == 1) { swExportacion.IsOn = true; }
                 else { swExportacion.IsOn = false; }
                 cboMonedas.EditValue = cl.strMonedasID;
@@ -1324,10 +1324,10 @@ namespace VisualSoftErp.Catalogos.Ventas
 
                     intLista = Convert.ToInt32(((DataRowView)orow)["Listadeprecios"]);
                     intClienteID = Convert.ToInt32(((DataRowView)orow)["Clave"]);
-                    intAgenteID = Convert.ToInt32(((DataRowView)orow)["AgentesID"]);
+                    // intAgenteID = Convert.ToInt32(((DataRowView)orow)["AgentesID"]);
                     Transporte = Convert.ToInt32(((DataRowView)orow)["TransportesID"]);
                     cboCanalVentas.EditValue = Convert.ToInt32(((DataRowView)orow)["CanalesdeventaID"]);
-                    cboAgente.EditValue = intAgenteID;
+                    // cboAgente.EditValue = intAgenteID;
 
                     int intPlazo = Convert.ToInt32(((DataRowView)orow)["Plazo"]);
                     if (intPlazo == 0)  //Contado

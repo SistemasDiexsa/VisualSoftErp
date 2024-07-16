@@ -895,6 +895,9 @@ namespace VisualSoftErp
                 case "0139":
                     bbi0139.Visibility = BarItemVisibility.Always;
                     break;
+                case "0140":
+                    bbi0140.Visibility = BarItemVisibility.Always;
+                    break;
                 case "0201"://CXP
                     bbi0201.Visibility = BarItemVisibility.Always;
                     break;
@@ -1243,8 +1246,8 @@ namespace VisualSoftErp
                 case "0536":
                     bbi0536.Visibility = BarItemVisibility.Always;
                     break;
-                case "0537":
-                    bbi0537.Visibility = BarItemVisibility.Always;
+                case "0449":
+                    bbi0449.Visibility = BarItemVisibility.Always;
                     break;
                 case "0538":
                     bbi0538.Visibility = BarItemVisibility.Always;
@@ -2716,11 +2719,27 @@ namespace VisualSoftErp
             this.tabbedView.AddDocument(frm);
         }
 
-        private void bbi0537_ItemClick(object sender, ItemClickEventArgs e)
+        private void bbi0449_ItemClick(object sender, ItemClickEventArgs e)
         {
             DevExpress.XtraSplashScreen.SplashScreenManager.ShowDefaultWaitForm();
             globalCL.gv_RibbonPage = ribbonPageVentas;
             Comisiones frm = new Comisiones();
+            this.tabbedView.AddDocument(frm);
+        }
+
+        private void bbi0140_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            DevExpress.XtraSplashScreen.SplashScreenManager.ShowDefaultWaitForm();
+            globalCL.gv_RibbonPage = ribbonPageCompras;
+            CosteosArticulos frm = new CosteosArticulos();
+            this.tabbedView.AddDocument(frm);
+        }
+
+        private void bbi0450_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            DevExpress.XtraSplashScreen.SplashScreenManager.ShowDefaultWaitForm();
+            globalCL.gv_RibbonPage = ribbonPageVentas;
+            ArticulosAlmacen frm = new ArticulosAlmacen();
             this.tabbedView.AddDocument(frm);
         }
     }

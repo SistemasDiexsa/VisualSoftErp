@@ -117,7 +117,7 @@ namespace VisualSoftErp.Catalogos.Inv
             cboFamiliasClasificaciones.Properties.Columns["Clave"].Visible = false;
             cboFamiliasClasificaciones.Properties.Columns["LineasID"].Visible = false;
             cboFamiliasClasificaciones.Properties.Columns["CodigoArticulo"].Visible = false;
-            cboProveedoresID.Properties.NullText = "Seleccione un familia";
+            cboFamiliasClasificaciones.Properties.NullText = "Seleccione un familia";
 
             // COMBO FAMILIAS SUPERIOR
             cboFamilias.Properties.ValueMember = "Clave";
@@ -129,7 +129,7 @@ namespace VisualSoftErp.Catalogos.Inv
             cboFamilias.Properties.Columns["Clave"].Visible = false;
             cboFamilias.Properties.Columns["LineasID"].Visible = false;
             cboFamilias.Properties.Columns["CodigoArticulo"].Visible = false;
-            cboProveedoresID.Properties.NullText = "Seleccione un familia";
+            cboFamilias.Properties.NullText = "Seleccione un familia";
 
             // COMBO UNIDAD
             cboUnidad.Properties.ValueMember = "Clave";

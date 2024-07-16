@@ -325,6 +325,7 @@ __pycache__/
 
 # Telerik's JustMock configuration file
 *.jmconfig
+.config
 
 # BizTalk build output
 *.btp.cs
@@ -361,3 +362,6 @@ MigrationBackup/
 
 # Fody - auto-generated XML schema
 FodyWeavers.xsd
+
+# Ignorar archivo específico en el directorio padre
+./Clases/LoginCL.cs

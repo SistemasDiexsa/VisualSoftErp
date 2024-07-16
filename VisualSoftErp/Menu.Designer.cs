@@ -30,8 +30,8 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
-            DevExpress.Skins.SkinPaddingEdges skinPaddingEdges3 = new DevExpress.Skins.SkinPaddingEdges();
-            DevExpress.XtraBars.Ribbon.GalleryItemGroup galleryItemGroup3 = new DevExpress.XtraBars.Ribbon.GalleryItemGroup();
+            DevExpress.Skins.SkinPaddingEdges skinPaddingEdges1 = new DevExpress.Skins.SkinPaddingEdges();
+            DevExpress.XtraBars.Ribbon.GalleryItemGroup galleryItemGroup1 = new DevExpress.XtraBars.Ribbon.GalleryItemGroup();
             this.ribbonControl = new DevExpress.XtraBars.Ribbon.RibbonControl();
             this.barButtonItem38 = new DevExpress.XtraBars.BarButtonItem();
             this.bhCarrito = new DevExpress.XtraBars.BarHeaderItem();
@@ -274,7 +274,8 @@
             this.bbi0540 = new DevExpress.XtraBars.BarButtonItem();
             this.bbi0139 = new DevExpress.XtraBars.BarButtonItem();
             this.bbi0448 = new DevExpress.XtraBars.BarButtonItem();
-            this.bbi0537 = new DevExpress.XtraBars.BarButtonItem();
+            this.bbi0449 = new DevExpress.XtraBars.BarButtonItem();
+            this.bbi0140 = new DevExpress.XtraBars.BarButtonItem();
             this.ribbonPageInicio = new DevExpress.XtraBars.Ribbon.RibbonPage();
             this.ribbonPageGroup = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.ribbonPageGroupOpciones = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
@@ -323,6 +324,7 @@
             this.toastNotificationsManager1 = new DevExpress.XtraBars.ToastNotifications.ToastNotificationsManager(this.components);
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
+            this.bbi0450 = new DevExpress.XtraBars.BarButtonItem();
             ((System.ComponentModel.ISupportInitialize)(this.ribbonControl)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dockManager)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tabbedView)).BeginInit();
@@ -582,9 +584,11 @@
             this.bbi0321,
             this.bbi0448,
             this.bbi0343,
-            this.bbi0537});
+            this.bbi0449,
+            this.bbi0140,
+            this.bbi0450});
             this.ribbonControl.Location = new System.Drawing.Point(0, 0);
-            this.ribbonControl.MaxItemId = 296;
+            this.ribbonControl.MaxItemId = 298;
             this.ribbonControl.MdiMergeStyle = DevExpress.XtraBars.Ribbon.RibbonMdiMergeStyle.Always;
             this.ribbonControl.Name = "ribbonControl";
             this.ribbonControl.Pages.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPage[] {
@@ -670,9 +674,9 @@
             this.skinRibbonGalleryBarItem.Gallery.ItemCheckMode = DevExpress.XtraBars.Ribbon.Gallery.ItemCheckMode.SingleRadio;
             this.skinRibbonGalleryBarItem.Gallery.ItemImageLayout = DevExpress.Utils.Drawing.ImageLayoutMode.Squeeze;
             this.skinRibbonGalleryBarItem.Gallery.ItemImageLocation = DevExpress.Utils.Locations.Top;
-            skinPaddingEdges3.Left = 8;
-            skinPaddingEdges3.Right = 8;
-            this.skinRibbonGalleryBarItem.Gallery.ItemImagePadding = skinPaddingEdges3;
+            skinPaddingEdges1.Left = 8;
+            skinPaddingEdges1.Right = 8;
+            this.skinRibbonGalleryBarItem.Gallery.ItemImagePadding = skinPaddingEdges1;
             this.skinRibbonGalleryBarItem.Id = 14;
             this.skinRibbonGalleryBarItem.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("skinRibbonGalleryBarItem.ImageOptions.SvgImage")));
             this.skinRibbonGalleryBarItem.Name = "skinRibbonGalleryBarItem";
@@ -2183,9 +2187,9 @@
             // 
             // 
             // 
-            galleryItemGroup3.Caption = "Group1";
+            galleryItemGroup1.Caption = "Group1";
             this.ribbonGalleryBarItem2.Gallery.Groups.AddRange(new DevExpress.XtraBars.Ribbon.GalleryItemGroup[] {
-            galleryItemGroup3});
+            galleryItemGroup1});
             this.ribbonGalleryBarItem2.Id = 230;
             this.ribbonGalleryBarItem2.Name = "ribbonGalleryBarItem2";
             // 
@@ -2658,13 +2662,23 @@
             this.bbi0448.Name = "bbi0448";
             this.bbi0448.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.bbi0448_ItemClick);
             // 
-            // bbi0537
+            // bbi0449
             // 
-            this.bbi0537.Caption = "Comisiones";
-            this.bbi0537.Id = 295;
-            this.bbi0537.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("bbi0537.ImageOptions.SvgImage")));
-            this.bbi0537.Name = "bbi0537";
-            this.bbi0537.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.bbi0537_ItemClick);
+            this.bbi0449.Caption = "Comisiones";
+            this.bbi0449.Id = 295;
+            this.bbi0449.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("bbi0449.ImageOptions.SvgImage")));
+            this.bbi0449.Name = "bbi0449";
+            this.bbi0449.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
+            this.bbi0449.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.bbi0449_ItemClick);
+            // 
+            // bbi0140
+            // 
+            this.bbi0140.Caption = "Costeo Artículos";
+            this.bbi0140.Id = 296;
+            this.bbi0140.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("bbi0140.ImageOptions.SvgImage")));
+            this.bbi0140.Name = "bbi0140";
+            this.bbi0140.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
+            this.bbi0140.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.bbi0140_ItemClick);
             // 
             // ribbonPageInicio
             // 
@@ -2727,6 +2741,7 @@
             this.ribbonPageGroupComprasInformes.ItemLinks.Add(this.bbi0137);
             this.ribbonPageGroupComprasInformes.ItemLinks.Add(this.bbi0138);
             this.ribbonPageGroupComprasInformes.ItemLinks.Add(this.bbi0139);
+            this.ribbonPageGroupComprasInformes.ItemLinks.Add(this.bbi0140);
             this.ribbonPageGroupComprasInformes.Name = "ribbonPageGroupComprasInformes";
             this.ribbonPageGroupComprasInformes.Text = "Informes";
             this.ribbonPageGroupComprasInformes.Visible = false;
@@ -2890,7 +2905,8 @@
             this.ribbonPageGroupVentasInformes.ItemLinks.Add(this.bbi0443);
             this.ribbonPageGroupVentasInformes.ItemLinks.Add(this.bbi0444);
             this.ribbonPageGroupVentasInformes.ItemLinks.Add(this.bbi0448);
-            this.ribbonPageGroupVentasInformes.ItemLinks.Add(this.bbi0537);
+            this.ribbonPageGroupVentasInformes.ItemLinks.Add(this.bbi0449);
+            this.ribbonPageGroupVentasInformes.ItemLinks.Add(this.bbi0450);
             this.ribbonPageGroupVentasInformes.Name = "ribbonPageGroupVentasInformes";
             this.ribbonPageGroupVentasInformes.Text = "Informes";
             this.ribbonPageGroupVentasInformes.Visible = false;
@@ -3171,6 +3187,14 @@
             // 
             this.backgroundWorker1.DoWork += new System.ComponentModel.DoWorkEventHandler(this.backgroundWorker1_DoWork);
             this.backgroundWorker1.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.backgroundWorker1_RunWorkerCompleted);
+            // 
+            // bbi0450
+            // 
+            this.bbi0450.Caption = "Articulos en Almacen";
+            this.bbi0450.Id = 297;
+            this.bbi0450.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("bbi0450.ImageOptions.SvgImage")));
+            this.bbi0450.Name = "bbi0450";
+            this.bbi0450.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.bbi0450_ItemClick);
             // 
             // Form1
             // 
@@ -3492,6 +3516,8 @@
         private DevExpress.XtraBars.BarButtonItem bbi0321;
         private DevExpress.XtraBars.BarButtonItem bbi0448;
         private DevExpress.XtraBars.BarButtonItem bbi0343;
-        private DevExpress.XtraBars.BarButtonItem bbi0537;
+        private DevExpress.XtraBars.BarButtonItem bbi0449;
+        private DevExpress.XtraBars.BarButtonItem bbi0140;
+        private DevExpress.XtraBars.BarButtonItem bbi0450;
     }
 }

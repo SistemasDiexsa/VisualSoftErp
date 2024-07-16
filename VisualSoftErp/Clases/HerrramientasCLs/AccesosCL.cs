@@ -16,10 +16,10 @@ namespace VisualSoftErp.Clases
 
         public int intUsuariosID { get; set; }
         public string strProgramaID { get; set; }
+        public int intProgramaID { get; set; }
         public int intFavorito { get; set; }
         public int intSololectura { get; set; }
         public DataTable dtm { get; set; }
-      
         public string strMaquina { get; set; }
         #endregion
 
@@ -53,7 +53,7 @@ namespace VisualSoftErp.Clases
                 return "";
             }
         }
-        public DataTable AccesosGrid()
+        public DataTable AccesosGridPorPrograma()
         {
             DataTable dt = new DataTable();
             try
@@ -63,7 +63,8 @@ namespace VisualSoftErp.Clases
                 cnn.Open();
 
                 SqlCommand cmd = new SqlCommand();
-                cmd.CommandText = "accesosGrid";
+                cmd.CommandText = "AccesosGridPorPrograma";
+                cmd.Parameters.AddWithValue("@prmProgramaID", intProgramaID);
                 cmd.CommandType = System.Data.CommandType.StoredProcedure;
                 cmd.Connection = cnn;
 
@@ -193,7 +194,7 @@ namespace VisualSoftErp.Clases
             }
         } // Public Class Eliminar
 
-        public DataTable AccesosGridPrincipal()
+        public DataTable AccesosGridPorusuario()
         {
             DataTable dt = new DataTable();
             try
@@ -252,6 +253,41 @@ namespace VisualSoftErp.Clases
                 return ex.Message;
             }
         } //PedidosSurtidosCrud
+
+        public string AccesosCrudPorPrograma()
+        {
+            try
+            {
+                string result = string.Empty;
+                using(SqlConnection cnn = new SqlConnection(strCnn))
+                {
+                    cnn.Open();
+                    using(SqlCommand cmd = new SqlCommand("AccesosCrudPorPrograma", cnn)) 
+                    {
+                        cmd.CommandType = CommandType.StoredProcedure;
+                        cmd.Parameters.AddWithValue("@prmAccesos", dtm);
+                        cmd.Parameters.AddWithValue("@prmUsuariosID", globalCL.gv_UsuarioID);
+                        cmd.Parameters.AddWithValue("@prmProgramaID", intProgramaID);
+                        cmd.Parameters.AddWithValue("@prmMaquina", strMaquina);
+                        using(SqlDataReader dr =  cmd.ExecuteReader())
+                        {
+                            if (dr.HasRows)
+                            {
+                                dr.Read();
+                                result = dr["result"].ToString();
+                            }
+                            else
+                                result = "no read";
+                        }
+                    }
+                }
+                return result;
+            }
+            catch (Exception ex)
+            {
+                return ex.Message;
+            }
+        }
 
         #endregion
     }

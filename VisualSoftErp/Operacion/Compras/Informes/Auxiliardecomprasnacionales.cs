@@ -604,26 +604,28 @@ namespace VisualSoftErp.Operacion.Compras.Informes
 
                         if (Adicional == 0)
                             Adicional = 1;
-
+                        
                         Sugerido = Math.Round((Reorden + (Adicional * AProducir)) - TEx, 0);
 
+                        // Trabar este if en caso de que el sugerido sea = 0, se debe de tomar el pronostico como sugerido
+                        // para los componentes  (creo que esto no)
                         if (Sugerido < 0)
                             Sugerido = 0;
 
                         clc.intArticulosID = ArtId;
                         clc.dFecha = Convert.ToDateTime(dFecha.Text);
-                        clc.intSugerido = Sugerido;
+
+                        // En lugar de sugerido, va pronostico de padre
+                        clc.intSugerido = AProducir;
                         dtComp = clc.ComponentesGridParaAuxNacional();
 
                         //Se recorre para sumarizar a las MP que vienen del SP original (AuxNac)
                         foreach (DataRow drC in dtComp.Rows)
                         {
+
                             Componente = Convert.ToInt32(drC["Componente"]);
 
-
-                            // drCExiste = dt.Select("ID=" + Componente.ToString());
-                                drCExiste = dt.Select("ID = '" + Componente.ToString() + "'");
-
+                            drCExiste = dt.Select("ID = '" + Componente.ToString() + "'");
 
                             existeArt = false;
                             try

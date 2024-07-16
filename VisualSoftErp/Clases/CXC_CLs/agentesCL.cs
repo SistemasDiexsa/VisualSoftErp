@@ -20,6 +20,7 @@ namespace VisualSoftErp.Clases
         public string strPuesto { get; set; }
         public string strEncabezado { get; set; }
         public string strPiedepagina { get; set; }
+        public int intActivo { get; set; }
         #endregion
 
         #region Constructor
@@ -32,6 +33,7 @@ namespace VisualSoftErp.Clases
             strPuesto = string.Empty;
             strEncabezado = string.Empty;
             strPiedepagina = string.Empty;
+            intActivo = 0;
         }
         #endregion
 
@@ -93,6 +95,7 @@ namespace VisualSoftErp.Clases
                 cmd.Parameters.AddWithValue("@prmEncabezado", strEncabezado);
                 cmd.Parameters.AddWithValue("@prmPiedepagina", strPiedepagina);
                 cmd.Parameters.AddWithValue("@prmEmail", strEmail);
+                cmd.Parameters.AddWithValue("@prmActivo", intActivo);
                 cmd.CommandType = System.Data.CommandType.StoredProcedure;
                 cmd.Connection = cnn;
                 SqlDataReader dr = cmd.ExecuteReader();
@@ -142,6 +145,7 @@ namespace VisualSoftErp.Clases
                     strEncabezado = dr["Encabezado"].ToString();
                     strPiedepagina = dr["Piedepagina"].ToString();
                     strEmail = dr["Email"].ToString();
+                    intActivo = Convert.ToInt32(dr["Activo"]);
                     result = "OK";
                 }
                 else

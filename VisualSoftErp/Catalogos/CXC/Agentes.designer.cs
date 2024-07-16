@@ -57,6 +57,8 @@
             this.gridControlPrincipal = new DevExpress.XtraGrid.GridControl();
             this.gridViewPrincipal = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.customersNavigationPage = new DevExpress.XtraBars.Navigation.NavigationPage();
+            this.labelControl6 = new DevExpress.XtraEditors.LabelControl();
+            this.txtEmail = new DevExpress.XtraEditors.TextEdit();
             this.labelControl5 = new DevExpress.XtraEditors.LabelControl();
             this.labelControl4 = new DevExpress.XtraEditors.LabelControl();
             this.txtPiedepagina = new DevExpress.XtraEditors.MemoEdit();
@@ -67,8 +69,7 @@
             this.labelControl2 = new DevExpress.XtraEditors.LabelControl();
             this.txtNombre = new DevExpress.XtraEditors.TextEdit();
             this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
-            this.txtEmail = new DevExpress.XtraEditors.TextEdit();
-            this.labelControl6 = new DevExpress.XtraEditors.LabelControl();
+            this.swActivo = new DevExpress.XtraEditors.ToggleSwitch();
             ((System.ComponentModel.ISupportInitialize)(this.tabbedView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ribbonControl)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.officeNavigationBar)).BeginInit();
@@ -78,16 +79,18 @@
             ((System.ComponentModel.ISupportInitialize)(this.gridControlPrincipal)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridViewPrincipal)).BeginInit();
             this.customersNavigationPage.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.txtEmail.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtPiedepagina.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtEncabezado.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtPuesto.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtTelefono.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtNombre.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtEmail.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.swActivo.Properties)).BeginInit();
             this.SuspendLayout();
             // 
             // ribbonControl
             // 
+            this.ribbonControl.EmptyAreaImageOptions.ImagePadding = new System.Windows.Forms.Padding(26, 24, 26, 24);
             this.ribbonControl.ExpandCollapseItem.Id = 0;
             this.ribbonControl.Items.AddRange(new DevExpress.XtraBars.BarItem[] {
             this.ribbonControl.ExpandCollapseItem,
@@ -106,16 +109,16 @@
             this.barButtonItem1,
             this.barButtonItem2});
             this.ribbonControl.Location = new System.Drawing.Point(0, 0);
-            this.ribbonControl.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.ribbonControl.MaxItemId = 55;
             this.ribbonControl.MdiMergeStyle = DevExpress.XtraBars.Ribbon.RibbonMdiMergeStyle.Always;
             this.ribbonControl.Name = "ribbonControl";
+            this.ribbonControl.OptionsMenuMinWidth = 283;
             this.ribbonControl.Pages.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPage[] {
             this.ribbonPage,
             this.ribbonPage1});
             this.ribbonControl.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonControlStyle.Office2013;
             this.ribbonControl.ShowApplicationButton = DevExpress.Utils.DefaultBoolean.False;
-            this.ribbonControl.Size = new System.Drawing.Size(1331, 181);
+            this.ribbonControl.Size = new System.Drawing.Size(1141, 147);
             this.ribbonControl.StatusBar = this.ribbonStatusBar;
             this.ribbonControl.ToolbarLocation = DevExpress.XtraBars.Ribbon.RibbonQuickAccessToolbarLocation.Hidden;
             // 
@@ -239,9 +242,9 @@
             // ribbonPageGroup
             // 
             this.ribbonPageGroup.AllowTextClipping = false;
+            this.ribbonPageGroup.CaptionButtonVisible = DevExpress.Utils.DefaultBoolean.False;
             this.ribbonPageGroup.ItemLinks.Add(this.skinRibbonGalleryBarItem);
             this.ribbonPageGroup.Name = "ribbonPageGroup";
-            this.ribbonPageGroup.ShowCaptionButton = false;
             this.ribbonPageGroup.Text = "Appearance";
             // 
             // ribbonPage1
@@ -265,19 +268,17 @@
             // 
             // ribbonStatusBar
             // 
-            this.ribbonStatusBar.Location = new System.Drawing.Point(0, 894);
-            this.ribbonStatusBar.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.ribbonStatusBar.Location = new System.Drawing.Point(0, 727);
             this.ribbonStatusBar.Name = "ribbonStatusBar";
             this.ribbonStatusBar.Ribbon = this.ribbonControl;
-            this.ribbonStatusBar.Size = new System.Drawing.Size(1331, 29);
+            this.ribbonStatusBar.Size = new System.Drawing.Size(1141, 23);
             // 
             // officeNavigationBar
             // 
             this.officeNavigationBar.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.officeNavigationBar.Location = new System.Drawing.Point(0, 837);
-            this.officeNavigationBar.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.officeNavigationBar.Location = new System.Drawing.Point(0, 681);
             this.officeNavigationBar.Name = "officeNavigationBar";
-            this.officeNavigationBar.Size = new System.Drawing.Size(1331, 57);
+            this.officeNavigationBar.Size = new System.Drawing.Size(1141, 46);
             this.officeNavigationBar.TabIndex = 1;
             this.officeNavigationBar.Text = "officeNavigationBar";
             // 
@@ -288,42 +289,37 @@
             this.navigationFrame.Controls.Add(this.employeesNavigationPage);
             this.navigationFrame.Controls.Add(this.customersNavigationPage);
             this.navigationFrame.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.navigationFrame.Location = new System.Drawing.Point(0, 181);
-            this.navigationFrame.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.navigationFrame.Location = new System.Drawing.Point(0, 147);
             this.navigationFrame.Name = "navigationFrame";
             this.navigationFrame.Pages.AddRange(new DevExpress.XtraBars.Navigation.NavigationPageBase[] {
             this.employeesNavigationPage,
             this.customersNavigationPage});
             this.navigationFrame.RibbonAndBarsMergeStyle = DevExpress.XtraBars.Docking2010.Views.RibbonAndBarsMergeStyle.Always;
             this.navigationFrame.SelectedPage = this.employeesNavigationPage;
-            this.navigationFrame.Size = new System.Drawing.Size(1331, 656);
+            this.navigationFrame.Size = new System.Drawing.Size(1141, 534);
             this.navigationFrame.TabIndex = 0;
             this.navigationFrame.Text = "navigationFrame";
             // 
             // employeesNavigationPage
             // 
             this.employeesNavigationPage.Controls.Add(this.gridControlPrincipal);
-            this.employeesNavigationPage.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.employeesNavigationPage.Name = "employeesNavigationPage";
-            this.employeesNavigationPage.Size = new System.Drawing.Size(1331, 656);
+            this.employeesNavigationPage.Size = new System.Drawing.Size(1141, 534);
             // 
             // gridControlPrincipal
             // 
             this.gridControlPrincipal.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.gridControlPrincipal.EmbeddedNavigator.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.gridControlPrincipal.Location = new System.Drawing.Point(0, 0);
             this.gridControlPrincipal.MainView = this.gridViewPrincipal;
-            this.gridControlPrincipal.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.gridControlPrincipal.MenuManager = this.ribbonControl;
             this.gridControlPrincipal.Name = "gridControlPrincipal";
-            this.gridControlPrincipal.Size = new System.Drawing.Size(1331, 656);
+            this.gridControlPrincipal.Size = new System.Drawing.Size(1141, 534);
             this.gridControlPrincipal.TabIndex = 0;
             this.gridControlPrincipal.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridViewPrincipal});
             // 
             // gridViewPrincipal
             // 
-            this.gridViewPrincipal.DetailHeight = 431;
             this.gridViewPrincipal.GridControl = this.gridControlPrincipal;
             this.gridViewPrincipal.Name = "gridViewPrincipal";
             this.gridViewPrincipal.OptionsView.ShowGroupPanel = false;
@@ -331,6 +327,7 @@
             // 
             // customersNavigationPage
             // 
+            this.customersNavigationPage.Controls.Add(this.swActivo);
             this.customersNavigationPage.Controls.Add(this.labelControl6);
             this.customersNavigationPage.Controls.Add(this.txtEmail);
             this.customersNavigationPage.Controls.Add(this.labelControl5);
@@ -343,136 +340,132 @@
             this.customersNavigationPage.Controls.Add(this.labelControl2);
             this.customersNavigationPage.Controls.Add(this.txtNombre);
             this.customersNavigationPage.Controls.Add(this.labelControl1);
-            this.customersNavigationPage.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.customersNavigationPage.Name = "customersNavigationPage";
-            this.customersNavigationPage.Size = new System.Drawing.Size(1331, 656);
+            this.customersNavigationPage.Size = new System.Drawing.Size(1141, 534);
+            // 
+            // labelControl6
+            // 
+            this.labelControl6.Location = new System.Drawing.Point(29, 150);
+            this.labelControl6.Name = "labelControl6";
+            this.labelControl6.Size = new System.Drawing.Size(33, 13);
+            this.labelControl6.TabIndex = 11;
+            this.labelControl6.Text = "Correo";
+            // 
+            // txtEmail
+            // 
+            this.txtEmail.EnterMoveNextControl = true;
+            this.txtEmail.Location = new System.Drawing.Point(111, 145);
+            this.txtEmail.MenuManager = this.ribbonControl;
+            this.txtEmail.Name = "txtEmail";
+            this.txtEmail.Properties.MaxLength = 50;
+            this.txtEmail.Size = new System.Drawing.Size(464, 20);
+            this.txtEmail.TabIndex = 4;
             // 
             // labelControl5
             // 
-            this.labelControl5.Location = new System.Drawing.Point(34, 372);
-            this.labelControl5.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.labelControl5.Location = new System.Drawing.Point(29, 302);
             this.labelControl5.Name = "labelControl5";
-            this.labelControl5.Size = new System.Drawing.Size(77, 16);
+            this.labelControl5.Size = new System.Drawing.Size(64, 13);
             this.labelControl5.TabIndex = 9;
             this.labelControl5.Text = "Pie de pagina";
             // 
             // labelControl4
             // 
-            this.labelControl4.Location = new System.Drawing.Point(34, 260);
-            this.labelControl4.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.labelControl4.Location = new System.Drawing.Point(29, 211);
             this.labelControl4.Name = "labelControl4";
-            this.labelControl4.Size = new System.Drawing.Size(68, 16);
+            this.labelControl4.Size = new System.Drawing.Size(58, 13);
             this.labelControl4.TabIndex = 8;
             this.labelControl4.Text = "Encabezado";
             // 
             // txtPiedepagina
             // 
-            this.txtPiedepagina.Location = new System.Drawing.Point(129, 334);
-            this.txtPiedepagina.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.txtPiedepagina.Location = new System.Drawing.Point(111, 271);
             this.txtPiedepagina.MenuManager = this.ribbonControl;
             this.txtPiedepagina.Name = "txtPiedepagina";
-            this.txtPiedepagina.Size = new System.Drawing.Size(998, 89);
+            this.txtPiedepagina.Size = new System.Drawing.Size(855, 72);
             this.txtPiedepagina.TabIndex = 6;
             // 
             // txtEncabezado
             // 
-            this.txtEncabezado.Location = new System.Drawing.Point(129, 232);
-            this.txtEncabezado.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.txtEncabezado.Location = new System.Drawing.Point(111, 188);
             this.txtEncabezado.MenuManager = this.ribbonControl;
             this.txtEncabezado.Name = "txtEncabezado";
-            this.txtEncabezado.Size = new System.Drawing.Size(998, 72);
+            this.txtEncabezado.Size = new System.Drawing.Size(855, 58);
             this.txtEncabezado.TabIndex = 5;
             // 
             // txtPuesto
             // 
             this.txtPuesto.EnterMoveNextControl = true;
-            this.txtPuesto.Location = new System.Drawing.Point(129, 133);
-            this.txtPuesto.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.txtPuesto.Location = new System.Drawing.Point(111, 108);
             this.txtPuesto.MenuManager = this.ribbonControl;
             this.txtPuesto.Name = "txtPuesto";
             this.txtPuesto.Properties.MaxLength = 50;
-            this.txtPuesto.Size = new System.Drawing.Size(541, 22);
+            this.txtPuesto.Size = new System.Drawing.Size(464, 20);
             this.txtPuesto.TabIndex = 3;
             // 
             // labelControl3
             // 
-            this.labelControl3.Location = new System.Drawing.Point(34, 139);
-            this.labelControl3.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.labelControl3.Location = new System.Drawing.Point(29, 113);
             this.labelControl3.Name = "labelControl3";
-            this.labelControl3.Size = new System.Drawing.Size(38, 16);
+            this.labelControl3.Size = new System.Drawing.Size(33, 13);
             this.labelControl3.TabIndex = 4;
             this.labelControl3.Text = "Puesto";
             // 
             // txtTelefono
             // 
             this.txtTelefono.EnterMoveNextControl = true;
-            this.txtTelefono.Location = new System.Drawing.Point(129, 89);
-            this.txtTelefono.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.txtTelefono.Location = new System.Drawing.Point(111, 72);
             this.txtTelefono.MenuManager = this.ribbonControl;
             this.txtTelefono.Name = "txtTelefono";
             this.txtTelefono.Properties.MaxLength = 50;
-            this.txtTelefono.Size = new System.Drawing.Size(541, 22);
+            this.txtTelefono.Size = new System.Drawing.Size(464, 20);
             this.txtTelefono.TabIndex = 2;
             // 
             // labelControl2
             // 
-            this.labelControl2.Location = new System.Drawing.Point(34, 95);
-            this.labelControl2.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.labelControl2.Location = new System.Drawing.Point(29, 77);
             this.labelControl2.Name = "labelControl2";
-            this.labelControl2.Size = new System.Drawing.Size(50, 16);
+            this.labelControl2.Size = new System.Drawing.Size(42, 13);
             this.labelControl2.TabIndex = 2;
             this.labelControl2.Text = "Telefono";
             // 
             // txtNombre
             // 
             this.txtNombre.EnterMoveNextControl = true;
-            this.txtNombre.Location = new System.Drawing.Point(129, 47);
-            this.txtNombre.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.txtNombre.Location = new System.Drawing.Point(111, 38);
             this.txtNombre.MenuManager = this.ribbonControl;
             this.txtNombre.Name = "txtNombre";
             this.txtNombre.Properties.MaxLength = 50;
-            this.txtNombre.Size = new System.Drawing.Size(541, 22);
+            this.txtNombre.Size = new System.Drawing.Size(464, 20);
             this.txtNombre.TabIndex = 1;
             // 
             // labelControl1
             // 
-            this.labelControl1.Location = new System.Drawing.Point(34, 53);
-            this.labelControl1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.labelControl1.Location = new System.Drawing.Point(29, 43);
             this.labelControl1.Name = "labelControl1";
-            this.labelControl1.Size = new System.Drawing.Size(45, 16);
+            this.labelControl1.Size = new System.Drawing.Size(37, 13);
             this.labelControl1.TabIndex = 0;
             this.labelControl1.Text = "Nombre";
             // 
-            // txtEmail
+            // swActivo
             // 
-            this.txtEmail.EnterMoveNextControl = true;
-            this.txtEmail.Location = new System.Drawing.Point(129, 178);
-            this.txtEmail.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.txtEmail.MenuManager = this.ribbonControl;
-            this.txtEmail.Name = "txtEmail";
-            this.txtEmail.Properties.MaxLength = 50;
-            this.txtEmail.Size = new System.Drawing.Size(541, 22);
-            this.txtEmail.TabIndex = 4;
-            // 
-            // labelControl6
-            // 
-            this.labelControl6.Location = new System.Drawing.Point(34, 184);
-            this.labelControl6.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.labelControl6.Name = "labelControl6";
-            this.labelControl6.Size = new System.Drawing.Size(39, 16);
-            this.labelControl6.TabIndex = 11;
-            this.labelControl6.Text = "Correo";
+            this.swActivo.Location = new System.Drawing.Point(598, 145);
+            this.swActivo.MenuManager = this.ribbonControl;
+            this.swActivo.Name = "swActivo";
+            this.swActivo.Properties.OffText = "Inactivo";
+            this.swActivo.Properties.OnText = "Activo";
+            this.swActivo.Size = new System.Drawing.Size(125, 24);
+            this.swActivo.TabIndex = 12;
             // 
             // Agentes
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1331, 923);
+            this.ClientSize = new System.Drawing.Size(1141, 750);
             this.Controls.Add(this.navigationFrame);
             this.Controls.Add(this.officeNavigationBar);
             this.Controls.Add(this.ribbonStatusBar);
             this.Controls.Add(this.ribbonControl);
-            this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Name = "Agentes";
             this.Ribbon = this.ribbonControl;
             this.StatusBar = this.ribbonStatusBar;
@@ -488,12 +481,13 @@
             ((System.ComponentModel.ISupportInitialize)(this.gridViewPrincipal)).EndInit();
             this.customersNavigationPage.ResumeLayout(false);
             this.customersNavigationPage.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.txtEmail.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtPiedepagina.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtEncabezado.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtPuesto.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtTelefono.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtNombre.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtEmail.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.swActivo.Properties)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -539,5 +533,6 @@
         private DevExpress.XtraBars.BarButtonItem barButtonItem2;
         private DevExpress.XtraEditors.LabelControl labelControl6;
         private DevExpress.XtraEditors.TextEdit txtEmail;
+        private DevExpress.XtraEditors.ToggleSwitch swActivo;
     }
 }

@@ -127,123 +127,126 @@ namespace VisualSoftErp.Operacion.CxC.Informes
                     impDirecto = 0;
                 }
 
-                CarteraVencidaResumenPorUen repR = new CarteraVencidaResumenPorUen();
-                Carteravencidadesigner rep = new Carteravencidadesigner();
-                if (impDirecto == 1)
+                #region TRY REPORTE
+                try
                 {
+                    CarteraVencidaResumenPorUen repR = new CarteraVencidaResumenPorUen();
+                    Carteravencidadesigner rep = new Carteravencidadesigner();
+                    if (impDirecto == 1)
+                    {
 
-                    rep.Parameters["parameter1"].Value = 0;
-                    rep.Parameters["parameter1"].Visible = false;
-                    rep.Parameters["parameter2"].Value = 0;
-                    rep.Parameters["parameter2"].Visible = false;
-                    rep.Parameters["parameter3"].Value = Convert.ToDateTime(dateEditFechaCorte.Text);
-                    rep.Parameters["parameter3"].Visible = false;
-                    rep.Parameters["parameter4"].Value = ClienteIn;
-                    rep.Parameters["parameter4"].Visible = false;
-                    rep.Parameters["parameter5"].Value = ClienteFin;
-                    rep.Parameters["parameter5"].Visible = false;
-                    rep.Parameters["parameter6"].Value = AgenteIn;
-                    rep.Parameters["parameter6"].Visible = false;
-                    rep.Parameters["parameter7"].Value = AgenteFin;
-                    rep.Parameters["parameter7"].Visible = false;
-                    rep.Parameters["parameter8"].Value = 0;
-                    rep.Parameters["parameter8"].Visible = false;
-                    rep.Parameters["parameter9"].Value = txtDias.Text;
-                    rep.Parameters["parameter9"].Visible = false;
+                        rep.Parameters["parameter1"].Value = 0;
+                        rep.Parameters["parameter1"].Visible = false;
+                        rep.Parameters["parameter2"].Value = 0;
+                        rep.Parameters["parameter2"].Visible = false;
+                        rep.Parameters["parameter3"].Value = Convert.ToDateTime(dateEditFechaCorte.Text);
+                        rep.Parameters["parameter3"].Visible = false;
+                        rep.Parameters["parameter4"].Value = ClienteIn;
+                        rep.Parameters["parameter4"].Visible = false;
+                        rep.Parameters["parameter5"].Value = ClienteFin;
+                        rep.Parameters["parameter5"].Visible = false;
+                        rep.Parameters["parameter6"].Value = AgenteIn;
+                        rep.Parameters["parameter6"].Visible = false;
+                        rep.Parameters["parameter7"].Value = AgenteFin;
+                        rep.Parameters["parameter7"].Visible = false;
+                        rep.Parameters["parameter8"].Value = 0;
+                        rep.Parameters["parameter8"].Visible = false;
+                        rep.Parameters["parameter9"].Value = txtDias.Text;
+                        rep.Parameters["parameter9"].Visible = false;
 
-                    ReportPrintTool rpt = new DevExpress.XtraReports.UI.ReportPrintTool(rep);
-                    rpt.Print();
-                    return;
+                        ReportPrintTool rpt = new DevExpress.XtraReports.UI.ReportPrintTool(rep);
+                        rpt.Print();
+                        return;
+                    }
+                    else
+                    {
+                        rep.Parameters["parameter1"].Value = 0;
+                        rep.Parameters["parameter1"].Visible = false;
+                        rep.Parameters["parameter2"].Value = 0;
+                        rep.Parameters["parameter2"].Visible = false;
+                        rep.Parameters["parameter3"].Value = cl.fechaSQL(Convert.ToDateTime(dateEditFechaCorte.Text)); //Convert.ToDateTime(dateEditFechaCorte.Text);
+                        rep.Parameters["parameter3"].Visible = false;
+                        rep.Parameters["parameter4"].Value = ClienteIn;
+                        rep.Parameters["parameter4"].Visible = false;
+                        rep.Parameters["parameter5"].Value = ClienteFin;
+                        rep.Parameters["parameter5"].Visible = false;
+                        rep.Parameters["parameter6"].Value = AgenteIn;
+                        rep.Parameters["parameter6"].Visible = false;
+                        rep.Parameters["parameter7"].Value = AgenteFin;
+                        rep.Parameters["parameter7"].Visible = false;
+                        rep.Parameters["parameter8"].Value = 0;
+                        rep.Parameters["parameter8"].Visible = false;
+                        rep.Parameters["parameter9"].Value = txtDias.Text;
+                        rep.Parameters["parameter9"].Visible = false;
+
+                        documentViewer1.DocumentSource = rep;
+                        rep.CreateDocument();
+                        ribbonControl.MergeOwner.SelectedPage = ribbonControl.MergeOwner.TotalPageCategory.GetPageByText(ribbonPageImpresion.Text);
+                        navigationFrame.SelectedPageIndex = 1;
+                    }
+
+
+                    bbiResumen.Visibility = DevExpress.XtraBars.BarItemVisibility.Always;
+
+                    //Resumen UEN
+
+                    if (impDirecto == 1)
+                    {
+
+                        repR.Parameters["parameter1"].Value = 0;
+                        repR.Parameters["parameter1"].Visible = false;
+                        repR.Parameters["parameter2"].Value = 0;
+                        repR.Parameters["parameter2"].Visible = false;
+                        repR.Parameters["parameter3"].Value = Convert.ToDateTime(dateEditFechaCorte.Text);
+                        repR.Parameters["parameter3"].Visible = false;
+                        repR.Parameters["parameter4"].Value = ClienteIn;
+                        repR.Parameters["parameter4"].Visible = false;
+                        repR.Parameters["parameter5"].Value = ClienteFin;
+                        repR.Parameters["parameter5"].Visible = false;
+                        repR.Parameters["parameter6"].Value = AgenteIn;
+                        repR.Parameters["parameter6"].Visible = false;
+                        repR.Parameters["parameter7"].Value = AgenteFin;
+                        repR.Parameters["parameter7"].Visible = false;
+                        repR.Parameters["parameter8"].Value = 0;
+                        repR.Parameters["parameter8"].Visible = false;
+                        repR.Parameters["parameter9"].Value = txtDias.Text;
+                        repR.Parameters["parameter9"].Visible = false;
+
+                        ReportPrintTool rpt = new DevExpress.XtraReports.UI.ReportPrintTool(repR);
+                        rpt.Print();
+                        return;
+                    }
+                    else
+                    {
+                        repR.Parameters["parameter1"].Value = 0;
+                        repR.Parameters["parameter1"].Visible = false;
+                        repR.Parameters["parameter2"].Value = 0;
+                        repR.Parameters["parameter2"].Visible = false;
+                        repR.Parameters["parameter3"].Value = Convert.ToDateTime(dateEditFechaCorte.Text);
+                        repR.Parameters["parameter3"].Visible = false;
+                        repR.Parameters["parameter4"].Value = ClienteIn;
+                        repR.Parameters["parameter4"].Visible = false;
+                        repR.Parameters["parameter5"].Value = ClienteFin;
+                        repR.Parameters["parameter5"].Visible = false;
+                        repR.Parameters["parameter6"].Value = AgenteIn;
+                        repR.Parameters["parameter6"].Visible = false;
+                        repR.Parameters["parameter7"].Value = AgenteFin;
+                        repR.Parameters["parameter7"].Visible = false;
+                        repR.Parameters["parameter8"].Value = 0;
+                        repR.Parameters["parameter8"].Visible = false;
+                        repR.Parameters["parameter9"].Value = txtDias.Text;
+                        repR.Parameters["parameter9"].Visible = false;
+                        documentViewer2.DocumentSource = repR;
+                        repR.CreateDocument();
+                        ribbonControl.MergeOwner.SelectedPage = ribbonControl.MergeOwner.TotalPageCategory.GetPageByText(ribbonPageImpresion.Text);
+                        //navigationFrame.SelectedPageIndex = 1;
+                    }
                 }
-                else
+                catch (Exception ex)
                 {
-                    rep.Parameters["parameter1"].Value = 0;
-                    rep.Parameters["parameter1"].Visible = false;
-                    rep.Parameters["parameter2"].Value = 0;
-                    rep.Parameters["parameter2"].Visible = false;
-                    rep.Parameters["parameter3"].Value = cl.fechaSQL(Convert.ToDateTime(dateEditFechaCorte.Text)); //Convert.ToDateTime(dateEditFechaCorte.Text);
-                    rep.Parameters["parameter3"].Visible = false;
-                    rep.Parameters["parameter4"].Value = ClienteIn;
-                    rep.Parameters["parameter4"].Visible = false;
-                    rep.Parameters["parameter5"].Value = ClienteFin;
-                    rep.Parameters["parameter5"].Visible = false;
-                    rep.Parameters["parameter6"].Value = AgenteIn;
-                    rep.Parameters["parameter6"].Visible = false;
-                    rep.Parameters["parameter7"].Value = AgenteFin;
-                    rep.Parameters["parameter7"].Visible = false;
-                    rep.Parameters["parameter8"].Value = 0;
-                    rep.Parameters["parameter8"].Visible = false;
-                    rep.Parameters["parameter9"].Value = txtDias.Text;
-                    rep.Parameters["parameter9"].Visible = false;
-
-                    
-
-                    documentViewer1.DocumentSource = rep;
-                    rep.CreateDocument();
-                    ribbonControl.MergeOwner.SelectedPage = ribbonControl.MergeOwner.TotalPageCategory.GetPageByText(ribbonPageImpresion.Text);
-                    navigationFrame.SelectedPageIndex = 1;
+                    MessageBox.Show("Error en línea " + ex.LineNumber().ToString() + ":\n\n" + ex.Message);
                 }
-
-
-                bbiResumen.Visibility = DevExpress.XtraBars.BarItemVisibility.Always;
-
-                //Resumen UEN
-               
-                if (impDirecto == 1)
-                {
-
-                    repR.Parameters["parameter1"].Value = 0;
-                    repR.Parameters["parameter1"].Visible = false;
-                    repR.Parameters["parameter2"].Value = 0;
-                    repR.Parameters["parameter2"].Visible = false;
-                    repR.Parameters["parameter3"].Value = Convert.ToDateTime(dateEditFechaCorte.Text);
-                    repR.Parameters["parameter3"].Visible = false;
-                    repR.Parameters["parameter4"].Value = ClienteIn;
-                    repR.Parameters["parameter4"].Visible = false;
-                    repR.Parameters["parameter5"].Value = ClienteFin;
-                    repR.Parameters["parameter5"].Visible = false;
-                    repR.Parameters["parameter6"].Value = AgenteIn;
-                    repR.Parameters["parameter6"].Visible = false;
-                    repR.Parameters["parameter7"].Value = AgenteFin;
-                    repR.Parameters["parameter7"].Visible = false;
-                    repR.Parameters["parameter8"].Value = 0;
-                    repR.Parameters["parameter8"].Visible = false;
-                    repR.Parameters["parameter9"].Value = txtDias.Text;
-                    repR.Parameters["parameter9"].Visible = false;
-
-                    ReportPrintTool rpt = new DevExpress.XtraReports.UI.ReportPrintTool(repR);
-                    rpt.Print();
-                    return;
-                }
-                else
-                {
-                    repR.Parameters["parameter1"].Value = 0;
-                    repR.Parameters["parameter1"].Visible = false;
-                    repR.Parameters["parameter2"].Value = 0;
-                    repR.Parameters["parameter2"].Visible = false;
-                    repR.Parameters["parameter3"].Value = Convert.ToDateTime(dateEditFechaCorte.Text);
-                    repR.Parameters["parameter3"].Visible = false;
-                    repR.Parameters["parameter4"].Value = ClienteIn;
-                    repR.Parameters["parameter4"].Visible = false;
-                    repR.Parameters["parameter5"].Value = ClienteFin;
-                    repR.Parameters["parameter5"].Visible = false;
-                    repR.Parameters["parameter6"].Value = AgenteIn;
-                    repR.Parameters["parameter6"].Visible = false;
-                    repR.Parameters["parameter7"].Value = AgenteFin;
-                    repR.Parameters["parameter7"].Visible = false;
-                    repR.Parameters["parameter8"].Value = 0;
-                    repR.Parameters["parameter8"].Visible = false;
-                    repR.Parameters["parameter9"].Value = txtDias.Text;
-                    repR.Parameters["parameter9"].Visible = false;
-                    documentViewer2.DocumentSource = repR;
-                    repR.CreateDocument();
-                    ribbonControl.MergeOwner.SelectedPage = ribbonControl.MergeOwner.TotalPageCategory.GetPageByText(ribbonPageImpresion.Text);
-                    //navigationFrame.SelectedPageIndex = 1;
-                }
-
-
-
-
+                #endregion TRY REPORTE
             }
             catch (Exception ex)
             {

@@ -73,6 +73,7 @@ namespace VisualSoftErp.Catalogos
             txtPuesto.Text = string.Empty;
             txtEncabezado.Text = string.Empty;
             txtPiedepagina.Text = string.Empty;
+            swActivo.IsOn = false;
         }
 
         private void bbiGuardar_ItemClick(Object sender, DevExpress.XtraBars.ItemClickEventArgs e)
@@ -98,6 +99,7 @@ namespace VisualSoftErp.Catalogos
                 cl.strPuesto = txtPuesto.Text;
                 cl.strEncabezado = txtEncabezado.Text;
                 cl.strPiedepagina = txtPiedepagina.Text;
+                cl.intActivo = swActivo.IsOn ? 1 : 0;
                 Result = cl.AgentesCrud();
                 if (Result == "OK")
                 {
@@ -160,6 +162,7 @@ namespace VisualSoftErp.Catalogos
                 txtPuesto.Text = cl.strPuesto;
                 txtEncabezado.Text = cl.strEncabezado;
                 txtPiedepagina.Text = cl.strPiedepagina;
+                swActivo.IsOn = cl.intActivo == 1 ? true : false;
             }
             else
             {

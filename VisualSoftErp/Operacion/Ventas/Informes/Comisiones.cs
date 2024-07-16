@@ -18,6 +18,11 @@ using VisualSoftErp.Clases;
 using VisualSoftErp.Operacion.Ventas.Clases;
 using DevExpress.XtraGrid;
 using DevExpress.XtraRichEdit.Model;
+using DevExpress.Utils;
+using DevExpress.Pdf.Native;
+using System.Web.UI;
+using VisualSoftErp.Operacion.Ventas.Designers;
+using DevExpress.XtraReports.UI;
 
 namespace VisualSoftErp.Operacion.Ventas.Informes
 {
@@ -27,12 +32,16 @@ namespace VisualSoftErp.Operacion.Ventas.Informes
         private int intConceptosComisionesID;
         private bool isEditing;
         private bool permisosEscritura;
-        private DataTable Conceptos { get; set; } = new DataTable
+        private bool nuevoConceptoAgregado = false;
+        private DataTable ComisionesAgentes { get; set; } = new DataTable
         {
             Columns =
             {
-                new DataColumn("Nombre", typeof(string)),
-                new DataColumn("Porcentaje", typeof(int))
+                new DataColumn("ComisionesAgentesID", typeof(int)),
+                new DataColumn("AgentesID", typeof(int)),
+                new DataColumn("ConceptosComisionesID", typeof(int)),
+                new DataColumn("Porcentaje", typeof(decimal)),
+                new DataColumn("Meta", typeof(int))
             }
         };
 
@@ -43,39 +52,48 @@ namespace VisualSoftErp.Operacion.Ventas.Informes
 
         private void Comisiones_Load(object sender, EventArgs e)
         {
-            soloLectura();
-            CargarCombos();
             ribbonPageHome.Visible = true;
             if (ribbonControl.MergeOwner != null)
                 ribbonControl.MergeOwner.SelectedPage = ribbonControl.MergeOwner.TotalPageCategory.GetPageByText(ribbonPageHome.Text);
+            SoloLectura();
+            CargarCombos();
             InitGridControlAgentes();
             InitGridControlConceptos();
             InitGridControlConceptosForm();
-            CargarCombos();
             MostrarOcultarFormConceptos(false);
             navigationFrame.SelectedPage = NavigationPageAgentes;
+            AdjustColumnWidths();
             DevExpress.XtraSplashScreen.SplashScreenManager.CloseDefaultWaitForm();
         }
 
-        private void soloLectura()
+        private void SoloLectura()
         {
             globalCL clg = new globalCL();
-            clg.strPrograma = "0537";
+            clg.strPrograma = "0449";
             if (clg.accesoSoloLectura())
             {
                 bbiGuardarConceptosAgente.Enabled = false;
 
+                bbiNuevoConcepto.Enabled = false;
                 bbiGuardarConcepto.Enabled = false;
                 bbiEditarConcepto.Enabled = false;
                 bbiEliminarConcepto.Enabled = false;
+
                 permisosEscritura = false;
             }
+            else
+                permisosEscritura = true;
         }
+        
         private void CargarCombos()
         {
             combosCL combos = new combosCL();
             BindingSource src = new BindingSource();
             globalCL global = new globalCL();
+
+            #region COMBO CONCEPTOS COMISIONES POR AGENTE
+            CargarCombosConceptosGrid();
+            #endregion COMBO CONCEPTOS COMISIONES POR AGENTE
 
             #region COMBO FORMAS DE CALCULO PARA COMISIONES
             combos.strTabla = "FormasCalculoComisiones";
@@ -88,7 +106,7 @@ namespace VisualSoftErp.Operacion.Ventas.Informes
             cboFormasCalculo.Properties.Columns["Clave"].Visible = false;
             cboFormasCalculo.Properties.NullText = "Seleccione una Forma de Calculo";
             cboFormasCalculo.EditValue = null;
-            #endregion
+            #endregion COMBO FORMAS DE CALCULO PARA COMISIONES
 
             #region COMBO LINEAS
             combos.strTabla = "Lineas";
@@ -112,21 +130,14 @@ namespace VisualSoftErp.Operacion.Ventas.Informes
             cboFamilias.Properties.ForceInitialize();
             cboFamilias.Properties.PopulateColumns();
             cboFamilias.Properties.Columns["Clave"].Visible = false;
+            cboFamilias.Properties.Columns["CodigoArticulo"].Visible = false;
+            cboFamilias.Properties.Columns["LineasID"].Visible = false;
             cboFamilias.Properties.NullText = "Seleccione una Familia de Artículos";
             cboFamilias.EditValue = null;
             #endregion COMBO FAMILIAS
 
             #region COMBO SUBFAMILIAS
-            combos.strTabla = "SubFamilias";
-            cboSubFamilias.Properties.ValueMember = "Clave";
-            cboSubFamilias.Properties.DisplayMember = "Des";
-            cboSubFamilias.Properties.DataSource = combos.CargaCombos();
-            cboSubFamilias.Properties.PopupFilterMode = DevExpress.XtraEditors.PopupFilterMode.Contains;
-            cboSubFamilias.Properties.ForceInitialize();
-            cboSubFamilias.Properties.PopulateColumns();
-            cboSubFamilias.Properties.Columns["Clave"].Visible = false;
-            cboSubFamilias.Properties.NullText = "Seleccione una SubFamilias de Artículos";
-            cboSubFamilias.EditValue = null;
+            CargarCombosSubFamilias();
             #endregion COMBO SUBFAMILIAS
 
             #region COMBO ARTICULOS
@@ -144,6 +155,87 @@ namespace VisualSoftErp.Operacion.Ventas.Informes
 
         }
 
+        private void CargarCombosSubFamilias()
+        {
+            if (cboFamilias.EditValue != null)
+            {
+                combosCL combos = new combosCL();
+                BindingSource src = new BindingSource();
+                globalCL global = new globalCL();
+
+                combos.strTabla = "SubFamiliasXFamilia";
+                combos.iCondicion = Convert.ToInt32(cboFamilias.EditValue);
+                cboSubFamilias.Properties.ValueMember = "Clave";
+                cboSubFamilias.Properties.DisplayMember = "Des";
+                cboSubFamilias.Properties.DataSource = combos.CargaCombos();
+                cboSubFamilias.Properties.PopupFilterMode = DevExpress.XtraEditors.PopupFilterMode.Contains;
+                cboSubFamilias.Properties.ForceInitialize();
+                cboSubFamilias.Properties.PopulateColumns();
+                cboSubFamilias.Properties.NullText = "Seleccione una SubFamilias de Artículos";
+                cboSubFamilias.EditValue = null;
+            }
+        }
+
+        private void CargarCombosConceptosGrid()
+        {
+            combosCL combos = new combosCL();
+            BindingSource src = new BindingSource();
+            globalCL global = new globalCL();
+
+            combos.strTabla = "ConceptosComisiones";
+            repositoryItemLookUpEditConceptosComisiones.ValueMember = "Clave";
+            repositoryItemLookUpEditConceptosComisiones.DisplayMember = "Des";
+            repositoryItemLookUpEditConceptosComisiones.DataSource = combos.CargaCombos();
+            repositoryItemLookUpEditConceptosComisiones.ForceInitialize();
+            repositoryItemLookUpEditConceptosComisiones.PopulateColumns();
+            repositoryItemLookUpEditConceptosComisiones.PopupFilterMode = DevExpress.XtraEditors.PopupFilterMode.Contains;
+            repositoryItemLookUpEditConceptosComisiones.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.Standard;
+            repositoryItemLookUpEditConceptosComisiones.NullText = "Seleccione un concepto de comision";
+
+            if (nuevoConceptoAgregado) nuevoConceptoAgregado = false;
+        }
+
+        private void CargarComboVariable(int FormaCalculo)
+        {
+            combosCL combos = new combosCL();
+            BindingSource src = new BindingSource();
+            globalCL global = new globalCL();
+
+            if (FormaCalculo == 1 || FormaCalculo == 5 || FormaCalculo == 6 || FormaCalculo == 7 || FormaCalculo == 8)
+            {
+                #region COMBO CANAL DE VENTA
+                combos.strTabla = "Canalesdeventa";
+                cboVariable.Properties.ValueMember = "Clave";
+                cboVariable.Properties.DisplayMember = "Des";
+                cboVariable.Properties.DataSource = combos.CargaCombos();
+                cboVariable.Properties.PopupFilterMode = DevExpress.XtraEditors.PopupFilterMode.Contains;
+                cboVariable.Properties.ForceInitialize();
+                cboVariable.Properties.PopulateColumns();
+                cboVariable.Properties.Columns["Clave"].Visible = false;
+                cboVariable.Properties.NullText = "Seleccione un Canal de Ventas";
+                cboVariable.EditValue = null;
+                #endregion COMBO CANAL DE VENTA
+            }
+            else if (FormaCalculo == 10)
+            {
+                #region COMBO AGENTES
+                combos.strTabla = "Agentes";
+                cboVariable.Properties.ValueMember = "Clave";
+                cboVariable.Properties.DisplayMember = "Des";
+                cboVariable.Properties.DataSource = combos.CargaCombos();
+                cboVariable.Properties.PopupFilterMode = DevExpress.XtraEditors.PopupFilterMode.Contains;
+                cboVariable.Properties.ForceInitialize();
+                cboVariable.Properties.PopulateColumns();
+                cboVariable.Properties.Columns["Clave"].Visible = false;
+                cboVariable.Properties.Columns["Encabezado"].Visible = false;
+                cboVariable.Properties.Columns["Piedepagina"].Visible = false;
+                cboVariable.Properties.Columns["Email"].Visible = false;
+                cboVariable.Properties.NullText = "Seleccione un Agente de Ventas";
+                cboVariable.EditValue = null;
+                #endregion COMBO AGENTES
+            }
+        }
+
         private void navBarControlMenu_LinkClicked(object sender, DevExpress.XtraNavBar.NavBarLinkEventArgs e)
         {
             NavBarItemLink item = e.Link;
@@ -152,6 +244,7 @@ namespace VisualSoftErp.Operacion.Ventas.Informes
                 switch (item.ItemName)
                 {
                     case "navBarItemAgentes":
+                        if (nuevoConceptoAgregado) CargarCombosConceptosGrid();
                         ribbonPagePrint.Visible = false;
                         ribbonPageConceptos.Visible = false;
                         ribbonPageHome.Visible = true;
@@ -170,7 +263,7 @@ namespace VisualSoftErp.Operacion.Ventas.Informes
                         ribbonPageConceptos.Visible = false;
                         ribbonPagePrint.Visible = true;
                         ribbonControl.MergeOwner.SelectedPage = ribbonControl.MergeOwner.TotalPageCategory.GetPageByText(ribbonPagePrint.Text);
-                        navigationFrame.SelectedPage = NavigationPageReporte;
+                        MostrarOcultarPopUpReporte(true);
                         break;
                 }
             }
@@ -186,6 +279,7 @@ namespace VisualSoftErp.Operacion.Ventas.Informes
                 switch (item.Name)
                 {
                     case "navigationBarItemAgentes":
+                        if (nuevoConceptoAgregado) CargarCombosConceptosGrid();
                         ribbonPagePrint.Visible = false;
                         ribbonPageConceptos.Visible = false;
                         ribbonPageHome.Visible = true;
@@ -204,7 +298,7 @@ namespace VisualSoftErp.Operacion.Ventas.Informes
                         ribbonPageConceptos.Visible = false;
                         ribbonPagePrint.Visible = true;
                         ribbonControl.MergeOwner.SelectedPage = ribbonControl.MergeOwner.TotalPageCategory.GetPageByText(ribbonPagePrint.Text);
-                        navigationFrame.SelectedPage = NavigationPageReporte;
+                        MostrarOcultarPopUpReporte(true);
                         break;
                 }
             }
@@ -227,29 +321,135 @@ namespace VisualSoftErp.Operacion.Ventas.Informes
 
         private void InitGridControlConceptos()
         {
-            gridControlConceptos.DataSource = Conceptos;
+            gridControlConceptos.DataSource = ComisionesAgentes;
 
-            gridViewConceptos.OptionsBehavior.AllowAddRows = DevExpress.Utils.DefaultBoolean.True;
-            gridViewConceptos.OptionsBehavior.AllowDeleteRows = DevExpress.Utils.DefaultBoolean.True;
+            gridViewConceptos.OptionsBehavior.AllowAddRows = DefaultBoolean.True;
+            gridViewConceptos.OptionsBehavior.AllowDeleteRows = DefaultBoolean.True;
             gridViewConceptos.OptionsView.NewItemRowPosition = DevExpress.XtraGrid.Views.Grid.NewItemRowPosition.Bottom;
             gridViewConceptos.OptionsNavigation.EnterMoveNextColumn = true;
             gridViewConceptos.OptionsNavigation.AutoMoveRowFocus = true;
-            gridViewConceptos.Columns["Porcentaje"].Width = 150;
+            gridViewConceptos.Columns["ConceptosComisionesID"].ColumnEdit = repositoryItemLookUpEditConceptosComisiones;
+            gridViewConceptos.Columns["ComisionesAgentesID"].Visible = false;
+            gridViewConceptos.Columns["AgentesID"].Visible = false;
+        }
+
+        private void AdjustColumnWidths()
+        {
+            int totalWidth = gridControlConceptos.Width;
+            int otraColumnaWidth = (int)(totalWidth * 0.70);
+            int porcentajeColumnWidth = (int)(totalWidth * 0.15);
+
+            gridViewConceptos.Columns["Porcentaje"].Width = porcentajeColumnWidth;
+            gridViewConceptos.Columns["Meta"].Width = porcentajeColumnWidth;
+            gridViewConceptos.Columns["ConceptosComisionesID"].Width = otraColumnaWidth;
+        }
+
+        private string ValidarConceptosAgentes()
+        {
+            string result = "OK";
+            try
+            {
+                for (int i = 0; i < ComisionesAgentes.Rows.Count; i++)
+                {
+                    int X = i + 1;
+
+                    if (Convert.ToInt32(ComisionesAgentes.Rows[i]["Porcentaje"]) < 0 || Convert.ToInt32(ComisionesAgentes.Rows[i]["Porcentaje"]) > 100)
+                    {
+                        result = "El porcentaje del renglón " + X.ToString() + " no puede ser menor que 0 o mayor que 100";
+                        break;
+                    }
+                    if (ComisionesAgentes.Rows[i]["ConceptosComisionesID"].ToString() == string.Empty)
+                    {
+                        result = "El concepto del renglón " + X.ToString() + " no puede estar vacío";
+                        break;
+                    }
+                    if (Convert.ToInt32(ComisionesAgentes.Rows[i]["Meta"]) < 0 || ComisionesAgentes.Rows[i]["Meta"].ToString() == string.Empty)
+                    {
+                        result = "La meta del renglón " + X.ToString() + " no puede estar vacío o ser menor a cero. \nEn caso de que no se vaya a considerar una meta, favor de introducir 0";
+                        break;
+                    }
+                }
+
+                if (ComisionesAgentes.Rows.Count == 0)
+                {
+                    DialogResult dialog = MessageBox.Show("¿Desea borrar todos los conceptos del agente?", "Sin Conceptos de Comisión", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+                    if (dialog == DialogResult.No)
+                        result = "No se tienen conceptos. Seleccione un Agente y llene los conceptos de comisión";
+                }
+
+                if (intAgentesID == 0)
+                    result = "Seleccione un Agente";
+            }
+            catch (Exception ex)
+            {
+                result = ex.Message;
+            }
+
+            return result;
         }
 
         private void gridViewAgentes_RowClick(object sender, DevExpress.XtraGrid.Views.Grid.RowClickEventArgs e)
         {
-            Conceptos.Clear();
+            ComisionesAgentes.Clear();
             intAgentesID = Convert.ToInt32(gridViewAgentes.GetRowCellValue(e.RowHandle, "AgentesID"));
 
-            // SE LLENA GRID DE CONCEPTOS CON LOS CONCEPTOS DEL AGENTE Y SUS RESPECTIVOS PORCENTAJES
-            // InitGridControlComponentes();  o aquí mero, como sea. Después vemos.
+            ComisionesCL cl = new ComisionesCL();
+            cl.intAgentesID = intAgentesID;
+            ComisionesAgentes = cl.ComisionesAgentesGRID();
+            gridControlConceptos.DataSource = ComisionesAgentes;
+        }
+
+        private void gridViewConceptos_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Delete)
+            {
+                DialogResult result = MessageBox.Show("¿Estás seguro de que quieres eliminar este concepto?", "Confirmar Eliminación", MessageBoxButtons.YesNo);
+                if (result == DialogResult.Yes)
+                {
+                    DataRow rowGridView = gridViewConceptos.GetFocusedDataRow();
+                    DataRow rowDataTable;
+
+                    for (int i = 0; i < ComisionesAgentes.Rows.Count; i++)
+                    {
+                        rowDataTable = ComisionesAgentes.Rows[i];
+                        if (rowGridView != null && rowDataTable != null)
+                        {
+                            if (rowGridView.Equals(rowDataTable))
+                            {
+                                ComisionesAgentes.Rows[i].Delete();
+                                ComisionesAgentes.AcceptChanges();
+                                gridViewConceptos.DeleteRow(gridViewConceptos.FocusedRowHandle);
+                                break;
+                            }
+                        }
+                    }
+                    Console.WriteLine(rowGridView);
+                }
+            }
         }
 
         private void bbiGuardarConceptosAgente_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            Console.WriteLine(intAgentesID);
-            Console.WriteLine(Conceptos);
+            string result = ValidarConceptosAgentes();
+            if (result != "OK")
+            {
+                MessageBox.Show(result);
+                return;
+            }
+
+            ComisionesCL cl = new ComisionesCL();
+            cl.intAgentesID = intAgentesID;
+            cl.ComisionesAgentes = ComisionesAgentes;
+
+            result = cl.ComisionesAgentesCRUD();
+
+            if (result != "OK")
+                MessageBox.Show(result);
+            else
+            {
+                ComisionesAgentes = cl.ComisionesAgentesGRID();
+                MessageBox.Show("Guardado Correctamente");
+            }
         }
 
         #endregion AGENTES NAVPAGE
@@ -263,53 +463,12 @@ namespace VisualSoftErp.Operacion.Ventas.Informes
                 txtNombre.Text = string.Empty;
                 cboFormasCalculo.EditValue = null;
             }
-            swClientesNuevos.IsOn = false;
+            radioGroupClientes.SelectedIndex = -1;
             cboVariable.EditValue = null;
             cboLineas.EditValue = null;
             cboFamilias.EditValue = null;
             cboSubFamilias.EditValue = null;
             cboArticulos.EditValue = null;
-        }
-
-        private void CargarComboVariable(int FormaCalculo)
-        {
-            combosCL combos = new combosCL();
-            BindingSource src = new BindingSource();
-            globalCL global = new globalCL();
-
-            if (FormaCalculo == 1 | FormaCalculo == 5)
-            {
-                #region COMBO CANAL DE VENTA
-                combos.strTabla = "Canalesdeventa";
-                cboVariable.Properties.ValueMember = "Clave";
-                cboVariable.Properties.DisplayMember = "Des";
-                cboVariable.Properties.DataSource = combos.CargaCombos();
-                cboVariable.Properties.PopupFilterMode = DevExpress.XtraEditors.PopupFilterMode.Contains;
-                cboVariable.Properties.ForceInitialize();
-                cboVariable.Properties.PopulateColumns();
-                cboVariable.Properties.Columns["Clave"].Visible = false;
-                cboVariable.Properties.NullText = "Seleccione un Canal de Ventas";
-                cboVariable.EditValue = null;
-                #endregion COMBO CANAL DE VENTA
-            }
-            else if (FormaCalculo == 7)
-            {
-                #region COMBO AGENTES
-                combos.strTabla = "Agentes";
-                cboVariable.Properties.ValueMember = "Clave";
-                cboVariable.Properties.DisplayMember = "Des";
-                cboVariable.Properties.DataSource = combos.CargaCombos();
-                cboVariable.Properties.PopupFilterMode = DevExpress.XtraEditors.PopupFilterMode.Contains;
-                cboVariable.Properties.ForceInitialize();
-                cboVariable.Properties.PopulateColumns();
-                cboVariable.Properties.Columns["Clave"].Visible = false;
-                cboVariable.Properties.Columns["Encabezado"].Visible = false;
-                cboVariable.Properties.Columns["Piedepagina"].Visible = false;
-                cboVariable.Properties.Columns["Email"].Visible = false;
-                cboVariable.Properties.NullText = "Seleccione un Agente de Ventas";
-                cboVariable.EditValue = null;
-                #endregion COMBO AGENTES
-            }
         }
 
         private void InitGridControlConceptosForm()
@@ -320,137 +479,63 @@ namespace VisualSoftErp.Operacion.Ventas.Informes
             gridViewConceptosForm.OptionsBehavior.Editable = false;
         }
 
-        private void bbiNuevoConcepto_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
-        {
-            isEditing = true;
-            intConceptosComisionesID = 0;
-            MostrarOcultarFormConceptos(true);
-        }
-
-        private void bbiEditarConcepto_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
-        {
-            isEditing = true;
-            MostrarOcultarFormConceptos(true);
-            ConceptosComisionesLlenarCajas();
-        }
-
-        private void bbiRegresar_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
-        {
-            isEditing = false;
-            LimpiarCajas(false);
-            MostrarOcultarFormConceptos(false);
-        }
-
         private void MostrarOcultarFormConceptos(bool isVisible)
         {
             int sizeUp;
             int sizeDown;
-            if(isVisible)
+            if (isVisible)
             {
+
                 sizeUp = 25;
                 sizeDown = 75;
-                bbiNuevoConcepto.Enabled = false; 
-                bbiRegresar.Enabled = true;
-                bbiGuardarConcepto.Enabled = true;
-                bbiEliminarConcepto.Enabled = false; 
                 bbiEditarConcepto.Enabled = false;
+                bbiGuardarConcepto.Enabled = true;
+                bbiRegresar.Enabled = true;
+                isEditing = true;
             }
             else
             {
                 sizeUp = 0;
                 sizeDown = 100;
-                bbiNuevoConcepto.Enabled = true;
-                bbiRegresar.Enabled = false;
-                bbiGuardarConcepto.Enabled = false;
-                bbiEliminarConcepto.Enabled = true;
                 bbiEditarConcepto.Enabled = true;
+                bbiGuardarConcepto.Enabled = false;
+                bbiRegresar.Enabled = false;
+                isEditing = false;
             }
+            SoloLectura();
             tablePanel2.Rows[0].Height = sizeUp;
             tablePanel2.Rows[0].Style = DevExpress.Utils.Layout.TablePanelEntityStyle.Relative;
             tablePanel2.Rows[1].Height = sizeDown;
             tablePanel2.Rows[1].Style = DevExpress.Utils.Layout.TablePanelEntityStyle.Relative;
         }
 
-        private void cboFormasCalculo_EditValueChanged(object sender, EventArgs e)
+        private void MostrarOcultarPopUpConjunto(bool visible)
         {
-            LimpiarCajas(true);
-            LookUpEdit formasCalculo = (LookUpEdit)sender;
-            if(formasCalculo != null)
+            if (visible)
             {
-                switch(formasCalculo.EditValue)
-                {
-                    case 1:
-                        tablePanelVariable.Visible = true;
-                        lblVariable.Text = "Canal de Venta";
-                        CargarComboVariable(Convert.ToInt32(formasCalculo.EditValue));
-                        cboLineas.Enabled = false;
-                        cboFamilias.Enabled = false;
-                        cboSubFamilias.Enabled = false;
-                        cboArticulos.Enabled = false;
-                        swClientesNuevos.Enabled = true; 
-                        break;
-                    case 2:
-                        tablePanelVariable.Visible = false;
-                        cboLineas.Enabled = true;
-                        cboFamilias.Enabled = false;
-                        cboSubFamilias.Enabled = false;
-                        cboArticulos.Enabled = false;
-                        swClientesNuevos.Enabled = true; 
-                        break;
-                    case 3:
-                        tablePanelVariable.Visible = false;
-                        cboLineas.Enabled = false;
-                        cboFamilias.Enabled = true;
-                        cboSubFamilias.Enabled = false;
-                        cboArticulos.Enabled = false;
-                        swClientesNuevos.Enabled = true; 
-                        break;
-                    case 4:
-                        tablePanelVariable.Visible = false;
-                        cboLineas.Enabled = false;
-                        cboFamilias.Enabled = false;
-                        cboSubFamilias.Enabled = true;
-                        cboArticulos.Enabled = false;
-                        swClientesNuevos.Enabled = true; 
-                        break;
-                    case 5:
-                        tablePanelVariable.Visible = true;
-                        lblVariable.Text = "Canal de Venta"; 
-                        CargarComboVariable(Convert.ToInt32(formasCalculo.EditValue));
-                        cboLineas.Enabled = false;
-                        cboFamilias.Enabled = false;
-                        cboSubFamilias.Enabled = false;
-                        cboArticulos.Enabled = true;
-                        swClientesNuevos.Enabled = true; 
-                        break;
-                    case 6:
-                        tablePanelVariable.Visible = false;
-                        cboLineas.Enabled = false;
-                        cboFamilias.Enabled = false;
-                        cboSubFamilias.Enabled = false;
-                        cboArticulos.Enabled = true;
-                        swClientesNuevos.Enabled = true; 
-                        break;
-                    case 7:
-                        tablePanelVariable.Visible = true;
-                        lblVariable.Text = "Agente";
-                        CargarComboVariable(Convert.ToInt32(formasCalculo.EditValue));
-                        cboLineas.Enabled = false;
-                        cboFamilias.Enabled = false;
-                        cboSubFamilias.Enabled = false;
-                        cboArticulos.Enabled = false;
-                        swClientesNuevos.Enabled = true;
-                        break;
-                    case 8:
-                        tablePanelVariable.Visible = false;
-                        cboLineas.Enabled = false;
-                        cboFamilias.Enabled = false;
-                        cboSubFamilias.Enabled = false;
-                        cboArticulos.Enabled = false;
-                        swClientesNuevos.EditValue = true;
-                        swClientesNuevos.Enabled = false;
-                        break;
-                }
+                combosCL combos = new combosCL();
+                BindingSource src = new BindingSource();
+                globalCL global = new globalCL();
+
+                combos.strTabla = "ConceptosComisionesPorAgente";
+                combos.iCondicion = Convert.ToInt32(cboVariable.EditValue);
+                cboConceptoConjunto.Properties.ValueMember = "Clave";
+                cboConceptoConjunto.Properties.DisplayMember = "Des";
+                cboConceptoConjunto.Properties.DataSource = combos.CargaCombos();
+                cboConceptoConjunto.Properties.ForceInitialize();
+                cboConceptoConjunto.Properties.PopulateColumns();
+                cboConceptoConjunto.Properties.PopupFilterMode = DevExpress.XtraEditors.PopupFilterMode.Contains;
+                cboConceptoConjunto.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.Standard;
+                cboConceptoConjunto.Properties.NullText = "Seleccione el concepto que se compartirá";
+
+                int locX = (this.ClientSize.Width - popupConceptoConjunto.Width) / 2;
+                int locY = (this.ClientSize.Height - 200 - popupFechasReporte.Height) / 2;
+                popupConceptoConjunto.Location = new Point(locX, locY);
+                popupConceptoConjunto.Show();
+            }
+            else
+            {
+                popupConceptoConjunto.Hide();
             }
         }
 
@@ -466,7 +551,7 @@ namespace VisualSoftErp.Operacion.Ventas.Informes
 
             if (formaCalculo == 1 || formaCalculo == 5 || formaCalculo == 7)
             {
-                if(cboVariable.EditValue == null)
+                if (cboVariable.EditValue == null)
                 {
                     switch (formaCalculo)
                     {
@@ -497,6 +582,72 @@ namespace VisualSoftErp.Operacion.Ventas.Informes
 
             return result;
         }
+
+        private void ConceptosComisionesLlenarCajas()
+        {
+            ComisionesCL cl = new ComisionesCL();
+            cl.intConceptosComisionesID = intConceptosComisionesID;
+            string result = cl.ConceptosComisionesLlenarCajas();
+            if (result != "OK")
+            {
+                MessageBox.Show(result);
+                return;
+            }
+            else
+            {
+                txtNombre.Text = cl.strNombre;
+                cboFormasCalculo.EditValue = cl.intFormasCalculoComisionesID;
+                radioGroupClientes.SelectedIndex = cl.intClientesNuevos;
+
+                if (cl.intFormasCalculoComisionesID == 1 || cl.intFormasCalculoComisionesID == 5 ||
+                    cl.intFormasCalculoComisionesID == 6 || cl.intFormasCalculoComisionesID == 7 ||
+                    cl.intFormasCalculoComisionesID == 8)
+                    cboVariable.EditValue = cl.intCanalVentasID;
+
+                if (cl.intFormasCalculoComisionesID == 10)
+                    cboVariable.EditValue = cl.intAgentesID;
+
+                cboLineas.EditValue = cl.intLineasID;
+                cboFamilias.EditValue = cl.intFamiliasID;
+                cboSubFamilias.EditValue = cl.intSubFamiliasID;
+                cboArticulos.EditValue = cl.intArticulosID;
+                cboConceptoConjunto.EditValueChanged -= cboConceptoConjunto_EditValueChanged;
+                cboConceptoConjunto.EditValue = cl.intConceptoConjunto;
+                cboConceptoConjunto.EditValueChanged += cboConceptoConjunto_EditValueChanged;
+                MostrarOcultarFormConceptos(true);
+            }
+
+        }
+
+        private void bbiNuevoConcepto_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            intConceptosComisionesID = 0;
+            LimpiarCajas(false);
+            MostrarOcultarFormConceptos(true);
+        }
+
+        private void bbiEditarConcepto_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            if (intConceptosComisionesID == 0)
+            {
+                MessageBox.Show("Seleccione un Concepto");
+                return;
+            }
+            MostrarOcultarFormConceptos(true);
+            ConceptosComisionesLlenarCajas();
+        }
+
+        private void bbiRegresar_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            LimpiarCajas(false);
+            MostrarOcultarFormConceptos(false);
+        }
+
+        private void btnCerrarPopUpConceptoConjunto_Click(object sender, EventArgs e)
+        {
+            cboConceptoConjunto.EditValue = null;
+            popupConceptoConjunto.Hide();
+        }
         
         private void bbiGuardarConcepto_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
@@ -506,23 +657,26 @@ namespace VisualSoftErp.Operacion.Ventas.Informes
                 MessageBox.Show(result);
                 return;
             }
+
+            int FormaCalculo = Convert.ToInt32(cboFormasCalculo.EditValue);
             ComisionesCL cl = new ComisionesCL();
             cl.intConceptosComisionesID = intConceptosComisionesID;
             cl.strNombre = txtNombre.Text;
             cl.intFormasCalculoComisionesID = Convert.ToInt32(cboFormasCalculo.EditValue);
-            cl.intClientesNuevos = swClientesNuevos.IsOn == true ? 1 : 0;
-            cl.intCanalVentasID = (Convert.ToInt32(cboFormasCalculo.EditValue) == 1 || Convert.ToInt32(cboFormasCalculo.EditValue) == 5) ? Convert.ToInt32(cboVariable.EditValue) : 0;
+            cl.intClientesNuevos = radioGroupClientes.SelectedIndex;
+            cl.intCanalVentasID = (FormaCalculo == 1 || FormaCalculo == 5 || FormaCalculo == 6 || FormaCalculo == 7 || FormaCalculo == 8) ? Convert.ToInt32(cboVariable.EditValue) : 0;
             cl.intLineasID = Convert.ToInt32(cboLineas.EditValue);
             cl.intFamiliasID = Convert.ToInt32(cboFamilias.EditValue);
             cl.intSubFamiliasID = Convert.ToInt32(cboSubFamilias.EditValue);
             cl.intArticulosID = Convert.ToInt32(cboArticulos.EditValue);
-            cl.intAgentesID = Convert.ToInt32(cboFormasCalculo.EditValue) == 7 ? Convert.ToInt32(cboVariable.EditValue) : 0;
-
+            cl.intAgentesID = (FormaCalculo == 10 ) ? Convert.ToInt32(cboVariable.EditValue) : 0;
+            cl.intConceptoConjunto = (FormaCalculo == 10) ? Convert.ToInt32(cboConceptoConjunto.EditValue) : 0;
             result = cl.ConceptosComisionesCRUD();
             if (result != "OK")
                 MessageBox.Show(result);
             else
             {
+                nuevoConceptoAgregado = true;
                 InitGridControlConceptosForm();
                 MessageBox.Show("Guardado Correctamente");
             }
@@ -530,19 +684,18 @@ namespace VisualSoftErp.Operacion.Ventas.Informes
 
         private void gridControlConceptosForm_Click(object sender, EventArgs e)
         {
-            if (!permisosEscritura) return;
-
-            GridControl grid = (GridControl)sender;
-            if (grid != null)
+            if(!isEditing)
             {
-                GridView gridView = grid.FocusedView as GridView;
-                if (gridView != null)
+                GridControl grid = (GridControl)sender;
+                if (grid != null)
                 {
-                    object conceptoComisionesID = gridView.GetFocusedRowCellValue("ConceptosComisionesID");
-
-                    if (conceptoComisionesID != null)
+                    GridView gridView = grid.FocusedView as GridView;
+                    if (gridView != null)
                     {
-                        intConceptosComisionesID = Convert.ToInt32(conceptoComisionesID);
+                        object conceptoComisionesID = gridView.GetFocusedRowCellValue("ConceptosComisionesID");
+
+                        if (conceptoComisionesID != null)
+                            intConceptosComisionesID = Convert.ToInt32(conceptoComisionesID);
                     }
                 }
             }
@@ -569,59 +722,267 @@ namespace VisualSoftErp.Operacion.Ventas.Informes
             }
         }
 
-        private void ConceptosComisionesLlenarCajas()
+        private void bbiEliminarConcepto_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            if(intConceptosComisionesID == 0)
+            if (intConceptosComisionesID == 0)
             {
                 MessageBox.Show("Seleccione un Concepto");
                 return;
             }
-            ComisionesCL cl = new ComisionesCL();
-            cl.intConceptosComisionesID = intConceptosComisionesID;
-            string result = cl.ConceptosComisionesLlenarCajas();
-            if(result != "OK")
-            {
-                MessageBox.Show(result);
-                return;
-            }
-            else
-            {
-                txtNombre.Text = cl.strNombre;
-                cboFormasCalculo.EditValue = cl.intFormasCalculoComisionesID;
-                swClientesNuevos.IsOn = cl.intClientesNuevos == 1 ? true : false;
-                if (cl.intFormasCalculoComisionesID == 1 || cl.intFormasCalculoComisionesID == 5)
-                    cboVariable.EditValue = cl.intCanalVentasID;
-                if (cl.intFormasCalculoComisionesID == 7)
-                    cboVariable.EditValue = cl.intAgentesID;
-                cboLineas.EditValue = cl.intLineasID;
-                cboFamilias.EditValue = cl.intFamiliasID;
-                cboSubFamilias.EditValue = cl.intSubFamiliasID;
-                cboArticulos.EditValue = cl.intArticulosID;
-                MostrarOcultarFormConceptos(true);
-            }
 
+            DialogResult dialog = MessageBox.Show("¿Desea eliminar éste concepto?", "Eliminar Concepto de Comisión", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+            if (dialog == DialogResult.Yes)
+            {
+                ComisionesCL cl = new ComisionesCL();
+                cl.intConceptosComisionesID = intConceptosComisionesID;
+                string result = cl.ConceptosComisionesEliminar();
+                if(result != "OK")
+                {
+                    MessageBox.Show(result);
+                    return;
+                }
+                else
+                {
+                    nuevoConceptoAgregado = true;
+                    InitGridControlConceptosForm();
+                    LimpiarCajas(false);
+                    MessageBox.Show("Eliminado Correctamente");
+                }
+            }
         }
 
-        private void bbiEliminarConcepto_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        private void cboFormasCalculo_EditValueChanged(object sender, EventArgs e)
         {
-            ComisionesCL cl = new ComisionesCL();
-            cl.intConceptosComisionesID = intConceptosComisionesID;
-            string result = cl.ConceptosComisionesEliminar();
-            if(result == "OK")
+            LimpiarCajas(true);
+            LookUpEdit formasCalculo = (LookUpEdit)sender;
+            if (formasCalculo != null)
             {
-                MessageBox.Show(result);
-                return;
+                switch (formasCalculo.EditValue)
+                {
+                    // LIMPIAR CAJAS
+                    case null:
+                        tablePanelVariable.Visible = false;
+                        cboLineas.Enabled = false;
+                        cboFamilias.Enabled = false;
+                        cboSubFamilias.Enabled = false;
+                        cboArticulos.Enabled = false;
+                        radioGroupClientes.Enabled = true;
+                        break;
+                    // POR CANAL DE VENTAS
+                    case 1:
+                        tablePanelVariable.Visible = true;
+                        lblVariable.Text = "Canal de Venta";
+                        CargarComboVariable(Convert.ToInt32(formasCalculo.EditValue));
+                        cboLineas.Enabled = false;
+                        cboFamilias.Enabled = false;
+                        cboSubFamilias.Enabled = false;
+                        cboArticulos.Enabled = false;
+                        radioGroupClientes.Enabled = true;
+                        break;
+                    // POR LINEA DE ARTICULOS
+                    case 2:
+                        tablePanelVariable.Visible = false;
+                        cboLineas.Enabled = true;
+                        cboFamilias.Enabled = false;
+                        cboSubFamilias.Enabled = false;
+                        cboArticulos.Enabled = false;
+                        radioGroupClientes.Enabled = true;
+                        break;
+                    // POR FAMILIA DE ARTICULOS
+                    case 3:
+                        tablePanelVariable.Visible = false;
+                        cboLineas.Enabled = false;
+                        cboFamilias.Enabled = true;
+                        cboSubFamilias.Enabled = false;
+                        cboArticulos.Enabled = false;
+                        radioGroupClientes.Enabled = true;
+                        break;
+                    // POR SUBFAMILIA DE ARTICULOS
+                    case 4:
+                        tablePanelVariable.Visible = false;
+                        cboLineas.Enabled = false;
+                        cboFamilias.Enabled = true;
+                        cboSubFamilias.Enabled = true;
+                        cboArticulos.Enabled = false;
+                        radioGroupClientes.Enabled = true;
+                        break;
+                    // POR CANAL DE VENTA Y LÍNEA
+                    case 5:
+                        tablePanelVariable.Visible = true;
+                        lblVariable.Text = "Canal de Venta";
+                        CargarComboVariable(Convert.ToInt32(formasCalculo.EditValue));
+                        cboLineas.Enabled = true;
+                        cboFamilias.Enabled = false;
+                        cboSubFamilias.Enabled = false;
+                        cboArticulos.Enabled = false;
+                        radioGroupClientes.Enabled = true;
+                        break;
+                    // POR CANAL DE VENTA Y FAMILIA
+                    case 6:
+                        tablePanelVariable.Visible = true;
+                        lblVariable.Text = "Canal de Venta";
+                        CargarComboVariable(Convert.ToInt32(formasCalculo.EditValue));
+                        cboLineas.Enabled = false;
+                        cboFamilias.Enabled = true;
+                        cboSubFamilias.Enabled = false;
+                        cboArticulos.Enabled = false;
+                        radioGroupClientes.Enabled = true;
+                        break;
+                    // POR CANAL DE VENTA Y SUBFAMILIA
+                    case 7:
+                        tablePanelVariable.Visible = true;
+                        lblVariable.Text = "Canal de Venta";
+                        CargarComboVariable(Convert.ToInt32(formasCalculo.EditValue));
+                        cboLineas.Enabled = false;
+                        cboFamilias.Enabled = true;
+                        cboSubFamilias.Enabled = true;
+                        cboArticulos.Enabled = false;
+                        radioGroupClientes.Enabled = true;
+                        break;
+                    // POR CANAL DE VENTA Y ARTICULOS
+                    case 8:
+                        tablePanelVariable.Visible = true;
+                        lblVariable.Text = "Canal de Venta";
+                        CargarComboVariable(Convert.ToInt32(formasCalculo.EditValue));
+                        cboLineas.Enabled = false;
+                        cboFamilias.Enabled = false;
+                        cboSubFamilias.Enabled = false;
+                        cboArticulos.Enabled = true;
+                        radioGroupClientes.Enabled = true;
+                        break;
+                    // POR ARTICULO
+                    case 9:
+                        tablePanelVariable.Visible = false;
+                        cboLineas.Enabled = false;
+                        cboFamilias.Enabled = false;
+                        cboSubFamilias.Enabled = false;
+                        cboArticulos.Enabled = true;
+                        radioGroupClientes.Enabled = true;
+                        break;
+                    // EN CONJUNTO
+                    case 10:
+                        tablePanelVariable.Visible = true;
+                        lblVariable.Text = "Agente";
+                        CargarComboVariable(Convert.ToInt32(formasCalculo.EditValue));
+                        cboLineas.Enabled = false;
+                        cboFamilias.Enabled = false;
+                        cboSubFamilias.Enabled = false;
+                        cboArticulos.Enabled = false;
+                        radioGroupClientes.Enabled = true;
+                        break;
+                    // POR CLIENTES NUEVOS
+                    case 11:
+                        tablePanelVariable.Visible = false;
+                        cboLineas.Enabled = false;
+                        cboFamilias.Enabled = false;
+                        cboSubFamilias.Enabled = false;
+                        cboArticulos.Enabled = false;
+                        radioGroupClientes.SelectedIndex = 1;
+                        radioGroupClientes.Enabled = false;
+                        break;
+                }
             }
-            else
+        }
+
+        private void cboVariable_EditValueChanged(object sender, EventArgs e)
+        {
+            if (Convert.ToInt32(cboFormasCalculo.EditValue) == 10)
             {
-                InitGridControlConceptosForm();
-                LimpiarCajas(false);
-                MessageBox.Show("Eliminado Correctamente");
+                MostrarOcultarPopUpConjunto(true);
+            }
+        }
+
+        private void cboConceptoConjunto_EditValueChanged(object sender, EventArgs e)
+        {
+            LookUpEdit cboConceptoConjunto = (LookUpEdit)sender;
+            if (cboConceptoConjunto != null)
+            {
+                if (cboConceptoConjunto.EditValue != null)
+                {
+                    string strConcepto = cboConceptoConjunto.Text;
+                    DialogResult dialog = MessageBox.Show("¿Desea agregar como compartido el concepto " + strConcepto + "?", "Confirmar", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question);
+                    if (dialog == DialogResult.Yes)
+                    {
+                        popupConceptoConjunto.Hide();
+                    }
+                    else if (dialog == DialogResult.Cancel)
+                    {
+                        cboConceptoConjunto.EditValue = null;
+                        popupConceptoConjunto.Hide();
+                    }
+                }
+            }
+        }
+
+        private void cboFamilias_EditValueChanged(object sender, EventArgs e)
+        {
+            int formasCalculo = Convert.ToInt32(cboFormasCalculo.EditValue);
+            if (formasCalculo == 4 || formasCalculo == 7)
+            {
+                LookUpEdit familias = sender as LookUpEdit;
+                DataRowView row = (DataRowView)familias.Properties.GetDataSourceRowByKeyValue(familias.EditValue);
+
+                if (row != null)
+                    CargarCombosSubFamilias();
             }
         }
 
         #endregion CONCEPTOS DE COMISIONES NAVPAGE
 
 
+        #region REPORTE NAVPAGE
+
+        private void MostrarOcultarPopUpReporte(bool visible)
+        {
+            if (visible)
+            {
+                int locX = (this.ClientSize.Width - popupFechasReporte.Width) / 2;
+                int locY = (this.ClientSize.Height - 200 - popupFechasReporte.Height) / 2;
+                popupFechasReporte.Location = new Point(locX, locY);
+                popupFechasReporte.Show();
+            }
+            else
+            {
+                popupFechasReporte.Hide();
+            }
+        }
+
+        private void btnReporte_Click(object sender, EventArgs e)
+        {
+            DevExpress.XtraSplashScreen.SplashScreenManager.ShowDefaultWaitForm();
+            try
+            {
+                ComisionesDesigner rep = new ComisionesDesigner();
+                rep.Parameters["parameter1"].Value = Convert.ToDateTime(vsFiltroFechas1.FechaInicial);
+                rep.Parameters["parameter2"].Value = Convert.ToDateTime(vsFiltroFechas1.FechaFinal);
+            
+                globalCL cl = new globalCL();
+                string result = cl.Datosdecontrol();
+                int impDirecto = result == "OK" ? cl.iImpresiondirecta : 0;
+            
+                if (impDirecto == 1)
+                {
+                    ReportPrintTool rpt = new DevExpress.XtraReports.UI.ReportPrintTool(rep);
+                    rpt.Print();
+                }
+                else
+                {
+                    rep.CreateDocument();
+                    documentViewer1.DocumentSource = rep;
+                    navigationFrame.SelectedPage = NavigationPageReporte;
+                }
+                MostrarOcultarPopUpReporte(false);
+            }
+            catch (Exception ex) 
+            {
+                MessageBox.Show(ex.Message, "Error al crear reporte", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            DevExpress.XtraSplashScreen.SplashScreenManager.CloseDefaultWaitForm();
+        }
+
+
+        #endregion REPORTE NAVPAGE
+
+        
     }
 }

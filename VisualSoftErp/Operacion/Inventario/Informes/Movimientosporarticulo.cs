@@ -45,13 +45,25 @@ namespace VisualSoftErp.Operacion.Inventarios.Formas
             cl.strTabla = "Articulos";
             cboArticulosID.Properties.ValueMember = "Clave";
             cboArticulosID.Properties.DisplayMember = "Des";
-            cboArticulosID.Properties.DataSource = cl.CargaCombos();
+            src.DataSource = cl.CargaCombos();
+            cboArticulosID.Properties.DataSource = clg.AgregarOpcionTodos(src);
             cboArticulosID.Properties.ForceInitialize();
             cboArticulosID.Properties.PopupFilterMode = DevExpress.XtraEditors.PopupFilterMode.Contains;
             cboArticulosID.Properties.PopulateColumns();
             cboArticulosID.Properties.Columns["Clave"].Visible = false;
             cboArticulosID.Properties.Columns["FactorUM2"].Visible = false;
             cboArticulosID.Properties.NullText = "Seleccione un artículo";
+
+            //cl.strTabla = "Tiposdearticulo";
+            //cboTipoArtículos.Properties.ValueMember = "Clave";
+            //cboTipoArtículos.Properties.DisplayMember = "Des";
+            //src.DataSource = cl.CargaCombos();
+            //cboTipoArtículos.Properties.DataSource = clg.AgregarOpcionTodos(src);
+            //cboTipoArtículos.Properties.PopupFilterMode = DevExpress.XtraEditors.PopupFilterMode.Contains;
+            //cboTipoArtículos.Properties.ForceInitialize(); 
+            //cboTipoArtículos.Properties.PopulateColumns();
+            //cboTipoArtículos.Properties.Columns["Clave"].Visible = false;
+            //cboTipoArtículos.Properties.NullText = "Seleccione un tipo de artículo";
         }
 
         private void Aceptar()
@@ -60,8 +72,7 @@ namespace VisualSoftErp.Operacion.Inventarios.Formas
         }
 
         private string Valida()
-        {
- 
+        { 
             if (cboArticulosID.EditValue == null)
             {
                 return "Seleccione un artículo";
@@ -116,6 +127,8 @@ namespace VisualSoftErp.Operacion.Inventarios.Formas
                     rep.Parameters["parameter5"].Visible = false;
                     rep.Parameters["parameter6"].Value = Convert.ToDateTime(FF.ToShortDateString());
                     rep.Parameters["parameter6"].Visible = false;
+                    //rep.Parameters["parameter7"].Visible = false;
+                    //rep.Parameters["parameter7"].Value = Convert.ToInt32(cboTipoArtículos.EditValue);
                   
                     ReportPrintTool rpt = new DevExpress.XtraReports.UI.ReportPrintTool(rep);
                     rpt.Print();
@@ -135,14 +148,14 @@ namespace VisualSoftErp.Operacion.Inventarios.Formas
                     rep.Parameters["parameter5"].Visible = false;
                     rep.Parameters["parameter6"].Value = Convert.ToDateTime(FF.ToShortDateString());
                     rep.Parameters["parameter6"].Visible = false;
+                    //rep.Parameters["parameter7"].Visible = false;
+                    //rep.Parameters["parameter7"].Value = Convert.ToInt32(cboTipoArtículos.EditValue);
 
                     documentViewer1.DocumentSource = rep;
                     rep.CreateDocument();
                     ribbonControl.MergeOwner.SelectedPage = ribbonControl.MergeOwner.TotalPageCategory.GetPageByText(ribbonPagePrint.Text);
                     navigationFrame.SelectedPageIndex = 1;
                 }
-
-
             }
             catch (Exception ex)
             {

@@ -6,6 +6,7 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using VisualSoftErp.Catalogos;
 using VisualSoftErp.Clases;
 
 namespace VisualSoftErp.Operacion.Ventas.Clases
@@ -26,15 +27,25 @@ namespace VisualSoftErp.Operacion.Ventas.Clases
         public int intSubFamiliasID { get; set; }
         public int intArticulosID { get; set; }
         public int intAgentesID { get; set; }
+        public int intConceptoConjunto { get; set; }
 
         //tb_ComisionesAgentes
-        public int intPorcentaje { get; set; }
+        public DataTable ComisionesAgentes { get; set; } = new DataTable
+        {
+            Columns =
+            {
+                new DataColumn("ComisionesAgentesID", typeof(int)),
+                new DataColumn("AgentesID", typeof(int)),
+                new DataColumn("ConceptosComisionesID", typeof(int)),
+                new DataColumn("Porcentaje", typeof(decimal))
+            }
+        };
 
         #endregion VARIABLES
 
 
         #region CONSTRUCTOR
-        
+
         public ComisionesCL() 
         {
             intConceptosComisionesID = 0;
@@ -45,7 +56,7 @@ namespace VisualSoftErp.Operacion.Ventas.Clases
             intFamiliasID = 0;
             intSubFamiliasID = 0;
             intArticulosID = 0;
-            intPorcentaje = 0;
+            intConceptoConjunto = 0;
         }
 
         #endregion CONSTRUCTOR
@@ -64,7 +75,6 @@ namespace VisualSoftErp.Operacion.Ventas.Clases
                     using(SqlCommand cmd = new SqlCommand("ConceptosComisionesGRID", cnn))
                     {
                         cmd.CommandType = System.Data.CommandType.StoredProcedure;
-                        
                         using(SqlDataAdapter adapter = new SqlDataAdapter(cmd))
                         {
                             adapter.Fill(dt);
@@ -104,6 +114,7 @@ namespace VisualSoftErp.Operacion.Ventas.Clases
                         cmd.Parameters.AddWithValue("@prmSubFamiliasID", intSubFamiliasID);
                         cmd.Parameters.AddWithValue("@prmArticulosID", intArticulosID);
                         cmd.Parameters.AddWithValue("@prmAgentesID", intAgentesID);
+                        cmd.Parameters.AddWithValue("@prmConceptoConjunto", intConceptoConjunto);
 
                         using(SqlDataReader reader = cmd.ExecuteReader())
                         {
@@ -146,13 +157,14 @@ namespace VisualSoftErp.Operacion.Ventas.Clases
                                 intConceptosComisionesID = Convert.ToInt32(reader["ConceptosComisionesID"]);
                                 strNombre = reader["Nombre"].ToString();
                                 intFormasCalculoComisionesID = Convert.ToInt32(reader["FormasCalculoComisionesID"]);
-                                intClientesNuevos = Convert.ToInt32(reader["FormasCalculoComisionesID"]);
+                                intClientesNuevos = Convert.ToInt32(reader["ClientesNuevos"]);
                                 intCanalVentasID = Convert.ToInt32(reader["CanalVentasID"]);
                                 intLineasID = Convert.ToInt32(reader["LineasID"]);
                                 intFamiliasID = Convert.ToInt32(reader["FamiliasID"]);
-                                intSubFamiliasID = Convert.ToInt32(reader["SubFamiliasid"]);
+                                intSubFamiliasID = Convert.ToInt32(reader["SubFamiliasID"]);
                                 intArticulosID = Convert.ToInt32(reader["ArticulosID"]);
                                 intAgentesID = Convert.ToInt32(reader["AgentesID"]);
+                                intConceptoConjunto = Convert.ToInt32(reader["ConceptoConjunto"]);
                                 result = "OK";
                             }
                             else
@@ -179,7 +191,7 @@ namespace VisualSoftErp.Operacion.Ventas.Clases
                     using(SqlCommand cmd = new SqlCommand("ConceptosComisionesEliminar", cnn))
                     {
                         cmd.CommandType = System.Data.CommandType.StoredProcedure;
-                        cmd.Parameters.AddWithValue("@prmConceptosComisiones", intConceptosComisionesID);
+                        cmd.Parameters.AddWithValue("@prmConceptosComisionesID", intConceptosComisionesID);
 
                         using(SqlDataReader reader = cmd.ExecuteReader())
                         {
@@ -200,6 +212,70 @@ namespace VisualSoftErp.Operacion.Ventas.Clases
                 return ex.Message;
             }
         }
+
+        public DataTable ComisionesAgentesGRID()
+        {
+            DataTable dt = new DataTable();
+            try
+            {
+                using (SqlConnection cnn = new SqlConnection(strCnn))
+                {
+                    cnn.Open();
+                    using (SqlCommand cmd = new SqlCommand("ComisionesAgentesGRID", cnn))
+                    {
+                        cmd.CommandType = System.Data.CommandType.StoredProcedure;
+                        cmd.Parameters.AddWithValue("@prmAgentesID", intAgentesID);
+                        
+                        using(SqlDataAdapter da = new SqlDataAdapter(cmd))
+                        {
+                            da.Fill(dt);
+                        }
+                    }
+                }
+                return dt;
+            }
+            catch(Exception ex)
+            {
+                return dt;
+            }
+        }
+
+        public string ComisionesAgentesCRUD()
+        {
+            try
+            {
+                string result = string.Empty;
+                using (SqlConnection cnn = new SqlConnection(strCnn))
+                {
+                    cnn.Open();
+                    using (SqlCommand cmd = new SqlCommand("ComisionesAgentesCRUD", cnn))
+                    {
+                        cmd.CommandType = CommandType.StoredProcedure;
+                        cmd.Parameters.AddWithValue("@prmAgentesID", intAgentesID);
+                        SqlParameter tvpParam = cmd.Parameters.AddWithValue("@prmComisionesAgentes", ComisionesAgentes);
+                        tvpParam.SqlDbType = SqlDbType.Structured;
+                        tvpParam.TypeName = "dbo.ComisionesAgentes_Type";
+
+                        using(SqlDataReader dr = cmd.ExecuteReader())
+                        {
+                            if (dr.HasRows)
+                            {
+                                dr.Read();
+                                result = dr["result"].ToString();
+                            }
+                            else
+                                result = "no read";
+                        }
+                    }
+                }
+                return result;
+            }
+            catch(Exception ex)
+            {
+                return ex.Message;
+            }
+        }
+        
         #endregion METODOS
     }
 }

@@ -372,7 +372,7 @@ namespace VisualSoftErp.Operacion.CxP.Formas
                 decimal dIeps = 0; //se ke dara un trato diferente 
                 decimal dNeto = 0;
                 string strUUID = string.Empty;
-                
+                bool error = false;
 
                 //Recorrer el griddetalle para extraer los datos y pasarlos al dt (con el gridViewDetalle.GetSelectedRows solo tomara el renglon o renglones seleccionados)                
                 for (int i = 0; i < gridViewDetalle.RowCount - 1; i++)
@@ -423,9 +423,15 @@ namespace VisualSoftErp.Operacion.CxP.Formas
 
                             intSeq = intSeq + 1;
                         }
+                        else
+                        {
+                            error = true;
+                            MessageBox.Show("El renglón de la factura #" + dato + " no ha podido agregarse debido a que el neto es igual a cero.", "Error al consultar información", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        }
                     }
                 }
-               
+                if ( error ) { return; }
+
                 
                 DateTime fFecha = Convert.ToDateTime(txtFecha.Text);                
                 int intProveedoresID = Convert.ToInt32(cboProveedoresID.EditValue);
@@ -534,28 +540,21 @@ namespace VisualSoftErp.Operacion.CxP.Formas
                 }
             }
 
-            int ren = 0;
-
-            for (int i = 0; i < gridViewDetalle.RowCount - 1; i++)
-            {
-                if (gridViewDetalle.GetRowCellValue(i, "Factura") == null)                  
-                {
-                    return "Teclee la Factura"; 
-                }
-
-                if (gridViewDetalle.GetRowCellValue(i, "Factura").ToString().Length==0)
-                {
-                    return "Teclee la Factura";
-                }
-
-                ren++;
-
-            }
-
-            if (ren == 0)
+            if (gridViewDetalle.RowCount - 1 == 0)
             {
                 return "Debe capturar al menos un renglón";
             }
+
+            for (int i = 0; i < gridViewDetalle.RowCount - 1 ; i++)
+            {
+                string factura = gridViewDetalle.GetRowCellValue(i, "Factura").ToString();
+
+                if (factura == null || factura.Length == 0 || factura == string.Empty)
+                {
+                    return "Teclee la Factura";
+                }
+            }
+
 
             globalCL clg = new globalCL();
             string result = clg.GM_CierredemodulosStatus(Convert.ToDateTime(txtFecha.Text).Year, Convert.ToDateTime(txtFecha.Text).Month, "CXP");
