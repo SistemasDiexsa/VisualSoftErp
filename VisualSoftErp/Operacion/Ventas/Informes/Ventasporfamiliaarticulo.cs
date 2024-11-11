@@ -280,9 +280,8 @@ namespace VisualSoftErp.Operacion.Ventas.Informes
             BindingSource src = new BindingSource();
 
             cl.strTabla = "FamiliasLineas";
-            
-            cl.intClave = Convert.ToInt32(cboLinea.EditValue);
-            src.DataSource = cl.CargaCombosCondicion();
+            cl.iCondicion = Convert.ToInt32(cboLinea.EditValue);
+            src.DataSource = cl.CargaCombos();
             cboFamilia.Properties.ValueMember = "Clave";
             cboFamilia.Properties.DisplayMember = "Des";
             cboFamilia.Properties.DataSource = clg.AgregarOpcionTodos(src);
@@ -303,8 +302,8 @@ namespace VisualSoftErp.Operacion.Ventas.Informes
             BindingSource src = new BindingSource();
 
             cl.strTabla = "SubFamiliasXFamilia";
-            cl.intClave = Convert.ToInt32(cboFamilia.EditValue);
-            src.DataSource = cl.CargaCombosCondicion();
+            cl.iCondicion = Convert.ToInt32(cboFamilia.EditValue);
+            src.DataSource = cl.CargaCombos();
             
             cboSubFamilias.Properties.ValueMember = "Clave";
             cboSubFamilias.Properties.DisplayMember = "Des";
@@ -325,9 +324,8 @@ namespace VisualSoftErp.Operacion.Ventas.Informes
             cl.strTabla = "ArticulosxSubFamilia";
             cl.intFam = Convert.ToInt32(cboFamilia.EditValue);
             cl.intSubFamilias= Convert.ToInt32(cboSubFamilias.EditValue);
-            src.DataSource = cl.CargaCombosCondicion();
+            src.DataSource = cl.CargaCombos();
             
-            cl.intSubFamilias = Convert.ToInt32(cboSubFamilias.EditValue);
             cboArticulos.Properties.ValueMember = "Clave";
             cboArticulos.Properties.DisplayMember = "Des";
             cboArticulos.Properties.DataSource = clg.AgregarOpcionTodos(src);

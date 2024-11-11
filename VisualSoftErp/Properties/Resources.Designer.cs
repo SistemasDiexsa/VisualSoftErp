@@ -63,6 +63,16 @@ namespace VisualSoftErp.Properties {
         /// <summary>
         ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap Diexsa_LogoFinal_01_1_ {
+            get {
+                object obj = ResourceManager.GetObject("Diexsa_LogoFinal-01[1]", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap VS_grande {
             get {
                 object obj = ResourceManager.GetObject("VS grande", resourceCulture);

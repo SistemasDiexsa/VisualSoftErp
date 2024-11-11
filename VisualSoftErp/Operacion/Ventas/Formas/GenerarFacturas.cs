@@ -114,8 +114,8 @@ namespace VisualSoftErp.Operacion.Ventas.Formas
             String Result = cl.BuscarSerieporUsuario();
             if (Result == "OK")
             {
-                    cboSerie.EditValue = cl.strSerie;
-                    cboSerie.ReadOnly = true;
+                cboSerie.EditValue = cl.strSerie;
+                cboSerie.ReadOnly = true;
 
             }
             else
@@ -310,7 +310,7 @@ namespace VisualSoftErp.Operacion.Ventas.Formas
             ribbonStatusBar.Visible = false;
             navigationFrame.SelectedPageIndex = 1;
             blNuevo = true;
-            if (serieElectronica.Length==0)
+            if (serieElectronica.Length == 0)
                 SiguienteID();
             //Se sugiere pesos, pero quizas luego dependa mejor de la moneda que pudieramos capturar en clientes
             cboMonedas.ItemIndex = 0;
@@ -325,7 +325,7 @@ namespace VisualSoftErp.Operacion.Ventas.Formas
             cboCondicionesdepago.SelectedItem = 0;
             swExportacion.IsOn = false;
             cboMonedas.EditValue = null;
-            txtTipodecambio.Text = string.Empty;           
+            txtTipodecambio.Text = string.Empty;
             txtFolio.Text = string.Empty;
             cboFormadePago.EditValue = null;
             cboMetododepago.EditValue = null;
@@ -372,7 +372,7 @@ namespace VisualSoftErp.Operacion.Ventas.Formas
             if (cboSerie.Text.Length == 0)
             {
                 string sserie = System.Configuration.ConfigurationManager.AppSettings["Serie"].ToString();
-                if (sserie!=cboSerie.Text)
+                if (sserie != cboSerie.Text)
                 {
                     return "El campo Serie no puede ir vacio";
                 }
@@ -405,7 +405,7 @@ namespace VisualSoftErp.Operacion.Ventas.Formas
             {
                 return "Capture el canal de venta";
             }
-            if (txtFolioacturarelacionada.Text.Length==0)
+            if (txtFolioacturarelacionada.Text.Length == 0)
             {
                 if (cboRelacion.ItemIndex >= 0)
                 {
@@ -424,9 +424,9 @@ namespace VisualSoftErp.Operacion.Ventas.Formas
                     return "Si va utilizar la factura relacionada, debe ser númerica";
                 }
 
-                if (Convert.ToInt32(txtFolioacturarelacionada.Text)>0)
+                if (Convert.ToInt32(txtFolioacturarelacionada.Text) > 0)
                 {
-                    if (cboRelacion.ItemIndex<0)
+                    if (cboRelacion.ItemIndex < 0)
                     {
                         return "Seleccione el tipo de relación";
                     }
@@ -561,7 +561,7 @@ namespace VisualSoftErp.Operacion.Ventas.Formas
                 cfdiCL cl = new cfdiCL();
                 cl.pSerie = cboSerie.EditValue.ToString();
                 cl.pCliente = Convert.ToInt32(cboCliente.EditValue);
-                if (serieElectronica.Length==0)
+                if (serieElectronica.Length == 0)
                     SiguienteID();
                 cl.pFolio = Convert.ToInt32(txtFolio.Text);
                 cl.pFormaPago = cboFormadePago.EditValue.ToString();
@@ -582,7 +582,7 @@ namespace VisualSoftErp.Operacion.Ventas.Formas
                 cl.pUuidrelacionado = "";
                 if (cl.pTiporelacion.Length > 0)
                 {
-                    string result2=uuidRelacionado();
+                    string result2 = uuidRelacionado();
                     if (result2 != "OK")
                         return result2;
                     else
@@ -647,7 +647,7 @@ namespace VisualSoftErp.Operacion.Ventas.Formas
                 string result = string.Empty;
                 cl.pFolioPedido = intPedidoFolio;
                 if (serieElectronica.Length == 0 && !swNoTimbrar.IsOn)
-                    result = cl.GeneraCfdi33(dtFacturasDetalle,blnCCE, intPublicoengeneral,lblCfdiVer.Text);// este es lo ultimo que se manda llamar despues de llenar los valores que ocupa la clase cfdicl
+                    result = cl.GeneraCfdi33(dtFacturasDetalle, blnCCE, intPublicoengeneral, lblCfdiVer.Text);// este es lo ultimo que se manda llamar despues de llenar los valores que ocupa la clase cfdicl
                 else
                     result = "OK";
 
@@ -688,13 +688,17 @@ namespace VisualSoftErp.Operacion.Ventas.Formas
 
                 if (swNoTimbrar.IsOn)
                 {
-                    DialogResult resultnt = MessageBox.Show("Seleccionó NO timbrar, esta correcto?", strStatus, MessageBoxButtons.YesNo);
-                    if (resultnt.ToString() != "Yes")
-                    {
+                    DialogResult dialgog = MessageBox.Show("El pedido no se timbrará unicamente se guardará en sistema, es correcto?", strStatus, MessageBoxButtons.YesNo);
+                    if (dialgog != DialogResult.Yes)
                         return;
-                    }
                 }
-                
+                else
+                {
+                    DialogResult dialgog = MessageBox.Show("El pedido se enviará a timbrar, es correcto?", strStatus, MessageBoxButtons.YesNo);
+                    if (dialgog != DialogResult.Yes)
+                        return;
+                }
+
                 Result = Timbrar();   // Se manda llamar Timbrar aunque sea serie C (timbrada en eDoc) por que se ocupa llenar DtDetalle, pero al final no timbra
                 if (Result != "OK")
                 {
@@ -767,8 +771,8 @@ namespace VisualSoftErp.Operacion.Ventas.Formas
                 decimal dIvaTotal = 0;
                 decimal dNetoTotal = 0;
 
-                
-              
+
+
                 int intClienteID = Convert.ToInt32(cboCliente.EditValue);
                 int intStatus = 1;
                 int intAgente = intAgenteID;
@@ -783,12 +787,12 @@ namespace VisualSoftErp.Operacion.Ventas.Formas
                 string strCotizacionSerie = "";
                 int intCotizacionFolio = 0;
 
-               
+
                 string pConfirmacion = "NA";
                 string pc_Tipodecomprobante = "I";
                 decimal pTotalmpuestosRetenidos = (Convert.ToDecimal(txtRetiva.Text.Replace("$", "")) + Convert.ToDecimal(txtRetIsr.Text.Replace("$", "")));
                 decimal pTotalImpuestosTrasladados = (Convert.ToDecimal(txtIva.Text.Replace("$", "")) + Convert.ToDecimal(txtIeps.Text.Replace("$", "")));
-                string pUUID = "NA", strCfdiRelacionadoUUID= "NA";
+                string pUUID = "NA", strCfdiRelacionadoUUID = "NA";
                 int pAlmacenesID = Convert.ToInt32(cboAlmacen.EditValue);
                 DateTime FechaCancelacion = Convert.ToDateTime(null);
                 string strRazonCancelacion = null;
@@ -798,9 +802,9 @@ namespace VisualSoftErp.Operacion.Ventas.Formas
 
                 string strTipoRelacion = string.Empty;
 
-                if (txtFolioacturarelacionada.Text!="0")
+                if (txtFolioacturarelacionada.Text != "0")
                 {
-                    strTipoRelacion=cboRelacion.EditValue.ToString();
+                    strTipoRelacion = cboRelacion.EditValue.ToString();
                 }
                 else
                 {
@@ -821,15 +825,15 @@ namespace VisualSoftErp.Operacion.Ventas.Formas
                 globalCL clg = new globalCL();
 
                 string strrutaxmltimbrado = System.Configuration.ConfigurationManager.AppSettings["pathxml"];
-                strrutaxmltimbrado = strrutaxmltimbrado + Convert.ToDateTime(txtFecha.Text).Year + "\\" + clg.NombreDeMes(Convert.ToDateTime(txtFecha.Text).Month,3) + "\\" + serie + txtFolio.Text + "timbrado.xml";
+                strrutaxmltimbrado = strrutaxmltimbrado + Convert.ToDateTime(txtFecha.Text).Year + "\\" + clg.NombreDeMes(Convert.ToDateTime(txtFecha.Text).Month, 3) + "\\" + serie + txtFolio.Text + "timbrado.xml";
                 string uuid = string.Empty;
                 string valor = string.Empty;
                 decimal dSumaDesc = 0;
-                string pLugarExpedicionCP=string.Empty;
-                
-                
+                string pLugarExpedicionCP = string.Empty;
 
-                if (serieElectronica.Length==0)   //----- No se timbró por que se timbra con Edoc
+
+
+                if (serieElectronica.Length == 0)   //----- No se timbró por que se timbra con Edoc
                 {
                     vsFK.vsFinkok vs = new vsFK.vsFinkok();
                     uuid = vs.ExtraeValor(strrutaxmltimbrado, "tfd:TimbreFiscalDigital", "UUID");
@@ -842,10 +846,10 @@ namespace VisualSoftErp.Operacion.Ventas.Formas
                     {
 
                     }
-                    
+
                     pLugarExpedicionCP = vs.ExtraeValor(strrutaxmltimbrado, "cfdi:Comprobante", "LugarExpedicion");
 
-                    
+
                 }
                 else
                 {
@@ -859,42 +863,42 @@ namespace VisualSoftErp.Operacion.Ventas.Formas
                     serieFac = serieElectronica;
                 }
 
-               
+
 
                 dtFacturas.Rows.Add(
-                    serieFac, 
-                    Convert.ToInt32(txtFolio.Text), 
+                    serieFac,
+                    Convert.ToInt32(txtFolio.Text),
                     txtFecha.Text,
-                    cboFormadePago.EditValue, 
+                    cboFormadePago.EditValue,
                     cboCondicionesdepago.SelectedIndex,
-                    dSubTotal, 
-                    dSumaDesc, 
-                    cboMonedas.EditValue, 
+                    dSubTotal,
+                    dSumaDesc,
+                    cboMonedas.EditValue,
                     intParidad,
-                    dNetoTotal, 
-                    pc_Tipodecomprobante, 
+                    dNetoTotal,
+                    pc_Tipodecomprobante,
                     cboMetododepago.EditValue,
-                    pLugarExpedicionCP, 
-                    pConfirmacion, 
+                    pLugarExpedicionCP,
+                    pConfirmacion,
                     strTipoRelacion,
-                    strCfdiRelacionadoUUID, 
-                    intClienteID, 
+                    strCfdiRelacionadoUUID,
+                    intClienteID,
                     cboUsocfdi.EditValue,
-                    pTotalmpuestosRetenidos, 
+                    pTotalmpuestosRetenidos,
                     pTotalImpuestosTrasladados,
-                    uuid, 
-                    intAgenteID, 
-                    intStatus, 
+                    uuid,
+                    intAgenteID,
+                    intStatus,
                     txtPlazo.Text,
-                    FechaCancelacion, 
-                    strRazonCancelacion, 
+                    FechaCancelacion,
+                    strRazonCancelacion,
                     intUsuarioID,
-                    pAlmacenesID, 
-                    intExportacion, 
-                    txtObservaciones.Text, 
-                    txtPredial.Text, 
+                    pAlmacenesID,
+                    intExportacion,
+                    txtObservaciones.Text,
+                    txtPredial.Text,
                     txtOrdendecompra.Text,
-                    txtSeriefacturarelacionada.Text, 
+                    txtSeriefacturarelacionada.Text,
                     Convert.ToInt32(txtFolioacturarelacionada.Text),
                     0,
                     intPublicoengeneral,
@@ -917,11 +921,11 @@ namespace VisualSoftErp.Operacion.Ventas.Formas
 
 
                 string result = cl.FacturasCrud();
-                
+
                 if (result == "OK")
                 {
                     //Addendas
-                    if (addenda != "Ninguna" && serieElectronica.Length==00)
+                    if (addenda != "Ninguna" && serieElectronica.Length == 00)
                     {
                         addendasCL cladd = new addendasCL();
                         switch (addenda)
@@ -936,7 +940,7 @@ namespace VisualSoftErp.Operacion.Ventas.Formas
                             case "Amece":
                                 break;
                             case "7":
-                                result = cladd.AddendaZone(serieFac, Convert.ToInt32(txtFolio.Text),  Convert.ToDateTime(txtFecha.Text));
+                                result = cladd.AddendaZone(serieFac, Convert.ToInt32(txtFolio.Text), Convert.ToDateTime(txtFecha.Text));
                                 break;
                         }
                     }
@@ -946,7 +950,7 @@ namespace VisualSoftErp.Operacion.Ventas.Formas
                     bbiVer.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
                     //MessageBox.Show("Se ha generado la factura correctamente, se generará PDF");
 
-                    if (serieElectronica.Length==0)
+                    if (serieElectronica.Length == 0)
                         Impresion(serieFac, Convert.ToInt32(txtFolio.Text), Convert.ToDateTime(txtFecha.Text), cboMonedas.EditValue.ToString());
 
                     dPIva = 0;
@@ -956,7 +960,7 @@ namespace VisualSoftErp.Operacion.Ventas.Formas
                     RetPIsr = 0;
                     RetPIva = 0;
 
-                   
+
                     if (serieElectronica.Length == 0)
                     {
                         DialogResult resultD = MessageBox.Show("Guardado correctamente, desea enviarlo por correo?", "Enviar por correo", MessageBoxButtons.YesNo);
@@ -969,19 +973,19 @@ namespace VisualSoftErp.Operacion.Ventas.Formas
                         Inicialisalista();
                         SiguienteID();
                     }
-                        
+
                     else
                     {
-                       
+
 
                         LimpiaCajas();
                         Inicialisalista();
 
                     }
-                        
+
                 }
                 else
-                {                    
+                {
                     //diccionarioErroresCL cle = new diccionarioErroresCL();
                     //cle.strmensaje = result;
                     //string strMsg = cle.mensajePropio();
@@ -995,16 +999,16 @@ namespace VisualSoftErp.Operacion.Ventas.Formas
             }
         } //Guardar
 
-        private void EnviaCorreo(string serie,int folio,DateTime fecha)
+        private void EnviaCorreo(string serie, int folio, DateTime fecha)
         {
-            
-                DevExpress.XtraSplashScreen.SplashScreenManager.ShowDefaultWaitForm("VisualSoft", "Enviando correo...");
-                globalCL cl = new globalCL();
-                string result = cl.EnviaCorreo(strTo, serie, folio, fecha, "F");
-               
-                MessageBox.Show(result);
-                
-            
+
+            DevExpress.XtraSplashScreen.SplashScreenManager.ShowDefaultWaitForm("VisualSoft", "Enviando correo...");
+            globalCL cl = new globalCL();
+            string result = cl.EnviaCorreo(strTo, serie, folio, fecha, "F");
+
+            MessageBox.Show(result);
+
+
         }
 
         private void Ver()
@@ -1030,7 +1034,7 @@ namespace VisualSoftErp.Operacion.Ventas.Formas
             bbiCerrar.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
             bbiVista.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
             bbiCanceladas.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
-   
+
 
             switch (intStatus)
             {
@@ -1063,7 +1067,7 @@ namespace VisualSoftErp.Operacion.Ventas.Formas
                 {
                     lblCfdiVer.Text = dtFacturasDetalle.Rows[0]["CfdiVer"].ToString();
 
-                    lblPedido.Text = "PEDIDO: " + Convert.ToString(dtFacturasDetalle.Rows[0]["Serie"])  + Convert.ToString(dtFacturasDetalle.Rows[0]["Folio"]);
+                    lblPedido.Text = "PEDIDO: " + Convert.ToString(dtFacturasDetalle.Rows[0]["Serie"]) + Convert.ToString(dtFacturasDetalle.Rows[0]["Folio"]);
                     cboSerie.EditValue = Convert.ToString(dtFacturasDetalle.Rows[0]["Serie"]);
                     cboCliente.EditValue = Convert.ToInt32(dtFacturasDetalle.Rows[0]["ClientesID"]);
                     cboCanalVentas.EditValue = Convert.ToInt32(dtFacturasDetalle.Rows[0]["CanalesdeventaID"]);
@@ -1076,14 +1080,14 @@ namespace VisualSoftErp.Operacion.Ventas.Formas
                     //if (cl.intExportacion == 1) { swExportacion.IsOn = true; }
                     //else { swExportacion.IsOn = false; }
 
-                    cl.intExportacion= Convert.ToInt32(dtFacturasDetalle.Rows[0]["Exportacion"]);
+                    cl.intExportacion = Convert.ToInt32(dtFacturasDetalle.Rows[0]["Exportacion"]);
 
                     swExportacion.IsOn = cl.intExportacion == 1 ? true : false;
 
                     cboMonedas.EditValue = Convert.ToString(dtFacturasDetalle.Rows[0]["MonedasID"]);
                     //txtTipodecambio.Text = cl.dTipoCambio.ToString();
 
-                    cboFormadePago.EditValue = Convert.ToInt32(dtFacturasDetalle.Rows[0]["cFormapago"]);
+                    cboFormadePago.EditValue = Convert.ToString(dtFacturasDetalle.Rows[0]["cFormapago"]);
                     cboMetododepago.EditValue = Convert.ToString(dtFacturasDetalle.Rows[0]["cMetodopago"]);
                     cboUsocfdi.EditValue = Convert.ToString(dtFacturasDetalle.Rows[0]["Usocfdi"]);
 
@@ -1100,9 +1104,9 @@ namespace VisualSoftErp.Operacion.Ventas.Formas
                     txtOrdendecompra.Text = dtFacturasDetalle.Rows[0]["OC"].ToString();
                     //txtPredial.Text = cl.strPredial;
                     txtDescuento.Text = Convert.ToString(dtFacturasDetalle.Rows[0]["Descuento"]);
-                    txtSubtotal.Text = (Convert.ToDecimal(dtFacturasDetalle.Rows[0]["Subtotal"])-Convert.ToDecimal(dtFacturasDetalle.Rows[0]["Descuento"])).ToString();
+                    txtSubtotal.Text = (Convert.ToDecimal(dtFacturasDetalle.Rows[0]["Subtotal"]) - Convert.ToDecimal(dtFacturasDetalle.Rows[0]["Descuento"])).ToString();
 
-                    txtPdescto.Text = ((Convert.ToDecimal(dtFacturasDetalle.Rows[0]["Descuento"]) / Convert.ToDecimal(dtFacturasDetalle.Rows[0]["Subtotal"]))*100).ToString();
+                    txtPdescto.Text = ((Convert.ToDecimal(dtFacturasDetalle.Rows[0]["Descuento"]) / Convert.ToDecimal(dtFacturasDetalle.Rows[0]["Subtotal"])) * 100).ToString();
                     txtIva.Text = Convert.ToString(dtFacturasDetalle.Rows[0]["Iva"]);
                     txtRetiva.Text = Convert.ToString(dtFacturasDetalle.Rows[0]["RetIva"]);
                     txtObservaciones.Text = string.Empty;
@@ -1127,7 +1131,7 @@ namespace VisualSoftErp.Operacion.Ventas.Formas
                     }
 
                     intPublicoengeneral = Convert.ToInt32(dtFacturasDetalle.Rows[0]["Publicoengeneral"]);
-                   
+
 
                 }
             }
@@ -1165,7 +1169,7 @@ namespace VisualSoftErp.Operacion.Ventas.Formas
 
         private void CambiarStatus()
         {
-           
+
         }//cambiarstatus     
 
         void navBarControl_ActiveGroupChanged(object sender, DevExpress.XtraNavBar.NavBarGroupEventArgs e)
@@ -1199,7 +1203,7 @@ namespace VisualSoftErp.Operacion.Ventas.Formas
                 if (orow != null)
                 {
                     intClienteID = Convert.ToInt32(((DataRowView)orow)["Clave"]);
-                    intDesglosardescuentoalfacturar = Convert.ToInt32(((DataRowView)orow)["Desglosardescuentoalfacturar"]); 
+                    intDesglosardescuentoalfacturar = Convert.ToInt32(((DataRowView)orow)["Desglosardescuentoalfacturar"]);
                     addenda = ((DataRowView)orow)["Addenda"].ToString();
                     serieElectronica = ((DataRowView)orow)["SerieEle"].ToString();
                     cboCanalVentas.EditValue = Convert.ToInt32(((DataRowView)orow)["CanalesdeventaID"]);
@@ -1219,8 +1223,8 @@ namespace VisualSoftErp.Operacion.Ventas.Formas
                         txtFolio.ReadOnly = true;
                     }
                 }
-                    //proceso de DE para obtener valor del combo
-                    //DevExpress.XtraEditors.LookUpEdit editor = sender as LookUpEdit;
+                //proceso de DE para obtener valor del combo
+                //DevExpress.XtraEditors.LookUpEdit editor = sender as LookUpEdit;
 
                 //DataRowView row = (DataRowView)editor.Properties.GetDataSourceRowByKeyValue(editor.EditValue);
 
@@ -1229,7 +1233,7 @@ namespace VisualSoftErp.Operacion.Ventas.Formas
                 //intClienteID = Convert.ToInt32(value);
                 //intDesglosardescuentoalfacturar = Convert.ToInt32(row["Desglosardescuentoalfacturar"]);
                 //addenda = row["Addenda"].ToString();
-                
+
             }
 
             catch (Exception ex)
@@ -1251,15 +1255,15 @@ namespace VisualSoftErp.Operacion.Ventas.Formas
                 if (cl.intPlazo > 0)
                 {
                     cboCondicionesdepago.SelectedIndex = 1;
-             
+
                 }
                 else
                 {
                     cboCondicionesdepago.SelectedIndex = 2;
-              
+
                 }
 
-               
+
                 cboFormadePago.EditValue = cl.strcFormapago;
                 cboMetododepago.EditValue = cl.strcMetodopago;
                 cboUsocfdi.EditValue = cl.strUsocfdi;
@@ -1383,7 +1387,7 @@ namespace VisualSoftErp.Operacion.Ventas.Formas
                 decimal neto = 0;
                 decimal descuento = 0;
 
-                for (int i = 0; i <= gridViewDetalle.RowCount-1; i++)
+                for (int i = 0; i <= gridViewDetalle.RowCount - 1; i++)
                 {
 
                     importe = importe + Convert.ToDecimal(gridViewDetalle.GetRowCellValue(i, "Importe"));
@@ -1519,7 +1523,7 @@ namespace VisualSoftErp.Operacion.Ventas.Formas
 
         private void bbiGuardar_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            DevExpress.XtraSplashScreen.SplashScreenManager.ShowDefaultWaitForm("Facturación","Timbrando xml y generando PDF");
+            DevExpress.XtraSplashScreen.SplashScreenManager.ShowDefaultWaitForm("Facturación", "Timbrando xml y generando PDF");
             Guardar();
             DevExpress.XtraSplashScreen.SplashScreenManager.CloseDefaultWaitForm();
 
@@ -1561,7 +1565,7 @@ namespace VisualSoftErp.Operacion.Ventas.Formas
 
             ribbonControl.MergeOwner.SelectedPage = ribbonControl.MergeOwner.TotalPageCategory.GetPageByText(ribbonPage1.Text);
 
-        
+
             try
             {
                 DevExpress.XtraSplashScreen.SplashScreenManager.CloseDefaultWaitForm();
@@ -1571,7 +1575,7 @@ namespace VisualSoftErp.Operacion.Ventas.Formas
 
             }
 
-            
+
         }
 
 
@@ -1593,7 +1597,7 @@ namespace VisualSoftErp.Operacion.Ventas.Formas
             intPedidoFolio = Convert.ToInt32(gridViewPrincipal.GetRowCellValue(gridViewPrincipal.FocusedRowHandle, "Folio"));
             strPedidoSerie = Convert.ToString(gridViewPrincipal.GetRowCellValue(gridViewPrincipal.FocusedRowHandle, "Serie"));
             intStatus = Convert.ToInt32(gridViewPrincipal.GetRowCellValue(gridViewPrincipal.FocusedRowHandle, "Status"));
-         
+
 
             if (strStatus == "Registrada")
             {
@@ -1606,7 +1610,7 @@ namespace VisualSoftErp.Operacion.Ventas.Formas
         {
             try
             {
-               // GridView view = (GridView)sender;
+                // GridView view = (GridView)sender;
                 //string status = view.GetRowCellValue(e.RowHandle, "Estado").ToString();
 
                 //if (status == "Cancelada")
@@ -1691,7 +1695,7 @@ namespace VisualSoftErp.Operacion.Ventas.Formas
             this.Close();
         }
 
-      
+
         #region Filtros de bbi Meses
         private void navBarItemEne_LinkClicked(object sender, DevExpress.XtraNavBar.NavBarLinkEventArgs e)
         {
@@ -1790,11 +1794,12 @@ namespace VisualSoftErp.Operacion.Ventas.Formas
         private void bbiVista_ItemClick(object sender, ItemClickEventArgs e)
         {
             gridViewPrincipal.ShowRibbonPrintPreview();
-        }   
+        }
 
-        private void bbiIImprimir_ItemClick(object sender, ItemClickEventArgs e) { 
+        private void bbiIImprimir_ItemClick(object sender, ItemClickEventArgs e)
+        {
 
-        
+
         }
 
         //Pasar a vsErp
@@ -1812,7 +1817,7 @@ namespace VisualSoftErp.Operacion.Ventas.Formas
                 globalCL glc = new globalCL();
 
                 sYear = Fecha.Year.ToString();
-                sMes = glc.NombreDeMes(Fecha.Month,3);
+                sMes = glc.NombreDeMes(Fecha.Month, 3);
 
 
                 rutaXML = ConfigurationManager.AppSettings["pathxml"].ToString() + "\\" + sYear + "\\" + sMes + "\\" + serie + Folio + "timbrado.xml";
@@ -1966,24 +1971,24 @@ namespace VisualSoftErp.Operacion.Ventas.Formas
                 vs.OC = "OC: " + txtOrdendecompra.Text;
                 vs.Pedido = "PEDIDO: " + strPedidoSerie + intPedidoFolio.ToString();
                 vs.EmpresaOtros = EmpDatos;
-                    vs.EmpresaLogo = ConfigurationManager.AppSettings["logoEmpresa"].ToString();
-                    vs.VistaPrevia = "SI";
-                    vs.SCEObservaciones = txtObservaciones.Text;
-                    result = vs.generaPDF();
-                    if (result == "OK")
-                    {
-                        //MessageBox.Show("Start: " + rutaPDF);
-                        //System.Diagnostics.Process.Start(rutaPDF);
-                        BotonesEdicion();
-                        navigationFrame.SelectedPageIndex = 5;
-                        pdfRibbonPage1.Visible = true;
-                        ribbonControl.MergeOwner.SelectedPage = ribbonControl.MergeOwner.TotalPageCategory.GetPageByText(pdfRibbonPage1.Text);
-                        this.pdfViewer1.LoadDocument(rutaPDF);
-                    }
-                    else
-                        MessageBox.Show("Al generar pdf:" + result);
+                vs.EmpresaLogo = ConfigurationManager.AppSettings["logoEmpresa"].ToString();
+                vs.VistaPrevia = "SI";
+                vs.SCEObservaciones = txtObservaciones.Text;
+                result = vs.generaPDF();
+                if (result == "OK")
+                {
+                    //MessageBox.Show("Start: " + rutaPDF);
+                    //System.Diagnostics.Process.Start(rutaPDF);
+                    BotonesEdicion();
+                    navigationFrame.SelectedPageIndex = 5;
+                    pdfRibbonPage1.Visible = true;
+                    ribbonControl.MergeOwner.SelectedPage = ribbonControl.MergeOwner.TotalPageCategory.GetPageByText(pdfRibbonPage1.Text);
+                    this.pdfViewer1.LoadDocument(rutaPDF);
+                }
+                else
+                    MessageBox.Show("Al generar pdf:" + result);
                 //}
-             
+
 
             }
             catch (Exception ex)
@@ -1992,15 +1997,15 @@ namespace VisualSoftErp.Operacion.Ventas.Formas
             }
         }
 
-        
+
 
         private void gridControlPrincipal_Click(object sender, EventArgs e)
         {
 
         }
 
-        
-        private void GeneraAddendaCasaLey(string serie,int folio,DateTime fecha)
+
+        private void GeneraAddendaCasaLey(string serie, int folio, DateTime fecha)
         {
             globalCL clg = new globalCL();
             //string result = clg.AddendaZone(serie, folio,fecha,intPedidoFolio);
@@ -2058,11 +2063,11 @@ namespace VisualSoftErp.Operacion.Ventas.Formas
                 txtFolio.Enabled = true;
                 txtFolio.ReadOnly = false;
             }
-            else 
-            { 
-                txtFolio.Enabled = false; 
+            else
+            {
+                txtFolio.Enabled = false;
                 txtFolio.ReadOnly = true;
-            }  
+            }
         }
     }
 }

@@ -64,6 +64,7 @@ namespace VisualSoftErp.Clases
                 return "";
             }
         }
+        
         public DataTable AnticiposCxCGrid()
         {
             DataTable dt = new DataTable();

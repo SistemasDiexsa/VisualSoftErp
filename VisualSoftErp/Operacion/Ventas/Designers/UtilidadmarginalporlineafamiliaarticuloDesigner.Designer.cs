@@ -170,13 +170,14 @@
             queryParameter7.Name = "@prmDummy";
             queryParameter7.Type = typeof(DevExpress.DataAccess.Expression);
             queryParameter7.Value = new DevExpress.DataAccess.Expression("?parameter7", typeof(string));
-            storedProcQuery1.Parameters.Add(queryParameter1);
-            storedProcQuery1.Parameters.Add(queryParameter2);
-            storedProcQuery1.Parameters.Add(queryParameter3);
-            storedProcQuery1.Parameters.Add(queryParameter4);
-            storedProcQuery1.Parameters.Add(queryParameter5);
-            storedProcQuery1.Parameters.Add(queryParameter6);
-            storedProcQuery1.Parameters.Add(queryParameter7);
+            storedProcQuery1.Parameters.AddRange(new DevExpress.DataAccess.Sql.QueryParameter[] {
+            queryParameter1,
+            queryParameter2,
+            queryParameter3,
+            queryParameter4,
+            queryParameter5,
+            queryParameter6,
+            queryParameter7});
             storedProcQuery1.StoredProcName = "VentasUtilidadMarginalPorLineaFamiliaArticulo";
             this.sqlDataSource1.Queries.AddRange(new DevExpress.DataAccess.Sql.SqlQuery[] {
             storedProcQuery1});
@@ -787,6 +788,7 @@
             // calculatedFieldIva
             // 
             this.calculatedFieldIva.DataMember = "VentasUtilidadMarginalPorLineaFamiliaArticulo";
+            this.calculatedFieldIva.Expression = "(([Venta] - [Costo]) / [Venta]) ";
             this.calculatedFieldIva.Name = "calculatedFieldIva";
             this.calculatedFieldIva.GetValue += new DevExpress.XtraReports.UI.GetValueEventHandler(this.calculatedFieldIva_GetValue);
             // 
@@ -799,6 +801,7 @@
             // calculatedFieldUtilidad
             // 
             this.calculatedFieldUtilidad.DataMember = "VentasUtilidadMarginalPorLineaFamiliaArticulo";
+            this.calculatedFieldUtilidad.Expression = "([Venta] - [Costo])\n";
             this.calculatedFieldUtilidad.Name = "calculatedFieldUtilidad";
             this.calculatedFieldUtilidad.GetValue += new DevExpress.XtraReports.UI.GetValueEventHandler(this.calculatedFieldUtilidad_GetValue);
             // 
@@ -1232,7 +1235,7 @@
             this.GroupFooterBackground3,
             this.DetailData3_Odd,
             this.PageInfo});
-            this.Version = "20.2";
+            this.Version = "21.2";
             ((System.ComponentModel.ISupportInitialize)(this.table1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.table2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.table4)).EndInit();

@@ -109,7 +109,7 @@ namespace VisualSoftErp.Operacion.Ventas.Designers
             else
                 decIVA = 0;
 
-            e.Value = decIVA;
+            // e.Value = decIVA;
 
             decSubT += decSubtotal;
         }
@@ -195,7 +195,7 @@ namespace VisualSoftErp.Operacion.Ventas.Designers
             decCosto = Convert.ToDecimal(GetCurrentColumnValue("Costo"));
             decUtilidad = Math.Round(decSubtotal - decCosto, 2);
 
-            e.Value = decUtilidad;
+            // e.Value = decUtilidad;
 
             decUtiliT += decUtilidad;
         }

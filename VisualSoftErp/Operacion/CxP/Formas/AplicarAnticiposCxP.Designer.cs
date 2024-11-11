@@ -397,7 +397,6 @@
             this.gridControlPrincipal.TabIndex = 0;
             this.gridControlPrincipal.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridViewPrincipal});
-            this.gridControlPrincipal.Click += new System.EventHandler(this.gridControlPrincipal_Click);
             // 
             // gridViewPrincipal
             // 

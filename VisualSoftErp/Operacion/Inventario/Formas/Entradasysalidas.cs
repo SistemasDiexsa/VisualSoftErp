@@ -16,6 +16,7 @@ using DevExpress.XtraGrid;
 using VisualSoftErp.Operacion.Inventarios.Designers;
 using VisualSoftErp.Operacion.Inventario.Designers;
 using DevExpress.XtraNavBar;
+using DevExpress.XtraBars.Navigation.Accessible;
 
 namespace VisualSoftErp.Operacion.Ventas.Formas
 {
@@ -31,11 +32,12 @@ namespace VisualSoftErp.Operacion.Ventas.Formas
         int AñoFiltro;
         int MesFiltro;
         int intTM;
-
+        bool permisosEscritura;
 
         public Entradasysalidas()
         {
             InitializeComponent();
+            PermisosEscritura();
             gridViewDetalle.OptionsView.ShowViewCaption = false;
             dateEditFech.Text = DateTime.Now.ToShortDateString();
             txtObservaciones.Properties.MaxLength = 500;
@@ -80,6 +82,16 @@ namespace VisualSoftErp.Operacion.Ventas.Formas
 
             VerificaPorAutorizar();
             //DevExpress.XtraSplashScreen.SplashScreenManager.CloseDefaultWaitForm();
+        }
+
+        private void PermisosEscritura()
+        {
+            globalCL clg = new globalCL();
+            UsuariosCL usuarios = new UsuariosCL();
+
+            clg.strPrograma = "0320";
+            if (clg.accesoSoloLectura()) permisosEscritura = false;
+            else permisosEscritura = true;
         }
 
         private void VerificaPorAutorizar()
@@ -175,6 +187,8 @@ namespace VisualSoftErp.Operacion.Ventas.Formas
             detalle = new BindingList<detalleCL>();
             detalle.AllowNew = true;
             gridControlDetalle.DataSource = detalle;
+
+            gridColumnArticulo.OptionsColumn.AllowEdit = false;
         }
 
         private void CargaCombos()
@@ -265,7 +279,7 @@ namespace VisualSoftErp.Operacion.Ventas.Formas
             DevExpress.XtraSplashScreen.SplashScreenManager.ShowDefaultWaitForm("Entradas y salidas","Configurando detalle...");
             Inicialisalista();
             LimpiaCajas();
-            bbiGuardar.Visibility = DevExpress.XtraBars.BarItemVisibility.Always;
+            bbiGuardar.Visibility = permisosEscritura == true ? DevExpress.XtraBars.BarItemVisibility.Always : DevExpress.XtraBars.BarItemVisibility.Never;
             bbiRegresar.Visibility = DevExpress.XtraBars.BarItemVisibility.Always;
             bbiNuevo.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
             bbiEditar.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
@@ -348,6 +362,7 @@ namespace VisualSoftErp.Operacion.Ventas.Formas
                 dtEntradasysalidas.Columns.Add("Autorizo", Type.GetType("System.Int32"));
                 dtEntradasysalidas.Columns.Add("UsuarioAutorizo", Type.GetType("System.Int32"));
                 dtEntradasysalidas.Columns.Add("FechaAutorizacion", Type.GetType("System.DateTime"));
+                dtEntradasysalidas.Columns.Add("Status", Type.GetType("System.Int32"));
 
 
                 System.Data.DataTable dtEntradasysalidasdetalle = new System.Data.DataTable("Entradasysalidasdetalle");
@@ -409,7 +424,8 @@ namespace VisualSoftErp.Operacion.Ventas.Formas
                 string strObservaciones = txtObservaciones.Text;
                 string strOperacion = cboOperacion.EditValue.ToString();
                 dato = String.Empty;
-                dtEntradasysalidas.Rows.Add(strSerie,
+                dtEntradasysalidas.Rows.Add(
+                    strSerie,
                     intTiposdemovimientoinvID,
                     intFolio,
                     fFecha,
@@ -419,8 +435,9 @@ namespace VisualSoftErp.Operacion.Ventas.Formas
                     strOperacion,
                     autorizo,
                     usuAut,
-                    fFecha                    
-                    );
+                    fFecha,
+                    1
+                );
 
                 EntradasysalidasCL cl = new EntradasysalidasCL();
                 cl.dtm = dtEntradasysalidas;
@@ -721,22 +738,35 @@ namespace VisualSoftErp.Operacion.Ventas.Formas
         #region gridPrincipal
         private void gridViewPrincipal_RowClick(object sender, DevExpress.XtraGrid.Views.Grid.RowClickEventArgs e)
         {
-            string strStatus = Convert.ToString(gridViewPrincipal.GetRowCellValue(gridViewPrincipal.FocusedRowHandle, "Estado"));
-            intStatus = Convert.ToInt32(gridViewPrincipal.GetRowCellValue(gridViewPrincipal.FocusedRowHandle, "Status"));
+            string strStatus = Convert.ToString(gridViewPrincipal.GetRowCellValue(gridViewPrincipal.FocusedRowHandle, "Status"));
+
+            switch(strStatus)
+            {
+                case "":
+                    intStatus = 0;
+                    break;
+                case "Registrada":
+                    intStatus = 1;
+                    break;
+                case "Autorizada":
+                    intStatus = 2;
+                    break;
+                case "Cancelada":
+                    intStatus = 5;
+                    break;
+                default:
+                    intStatus = 0;
+                    break;
+            };
+
             intFolio = Convert.ToInt32(gridViewPrincipal.GetRowCellValue(gridViewPrincipal.FocusedRowHandle, "Folio"));
             strSerie = Convert.ToString(gridViewPrincipal.GetRowCellValue(gridViewPrincipal.FocusedRowHandle, "Serie"));
             intTiposdemovimientoinvID = Convert.ToInt32(gridViewPrincipal.GetRowCellValue(gridViewPrincipal.FocusedRowHandle, "TiposdemovimientoinvID"));
-            if (strStatus == "Cancelada" || strStatus == "Rechazada")
-            {
-                bbiCancelar.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
-            }
-            else if (strStatus == "Registrada")
-            {
-                bbiCancelar.Visibility = DevExpress.XtraBars.BarItemVisibility.Always;
-                ////   bbiIImprimir.Visibility = DevExpress.XtraBars.BarItemVisibility.Always;
-            }
-            
 
+            if (intStatus == 5)
+                bbiCancelar.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
+            else
+                bbiCancelar.Visibility = DevExpress.XtraBars.BarItemVisibility.Always;
         }
 
         private void gridViewPrincipal_RowCellStyle(object sender, DevExpress.XtraGrid.Views.Grid.RowCellStyleEventArgs e)
@@ -870,11 +900,22 @@ namespace VisualSoftErp.Operacion.Ventas.Formas
             //gridViewPrincipal.ActiveFilter.Clear();
         }
 
-
-
         #endregion
 
+
+
         #region Imprimir
+        
+        private void bbiIImprimir_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            if (intFolio == 0 && navigationFrame.SelectedPageIndex != 3)
+            {
+                MessageBox.Show("Selecciona un renglón");
+                return;
+            }
+            Imprime();
+        }
+
         private void Imprime()
         {
 
@@ -882,9 +923,6 @@ namespace VisualSoftErp.Operacion.Ventas.Formas
             {
                 RibbonPagePrint.Visible = true;
                 ribbonPage1.Visible = false;
-                navigationFrame.SelectedPageIndex = 2;
-               
-
                 reporte();
                 navBarControl.Visible = false;
                 ribbonControl.MergeOwner.SelectedPage = ribbonControl.MergeOwner.TotalPageCategory.GetPageByText(RibbonPagePrint.Text);
@@ -893,36 +931,36 @@ namespace VisualSoftErp.Operacion.Ventas.Formas
             {
                 MessageBox.Show("Imprime: " + ex.Message);
             }
-
-        }
-        private void bbiIImprimir_ItemClick(object sender, ItemClickEventArgs e)
-        {
-            if (intFolio == 0)
-            {
-                MessageBox.Show("Selecciona un renglón");
-                return;
-            }
-
-            Imprime();
-
-
         }
 
         private void reporte()
         {
             try
             {
-                EntradasysalidasformatoImpresion report = new EntradasysalidasformatoImpresion();
-                report.Parameters["parameter1"].Value = strSerie;
-                report.Parameters["parameter2"].Value = intTiposdemovimientoinvID;
-                report.Parameters["parameter3"].Value = intFolio;
-                report.Parameters["parameter1"].Visible = false;
-                report.Parameters["parameter2"].Visible = false;
-                report.Parameters["parameter3"].Visible = false;
+                if (navigationFrame.SelectedPageIndex == 0 || navigationFrame.SelectedPageIndex == 1)
+                {
+                    EntradasysalidasformatoImpresion report = new EntradasysalidasformatoImpresion();
+                    report.Parameters["parameter1"].Value = strSerie;
+                    report.Parameters["parameter2"].Value = intTiposdemovimientoinvID;
+                    report.Parameters["parameter3"].Value = intFolio;
+                    report.Parameters["parameter1"].Visible = false;
+                    report.Parameters["parameter2"].Visible = false;
+                    report.Parameters["parameter3"].Visible = false;
+                    this.documentViewer1.DocumentSource = report;
+                    report.CreateDocument(false);
+                    documentViewer1.Show();
+                    navigationFrame.SelectedPageIndex = 2;
+                }
+                else if (navigationFrame.SelectedPageIndex == 3)
+                {
+                    //SE IMPRIMEN SALIDAS PENDIENTES POR AUTORIZAR
+                    EntradasySalidasPorAutorizarRep report = new EntradasySalidasPorAutorizarRep();
+                    this.documentViewer1.DocumentSource = report;
+                    report.CreateDocument(true);
+                    documentViewer1.Show();
+                    navigationFrame.SelectedPageIndex = 2;
+                }
 
-                this.documentViewer1.DocumentSource = report;
-                report.CreateDocument(false);
-                documentViewer1.Show();
             }
             catch (Exception ex)
             {
@@ -932,6 +970,7 @@ namespace VisualSoftErp.Operacion.Ventas.Formas
 
 
         }
+        
         #endregion
 
         private void gridControlDetalle_ProcessGridKey(object sender, KeyEventArgs e)
@@ -1054,7 +1093,7 @@ namespace VisualSoftErp.Operacion.Ventas.Formas
             bbiEliminar.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
             bbiCerrar.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
             bbiVista.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
-            bbiIImprimir.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
+            // bbiIImprimir.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
             bbiListaPorAutorizar.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
             bbiAutorizar.Visibility = DevExpress.XtraBars.BarItemVisibility.Always;
             navBarControl.Visible = false;
@@ -1115,6 +1154,44 @@ namespace VisualSoftErp.Operacion.Ventas.Formas
             }
             else
                 MessageBox.Show(result);
+        }
+
+        private void bbiCancelar_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            try
+            {
+                if (intStatus == 5)
+                {
+                    MessageBox.Show("Este Movimiento ya ha sido cancelado");
+                    return;
+                }
+                if (intStatus == 2)
+                {
+                    DialogResult dialog = MessageBox.Show("¿Desea cancelar la salida? Se afectará inventario.", "Salida Autorizada", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                    if (dialog == DialogResult.No)
+                        return;
+                }
+
+
+                EntradasysalidasCL cl = new EntradasysalidasCL();
+                cl.strSerie = strSerie;
+                cl.intFolio = intFolio;
+                cl.intTiposdemovimientoinvID = intTiposdemovimientoinvID;
+                string result = cl.EntradasySalidasCancelar();
+                if (result == "OK")
+                {
+                    MessageBox.Show("Movimiento Cancelado Correctamente");
+                    cl.intAño = AñoFiltro;
+                    cl.intMes = MesFiltro;
+                    gridControlPrincipal.DataSource = cl.EntradasysalidasGrid();
+                }
+                else
+                    MessageBox.Show(result);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
 
         private void bbiRegresarImp_ItemClick_1(object sender, ItemClickEventArgs e)

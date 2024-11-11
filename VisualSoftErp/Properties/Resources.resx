@@ -121,13 +121,7 @@
   <data name="VS grande" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\VS grande.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <!--<data name="xml1" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\xml.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>-->
-  <!--<data name="xml" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\xml.svg;DevExpress.Utils.Svg.SvgImage, DevExpress.Data.v21.2, Version=21.2.13.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a</value>
+  <data name="Diexsa_LogoFinal-01[1]" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Diexsa_LogoFinal-01[1].png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="xml2" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\xml.jpeg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>-->
 </root>

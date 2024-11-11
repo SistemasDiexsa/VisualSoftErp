@@ -2399,7 +2399,6 @@ namespace VisualSoftErp.Catalogos.Ventas
             popUpCxC.Visible = false;
             popUpCxC.HidePopup();
         }
-
       
         private void officeNavigationBar1_ItemClick(object sender, DevExpress.XtraBars.Navigation.NavigationBarItemEventArgs e)
         {
@@ -2450,6 +2449,7 @@ namespace VisualSoftErp.Catalogos.Ventas
         {
             CargarCotizaciones();
         }
+        
         private void CargarCotizaciones()
         {
             try

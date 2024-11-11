@@ -32,6 +32,25 @@ namespace VisualSoftErp.Catalogos.Herramientas
             DevExpress.XtraSplashScreen.SplashScreenManager.CloseDefaultWaitForm();
         }
 
+
+        #region INTERACCIONES DE USUARIO
+        private void cboUsuariosID_EditValueChanged(object sender, EventArgs e)
+        {
+            LookUpEdit cboUsuariosID = (LookUpEdit)sender;
+            if (cboUsuariosID != null)
+            {
+                if (cboUsuariosID.IsPopupOpen) return;
+                if (cboUsuariosID.EditValue != null)
+                {
+                    intUsuarioID = Convert.ToInt32(cboUsuariosID.EditValue);
+                    LlenarGrid();
+                }
+
+            }
+        }
+
+        #endregion INTERACCIONES DE USUARIO
+
         private void PermisosEscritura()
         {
             globalCL clg = new globalCL();
@@ -261,20 +280,6 @@ namespace VisualSoftErp.Catalogos.Herramientas
             }
         }
 
-        private void cboUsuariosID_EditValueChanged(object sender, EventArgs e)
-        {
-            LookUpEdit cboUsuariosID = (LookUpEdit)sender;
-            if(sender != null)
-            {
-                if (cboUsuariosID.IsPopupOpen) return;
-                if (cboUsuariosID.EditValue != null)
-                {
-                    intUsuarioID = Convert.ToInt32(cboUsuariosID.EditValue);
-                    LlenarGrid();
-                }
-
-            }
-        }
 
         private void cboProgramas_CloseUp(object sender, DevExpress.XtraEditors.Controls.CloseUpEventArgs e)
         {

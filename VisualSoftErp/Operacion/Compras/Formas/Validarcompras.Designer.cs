@@ -46,6 +46,7 @@
             this.bbiCambiarFecha = new DevExpress.XtraBars.BarButtonItem();
             this.bbiCargaXML = new DevExpress.XtraBars.BarButtonItem();
             this.bbiCargaXML2 = new DevExpress.XtraBars.BarButtonItem();
+            this.bbiCorregirCostos = new DevExpress.XtraBars.BarButtonItem();
             this.ribbonPage = new DevExpress.XtraBars.Ribbon.RibbonPage();
             this.ribbonPageGroup1 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.ribbonStatusBar = new DevExpress.XtraBars.Ribbon.RibbonStatusBar();
@@ -79,11 +80,13 @@
             this.gridColumnFecha = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumnST = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumnIva = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumnISR = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumnNeto = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridControl2 = new DevExpress.XtraGrid.GridControl();
             this.gridView2 = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.xtraOpenFileDialog1 = new DevExpress.XtraEditors.XtraOpenFileDialog(this.components);
-            this.bbiCorregirCostos = new DevExpress.XtraBars.BarButtonItem();
+            this.labelControl13 = new DevExpress.XtraEditors.LabelControl();
+            this.txtAjusteFactura = new DevExpress.XtraEditors.TextEdit();
             ((System.ComponentModel.ISupportInitialize)(this.tabbedView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ribbonControl)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainerControl1)).BeginInit();
@@ -112,6 +115,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridControl2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtAjusteFactura.Properties)).BeginInit();
             this.SuspendLayout();
             // 
             // ribbonControl
@@ -246,6 +250,14 @@
             this.bbiCargaXML2.Name = "bbiCargaXML2";
             this.bbiCargaXML2.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.bbiCargaXML_ItemClick);
             // 
+            // bbiCorregirCostos
+            // 
+            this.bbiCorregirCostos.Caption = "Corregir Costos";
+            this.bbiCorregirCostos.Id = 58;
+            this.bbiCorregirCostos.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("bbiCorregirCostos.ImageOptions.SvgImage")));
+            this.bbiCorregirCostos.Name = "bbiCorregirCostos";
+            this.bbiCorregirCostos.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.bbiCorregirCostos_ItemClick);
+            // 
             // ribbonPage
             // 
             this.ribbonPage.Groups.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPageGroup[] {
@@ -291,7 +303,7 @@
             this.splitContainerControl1.Panel2.Controls.Add(this.gridControl2);
             this.splitContainerControl1.Panel2.Text = "Panel2";
             this.splitContainerControl1.Size = new System.Drawing.Size(1446, 655);
-            this.splitContainerControl1.SplitterPosition = 320;
+            this.splitContainerControl1.SplitterPosition = 345;
             this.splitContainerControl1.TabIndex = 4;
             // 
             // splitContainerControl2
@@ -303,6 +315,8 @@
             // 
             // splitContainerControl2.Panel1
             // 
+            this.splitContainerControl2.Panel1.Controls.Add(this.txtAjusteFactura);
+            this.splitContainerControl2.Panel1.Controls.Add(this.labelControl13);
             this.splitContainerControl2.Panel1.Controls.Add(this.labelControl12);
             this.splitContainerControl2.Panel1.Controls.Add(this.TxtCargoVario);
             this.splitContainerControl2.Panel1.Controls.Add(this.labelControl11);
@@ -330,7 +344,7 @@
             // 
             this.splitContainerControl2.Panel2.Controls.Add(this.gridControl1);
             this.splitContainerControl2.Panel2.Text = "Panel2";
-            this.splitContainerControl2.Size = new System.Drawing.Size(1442, 316);
+            this.splitContainerControl2.Size = new System.Drawing.Size(1442, 341);
             this.splitContainerControl2.SplitterPosition = 763;
             this.splitContainerControl2.TabIndex = 15;
             // 
@@ -339,9 +353,9 @@
             this.labelControl12.Location = new System.Drawing.Point(318, 258);
             this.labelControl12.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.labelControl12.Name = "labelControl12";
-            this.labelControl12.Size = new System.Drawing.Size(167, 13);
+            this.labelControl12.Size = new System.Drawing.Size(173, 13);
             this.labelControl12.TabIndex = 34;
-            this.labelControl12.Text = "Cature el valor antes de impuestos";
+            this.labelControl12.Text = "Capture el valor antes de impuestos";
             // 
             // TxtCargoVario
             // 
@@ -354,7 +368,7 @@
             // 
             // labelControl11
             // 
-            this.labelControl11.Location = new System.Drawing.Point(30, 258);
+            this.labelControl11.Location = new System.Drawing.Point(31, 258);
             this.labelControl11.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.labelControl11.Name = "labelControl11";
             this.labelControl11.Size = new System.Drawing.Size(53, 13);
@@ -364,7 +378,7 @@
             // txtUUID
             // 
             this.txtUUID.Enabled = false;
-            this.txtUUID.Location = new System.Drawing.Point(140, 284);
+            this.txtUUID.Location = new System.Drawing.Point(140, 311);
             this.txtUUID.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txtUUID.MenuManager = this.ribbonControl;
             this.txtUUID.Name = "txtUUID";
@@ -373,7 +387,7 @@
             // 
             // labelControl10
             // 
-            this.labelControl10.Location = new System.Drawing.Point(32, 289);
+            this.labelControl10.Location = new System.Drawing.Point(31, 316);
             this.labelControl10.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.labelControl10.Name = "labelControl10";
             this.labelControl10.Size = new System.Drawing.Size(25, 13);
@@ -542,7 +556,7 @@
             this.gridControl1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.gridControl1.MenuManager = this.ribbonControl;
             this.gridControl1.Name = "gridControl1";
-            this.gridControl1.Size = new System.Drawing.Size(667, 316);
+            this.gridControl1.Size = new System.Drawing.Size(667, 341);
             this.gridControl1.TabIndex = 1;
             this.gridControl1.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridView1});
@@ -555,6 +569,7 @@
             this.gridColumnFecha,
             this.gridColumnST,
             this.gridColumnIva,
+            this.gridColumnISR,
             this.gridColumnNeto});
             this.gridView1.DetailHeight = 284;
             this.gridView1.GridControl = this.gridControl1;
@@ -619,6 +634,16 @@
             this.gridColumnIva.VisibleIndex = 4;
             this.gridColumnIva.Width = 81;
             // 
+            // gridColumnISR
+            // 
+            this.gridColumnISR.Caption = "Retencion ISR";
+            this.gridColumnISR.DisplayFormat.FormatString = "c2";
+            this.gridColumnISR.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
+            this.gridColumnISR.FieldName = "RetencionISR";
+            this.gridColumnISR.Name = "gridColumnISR";
+            this.gridColumnISR.Visible = true;
+            this.gridColumnISR.VisibleIndex = 5;
+            // 
             // gridColumnNeto
             // 
             this.gridColumnNeto.Caption = "Neto";
@@ -628,7 +653,7 @@
             this.gridColumnNeto.MinWidth = 21;
             this.gridColumnNeto.Name = "gridColumnNeto";
             this.gridColumnNeto.Visible = true;
-            this.gridColumnNeto.VisibleIndex = 5;
+            this.gridColumnNeto.VisibleIndex = 6;
             this.gridColumnNeto.Width = 81;
             // 
             // gridControl2
@@ -640,7 +665,7 @@
             this.gridControl2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.gridControl2.MenuManager = this.ribbonControl;
             this.gridControl2.Name = "gridControl2";
-            this.gridControl2.Size = new System.Drawing.Size(1446, 323);
+            this.gridControl2.Size = new System.Drawing.Size(1446, 298);
             this.gridControl2.TabIndex = 0;
             this.gridControl2.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridView2});
@@ -658,13 +683,23 @@
             // 
             this.xtraOpenFileDialog1.FileName = "xtraOpenFileDialog1";
             // 
-            // bbiCorregirCostos
+            // labelControl13
             // 
-            this.bbiCorregirCostos.Caption = "Corregir Costos";
-            this.bbiCorregirCostos.Id = 58;
-            this.bbiCorregirCostos.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("barButtonItem1.ImageOptions.SvgImage")));
-            this.bbiCorregirCostos.Name = "bbiCorregirCostos";
-            this.bbiCorregirCostos.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.bbiCorregirCostos_ItemClick);
+            this.labelControl13.Location = new System.Drawing.Point(31, 286);
+            this.labelControl13.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.labelControl13.Name = "labelControl13";
+            this.labelControl13.Size = new System.Drawing.Size(83, 13);
+            this.labelControl13.TabIndex = 35;
+            this.labelControl13.Text = "Valor para Ajuste";
+            // 
+            // txtAjusteFactura
+            // 
+            this.txtAjusteFactura.Location = new System.Drawing.Point(140, 283);
+            this.txtAjusteFactura.MenuManager = this.ribbonControl;
+            this.txtAjusteFactura.Name = "txtAjusteFactura";
+            this.txtAjusteFactura.Size = new System.Drawing.Size(159, 20);
+            this.txtAjusteFactura.TabIndex = 36;
+            this.txtAjusteFactura.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtAjusteFactura_KeyDown);
             // 
             // Validarcompras
             // 
@@ -708,6 +743,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridControl2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtAjusteFactura.Properties)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -768,5 +804,8 @@
         private DevExpress.XtraEditors.LabelControl labelControl11;
         private DevExpress.XtraEditors.LabelControl labelControl12;
         private DevExpress.XtraBars.BarButtonItem bbiCorregirCostos;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumnISR;
+        private DevExpress.XtraEditors.TextEdit txtAjusteFactura;
+        private DevExpress.XtraEditors.LabelControl labelControl13;
     }
 }

@@ -20,6 +20,7 @@ using VisualSoftErp.Operacion.Ventas.Designers;
 using DevExpress.XtraReports.UI;
 using VisualSoftErp.Herramientas.Clases;
 using DevExpress.XtraNavBar;
+using DevExpress.CodeParser;
 
 namespace VisualSoftErp.Catalogos.Ventas
 {
@@ -73,6 +74,8 @@ namespace VisualSoftErp.Catalogos.Ventas
         System.Data.DataTable dtFacturasDetalle = new System.Data.DataTable("FacturasDetalle");
 
         string strTipoRelacion;
+        int intPagina;
+
         public Facturas()
         {
             InitializeComponent();
@@ -101,6 +104,7 @@ namespace VisualSoftErp.Catalogos.Ventas
 
             AñoFiltro = DateTime.Now.Year;
             MesFiltro = DateTime.Now.Month;
+            intPagina = 1;
             LlenarGrid(AñoFiltro, MesFiltro);
 
             pdfRibbonPage1.Visible = false;
@@ -269,17 +273,23 @@ namespace VisualSoftErp.Catalogos.Ventas
         private void LlenarGrid(int Año, int Mes)///gridprincipal
         {
             DevExpress.XtraSplashScreen.SplashScreenManager.ShowDefaultWaitForm("VisualSoft","Cargando datos...");
+            //CrearIndicesPaginas();
+
             FacturasCL cl = new FacturasCL();
             cl.intAño = Año;
             cl.intMes = Mes;
+            //cl.intPagina = intPagina;
             gridControlPrincipal.DataSource = cl.FacturasGrid();
             //Global, manda el nombre del grid para la clase Global
             globalCL clg = new globalCL();
             clg.strGridLayout = "gridFacturas";
             clg.restoreLayout(gridViewPrincipal);
 
+            string strMes = clg.NombreDeMes(Mes);
+            gridViewPrincipal.ViewCaption = "Facturas del " + Año.ToString() + " de " + strMes;
             gridViewPrincipal.OptionsView.ShowAutoFilterRow = true;
 
+            // AdjustPaginationLinks();
             DevExpress.XtraSplashScreen.SplashScreenManager.CloseDefaultWaitForm();
 
         } //LlenarGrid()
@@ -701,7 +711,7 @@ namespace VisualSoftErp.Catalogos.Ventas
                 decimal dCantidad;
                 int intArticulosID;
                 string strDescripcion;
-                decimal dPrecioLista = 0;
+                // decimal dPrecioLista = 0;
                 decimal dImporte;
                 decimal dIvaImporte;
                 string strClaveProdServ;
@@ -863,9 +873,6 @@ namespace VisualSoftErp.Catalogos.Ventas
            
             try
             {
-              
-
-
                 //dt para factura general 
                 System.Data.DataTable dtFacturas = new System.Data.DataTable("Facturas");
                 dtFacturas.Columns.Add("Serie", Type.GetType("System.String"));
@@ -948,13 +955,13 @@ namespace VisualSoftErp.Catalogos.Ventas
                 string strRazonCancelacion = "";                
               
                 if (txtFolioacturarelacionada.Text == string.Empty || txtFolioacturarelacionada.Text=="0")
-                    {
-                        strTipoRelacion = "";
-                        txtSeriefacturarelacionada.Text = "";
-                        txtFolioacturarelacionada.Text = "0";
-                    }
+                {
+                    strTipoRelacion = "";
+                    txtSeriefacturarelacionada.Text = "";
+                    txtFolioacturarelacionada.Text = "0";
+                }
                 else
-                    { strTipoRelacion = cboRelacion.EditValue.ToString(); }
+                { strTipoRelacion = cboRelacion.EditValue.ToString(); }
 
                 pc_Tipodecomprobante = "I";
 
@@ -1504,8 +1511,6 @@ namespace VisualSoftErp.Catalogos.Ventas
             }
         }
 
-        
-
         private void gridViewDetalle_CellValueChanged(object sender, DevExpress.XtraGrid.Views.Base.CellValueChangedEventArgs e)
         {
             try
@@ -1761,8 +1766,6 @@ namespace VisualSoftErp.Catalogos.Ventas
             }
         }
 
-
-
         private void bbiGuardar_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
 
@@ -1971,7 +1974,6 @@ namespace VisualSoftErp.Catalogos.Ventas
            
         }
         
-
         private string uuidRelacionado()
         {
             //hacer rutina para buscar xml y sacar el uuid 
@@ -2053,7 +2055,7 @@ namespace VisualSoftErp.Catalogos.Ventas
             if (strStatus == "Registrada")
             {
                 bbiCancelar.Visibility = DevExpress.XtraBars.BarItemVisibility.Always;
-            }            
+            }
         }
 
         private void gridViewPrincipal_RowCellStyle(object sender, DevExpress.XtraGrid.Views.Grid.RowCellStyleEventArgs e)
@@ -2088,7 +2090,7 @@ namespace VisualSoftErp.Catalogos.Ventas
             else
             {
                 strStatus = "Cancelar";
-                //ribbonPageGroup2.Visible = true;                
+                //ribbonPageGroup2.Visible = true;
                 //txtRazonOld.Visibility = DevExpress.XtraBars.BarItemVisibility.Always;
                 groupControlCan.Visible = true;
                 txtMotivo22.Focus();
@@ -2470,8 +2472,6 @@ namespace VisualSoftErp.Catalogos.Ventas
             Impresion(strSerie, intFolio, dFecha, sMoneda);
         }
 
-        
-       
         private void EnviaCorreo()
         {
             if (intFolio == 0)
@@ -2495,6 +2495,7 @@ namespace VisualSoftErp.Catalogos.Ventas
                 }
             }
         }
+        
         private void bbiEnviarporcorreo_ItemClick(object sender, ItemClickEventArgs e)
         {
             EnviaCorreo();
@@ -2508,7 +2509,7 @@ namespace VisualSoftErp.Catalogos.Ventas
 
         private void gridViewPrincipal_DoubleClick(object sender, EventArgs e)
         {
-            int i = 0;
+           
         }
 
         private void bbiPrefactura_ItemClick(object sender, ItemClickEventArgs e)
@@ -2581,6 +2582,7 @@ namespace VisualSoftErp.Catalogos.Ventas
 
         private void navBarControl_LinkClicked(object sender, NavBarLinkEventArgs e)
         {
+            intPagina = 1;
             globalCL clg = new globalCL();
             string Name = e.Link.ItemName.ToString();
             if (clg.esNumerico(Name))
@@ -2632,7 +2634,6 @@ namespace VisualSoftErp.Catalogos.Ventas
                         MesFiltro = 0;
                         break;
                 }
-
                 LlenarGrid(AñoFiltro, MesFiltro);
 
             }
@@ -2684,7 +2685,7 @@ namespace VisualSoftErp.Catalogos.Ventas
                 AceptarCambio();
             }
         }
-        // C:\VisualSoftErp\Xml33\2024\MAR\134025timbrado.xml
+
         private void btnBuscaNuevoUUID_Click(object sender, EventArgs e)
         {
             globalCL clg = new globalCL();
@@ -2729,5 +2730,61 @@ namespace VisualSoftErp.Catalogos.Ventas
 
             }
         }
+
+        #region PAGINADO
+
+        private void btnAntPagina_Click(object sender, EventArgs e)
+        {
+            if (intPagina > 1)
+            {
+                intPagina--;
+                LlenarGrid(AñoFiltro, MesFiltro);
+            }
+        }
+
+        private void btnSigPagina_Click(object sender, EventArgs e)
+        {
+            if (gridViewPrincipal.RowCount == 100)
+            {
+                intPagina++;
+                LlenarGrid(AñoFiltro, MesFiltro);
+            }
+        }
+
+        private void CrearIndicesPaginas()
+        {
+            globalCL global = new globalCL();
+            global.strTabla = "FacturasGRID";
+            global.intAnio = AñoFiltro;
+            global.intMes = MesFiltro;
+            int intNumeroFilas = global.NumeroFilasGrid();
+
+            int itemsPerPage = 500;
+            int totalPages = (int)Math.Ceiling(intNumeroFilas / (double)itemsPerPage);
+
+            flowLayoutPanelPaginas.Controls.Clear();
+
+            for (int i = 1; i <= totalPages; i++)
+            {
+                LinkLabel link = new LinkLabel();
+                link.Text = i.ToString();
+                link.Font = new Font(link.Font.FontFamily, 12);
+                link.Tag = i;
+                link.Click += new EventHandler(Pagina_Click);
+                flowLayoutPanelPaginas.Controls.Add(link);
+            }
+        }
+
+        private void Pagina_Click(object sender, EventArgs e)
+        {
+            LinkLabel link = (LinkLabel)sender;
+            if (intPagina != (int)link.Tag)
+            {
+                intPagina = (int)link.Tag;
+                LlenarGrid(AñoFiltro, MesFiltro);
+            }
+        }
+
+        #endregion PAGINADO
     }
 }

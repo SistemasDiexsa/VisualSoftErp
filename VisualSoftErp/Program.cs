@@ -18,21 +18,17 @@ namespace VisualSoftErp
         /// </summary>
         [STAThread]
         static void Main()
-        {          
+        {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-
             BonusSkins.Register();
-            
-            LoginCL cl = new LoginCL();
 
-            //AWS_DEX9201028BA
+            LoginCL cl = new LoginCL();
             cl.sRfc = "DEX9201028BA";
             string result = cl.LeeConexion();
-            
             result = cl.Verificasihayempresas();
 
-            if (result=="OK")
+            if (result == "OK")
             {
                 if (cl.iNumerodeEmpresas == 0)
                 {
@@ -48,7 +44,7 @@ namespace VisualSoftErp
                 }
             }
             else
-                MessageBox.Show("No se pudo leer la tabla de empresas, verifique la base de datos, si está en nube debe tener internet");                
+                MessageBox.Show("No se pudo leer la tabla de empresas, verifique la base de datos, si está en nube debe tener internet");
         }
     }
 }

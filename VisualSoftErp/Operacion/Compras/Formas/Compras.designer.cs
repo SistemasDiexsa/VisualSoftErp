@@ -312,6 +312,8 @@
             this.gridViewPrincipal = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.customersNavigationPage = new DevExpress.XtraBars.Navigation.NavigationPage();
             this.splitContainerControl1 = new DevExpress.XtraEditors.SplitContainerControl();
+            this.txtRetencionISR = new DevExpress.XtraEditors.TextEdit();
+            this.labelControl44 = new DevExpress.XtraEditors.LabelControl();
             this.lblPolizaTesk = new DevExpress.XtraEditors.LabelControl();
             this.lblPagada = new DevExpress.XtraEditors.LabelControl();
             this.simpleButton4 = new DevExpress.XtraEditors.SimpleButton();
@@ -364,10 +366,11 @@
             this.gridColumnDescuento = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumnIVA = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumnIEPS = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.gridColumnPieps = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.gridColumnPiva = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.gridColumnPdescuento = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumnRetencionISR = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumnNeto = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumnPieps = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumnPdescuento = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumnPiva = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumnDes = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumnNoIdentificacion = new DevExpress.XtraGrid.Columns.GridColumn();
             this.labelControl15 = new DevExpress.XtraEditors.LabelControl();
@@ -471,6 +474,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.splitContainerControl1.Panel2)).BeginInit();
             this.splitContainerControl1.Panel2.SuspendLayout();
             this.splitContainerControl1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.txtRetencionISR.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cboAlmacen.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtOcSerie.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cboProveedores.Properties)).BeginInit();
@@ -2206,6 +2210,8 @@
             // 
             // splitContainerControl1.Panel1
             // 
+            this.splitContainerControl1.Panel1.Controls.Add(this.txtRetencionISR);
+            this.splitContainerControl1.Panel1.Controls.Add(this.labelControl44);
             this.splitContainerControl1.Panel1.Controls.Add(this.lblPolizaTesk);
             this.splitContainerControl1.Panel1.Controls.Add(this.lblPagada);
             this.splitContainerControl1.Panel1.Controls.Add(this.simpleButton4);
@@ -2244,6 +2250,24 @@
             this.splitContainerControl1.Size = new System.Drawing.Size(1361, 641);
             this.splitContainerControl1.SplitterPosition = 167;
             this.splitContainerControl1.TabIndex = 4;
+            // 
+            // txtRetencionISR
+            // 
+            this.txtRetencionISR.Enabled = false;
+            this.txtRetencionISR.EnterMoveNextControl = true;
+            this.txtRetencionISR.Location = new System.Drawing.Point(894, 124);
+            this.txtRetencionISR.MenuManager = this.ribbonControl;
+            this.txtRetencionISR.Name = "txtRetencionISR";
+            this.txtRetencionISR.Size = new System.Drawing.Size(116, 20);
+            this.txtRetencionISR.TabIndex = 33;
+            // 
+            // labelControl44
+            // 
+            this.labelControl44.Location = new System.Drawing.Point(818, 127);
+            this.labelControl44.Name = "labelControl44";
+            this.labelControl44.Size = new System.Drawing.Size(70, 13);
+            this.labelControl44.TabIndex = 32;
+            this.labelControl44.Text = "Retención ISR";
             // 
             // lblPolizaTesk
             // 
@@ -2318,7 +2342,7 @@
             // 
             this.labelControl14.Location = new System.Drawing.Point(21, 79);
             this.labelControl14.Name = "labelControl14";
-            this.labelControl14.Size = new System.Drawing.Size(40, 13);
+            this.labelControl14.Size = new System.Drawing.Size(41, 13);
             this.labelControl14.TabIndex = 26;
             this.labelControl14.Text = "Almacén";
             // 
@@ -2355,7 +2379,7 @@
             // 
             this.labelControl10.Location = new System.Drawing.Point(557, 79);
             this.labelControl10.Name = "labelControl10";
-            this.labelControl10.Size = new System.Drawing.Size(38, 13);
+            this.labelControl10.Size = new System.Drawing.Size(39, 13);
             this.labelControl10.TabIndex = 22;
             this.labelControl10.Text = "Moneda";
             // 
@@ -2363,7 +2387,7 @@
             // 
             this.labelControl9.Location = new System.Drawing.Point(557, 127);
             this.labelControl9.Name = "labelControl9";
-            this.labelControl9.Size = new System.Drawing.Size(25, 13);
+            this.labelControl9.Size = new System.Drawing.Size(26, 13);
             this.labelControl9.TabIndex = 21;
             this.labelControl9.Text = "Plazo";
             // 
@@ -2371,7 +2395,7 @@
             // 
             this.labelControl8.Location = new System.Drawing.Point(557, 105);
             this.labelControl8.Name = "labelControl8";
-            this.labelControl8.Size = new System.Drawing.Size(73, 13);
+            this.labelControl8.Size = new System.Drawing.Size(74, 13);
             this.labelControl8.TabIndex = 20;
             this.labelControl8.Text = "Tipo de Cambio";
             // 
@@ -2387,7 +2411,7 @@
             // 
             this.labelControl6.Location = new System.Drawing.Point(557, 30);
             this.labelControl6.Name = "labelControl6";
-            this.labelControl6.Size = new System.Drawing.Size(37, 13);
+            this.labelControl6.Size = new System.Drawing.Size(36, 13);
             this.labelControl6.TabIndex = 18;
             this.labelControl6.Text = "Factura";
             // 
@@ -2395,7 +2419,7 @@
             // 
             this.labelControl5.Location = new System.Drawing.Point(21, 30);
             this.labelControl5.Name = "labelControl5";
-            this.labelControl5.Size = new System.Drawing.Size(50, 13);
+            this.labelControl5.Size = new System.Drawing.Size(49, 13);
             this.labelControl5.TabIndex = 17;
             this.labelControl5.Text = "Proveedor";
             // 
@@ -2411,7 +2435,7 @@
             // 
             this.labelControl3.Location = new System.Drawing.Point(21, 54);
             this.labelControl3.Name = "labelControl3";
-            this.labelControl3.Size = new System.Drawing.Size(29, 13);
+            this.labelControl3.Size = new System.Drawing.Size(30, 13);
             this.labelControl3.TabIndex = 15;
             this.labelControl3.Text = "Fecha";
             // 
@@ -2619,7 +2643,7 @@
             this.labelControl45.Location = new System.Drawing.Point(27, 57);
             this.labelControl45.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.labelControl45.Name = "labelControl45";
-            this.labelControl45.Size = new System.Drawing.Size(50, 13);
+            this.labelControl45.Size = new System.Drawing.Size(49, 13);
             this.labelControl45.TabIndex = 11;
             this.labelControl45.Text = "Password:";
             // 
@@ -2673,7 +2697,7 @@
             this.labelControl48.Location = new System.Drawing.Point(-100, 10);
             this.labelControl48.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.labelControl48.Name = "labelControl48";
-            this.labelControl48.Size = new System.Drawing.Size(25, 13);
+            this.labelControl48.Size = new System.Drawing.Size(26, 13);
             this.labelControl48.TabIndex = 5;
             this.labelControl48.Text = "Login";
             // 
@@ -2702,10 +2726,11 @@
             this.gridColumnDescuento,
             this.gridColumnIVA,
             this.gridColumnIEPS,
-            this.gridColumnPieps,
-            this.gridColumnPiva,
-            this.gridColumnPdescuento,
+            this.gridColumnRetencionISR,
             this.gridColumnNeto,
+            this.gridColumnPieps,
+            this.gridColumnPdescuento,
+            this.gridColumnPiva,
             this.gridColumnDes,
             this.gridColumnNoIdentificacion});
             this.gridViewDetalle.GridControl = this.gridControlDetalle;
@@ -2787,29 +2812,13 @@
             this.gridColumnIEPS.Visible = true;
             this.gridColumnIEPS.VisibleIndex = 6;
             // 
-            // gridColumnPieps
+            // gridColumnRetencionISR
             // 
-            this.gridColumnPieps.Caption = "Pieps";
-            this.gridColumnPieps.FieldName = "Pieps";
-            this.gridColumnPieps.Name = "gridColumnPieps";
-            this.gridColumnPieps.Visible = true;
-            this.gridColumnPieps.VisibleIndex = 8;
-            // 
-            // gridColumnPiva
-            // 
-            this.gridColumnPiva.Caption = "Piva";
-            this.gridColumnPiva.FieldName = "Piva";
-            this.gridColumnPiva.Name = "gridColumnPiva";
-            this.gridColumnPiva.Visible = true;
-            this.gridColumnPiva.VisibleIndex = 10;
-            // 
-            // gridColumnPdescuento
-            // 
-            this.gridColumnPdescuento.Caption = "% Descuento";
-            this.gridColumnPdescuento.FieldName = "Pdescuento";
-            this.gridColumnPdescuento.Name = "gridColumnPdescuento";
-            this.gridColumnPdescuento.Visible = true;
-            this.gridColumnPdescuento.VisibleIndex = 9;
+            this.gridColumnRetencionISR.Caption = "Retencion ISR";
+            this.gridColumnRetencionISR.FieldName = "RetencionISR";
+            this.gridColumnRetencionISR.Name = "gridColumnRetencionISR";
+            this.gridColumnRetencionISR.Visible = true;
+            this.gridColumnRetencionISR.VisibleIndex = 7;
             // 
             // gridColumnNeto
             // 
@@ -2821,7 +2830,31 @@
             this.gridColumnNeto.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
             new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "Neto", "{0:c2}")});
             this.gridColumnNeto.Visible = true;
-            this.gridColumnNeto.VisibleIndex = 7;
+            this.gridColumnNeto.VisibleIndex = 8;
+            // 
+            // gridColumnPieps
+            // 
+            this.gridColumnPieps.Caption = "Pieps";
+            this.gridColumnPieps.FieldName = "Pieps";
+            this.gridColumnPieps.Name = "gridColumnPieps";
+            this.gridColumnPieps.Visible = true;
+            this.gridColumnPieps.VisibleIndex = 9;
+            // 
+            // gridColumnPdescuento
+            // 
+            this.gridColumnPdescuento.Caption = "% Descuento";
+            this.gridColumnPdescuento.FieldName = "Pdescuento";
+            this.gridColumnPdescuento.Name = "gridColumnPdescuento";
+            this.gridColumnPdescuento.Visible = true;
+            this.gridColumnPdescuento.VisibleIndex = 10;
+            // 
+            // gridColumnPiva
+            // 
+            this.gridColumnPiva.Caption = "Piva";
+            this.gridColumnPiva.FieldName = "Piva";
+            this.gridColumnPiva.Name = "gridColumnPiva";
+            this.gridColumnPiva.Visible = true;
+            this.gridColumnPiva.VisibleIndex = 11;
             // 
             // gridColumnDes
             // 
@@ -2831,7 +2864,7 @@
             this.gridColumnDes.Name = "gridColumnDes";
             this.gridColumnDes.OptionsColumn.ReadOnly = true;
             this.gridColumnDes.Visible = true;
-            this.gridColumnDes.VisibleIndex = 11;
+            this.gridColumnDes.VisibleIndex = 12;
             this.gridColumnDes.Width = 81;
             // 
             // gridColumnNoIdentificacion
@@ -2842,14 +2875,14 @@
             this.gridColumnNoIdentificacion.Name = "gridColumnNoIdentificacion";
             this.gridColumnNoIdentificacion.OptionsColumn.ReadOnly = true;
             this.gridColumnNoIdentificacion.Visible = true;
-            this.gridColumnNoIdentificacion.VisibleIndex = 12;
+            this.gridColumnNoIdentificacion.VisibleIndex = 13;
             this.gridColumnNoIdentificacion.Width = 81;
             // 
             // labelControl15
             // 
             this.labelControl15.Location = new System.Drawing.Point(677, 2);
             this.labelControl15.Name = "labelControl15";
-            this.labelControl15.Size = new System.Drawing.Size(25, 13);
+            this.labelControl15.Size = new System.Drawing.Size(27, 13);
             this.labelControl15.TabIndex = 16;
             this.labelControl15.Text = "UUID";
             // 
@@ -2895,7 +2928,7 @@
             // 
             this.labelControl12.Location = new System.Drawing.Point(28, 9);
             this.labelControl12.Name = "labelControl12";
-            this.labelControl12.Size = new System.Drawing.Size(65, 13);
+            this.labelControl12.Size = new System.Drawing.Size(63, 13);
             this.labelControl12.TabIndex = 1;
             this.labelControl12.Text = "% Descuento";
             // 
@@ -2940,7 +2973,7 @@
             // 
             this.labelControl21.Location = new System.Drawing.Point(789, 219);
             this.labelControl21.Name = "labelControl21";
-            this.labelControl21.Size = new System.Drawing.Size(69, 13);
+            this.labelControl21.Size = new System.Drawing.Size(65, 13);
             this.labelControl21.TabIndex = 19;
             this.labelControl21.Text = "% incremental";
             // 
@@ -2948,7 +2981,7 @@
             // 
             this.labelControl22.Location = new System.Drawing.Point(789, 184);
             this.labelControl22.Name = "labelControl22";
-            this.labelControl22.Size = new System.Drawing.Size(101, 13);
+            this.labelControl22.Size = new System.Drawing.Size(99, 13);
             this.labelControl22.TabIndex = 21;
             this.labelControl22.Text = "Base para calcular %";
             // 
@@ -3041,7 +3074,7 @@
             // 
             this.labelControl23.Location = new System.Drawing.Point(546, 71);
             this.labelControl23.Name = "labelControl23";
-            this.labelControl23.Size = new System.Drawing.Size(19, 13);
+            this.labelControl23.Size = new System.Drawing.Size(22, 13);
             this.labelControl23.TabIndex = 17;
             this.labelControl23.Text = "PRV";
             // 
@@ -3049,7 +3082,7 @@
             // 
             this.labelControl24.Location = new System.Drawing.Point(546, 37);
             this.labelControl24.Name = "labelControl24";
-            this.labelControl24.Size = new System.Drawing.Size(20, 13);
+            this.labelControl24.Size = new System.Drawing.Size(22, 13);
             this.labelControl24.TabIndex = 15;
             this.labelControl24.Text = "DTA";
             // 
@@ -3057,7 +3090,7 @@
             // 
             this.labelControl25.Location = new System.Drawing.Point(296, 71);
             this.labelControl25.Name = "labelControl25";
-            this.labelControl25.Size = new System.Drawing.Size(15, 13);
+            this.labelControl25.Size = new System.Drawing.Size(14, 13);
             this.labelControl25.TabIndex = 13;
             this.labelControl25.Text = "IGI";
             // 
@@ -3065,7 +3098,7 @@
             // 
             this.labelControl26.Location = new System.Drawing.Point(17, 71);
             this.labelControl26.Name = "labelControl26";
-            this.labelControl26.Size = new System.Drawing.Size(86, 13);
+            this.labelControl26.Size = new System.Drawing.Size(84, 13);
             this.labelControl26.TabIndex = 7;
             this.labelControl26.Text = "Iva del pedimento";
             // 
@@ -3081,7 +3114,7 @@
             // 
             this.labelControl28.Location = new System.Drawing.Point(17, 37);
             this.labelControl28.Name = "labelControl28";
-            this.labelControl28.Size = new System.Drawing.Size(97, 13);
+            this.labelControl28.Size = new System.Drawing.Size(99, 13);
             this.labelControl28.TabIndex = 5;
             this.labelControl28.Text = "Gasto aduanales MX";
             // 
@@ -3121,7 +3154,7 @@
             // 
             this.labelControl29.Location = new System.Drawing.Point(12, 71);
             this.labelControl29.Name = "labelControl29";
-            this.labelControl29.Size = new System.Drawing.Size(93, 13);
+            this.labelControl29.Size = new System.Drawing.Size(87, 13);
             this.labelControl29.TabIndex = 3;
             this.labelControl29.Text = "Flete de extranjero";
             // 
@@ -3140,7 +3173,7 @@
             // 
             this.labelControl30.Location = new System.Drawing.Point(12, 37);
             this.labelControl30.Name = "labelControl30";
-            this.labelControl30.Size = new System.Drawing.Size(118, 13);
+            this.labelControl30.Size = new System.Drawing.Size(120, 13);
             this.labelControl30.TabIndex = 1;
             this.labelControl30.Text = "Gasto de aduanales USA";
             // 
@@ -3159,7 +3192,7 @@
             // 
             this.labelControl31.Location = new System.Drawing.Point(789, 150);
             this.labelControl31.Name = "labelControl31";
-            this.labelControl31.Size = new System.Drawing.Size(82, 13);
+            this.labelControl31.Size = new System.Drawing.Size(81, 13);
             this.labelControl31.TabIndex = 19;
             this.labelControl31.Text = "Total incremental";
             // 
@@ -3209,7 +3242,7 @@
             // 
             this.labelControl38.Location = new System.Drawing.Point(885, 37);
             this.labelControl38.Name = "labelControl38";
-            this.labelControl38.Size = new System.Drawing.Size(44, 13);
+            this.labelControl38.Size = new System.Drawing.Size(42, 13);
             this.labelControl38.TabIndex = 11;
             this.labelControl38.Text = "Compra: ";
             // 
@@ -3227,7 +3260,7 @@
             // 
             this.labelControl36.Location = new System.Drawing.Point(17, 109);
             this.labelControl36.Name = "labelControl36";
-            this.labelControl36.Size = new System.Drawing.Size(71, 13);
+            this.labelControl36.Size = new System.Drawing.Size(73, 13);
             this.labelControl36.TabIndex = 9;
             this.labelControl36.Text = "Tipo de cambio";
             // 
@@ -3254,7 +3287,7 @@
             // 
             this.labelControl32.Location = new System.Drawing.Point(514, 105);
             this.labelControl32.Name = "labelControl32";
-            this.labelControl32.Size = new System.Drawing.Size(102, 13);
+            this.labelControl32.Size = new System.Drawing.Size(100, 13);
             this.labelControl32.TabIndex = 6;
             this.labelControl32.Text = "Factor de integración";
             // 
@@ -3262,7 +3295,7 @@
             // 
             this.labelControl33.Location = new System.Drawing.Point(515, 71);
             this.labelControl33.Name = "labelControl33";
-            this.labelControl33.Size = new System.Drawing.Size(29, 13);
+            this.labelControl33.Size = new System.Drawing.Size(30, 13);
             this.labelControl33.TabIndex = 5;
             this.labelControl33.Text = "Fecha";
             // 
@@ -3365,7 +3398,7 @@
             // 
             this.labelControl39.Location = new System.Drawing.Point(56, 98);
             this.labelControl39.Name = "labelControl39";
-            this.labelControl39.Size = new System.Drawing.Size(38, 13);
+            this.labelControl39.Size = new System.Drawing.Size(39, 13);
             this.labelControl39.TabIndex = 32;
             this.labelControl39.Text = "Moneda";
             // 
@@ -3373,7 +3406,7 @@
             // 
             this.labelControl40.Location = new System.Drawing.Point(56, 145);
             this.labelControl40.Name = "labelControl40";
-            this.labelControl40.Size = new System.Drawing.Size(25, 13);
+            this.labelControl40.Size = new System.Drawing.Size(26, 13);
             this.labelControl40.TabIndex = 31;
             this.labelControl40.Text = "Plazo";
             // 
@@ -3381,7 +3414,7 @@
             // 
             this.labelControl41.Location = new System.Drawing.Point(56, 124);
             this.labelControl41.Name = "labelControl41";
-            this.labelControl41.Size = new System.Drawing.Size(73, 13);
+            this.labelControl41.Size = new System.Drawing.Size(74, 13);
             this.labelControl41.TabIndex = 30;
             this.labelControl41.Text = "Tipo de Cambio";
             // 
@@ -3397,7 +3430,7 @@
             // 
             this.labelControl43.Location = new System.Drawing.Point(56, 49);
             this.labelControl43.Name = "labelControl43";
-            this.labelControl43.Size = new System.Drawing.Size(37, 13);
+            this.labelControl43.Size = new System.Drawing.Size(36, 13);
             this.labelControl43.TabIndex = 28;
             this.labelControl43.Text = "Factura";
             // 
@@ -3446,7 +3479,7 @@
             // 
             this.popUpCancelar.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.Simple;
             this.popUpCancelar.Controls.Add(this.groupControl3);
-            this.popUpCancelar.Location = new System.Drawing.Point(535, 122);
+            this.popUpCancelar.Location = new System.Drawing.Point(535, 385);
             this.popUpCancelar.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.popUpCancelar.Name = "popUpCancelar";
             this.popUpCancelar.ShowCloseButton = true;
@@ -3506,7 +3539,7 @@
             this.labelControl20.Location = new System.Drawing.Point(27, 57);
             this.labelControl20.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.labelControl20.Name = "labelControl20";
-            this.labelControl20.Size = new System.Drawing.Size(50, 13);
+            this.labelControl20.Size = new System.Drawing.Size(49, 13);
             this.labelControl20.TabIndex = 11;
             this.labelControl20.Text = "Password:";
             // 
@@ -3560,7 +3593,7 @@
             this.labelControl17.Location = new System.Drawing.Point(-100, 10);
             this.labelControl17.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.labelControl17.Name = "labelControl17";
-            this.labelControl17.Size = new System.Drawing.Size(25, 13);
+            this.labelControl17.Size = new System.Drawing.Size(26, 13);
             this.labelControl17.TabIndex = 5;
             this.labelControl17.Text = "Login";
             // 
@@ -3718,6 +3751,7 @@
             this.splitContainerControl1.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainerControl1)).EndInit();
             this.splitContainerControl1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.txtRetencionISR.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.cboAlmacen.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtOcSerie.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.cboProveedores.Properties)).EndInit();
@@ -4082,5 +4116,8 @@
         private DevExpress.XtraEditors.LabelControl labelControl47;
         private DevExpress.XtraEditors.LabelControl labelControl48;
         private DevExpress.XtraEditors.TextEdit txtPolizaTesk;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumnRetencionISR;
+        private DevExpress.XtraEditors.TextEdit txtRetencionISR;
+        private DevExpress.XtraEditors.LabelControl labelControl44;
     }
 }

@@ -110,6 +110,8 @@ namespace VisualSoftErp.Operacion.Ventas.Designers
             // sqlDataSource1
             // 
             this.sqlDataSource1.ConnectionName = "VisualSoftErpConnectionString";
+            this.sqlDataSource1.ConnectionOptions.CommandTimeout = 1200;
+            this.sqlDataSource1.ConnectionOptions.DbCommandTimeout = 1200;
             this.sqlDataSource1.Name = "sqlDataSource1";
             storedProcQuery1.Name = "VentasUtilidadMarginalPorFactura";
             queryParameter1.Name = "@prmEmp";
@@ -136,20 +138,20 @@ namespace VisualSoftErp.Operacion.Ventas.Designers
             queryParameter8.Name = "@prmDummy";
             queryParameter8.Type = typeof(DevExpress.DataAccess.Expression);
             queryParameter8.Value = new DevExpress.DataAccess.Expression("?parameter8", typeof(string));
-            storedProcQuery1.Parameters.Add(queryParameter1);
-            storedProcQuery1.Parameters.Add(queryParameter2);
-            storedProcQuery1.Parameters.Add(queryParameter3);
-            storedProcQuery1.Parameters.Add(queryParameter4);
-            storedProcQuery1.Parameters.Add(queryParameter5);
-            storedProcQuery1.Parameters.Add(queryParameter6);
-            storedProcQuery1.Parameters.Add(queryParameter7);
-            storedProcQuery1.Parameters.Add(queryParameter8);
+            storedProcQuery1.Parameters.AddRange(new DevExpress.DataAccess.Sql.QueryParameter[] {
+            queryParameter1,
+            queryParameter2,
+            queryParameter3,
+            queryParameter4,
+            queryParameter5,
+            queryParameter6,
+            queryParameter7,
+            queryParameter8});
             storedProcQuery1.StoredProcName = "VentasUtilidadMarginalPorFactura";
             this.sqlDataSource1.Queries.AddRange(new DevExpress.DataAccess.Sql.SqlQuery[] {
             storedProcQuery1});
             this.sqlDataSource1.ResultSchemaSerializable = resources.GetString("sqlDataSource1.ResultSchemaSerializable");
             this.sqlDataSource1.ConfigureDataConnection += new DevExpress.DataAccess.Sql.ConfigureDataConnectionEventHandler(this.sqlDataSource1_ConfigureDataConnection);
-            this.sqlDataSource1.ConnectionOptions.DbCommandTimeout = 1200;
             // 
             // Title
             // 
@@ -690,6 +692,7 @@ namespace VisualSoftErp.Operacion.Ventas.Designers
             // calculatedFieldIva
             // 
             this.calculatedFieldIva.DataMember = "VentasUtilidadMarginalPorFactura";
+            this.calculatedFieldIva.Expression = "(([SubTotal] - [Costo]) / [SubTotal]) * 100";
             this.calculatedFieldIva.Name = "calculatedFieldIva";
             this.calculatedFieldIva.GetValue += new DevExpress.XtraReports.UI.GetValueEventHandler(this.calculatedFieldIva_GetValue);
             // 
@@ -702,6 +705,7 @@ namespace VisualSoftErp.Operacion.Ventas.Designers
             // calculatedFieldUtilidad
             // 
             this.calculatedFieldUtilidad.DataMember = "VentasUtilidadMarginalPorFactura";
+            this.calculatedFieldUtilidad.Expression = "([SubTotal] - [Costo])";
             this.calculatedFieldUtilidad.Name = "calculatedFieldUtilidad";
             this.calculatedFieldUtilidad.GetValue += new DevExpress.XtraReports.UI.GetValueEventHandler(this.calculatedFieldUtilidad_GetValue);
             // 
@@ -835,7 +839,7 @@ namespace VisualSoftErp.Operacion.Ventas.Designers
             this.DetailData1,
             this.DetailData3_Odd,
             this.PageInfo});
-            this.Version = "19.1";
+            this.Version = "21.2";
             ((System.ComponentModel.ISupportInitialize)(this.table2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.table1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this)).EndInit();

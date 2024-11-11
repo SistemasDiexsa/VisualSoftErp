@@ -1,4 +1,5 @@
-﻿using DevExpress.XtraEditors;
+﻿using DevExpress.CodeParser;
+using DevExpress.XtraEditors;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
@@ -18,56 +19,59 @@ namespace VisualSoftErp.Clases
         public int intClave;
         public string strDes;
         public string strTabla;
+        public string strCondicion;
         public int iCondicion;
         public int iPadre;
         public int intSubFamilias;
         public int intFam;
         #endregion
+        
         #region Constructor
         public combosCL()
         {
             intClave = 0;
             strDes = string.Empty;
             strTabla = string.Empty;
+            strCondicion = string.Empty;
             iCondicion = 0;
             iPadre = 0;
             intSubFamilias = 0;
             intFam = 0;
         }
         #endregion
+
         #region Metodos
         public DataTable CargaCombos()
         {
             DataTable dt = new DataTable();
             try
             {
-                SqlConnection cnn = new SqlConnection();
-                cnn.ConnectionString = globalCL.gv_strcnn; //strCnn;
-                cnn.Open();
+                using (SqlConnection cnn = new SqlConnection(globalCL.gv_strcnn))
+                {
+                    cnn.Open();
+                    using (SqlCommand cmd = new SqlCommand("CargarCombos", cnn))
+                    {
 
-                SqlCommand cmd = new SqlCommand();
-                cmd.CommandText = "CargarCombos";
-                cmd.Parameters.AddWithValue("@prmTabla", strTabla);
-                cmd.Parameters.AddWithValue("@prmCondicion", iCondicion);
-                cmd.CommandType = System.Data.CommandType.StoredProcedure;
-                cmd.Connection = cnn;
+                        cmd.Parameters.AddWithValue("@prmTabla", strTabla);
+                        cmd.Parameters.AddWithValue("@prmCondicionStr", strCondicion);
+                        cmd.Parameters.AddWithValue("@prmCondicionInt", iCondicion);
+                        cmd.Parameters.AddWithValue("@prmSubFam", intSubFamilias);
+                        cmd.Parameters.AddWithValue("@prmFam", intFam);
+                        cmd.CommandType = System.Data.CommandType.StoredProcedure;
 
-                SqlDataAdapter sqlAD = new SqlDataAdapter(cmd);
-                sqlAD.Fill(dt);
-
-                cnn.Close();
-
+                        using (SqlDataAdapter sqlAD = new SqlDataAdapter(cmd))
+                        {
+                            sqlAD.Fill(dt);
+                        }
+                    }
+                }
                 return dt;
-
             }
             catch (Exception ex)
             {
                 return dt;
-                
             }
-
-
-        }//CargarCombos()
+        }
 
         public DataTable CargaCombosSepomex()
         {
@@ -102,7 +106,6 @@ namespace VisualSoftErp.Clases
 
         }//CargarCombosSepomex()
 
-
         public LookUpEdit ActualizaCombo(LookUpEdit cbo,string tabla,string sNullText)
         {
             combosCL cl = new combosCL();
@@ -128,43 +131,6 @@ namespace VisualSoftErp.Clases
 
             return cbo;
         }
-
-        public DataTable CargaCombosCondicion()
-        {
-            DataTable dt = new DataTable();
-            try
-            {
-                SqlConnection cnn = new SqlConnection();
-                cnn.ConnectionString = strCnn;
-                cnn.Open();
-
-                SqlCommand cmd = new SqlCommand();
-                cmd.CommandText = "CargarCombos";
-                cmd.Parameters.AddWithValue("@prmTabla", strTabla);
-                cmd.Parameters.AddWithValue("@prmCondicion", intClave);
-                cmd.Parameters.AddWithValue("@prmSubFam", intSubFamilias);
-                cmd.Parameters.AddWithValue("@prmFam", intFam);
-                cmd.CommandType = System.Data.CommandType.StoredProcedure;
-                cmd.Connection = cnn;
-
-                SqlDataAdapter sqlAD = new SqlDataAdapter(cmd);
-                sqlAD.Fill(dt);
-
-                cnn.Close();
-
-                return dt;
-
-            }
-            catch (Exception ex)
-            {
-                return dt;
-
-            }
-
-
-        }//CargarCombosCondicion()
-
-        
 
         public DataTable CargaCombosCondicionSepomex()
         {
@@ -198,7 +164,6 @@ namespace VisualSoftErp.Clases
 
 
         }//CargaCombosCondicionSepomex()
-
 
 
         #endregion

@@ -61,6 +61,7 @@ namespace VisualSoftErp.Clases
         public int iFirmaElectronicaSalidas { get; set; }
         public int intModificaFamiliasArticulos {  get; set; }
         public int intModificaSubFamiliasArticulos  { get; set; }
+        public int intCancelarOrdenesCompra { get; set; }
         #endregion
 
         #region Constructor
@@ -106,6 +107,7 @@ namespace VisualSoftErp.Clases
             iFirmaElectronicaSalidas = 0;
             intModificaFamiliasArticulos = 0;
             intModificaSubFamiliasArticulos = 0;
+            intCancelarOrdenesCompra = 0;
         }
 
         #endregion
@@ -126,6 +128,7 @@ namespace VisualSoftErp.Clases
                 return "";
             }
         }
+        
         public DataTable UsuariosGrid()
         {
             DataTable dt = new DataTable();
@@ -208,6 +211,7 @@ namespace VisualSoftErp.Clases
                 cmd.Parameters.AddWithValue("@prmiFirmaElectronicaSalidas", iFirmaElectronicaSalidas);
                 cmd.Parameters.AddWithValue("@prmModificaFamiliasArticulos", intModificaFamiliasArticulos);
                 cmd.Parameters.AddWithValue("@prmModificaSubFamiliasArticulos", intModificaSubFamiliasArticulos);
+                cmd.Parameters.AddWithValue("@prmCancelarOrdenesCompra", intCancelarOrdenesCompra);
                 cmd.CommandType = System.Data.CommandType.StoredProcedure;
                 cmd.Connection = cnn;
                 SqlDataReader dr = cmd.ExecuteReader();
@@ -303,6 +307,8 @@ namespace VisualSoftErp.Clases
                     intModificaFamiliasArticulos = Convert.ToInt32(dr["ModificaFamiliasArticulos"]);
                     intModificaSubFamiliasArticulos = Convert.ToInt32(dr["ModificaSubFamiliasArticulos"]);
 
+                    intCancelarOrdenesCompra = Convert.ToInt32(dr["CancelarOrdenesCompra"]);
+
                     result = "OK";
                 }
                 else
@@ -356,6 +362,7 @@ namespace VisualSoftErp.Clases
                 return ex.Message;
             }
         } // Public Class Eliminar
+        
         public string UsuariosPermisos()
         {
             try

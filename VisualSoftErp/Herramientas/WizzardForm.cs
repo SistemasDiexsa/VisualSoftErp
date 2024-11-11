@@ -300,12 +300,8 @@ namespace VisualSoftErp.Herramientas
             }
         }
 
-        private void pictureEdit5_EditValueChanged(object sender, EventArgs e)
-        {
-            
-        }
 
-        private void pictureEdit5_Click(object sender, EventArgs e)
+        private void btnAddFile_Click(object sender, EventArgs e)
         {
             try
             {

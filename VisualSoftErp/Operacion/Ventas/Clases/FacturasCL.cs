@@ -68,6 +68,7 @@ namespace VisualSoftErp.Clases
         public int intAño { get; set; }
         public int intDias { get; set; }
         public int intCanalesdeventaID { get; set; }
+        public int intPagina { get; set; }
 
         #endregion
 
@@ -127,6 +128,7 @@ namespace VisualSoftErp.Clases
             intEje = 0;
             intMes = 0;
             intDias = 0;
+            intPagina = 0;
         }
         #endregion
 
@@ -147,6 +149,7 @@ namespace VisualSoftErp.Clases
                 return "";
             }
         }
+        
         public DataTable FacturasGrid()
         {
             DataTable dt = new DataTable();
@@ -157,9 +160,10 @@ namespace VisualSoftErp.Clases
                 cnn.Open();
 
                 SqlCommand cmd = new SqlCommand();
-                cmd.CommandText = "facturasGrid";
+                cmd.CommandText = "FacturasGRID";
                 cmd.Parameters.AddWithValue("@prmAño", intAño);
                 cmd.Parameters.AddWithValue("@prmMes", intMes);
+                // cmd.Parameters.AddWithValue("@prmPagina", intPagina);
                 cmd.CommandType = System.Data.CommandType.StoredProcedure;
                 cmd.Connection = cnn;
 

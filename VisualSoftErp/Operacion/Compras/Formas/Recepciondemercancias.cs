@@ -171,6 +171,7 @@ namespace VisualSoftErp.Catalogos
             public int ProveedoresID { get; set; }
             public string MonedasID { get; set; }
         }
+
         private void Inicialisalista()
         {
             OrdenesCompras = new BindingList<OrdenesComprasCL>();
@@ -340,6 +341,7 @@ namespace VisualSoftErp.Catalogos
                 dtRMdetalle.Columns.Add("OCNumero", Type.GetType("System.Int32"));
                 dtRMdetalle.Columns.Add("OCSeq", Type.GetType("System.Int32"));
                 dtRMdetalle.Columns.Add("Neto", Type.GetType("System.Decimal"));
+                dtRMdetalle.Columns.Add("RetencionISR", Type.GetType("System.Decimal"));
                
 
                 System.Data.DataTable dtRecepciondemercancia = new System.Data.DataTable("Recepciondemercancia");
@@ -366,6 +368,7 @@ namespace VisualSoftErp.Catalogos
                 dtRecepciondemercancia.Columns.Add("Neto", Type.GetType("System.Decimal"));
                 dtRecepciondemercancia.Columns.Add("AlmacenesID", Type.GetType("System.Int32"));
                 dtRecepciondemercancia.Columns.Add("CargoVario", Type.GetType("System.Decimal"));
+                dtRecepciondemercancia.Columns.Add("RetencionISR", Type.GetType("System.Decimal"));
 
 
                 int intRen = 0;
@@ -392,6 +395,9 @@ namespace VisualSoftErp.Catalogos
                 decimal decTotDescuento = 0;
                 decimal decNetogrid = 0;
                 decimal decCantidadRecibir;
+                
+                decimal dRetencionISR = 0;
+                decimal dRetencionISRTotal = 0;
 
                 globalCL clg = new globalCL();
 
@@ -407,6 +413,7 @@ namespace VisualSoftErp.Catalogos
                             decCantidadRecibir = Convert.ToDecimal(gridViewOCdetalle.GetRowCellValue(i, "CantidadPorRecibir"));
                             intArticulosID = Convert.ToInt32(gridViewOCdetalle.GetRowCellValue(i, "Articulo"));
                             dPrecio = Convert.ToDecimal(gridViewOCdetalle.GetRowCellValue(i, "Precio"));
+                            dRetencionISR = Convert.ToDecimal(gridViewOCdetalle.GetRowCellValue(i, "RetencionISR"));
                             dimporte = Math.Round(dCantidad * dPrecio,2);
 
                             dPIva = Convert.ToDecimal(gridViewOCdetalle.GetRowCellValue(i, "Piva"));
@@ -415,16 +422,17 @@ namespace VisualSoftErp.Catalogos
                             dIeps = Math.Round(dimporte * (dPIeps / 100),2);
                             decNetogrid = dimporte + dIva + dIeps;
 
-                            dtRMdetalle.Rows.Add(strSerie, intFolio, intSeq, dCantidad, intArticulosID, dPrecio, dimporte, dIva, dIeps, 0, 0, dPIva, dPIeps, dDescuento, dPDescuento, strSerieOC, intFolioOC, intSeq, decNetogrid);
+                            dtRMdetalle.Rows.Add(strSerie, intFolio, intSeq, dCantidad, intArticulosID, dPrecio, dimporte, dIva, dIeps, 0, 0, dPIva, dPIeps, dDescuento, dPDescuento, strSerieOC, intFolioOC, intSeq, decNetogrid, dRetencionISR);
 
                             decTotSubtotal += dimporte;
                             decTotIva += dIva;
                             decTotIeps += dIeps;
                             decTotDescuento += dDescuento;
+                            dRetencionISRTotal += dRetencionISR;
                         }
                     }
                 }
-                decTotNeto += decTotSubtotal + decTotIva + decTotIeps;
+                decTotNeto += decTotSubtotal + decTotIva + decTotIeps - dRetencionISRTotal;
 
                 DateTime fFecha = DateTime.Now;
 
@@ -485,9 +493,7 @@ namespace VisualSoftErp.Catalogos
 
                 dtRecepciondemercancia.Rows.Add(strSerie, intFolio, "", 0, intCotrarecibo, intContrareciboseq, 
                     strSerieOC, intFolioOC, Status, Fecha, fFechacancelacion, strMotivosCancelacion, 
-                    strObservaciones, Validado, fFechaValidado,intUsuariosID,Fecha, intProveedoresID, decSubtotal, decIva, decTotNeto, intAlamcen,0);
-
-
+                    strObservaciones, Validado, fFechaValidado,intUsuariosID,Fecha, intProveedoresID, decSubtotal, decIva, decTotNeto, intAlamcen,0, dRetencionISRTotal);
 
                 RecepciondemercanciaCL cl = new RecepciondemercanciaCL();
                 cl.strSerie = strSerie;
@@ -496,7 +502,7 @@ namespace VisualSoftErp.Catalogos
                 cl.intComprasFolio = ComprasFolio;
                 cl.strMaquina = Environment.MachineName;
                 cl.intUsuarioID = 1;
-                cl.strPrograma = "0122";               
+                cl.strPrograma = "0122";
                 cl.dtRMDet = dtRMdetalle;
                 cl.dtRM = dtRecepciondemercancia;
                 Result = cl.RecepciondemercanciasCrud();

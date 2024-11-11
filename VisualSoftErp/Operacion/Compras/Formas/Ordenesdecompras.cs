@@ -17,6 +17,7 @@ using DevExpress.XtraGrid;
 using DevExpress.XtraGrid.Views.Grid;
 using DevExpress.XtraPrinting.Drawing;
 using DevExpress.XtraNavBar;
+using VisualSoftErp.Operacion.Inventario.Clases;
 
 namespace VisualSoftErp.Catalogos
 {
@@ -25,7 +26,7 @@ namespace VisualSoftErp.Catalogos
     {
 
         public BindingList<detalleCL> detalle;
-        string strSerie=string.Empty;
+        string strSerie = string.Empty;
         int intFolio=0;
         decimal dIvaPorcentaje;
         bool blnNuevo;
@@ -36,6 +37,7 @@ namespace VisualSoftErp.Catalogos
         int FacturarA;
         int intManejaIva;
         int intManejaIeps;
+        int intManejaISR;
         decimal pIvaProv;
         string Atenciona;
         string Correspondenciaa;
@@ -55,6 +57,7 @@ namespace VisualSoftErp.Catalogos
         int MesFiltro;
         bool Editando;
         int intNuevaFechaseq;
+        decimal pRetencionISR;
 
 
         public Ordenesdecompras()
@@ -145,18 +148,23 @@ namespace VisualSoftErp.Catalogos
                 intManejaIva = 0;
             }
             else
-            {
                 intManejaIva = 1;
-            }
+
             if (cl.iManejarieps == 0)
             {
                 gridColumnPieps.Visible = false;
                 intManejaIeps = 0;
             }
             else
-            {
                 intManejaIeps = 1;
+
+            if (cl.iManejarretisr == 0)
+            {
+                gridColumnRetencionISR.Visible = false;
+                intManejaISR = 0;
             }
+            else
+                intManejaISR = 1;
 
             EmbarcarA = cl.iEmbarcara;
             FacturarA = cl.iFacturara;
@@ -194,6 +202,7 @@ namespace VisualSoftErp.Catalogos
             public decimal Importe { get; set; }
             public decimal Iva { get; set; }
             public decimal Ieps { get; set; }
+            public decimal RetencionISR { get; set; }
             public decimal Cantidadrecibida { get; set; }
             public string CompraSerie { get; set; }
             public string CompraFolio { get; set; }
@@ -202,6 +211,7 @@ namespace VisualSoftErp.Catalogos
             public string Fecharecepcion { get; set; }
             public string Piva { get; set; }
             public string Pieps { get; set; }
+            public string PRetencionISR { get; set; }
             public string Fechadellegada { get; set; }
             public string ReqSerie { get; set; }
             public string ReqFolio { get; set; }
@@ -218,12 +228,20 @@ namespace VisualSoftErp.Catalogos
 
             gridColumnUM.OptionsColumn.ReadOnly = true;
             gridColumnUM.OptionsColumn.AllowFocus = false;
+            gridColumnIva.OptionsColumn.ReadOnly = true;
+            gridColumnIva.OptionsColumn.AllowEdit = false;
+            gridColumnRetencionISR.OptionsColumn.ReadOnly = true;
+            gridColumnRetencionISR.OptionsColumn.AllowEdit = false;
+            gridColumnNeto.OptionsColumn.ReadOnly = true;
+            gridColumnNeto.OptionsColumn.AllowEdit = false;
+            gridColumnImporte.OptionsColumn.ReadOnly = true;
+            gridColumnImporte.OptionsColumn.AllowEdit = false;
 
             globalCL clg = new globalCL();
             clg.strGridLayout = "gridOrdenesdecomprasdetalle";
             clg.restoreLayout(gridViewDetalle);
 
-            if (intManejaIeps==0)
+            if (intManejaIeps == 0)
             {
                 gridColumnIeps.Visible = false;
                 gridColumnPieps.Visible = false;
@@ -233,7 +251,11 @@ namespace VisualSoftErp.Catalogos
                 gridColumnIva.Visible = false;
                 gridColumnPiva.Visible = false;
             }
-
+            if (intManejaISR == 0)
+            {
+                gridColumnPRetencionISR.Visible = false;
+                gridColumnRetencionISR.Visible = false;                
+            }            
         }
 
         private void CargaCombos()
@@ -355,8 +377,19 @@ namespace VisualSoftErp.Catalogos
             repositoryItemLookUpEditArticulos.Columns["FactorUM2"].Visible = false;
             
             repositoryItemLookUpEditArticulos.PopupFilterMode = DevExpress.XtraEditors.PopupFilterMode.Contains;
-            repositoryItemLookUpEditArticulos.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.Standard;            
+            repositoryItemLookUpEditArticulos.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.Standard;
             //repositoryItemLookUpEditArticulos.Columns["NombreOC"].Visible = false;
+
+            cl.strTabla = "RequisicionMaterial";
+            cboRequisicionMaterial.Properties.ValueMember = "Clave";
+            cboRequisicionMaterial.Properties.DisplayMember = "Des";
+            cboRequisicionMaterial.Properties.DataSource = cl.CargaCombos();
+            cboRequisicionMaterial.Properties.PopupFilterMode = DevExpress.XtraEditors.PopupFilterMode.Contains;
+            cboRequisicionMaterial.Properties.ForceInitialize();
+            cboRequisicionMaterial.Properties.PopulateColumns();
+            cboRequisicionMaterial.Properties.Columns["Clave"].Caption = "Folio";
+            cboRequisicionMaterial.Properties.NullText = "Seleccione una Requisicion";
+            cboRequisicionMaterial.EditValue = null;
         }
        
         private void Nuevo()
@@ -400,7 +433,7 @@ namespace VisualSoftErp.Catalogos
                 MessageBox.Show("SiguienteID :" + result);
             }
 
-        }//SguienteID
+        }
 
         private void LimpiaCajas()
         {
@@ -418,6 +451,7 @@ namespace VisualSoftErp.Catalogos
             txtTiempoentrega.Text = "0";
             txtCorrespondencia.Text = Correspondenciaa;
             txtDiastraslado.Text = 0.ToString();
+            cboRequisicionMaterial.EditValue = null;
         }
 
         private void Guardar()
@@ -462,6 +496,7 @@ namespace VisualSoftErp.Catalogos
                 dtOrdenesdecompras.Columns.Add("Usuariodepuro", Type.GetType("System.Int32"));
                 dtOrdenesdecompras.Columns.Add("Correspondeciaa", Type.GetType("System.String"));
                 dtOrdenesdecompras.Columns.Add("DiasTraslado", Type.GetType("System.Int32"));
+                dtOrdenesdecompras.Columns.Add("RetencionISR", Type.GetType("System.Decimal"));
 
                 System.Data.DataTable dtOrdenesdecomprasDetalle = new System.Data.DataTable("OrdenesdecomprasDetalle");
                 dtOrdenesdecomprasDetalle.Columns.Add("Serie", Type.GetType("System.String"));
@@ -489,6 +524,7 @@ namespace VisualSoftErp.Catalogos
                 dtOrdenesdecomprasDetalle.Columns.Add("Cantidaddepurada", Type.GetType("System.Decimal"));
                 dtOrdenesdecomprasDetalle.Columns.Add("Decimal", Type.GetType("System.Decimal"));
                 dtOrdenesdecomprasDetalle.Columns.Add("UM", Type.GetType("System.String"));
+                dtOrdenesdecomprasDetalle.Columns.Add("RetencionISR", Type.GetType("System.Decimal"));
 
                 //se vuelve a llamar
                 if (blnNuevo)
@@ -496,8 +532,6 @@ namespace VisualSoftErp.Catalogos
 
                 int intRen = 0;
                 string dato = String.Empty;
-                //string strSerie = String.Empty;
-                //int intFolio = intFolio;
                 int intSeq = 0;
                 int intArticulosID = 0;
                 string strDescripcion = String.Empty;
@@ -525,6 +559,8 @@ namespace VisualSoftErp.Catalogos
                 decimal dNetoTot = 0;
                 decimal dNeto = 0;
                 string UM = string.Empty;
+                decimal ISR_Total = 0;
+                decimal ISR = 0;
 
                 for (int i = 0; i <= gridViewDetalle.RowCount - 1; i++)
                 {
@@ -547,18 +583,19 @@ namespace VisualSoftErp.Catalogos
                             dPieps = Convert.ToDecimal(gridViewDetalle.GetRowCellValue(i, "Pieps"));
                             dNeto = Convert.ToDecimal(gridViewDetalle.GetRowCellValue(i, "Neto"));
                             UM = gridViewDetalle.GetRowCellValue(i, "UM").ToString();
+                            ISR = Convert.ToDecimal(gridViewDetalle.GetRowCellValue(i, "RetencionISR"));
 
-                            dtOrdenesdecomprasDetalle.Rows.Add(strSerie, intFolio, intSeq, intArticulosID, strDescripcion, dCantidad, dPrecio, dImporte, dIva, dIeps, dCantidadrecibida, strCompraSerie, intCompraFolio, intCompraSeq, fFechaembarque, fFecharecepcion, dPiva, dPieps, fFechadellegada, strReqSerie, intReqFolio, intReqSeq, dCantidaddepurada, dNeto, UM);
+                            dtOrdenesdecomprasDetalle.Rows.Add(strSerie, intFolio, intSeq, intArticulosID, strDescripcion, dCantidad, dPrecio, dImporte, dIva, dIeps, dCantidadrecibida, strCompraSerie, intCompraFolio, intCompraSeq, fFechaembarque, fFecharecepcion, dPiva, dPieps, fFechadellegada, strReqSerie, intReqFolio, intReqSeq, dCantidaddepurada, dNeto, UM, ISR);
 
                             dSubtotalTot += dImporte;
                             dIvaTot += dIva;
                             dIepsTot += dIeps;
-
+                            ISR_Total += ISR;
                         }
                     }
-                    dNetoTot = dSubtotalTot + dIvaTot;
+                    dNetoTot = dSubtotalTot + dIvaTot - ISR_Total;
                 }
-                strSerie =cboSerie.EditValue.ToString();
+                strSerie = cboSerie.EditValue.ToString();
                 intFolio = Convert.ToInt32(txtFolio.Text);
                 DateTime fFecha = Convert.ToDateTime(dateEditFecha.Text);
                 int intProveedoresID = Convert.ToInt32(cboProveedor.EditValue);
@@ -627,7 +664,7 @@ namespace VisualSoftErp.Catalogos
                 dtOrdenesdecompras.Rows.Add(strSerie, intFolio, fFecha, intProveedoresID, dSubtotalTot, dIvaTot, dIepsTot, dNetoTot, intStatus, 
                     fFechacancelacion, strRazoncancelacion, intUsuariosID, strObservaciones, intEmbarcara, intFacturara, txtMailito.Text, 
                     strAtenciona, strCondiciones, strLab, intVia, strMonedasID, intTiempodeentrega, intAutorizadopor, Environment.MachineName, 0, 0, 
-                    DateTime.Now, 0,strCorrespondencia,intDiasTraslado);
+                    DateTime.Now, 0,strCorrespondencia,intDiasTraslado, ISR_Total);
 
                 OrdenesdecomprasCL cl = new OrdenesdecomprasCL();
                 cl.strSerie = cboSerie.EditValue.ToString();
@@ -637,6 +674,7 @@ namespace VisualSoftErp.Catalogos
                 cl.strPrograma = "0120";
                 cl.dtm = dtOrdenesdecompras;
                 cl.dtd = dtOrdenesdecomprasDetalle;
+                cl.intFolioRequisicionMaterial = Convert.ToInt32(cboRequisicionMaterial.EditValue ?? 0);
                 Result = cl.OrdenesdecomprasCrud();
                 if (Result == "OK")
                 {
@@ -662,11 +700,10 @@ namespace VisualSoftErp.Catalogos
             {
                 MessageBox.Show("Guardar: " + ex.Message);
             }
-        } //Guardar
+        }
 
-        private string Valida()            
+        private string Valida()
         {
-
             try
             {
                 //Quitar ya no se usara por que no validamos serie 
@@ -773,18 +810,21 @@ namespace VisualSoftErp.Catalogos
                     
                 }
 
+                if (cboRequisicionMaterial.EditValue == null)
+                {
+                    DialogResult dialog = MessageBox.Show("No se ha seleccionado una requisicion de materiales. \n¿Desea Continuar?", "", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question);
+
+                    if (dialog != DialogResult.Yes)
+                        return "Seleccione una requisicion de material";
+                }
 
                 return "OK";
             }
-           
             catch ( Exception ex)
             {
                 return ex.Message;
-            }      
-            
-
-            
-        } //Valida
+            }
+        } 
 
         private void llenaCajas()
         {
@@ -872,7 +912,7 @@ namespace VisualSoftErp.Catalogos
             {
                 MessageBox.Show(Result);
             }
-        } // llenaCajas
+        }
 
         private void DetalleLlenaCajas()
         {
@@ -888,7 +928,7 @@ namespace VisualSoftErp.Catalogos
                 MessageBox.Show("DetalleLlenaCajas: " + ex);
             }
 
-        }//DetalleLlenaCajas
+        }
 
         private void Editar()
         {
@@ -928,10 +968,30 @@ namespace VisualSoftErp.Catalogos
 
         private void Cancelar()
         {
+            UsuariosCL usuarios = new UsuariosCL();
+            usuarios.intUsuariosID = globalCL.gv_UsuarioID;
+            usuarios.UsuariosLlenaCajas();
+
+            if (usuarios.intCancelarOrdenesCompra <= 0)
+            {
+                MessageBox.Show("No tiene permiso para cancelar ordenes de compra", "Error por permisos", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            LoginCL login = new LoginCL();
+            login.sLogin = txtLogin.Text;
+            login.sPassword = txtPassword.Text;
+            string result = login.Login();
+            if (result != "OK")
+            {
+                MessageBox.Show(result, "", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
             OrdenesdecomprasCL cl = new OrdenesdecomprasCL();
             cl.strSerie = strSerie;
             cl.intFolio = intFolio;
-            String Result = cl.OrdenesdecomprasEliminar();
+            String Result = cl.OrdenesdecomprasCancelar();
             if (Result == "OK")
             {
                 MessageBox.Show("Cancelado correctamente");
@@ -1049,7 +1109,7 @@ namespace VisualSoftErp.Catalogos
                         
                         gridViewDetalle.SetFocusedRowCellValue("UM", cl.sNombreUM);
 
-                        if (pIvaProv == 0 || intManejaIva ==0)
+                        if (pIvaProv == 0 || intManejaIva == 0)
                             cl.dPtjeIva = 0;
                     
                         if (intManejaIeps == 0)
@@ -1121,6 +1181,7 @@ namespace VisualSoftErp.Catalogos
                 decimal piva = 0;
                 decimal ieps = 0;
                 decimal pieps = 0;
+                decimal isr = 0;
 
                 //Extraemos el valor del grid, celda Cantidad
                 string valor = gridViewDetalle.GetRowCellValue(gridViewDetalle.FocusedRowHandle, "Cantidad").ToString();
@@ -1156,6 +1217,7 @@ namespace VisualSoftErp.Catalogos
 
                 imp = Math.Round(cant * pu, 2); //Calculamos el importe y lo redondeamos a dos decimales
                 iva = Math.Round(imp * (dIvaPorcentaje / 100), 2);
+                isr = Math.Round(imp * (pRetencionISR / 100), 2);
 
                 if (gridViewDetalle.GetRowCellValue(gridViewDetalle.FocusedRowHandle, "Pieps") == null)
                     valor = "0";
@@ -1168,13 +1230,12 @@ namespace VisualSoftErp.Catalogos
                     pieps = Convert.ToDecimal(valor);
                 ieps = imp * (pieps / 100);
 
+
                 gridViewDetalle.SetFocusedRowCellValue("Importe", imp); //Le ponemos el valor a la celda Importe del grid
                 gridViewDetalle.SetFocusedRowCellValue("Iva", iva); //Le ponemos el valor a la celda Iva del grid
-                gridViewDetalle.SetFocusedRowCellValue("Neto", iva + imp); //Le ponemos el valor a la celda neto del grid
+                gridViewDetalle.SetFocusedRowCellValue("RetencionISR", isr); // Le ponemos el valor a la celda de ISR
+                gridViewDetalle.SetFocusedRowCellValue("Neto", iva + imp - isr); //Le ponemos el valor a la celda neto del grid
                 gridViewDetalle.SetFocusedRowCellValue("Ieps", ieps);
-
-                //Descuento = Importe * (%Descto/100)
-                //Ieps = (Importe - Descuento) * (%Ieps / 100)
 
             }
         }
@@ -1195,7 +1256,8 @@ namespace VisualSoftErp.Catalogos
         }
 
         private void cboProveedor_EditValueChanged(object sender, EventArgs e)
-        {            
+        {
+            cboRequisicionMaterial.EditValue = null;
             object orow = cboProveedor.Properties.GetDataSourceRowByKeyValue(cboProveedor.EditValue);
             if (orow != null)
             {
@@ -1206,6 +1268,7 @@ namespace VisualSoftErp.Catalogos
                 txtCondiciones.Text = Plazo == 0 ? "CONTADO" : "CREDITO " + Plazo.ToString() + " DÍAS";
                 txtLab.Text=((DataRowView)orow)["Lab"].ToString();
                 cboEmbarcarVia.EditValue=Convert.ToInt32(((DataRowView)orow)["Via"]);
+                pRetencionISR = Convert.ToDecimal(((DataRowView)orow)["Retisr"]);
                 if (((DataRowView)orow)["Contacto"].ToString().Length > 0)
                 {
                     txtAtencionA.Text = ((DataRowView)orow)["Contacto"].ToString();
@@ -1372,80 +1435,29 @@ namespace VisualSoftErp.Catalogos
 
         private void bbiEditar_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            //Quitar ya no se usara por que no validamos serie 
-            if (strSerie.Length > 0)
-                {
-                if (intFolio == 0)
-                    {
-                        MessageBox.Show("Selecciona un renglón");
-                    }
-                    else
-                    {
-                        Editar();
-                    }
-            }
+            if (intFolio == 0)
+                MessageBox.Show("Selecciona un renglón");
             else
-            {
-                if (intFolio == 0)
-                {
-                    MessageBox.Show("Selecciona un renglón");
-                }
-                else
-                {
-                    Editar();
-                }
-            }
+                Editar();
         }
 
 
 
         private void bbiCancelar_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            //Quitar
-            if (strSerie.Length > 0)
-            {
             if (intFolio == 0)
-                {
-                    MessageBox.Show("Selecciona un renglón");
-                }
-                else
-                {
-                    strCancelando = "SI";
-                    Autorizando = false;               
-                    groupControl1.Text = "Cancelar la órden de compra " + strSerie + intFolio.ToString();
-                    popUpAutorizar.Visible = true;
-                    btnAut.Text = "Cancelar";
-                    txtLogin.Focus();
-
-                    //DialogResult Result = MessageBox.Show("Desea cancelar la Orden de compra " + strSerie.ToString() + intFolio.ToString(), "Elimnar", MessageBoxButtons.YesNo);
-                    //if (Result.ToString() == "Yes")
-                    //{
-                    //    Eliminar();
-                    //}
-                }
+            {
+                MessageBox.Show("Selecciona un renglón");
             }
             else
             {
-                if (intFolio == 0)
-                {
-                    MessageBox.Show("Selecciona un renglón");
-                }
-                else
-                {
-                    strCancelando = "SI";
-                    Autorizando = false;
-                    groupControl1.Text = "Cancelar la órden de compra " + strSerie + intFolio.ToString();
-                    popUpAutorizar.Visible = true;
-                    btnAut.Text = "Cancelar";
-                    txtLogin.Focus();
-
-                    //DialogResult Result = MessageBox.Show("Desea cancelar la Orden de compra " + strSerie.ToString() + intFolio.ToString(), "Elimnar", MessageBoxButtons.YesNo);
-                    //if (Result.ToString() == "Yes")
-                    //{
-                    //    Eliminar();
-                    //}
-                }
-
+                strCancelando = "SI";
+                Autorizando = false;               
+                groupControl1.Text = "Cancelar la órden de compra " + strSerie + intFolio.ToString();
+                popUpAutorizar.Visible = true;
+                popUpAutorizar.Show();
+                btnAut.Text = "Cancelar";
+                txtLogin.Focus();
             }
         }
 
@@ -1626,15 +1638,11 @@ namespace VisualSoftErp.Catalogos
             }
         }
 
-        private void btnAut_Click(object sender, EventArgs e)
-        {
-            
-        }
-
         private void bbiEnviaCorreo_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
             EnviaCorreo();
         }
+        
         private void EnviaCorreo()
         {
             if (intFolio == 0)
@@ -1687,7 +1695,7 @@ namespace VisualSoftErp.Catalogos
             popUpAutorizar.Hide();
         }
 
-        private void btnAut_Click_1(object sender, EventArgs e)
+        private void btnAut_Click(object sender, EventArgs e)
         {
             try
             {
@@ -1902,8 +1910,15 @@ namespace VisualSoftErp.Catalogos
 
         private void gridViewDetalle_RowClick(object sender, RowClickEventArgs e)
         {
-            lblArtNuevaFecha.Text = gridViewDetalle.GetRowCellValue(gridViewDetalle.FocusedRowHandle, "Descripcion").ToString();
-            intNuevaFechaseq = Convert.ToInt32(gridViewDetalle.GetRowCellValue(gridViewDetalle.FocusedRowHandle, "Seq"));
+            try
+            {
+                lblArtNuevaFecha.Text = gridViewDetalle.GetRowCellValue(gridViewDetalle.FocusedRowHandle, "Descripcion").ToString();
+                intNuevaFechaseq = Convert.ToInt32(gridViewDetalle.GetRowCellValue(gridViewDetalle.FocusedRowHandle, "Seq"));
+            }
+            catch
+            {
+
+            }
         }
 
         private void Ordenesdecompras_Resize(object sender, EventArgs e)
@@ -1915,6 +1930,37 @@ namespace VisualSoftErp.Catalogos
             string sizeSplitPanelX = splitContainerControl1.Size.Width.ToString();
             string sizeSplitPanelY = splitContainerControl1.Size.Height.ToString();
             // MessageBox.Show("Este SplitPanel tiene medidas de: " + sizeSplitPanelX + ", " + sizeSplitPanelY);
+        }
+
+        private void cboRequisicionMaterial_EditValueChanged(object sender, EventArgs e)
+        {
+            LookUpEdit cbo = (LookUpEdit)sender;
+            if (cbo != null)
+            {
+                if (cboProveedor.EditValue == null)
+                {
+                    MessageBox.Show("Seleccione un proveedor");
+                    return;
+                }
+
+                RequisicionMaterialCL cl = new RequisicionMaterialCL();
+                cl.intProveedoresID = Convert.ToInt32(cboProveedor.EditValue);
+                cl.intFolio = Convert.ToInt32(cbo.EditValue);
+                cl.RequisicionMterialLlenaCajasOC();
+                DataTable dtRequisicion = cl.dtRequisicionMaterialDetalle;
+
+                for (int i = 0; i < dtRequisicion.Rows.Count; i++)
+                {
+                    gridViewDetalle.AddNewRow();
+                    DataRow row = dtRequisicion.Rows[i];
+
+                    int newRowHandle = gridViewDetalle.FocusedRowHandle;
+                    gridViewDetalle.SetRowCellValue(newRowHandle, "Articulos", row["intArticulosID"]);
+                    gridViewDetalle.SetRowCellValue(newRowHandle, "Cantidad", row["decCantidadRequerida"]);
+                }
+
+                gridViewDetalle.RefreshData();
+            }
         }
     }
 }

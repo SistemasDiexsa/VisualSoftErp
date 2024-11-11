@@ -88,12 +88,6 @@ namespace VisualSoftErp.Operacion.CxP.Formas
              
         }
 
-
-        private void gridControlPrincipal_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void bbiCerrar_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
             this.Close();
@@ -291,6 +285,7 @@ namespace VisualSoftErp.Operacion.CxP.Formas
         {
             AplicaAnticipo();
         }
+        
         private void AplicaAnticipo()
         {
            
@@ -314,11 +309,9 @@ namespace VisualSoftErp.Operacion.CxP.Formas
                 }
 
                 txtAplProv.Text = cboProveedoresID.Text;
-              //  txtTC.Text = "0";
+                //txtTC.Text = "0";
                 Convierte();
                 popupContainerControl1.Show();
-                
-                
             }
             catch(Exception ex){
                 MessageBox.Show(ex.Message);
@@ -388,13 +381,8 @@ namespace VisualSoftErp.Operacion.CxP.Formas
                     else
                         txtAplAplicar.Text = Math.Round(Convert.ToDecimal(txtAplImp.Text) / Convert.ToDecimal(txtTC.Text), 2).ToString();
                 }
-
-                else
-                {
-
-                }
-                    //txtAplAplicar.Text = Math.Round(Convert.ToDecimal(txtAplImp.Text) * Convert.ToDecimal(txtTC.Text), 2).ToString();
-            } else
+            } 
+            else
             {
                 //misma moneda
                 txtAplAplicar.Text = txtAplSaldo.Text;

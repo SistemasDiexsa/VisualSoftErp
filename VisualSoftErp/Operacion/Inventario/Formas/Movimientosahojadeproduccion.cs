@@ -56,7 +56,7 @@ namespace VisualSoftErp.Operacion.Inventarios.Formas
         {
             BFMovsCL cl = new BFMovsCL();
             cl.intAño = DateTime.Now.Year;
-            cl.intMes = DateTime.Now.Month;
+            cl.intMes = 0; // DateTime.Now.Month;
             gridControlPrincipal.DataSource = cl.BFMovsGrid();
             globalCL clg = new globalCL();
             clg.strGridLayout = "gridBFMovs";
@@ -534,7 +534,7 @@ namespace VisualSoftErp.Operacion.Inventarios.Formas
                 string result = cl.BFMovsCancelar();
                 if (result == "OK")
                 {
-                    MessageBox.Show("Se ah cancelado correctamente");
+                    MessageBox.Show("Cancelado Correctamente");
                     LlenarGrid();
                     txtRazondecancelacion.Text = string.Empty;
                 }

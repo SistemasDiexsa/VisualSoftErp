@@ -17,6 +17,7 @@ using DevExpress.XtraGrid.Views.Grid;
 using System.Xml;
 using System.IO;
 using DevExpress.XtraNavBar;
+using System.Diagnostics;
 
 namespace VisualSoftErp.Catalogos
 {
@@ -28,10 +29,13 @@ namespace VisualSoftErp.Catalogos
         string strSerie;
         int intFolio;
         decimal dIvaPorcentaje;
+        decimal dIsrPorcentaje;
         bool blnNuevo;
         int intManejaIva;
         int intManejaIeps;
+        int intManejaISR;
         decimal pIvaProv;  //Iva del proveedor manda sobre iva del artículo
+        decimal pRetISR;
         int intRM;
         string strRfcEmpresa;
         int intUsuariocancelo;
@@ -121,6 +125,7 @@ namespace VisualSoftErp.Catalogos
             public string OCSeq { get; set; }
             public string Descripcion { get; set; }
             public string NoIdentificacion { get; set; }
+            public decimal RetencionISR { get; set; }
         }
 
         private void MedioAmbiente()
@@ -199,14 +204,12 @@ namespace VisualSoftErp.Catalogos
                 gridColumnIVA.Visible = false;
             }
 
+            gridColumnRetencionISR.Visible = true;
             gridColumnImporte.OptionsColumn.ReadOnly = true;
             gridColumnImporte.OptionsColumn.AllowEdit = false;
             gridColumnImporte.OptionsColumn.AllowFocus = false;
             gridViewDetalle.OptionsView.RowAutoHeight = true;
-
-
-
-        }
+        }   
 
         private void CargaCombos()
         {
@@ -464,6 +467,7 @@ namespace VisualSoftErp.Catalogos
                 dtCompras.Columns.Add("Costear", Type.GetType("System.Int32"));
                 dtCompras.Columns.Add("Tesk", Type.GetType("System.Int32"));
                 dtCompras.Columns.Add("TeskPoliza", Type.GetType("System.String"));
+                dtCompras.Columns.Add("RetencionISR", Type.GetType("System.Decimal"));
 
                 System.Data.DataTable dtComprasdetalle = new System.Data.DataTable("Comprasdetalle");
                 dtComprasdetalle.Columns.Add("Serie", Type.GetType("System.String"));
@@ -485,6 +489,7 @@ namespace VisualSoftErp.Catalogos
                 dtComprasdetalle.Columns.Add("OCNumero", Type.GetType("System.Int32"));
                 dtComprasdetalle.Columns.Add("OCSeq", Type.GetType("System.Int32"));
                 dtComprasdetalle.Columns.Add("Neto", Type.GetType("System.Decimal"));
+                dtComprasdetalle.Columns.Add("RetencionISR", Type.GetType("System.Decimal"));
 
                 System.Data.DataTable dtPxA = new System.Data.DataTable("PxA");
                 dtPxA.Columns.Add("ProveedoresID", Type.GetType("System.Int32"));
@@ -503,6 +508,7 @@ namespace VisualSoftErp.Catalogos
                 decimal dimporte = 0;
                 decimal dIva = 0;
                 decimal dIeps = 0;
+                decimal dISR = 0;
                 decimal dCostoum2 = 0;
                 decimal dFactorum2 = 0;
                 decimal dPIva = 0;
@@ -525,6 +531,7 @@ namespace VisualSoftErp.Catalogos
                 decimal decTotNeto = 0;
                 decimal decTotDescuento = 0;
                 decimal decNetogrid = 0;
+                decimal decRetencionISR = 0;
                 string NoID = string.Empty;
                 int intProveedoresID = Convert.ToInt32(cboProveedores.EditValue);
                 string valor = string.Empty;
@@ -544,6 +551,8 @@ namespace VisualSoftErp.Catalogos
                         dIeps = Convert.ToDecimal(gridViewDetalle.GetRowCellValue(i, "Ieps"));
                         dPIva = Convert.ToDecimal(gridViewDetalle.GetRowCellValue(i, "Piva"));
                         dPIeps = Convert.ToDecimal(gridViewDetalle.GetRowCellValue(i, "Pieps"));
+                        dISR = Convert.ToDecimal(gridViewDetalle.GetRowCellValue(i, "RetencionISR"));
+                        
                         dPDescuento = Convert.ToDecimal(gridViewDetalle.GetRowCellValue(i, "Pdescuento"));
                         decNetogrid = Convert.ToDecimal(gridViewDetalle.GetRowCellValue(i, "Neto"));
                         dDescuento = Convert.ToDecimal(gridViewDetalle.GetRowCellValue(i, "Descuento"));
@@ -577,13 +586,14 @@ namespace VisualSoftErp.Catalogos
                             dtPxA.Rows.Add(intProveedoresID, intArticulosID, NoID);
                         }
 
-                        dtComprasdetalle.Rows.Add(cboSerie.EditValue.ToString(), Convert.ToInt32(txtFolio.Text), intSeq, dCantidad, intArticulosID, dPrecio, dimporte, dIva, dIeps, 0, 0, dPIva, dPIeps, dDescuento, dPDescuento, txtOcSerie.Text, intOCNumero, intOCSeq, decNetogrid);
+                        dtComprasdetalle.Rows.Add(cboSerie.EditValue.ToString(), Convert.ToInt32(txtFolio.Text), intSeq, dCantidad, intArticulosID, dPrecio, dimporte, dIva, dIeps, 0, 0, dPIva, dPIeps, dDescuento, dPDescuento, txtOcSerie.Text, intOCNumero, intOCSeq, decNetogrid, dISR);
 
 
                         decTotSubtotal += dimporte;
                         decTotIva += dIva;
                         decTotIeps += dIeps;
                         decTotDescuento += dDescuento;
+                        decRetencionISR += dISR;
 
                         decTotNeto += decNetogrid;
 
@@ -597,6 +607,7 @@ namespace VisualSoftErp.Catalogos
                 strOCSerie = txtOcSerie.Text;
                 int intOCFolio = Convert.ToInt32(txtOCfolio.Text);
 
+                
                 string strMonedas = cboMoneda.EditValue.ToString();
                 int iAlm = Convert.ToInt32(cboAlmacen.EditValue);
                 string strFactura = txtFactura.Text;
@@ -606,6 +617,7 @@ namespace VisualSoftErp.Catalogos
                 decimal decIva = decTotIva;
                 decimal decIeps = decTotIeps;
                 decimal decNeto = decTotNeto;
+                decimal decISR = decRetencionISR;
                 int intStatus = 1;
                 int intPlazo = Convert.ToInt32(txtPlazo.Text);
                 DateTime fFechacancelacion = DateTime.Now;
@@ -622,7 +634,7 @@ namespace VisualSoftErp.Catalogos
                 DateTime fFechaReal = DateTime.Now;
                 dato = String.Empty;
                 string strObservaciones = memoObservaciones.Text;
-                dtCompras.Rows.Add(strSerie, intFolio, fFecha, strOCSerie, intOCFolio, intProveedoresID, strMonedas, strFactura, ffechafactura, dtipodecambio, decSubtotal, decIva, decIeps, decNeto, intStatus, intPlazo, fFechacancelacion, strRazoncancelacion, decDescuento, intPoliza, intNodeducible, strContrarecibosSerie, intContrarecibosFolio, strRecepcionSerie, intRecepcionFolio, intValidadoPor, fFechaValidado, fFechaReal, strObservaciones, iAlm, globalCL.gv_UsuarioID, 0, txtUUID.Text,1,0,"");
+                dtCompras.Rows.Add(strSerie, intFolio, fFecha, strOCSerie, intOCFolio, intProveedoresID, strMonedas, strFactura, ffechafactura, dtipodecambio, decSubtotal, decIva, decIeps, decNeto, intStatus, intPlazo, fFechacancelacion, strRazoncancelacion, decDescuento, intPoliza, intNodeducible, strContrarecibosSerie, intContrarecibosFolio, strRecepcionSerie, intRecepcionFolio, intValidadoPor, fFechaValidado, fFechaReal, strObservaciones, iAlm, globalCL.gv_UsuarioID, 0, txtUUID.Text,1,0,"", decISR);
 
                 ComprasCL cl = new ComprasCL();
                 cl.strSerie = cboSerie.EditValue.ToString();
@@ -1008,19 +1020,15 @@ namespace VisualSoftErp.Catalogos
 
         private void cboProveedores_EditValueChanged(object sender, EventArgs e)
         {
-            //ComprasCL cl = new ComprasCL();
-            //cl.intProveedoresID = Convert.ToInt32(cboProveedores.EditValue);
-            //string strResult = cl.ObtenerPlazoProveedor();
-            //if (strResult == "OK") txtPlazo.Text = cl.intPlazo.ToString();
-
-            object orow = cboProveedores.Properties.GetDataSourceRowByKeyValue(cboProveedores.EditValue);
-            if (orow != null)
+            DataRowView row = cboProveedores.Properties.GetDataSourceRowByKeyValue(cboProveedores.EditValue) as DataRowView;
+            if (row != null)
             {
-                txtPlazo.Text = ((DataRowView)orow)["Plazo"].ToString();
-                pIvaProv = Convert.ToDecimal(((DataRowView)orow)["Piva"]);
-                cboMoneda.EditValue = ((DataRowView)orow)["MonedasID"].ToString();
+                txtPlazo.Text = row["Plazo"].ToString();
+                pIvaProv = Convert.ToDecimal(row["Piva"]);
+                cboMoneda.EditValue = row["MonedasID"].ToString();
+                pRetISR = Convert.ToDecimal(row["Retisr"]);
+                txtRetencionISR.Text = row["Retisr"].ToString();
             }
-
         }
 
         private void reporte()
@@ -1141,6 +1149,7 @@ namespace VisualSoftErp.Catalogos
                 decimal imp = 0;
                 decimal iva = 0;
                 decimal piva = 0;
+                decimal isr = 0;
 
                 //Extraemos el valor del grid, celda Cantidad
                 string valor = gridViewDetalle.GetRowCellValue(gridViewDetalle.FocusedRowHandle, "Cantidad").ToString();
@@ -1175,15 +1184,28 @@ namespace VisualSoftErp.Catalogos
                 }
 
                 dIvaPorcentaje = 0;
-                //dIvaPorcentaje = Convert.ToDecimal(valor);
                 success = Decimal.TryParse(valor, out dIvaPorcentaje);
+
+                if (pRetISR > 0)
+                {
+                    if (gridViewDetalle.GetRowCellValue(gridViewDetalle.FocusedRowHandle, gridColumnRetencionISR) == null)
+                        valor = "0";
+                    else
+                        valor = gridViewDetalle.GetRowCellValue(gridViewDetalle.FocusedRowHandle, gridColumnRetencionISR).ToString();
+                }
+                else
+                    valor = "0";
+                success = Decimal.TryParse(valor, out dIsrPorcentaje);
+
 
                 imp = Math.Round(cant * pu, 2); //Calculamos el importe y lo redondeamos a dos decimales
                 iva = Math.Round(imp * (dIvaPorcentaje / 100), 2);
+                isr = Math.Round(imp * (pRetISR / 100), 2);
 
                 gridViewDetalle.SetFocusedRowCellValue("Importe", imp); //Le ponemos el valor a la celda Importe del grid
                 gridViewDetalle.SetFocusedRowCellValue("Iva", iva); //Le ponemos el valor a la celda Iva del grid
-                gridViewDetalle.SetFocusedRowCellValue("Neto", iva + imp); //Le ponemos el valor a la celda neto del grid
+                gridViewDetalle.SetFocusedRowCellValue(gridColumnRetencionISR, isr); //Le ponemos el valor a la celda ISR del grid
+                gridViewDetalle.SetFocusedRowCellValue("Neto", iva + imp - isr); //Le ponemos el valor a la celda neto del grid
 
             }
 

@@ -94,7 +94,7 @@ namespace VisualSoftErp.Clases
         public int intFam { get; set; }
         public string strConsecutivo { get; set; }
         public string strArticuloDB { get; set; }
-        
+        public int intCanalVenta { get; set; }
 
         #endregion
 
@@ -140,8 +140,8 @@ namespace VisualSoftErp.Clases
             dDimenAlto = 0;
             dDimenAncho = 0;
             strArticuloDB = string.Empty;
-
-    }
+            intCanalVenta = 0;
+        }
         #endregion
 
         #region Metodos
@@ -262,6 +262,7 @@ namespace VisualSoftErp.Clases
                 cmd.Parameters.AddWithValue("@prmDimenAlto", dDimenAlto);
                 cmd.Parameters.AddWithValue("@prmDimenAncho", dDimenAncho);
                 cmd.Parameters.AddWithValue("@prmSeCompraEnRollos", intSeCompraEnRollos);
+                cmd.Parameters.AddWithValue("@prmCanalVentasID", intCanalVenta);
                 cmd.CommandType = System.Data.CommandType.StoredProcedure;
                 cmd.Connection = cnn;
                 SqlDataReader dr = cmd.ExecuteReader();
@@ -369,6 +370,7 @@ namespace VisualSoftErp.Clases
 
                     strUM = dr["UMStr"].ToString();
                     strArtBaseCosteoDX = dr["ArtBaseCosteoDX"].ToString();
+                    intCanalVenta = Convert.ToInt32(dr["CanalVentasID"]);
 
                     result = "OK";
                 }

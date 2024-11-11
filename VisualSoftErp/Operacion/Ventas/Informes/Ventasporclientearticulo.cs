@@ -274,8 +274,8 @@ namespace VisualSoftErp.Operacion.Ventas.Informes
                     combosCL cl = new combosCL();
                     globalCL clg = new globalCL();
                     cl.strTabla = "FamiliaxLinea";
-                    cl.intClave = Convert.ToInt32(cboLinea.EditValue);
-                    src.DataSource = cl.CargaCombosCondicion();
+                    cl.iCondicion = Convert.ToInt32(cboLinea.EditValue);
+                    src.DataSource = cl.CargaCombos();
                     cboFamilia.Properties.ValueMember = "Clave";
                     cboFamilia.Properties.DisplayMember = "Des";
                     cboFamilia.Properties.DataSource = clg.AgregarOpcionTodos(src);
@@ -314,13 +314,13 @@ namespace VisualSoftErp.Operacion.Ventas.Informes
                     combosCL cl = new combosCL();
                     globalCL clg = new globalCL();
                     cl.strTabla = "ArticulosxFamilia";
-                    cl.intClave = Convert.ToInt32(cboFamilia.EditValue);
-                    src.DataSource = cl.CargaCombosCondicion();
+                    cl.iCondicion = Convert.ToInt32(cboFamilia.EditValue);
+                    src.DataSource = cl.CargaCombos();
                     cboArticulo.Properties.ValueMember = "Clave";
                     cboArticulo.Properties.DisplayMember = "Des";
-                    cboArticulo.Properties.DataSource = cl.CargaCombosCondicion();
-                    cboArticulo.Properties.ForceInitialize();
+                    cboArticulo.Properties.DataSource = clg.AgregarOpcionTodos(src);
                     cboArticulo.Properties.PopupFilterMode = DevExpress.XtraEditors.PopupFilterMode.Contains;
+                    cboArticulo.Properties.ForceInitialize();
                     cboArticulo.Properties.PopulateColumns();
                     cboArticulo.Properties.Columns["Clave"].Visible = false;
                     cboArticulo.ItemIndex = 0;

@@ -389,6 +389,12 @@
             this.labelControl30 = new DevExpress.XtraEditors.LabelControl();
             this.gridControlPrincipal = new DevExpress.XtraGrid.GridControl();
             this.gridViewPrincipal = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.panelControl1 = new DevExpress.XtraEditors.PanelControl();
+            this.flowLayoutPanelPaginas = new System.Windows.Forms.FlowLayoutPanel();
+            this.GridSigPagina = new DevExpress.XtraEditors.PanelControl();
+            this.btnSigPagina = new DevExpress.XtraEditors.SimpleButton();
+            this.GridAntPagina = new DevExpress.XtraEditors.PanelControl();
+            this.btnAntPagina = new DevExpress.XtraEditors.SimpleButton();
             this.customersNavigationPage = new DevExpress.XtraBars.Navigation.NavigationPage();
             this.splitContainerControl1 = new DevExpress.XtraEditors.SplitContainerControl();
             this.cboCanalVentas = new DevExpress.XtraEditors.LookUpEdit();
@@ -514,6 +520,12 @@
             ((System.ComponentModel.ISupportInitialize)(this.txtMotivo22.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridControlPrincipal)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridViewPrincipal)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).BeginInit();
+            this.panelControl1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.GridSigPagina)).BeginInit();
+            this.GridSigPagina.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.GridAntPagina)).BeginInit();
+            this.GridAntPagina.SuspendLayout();
             this.customersNavigationPage.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainerControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainerControl1.Panel1)).BeginInit();
@@ -2646,6 +2658,7 @@
             // 
             this.employeesNavigationPage.Controls.Add(this.groupControlCan);
             this.employeesNavigationPage.Controls.Add(this.gridControlPrincipal);
+            this.employeesNavigationPage.Controls.Add(this.panelControl1);
             this.employeesNavigationPage.Name = "employeesNavigationPage";
             this.employeesNavigationPage.Size = new System.Drawing.Size(1328, 609);
             // 
@@ -2697,7 +2710,7 @@
             this.labelControl39.Location = new System.Drawing.Point(23, 446);
             this.labelControl39.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.labelControl39.Name = "labelControl39";
-            this.labelControl39.Size = new System.Drawing.Size(272, 13);
+            this.labelControl39.Size = new System.Drawing.Size(269, 13);
             this.labelControl39.TabIndex = 21;
             this.labelControl39.Text = "04 Operación nominativa relacionada en la factura global";
             // 
@@ -2706,7 +2719,7 @@
             this.labelControl38.Location = new System.Drawing.Point(23, 421);
             this.labelControl38.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.labelControl38.Name = "labelControl38";
-            this.labelControl38.Size = new System.Drawing.Size(163, 13);
+            this.labelControl38.Size = new System.Drawing.Size(165, 13);
             this.labelControl38.TabIndex = 20;
             this.labelControl38.Text = "03 No se llevó a cabo la operación";
             // 
@@ -2715,7 +2728,7 @@
             this.labelControl37.Location = new System.Drawing.Point(23, 396);
             this.labelControl37.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.labelControl37.Name = "labelControl37";
-            this.labelControl37.Size = new System.Drawing.Size(231, 13);
+            this.labelControl37.Size = new System.Drawing.Size(226, 13);
             this.labelControl37.TabIndex = 19;
             this.labelControl37.Text = "02 Comprobante emitido con errores sin relación";
             // 
@@ -2724,7 +2737,7 @@
             this.lblMot01.Location = new System.Drawing.Point(23, 370);
             this.lblMot01.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.lblMot01.Name = "lblMot01";
-            this.lblMot01.Size = new System.Drawing.Size(235, 13);
+            this.lblMot01.Size = new System.Drawing.Size(231, 13);
             this.lblMot01.TabIndex = 18;
             this.lblMot01.Text = "01 Comprobante emitido con errores con relación";
             // 
@@ -2742,7 +2755,7 @@
             this.labelControl36.Location = new System.Drawing.Point(124, 219);
             this.labelControl36.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.labelControl36.Name = "labelControl36";
-            this.labelControl36.Size = new System.Drawing.Size(25, 13);
+            this.labelControl36.Size = new System.Drawing.Size(26, 13);
             this.labelControl36.TabIndex = 16;
             this.labelControl36.Text = "Login";
             // 
@@ -2844,7 +2857,7 @@
             this.labelControl34.Location = new System.Drawing.Point(27, 121);
             this.labelControl34.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.labelControl34.Name = "labelControl34";
-            this.labelControl34.Size = new System.Drawing.Size(67, 13);
+            this.labelControl34.Size = new System.Drawing.Size(66, 13);
             this.labelControl34.TabIndex = 4;
             this.labelControl34.Text = "Razón interna";
             // 
@@ -2853,7 +2866,7 @@
             this.labelControl33.Location = new System.Drawing.Point(27, 73);
             this.labelControl33.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.labelControl33.Name = "labelControl33";
-            this.labelControl33.Size = new System.Drawing.Size(78, 13);
+            this.labelControl33.Size = new System.Drawing.Size(80, 13);
             this.labelControl33.TabIndex = 3;
             this.labelControl33.Text = "UUID nuevo cfdi";
             // 
@@ -2892,7 +2905,7 @@
             this.gridControlPrincipal.MainView = this.gridViewPrincipal;
             this.gridControlPrincipal.MenuManager = this.RibbonControl1;
             this.gridControlPrincipal.Name = "gridControlPrincipal";
-            this.gridControlPrincipal.Size = new System.Drawing.Size(1328, 609);
+            this.gridControlPrincipal.Size = new System.Drawing.Size(1328, 559);
             this.gridControlPrincipal.TabIndex = 0;
             this.gridControlPrincipal.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridViewPrincipal});
@@ -2904,6 +2917,68 @@
             this.gridViewPrincipal.RowClick += new DevExpress.XtraGrid.Views.Grid.RowClickEventHandler(this.gridViewPrincipal_RowClick);
             this.gridViewPrincipal.RowCellStyle += new DevExpress.XtraGrid.Views.Grid.RowCellStyleEventHandler(this.gridViewPrincipal_RowCellStyle);
             this.gridViewPrincipal.DoubleClick += new System.EventHandler(this.gridViewPrincipal_DoubleClick);
+            // 
+            // panelControl1
+            // 
+            this.panelControl1.Controls.Add(this.flowLayoutPanelPaginas);
+            this.panelControl1.Controls.Add(this.GridSigPagina);
+            this.panelControl1.Controls.Add(this.GridAntPagina);
+            this.panelControl1.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.panelControl1.Location = new System.Drawing.Point(0, 559);
+            this.panelControl1.Name = "panelControl1";
+            this.panelControl1.Size = new System.Drawing.Size(1328, 50);
+            this.panelControl1.TabIndex = 4;
+            // 
+            // flowLayoutPanelPaginas
+            // 
+            this.flowLayoutPanelPaginas.AutoScroll = true;
+            this.flowLayoutPanelPaginas.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.flowLayoutPanelPaginas.Location = new System.Drawing.Point(52, 2);
+            this.flowLayoutPanelPaginas.Name = "flowLayoutPanelPaginas";
+            this.flowLayoutPanelPaginas.Padding = new System.Windows.Forms.Padding(40, 0, 40, 0);
+            this.flowLayoutPanelPaginas.Size = new System.Drawing.Size(1224, 46);
+            this.flowLayoutPanelPaginas.TabIndex = 4;
+            this.flowLayoutPanelPaginas.WrapContents = false;
+            // 
+            // GridSigPagina
+            // 
+            this.GridSigPagina.Controls.Add(this.btnSigPagina);
+            this.GridSigPagina.Dock = System.Windows.Forms.DockStyle.Right;
+            this.GridSigPagina.Location = new System.Drawing.Point(1276, 2);
+            this.GridSigPagina.Name = "GridSigPagina";
+            this.GridSigPagina.Size = new System.Drawing.Size(50, 46);
+            this.GridSigPagina.TabIndex = 3;
+            // 
+            // btnSigPagina
+            // 
+            this.btnSigPagina.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btnSigPagina.ImageOptions.Location = DevExpress.XtraEditors.ImageLocation.MiddleCenter;
+            this.btnSigPagina.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btnSigPagina.ImageOptions.SvgImage")));
+            this.btnSigPagina.Location = new System.Drawing.Point(2, 2);
+            this.btnSigPagina.Name = "btnSigPagina";
+            this.btnSigPagina.Size = new System.Drawing.Size(46, 42);
+            this.btnSigPagina.TabIndex = 0;
+            this.btnSigPagina.Click += new System.EventHandler(this.btnSigPagina_Click);
+            // 
+            // GridAntPagina
+            // 
+            this.GridAntPagina.Controls.Add(this.btnAntPagina);
+            this.GridAntPagina.Dock = System.Windows.Forms.DockStyle.Left;
+            this.GridAntPagina.Location = new System.Drawing.Point(2, 2);
+            this.GridAntPagina.Name = "GridAntPagina";
+            this.GridAntPagina.Size = new System.Drawing.Size(50, 46);
+            this.GridAntPagina.TabIndex = 2;
+            // 
+            // btnAntPagina
+            // 
+            this.btnAntPagina.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btnAntPagina.ImageOptions.Location = DevExpress.XtraEditors.ImageLocation.MiddleCenter;
+            this.btnAntPagina.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btnAntPagina.ImageOptions.SvgImage")));
+            this.btnAntPagina.Location = new System.Drawing.Point(2, 2);
+            this.btnAntPagina.Name = "btnAntPagina";
+            this.btnAntPagina.Size = new System.Drawing.Size(46, 42);
+            this.btnAntPagina.TabIndex = 1;
+            this.btnAntPagina.Click += new System.EventHandler(this.btnAntPagina_Click);
             // 
             // customersNavigationPage
             // 
@@ -3004,7 +3079,7 @@
             // 
             this.labelControl29.Location = new System.Drawing.Point(634, 101);
             this.labelControl29.Name = "labelControl29";
-            this.labelControl29.Size = new System.Drawing.Size(40, 13);
+            this.labelControl29.Size = new System.Drawing.Size(41, 13);
             this.labelControl29.TabIndex = 61;
             this.labelControl29.Text = "Almacen";
             // 
@@ -3022,7 +3097,7 @@
             // 
             this.labelControl2.Location = new System.Drawing.Point(343, 97);
             this.labelControl2.Name = "labelControl2";
-            this.labelControl2.Size = new System.Drawing.Size(25, 13);
+            this.labelControl2.Size = new System.Drawing.Size(26, 13);
             this.labelControl2.TabIndex = 58;
             this.labelControl2.Text = "Plazo";
             // 
@@ -3030,7 +3105,7 @@
             // 
             this.labelControl8.Location = new System.Drawing.Point(6, 97);
             this.labelControl8.Name = "labelControl8";
-            this.labelControl8.Size = new System.Drawing.Size(99, 13);
+            this.labelControl8.Size = new System.Drawing.Size(100, 13);
             this.labelControl8.TabIndex = 44;
             this.labelControl8.Text = "Condiciones de pago";
             // 
@@ -3085,7 +3160,7 @@
             // 
             this.labelControl13.Location = new System.Drawing.Point(634, 44);
             this.labelControl13.Name = "labelControl13";
-            this.labelControl13.Size = new System.Drawing.Size(38, 13);
+            this.labelControl13.Size = new System.Drawing.Size(39, 13);
             this.labelControl13.TabIndex = 25;
             this.labelControl13.Text = "Moneda";
             // 
@@ -3093,7 +3168,7 @@
             // 
             this.labelControl15.Location = new System.Drawing.Point(634, 73);
             this.labelControl15.Name = "labelControl15";
-            this.labelControl15.Size = new System.Drawing.Size(71, 13);
+            this.labelControl15.Size = new System.Drawing.Size(73, 13);
             this.labelControl15.TabIndex = 52;
             this.labelControl15.Text = "Tipo de cambio";
             // 
@@ -3101,7 +3176,7 @@
             // 
             this.labelControl9.Location = new System.Drawing.Point(972, 73);
             this.labelControl9.Name = "labelControl9";
-            this.labelControl9.Size = new System.Drawing.Size(29, 13);
+            this.labelControl9.Size = new System.Drawing.Size(30, 13);
             this.labelControl9.TabIndex = 51;
             this.labelControl9.Text = "Fecha";
             // 
@@ -3112,7 +3187,7 @@
             this.swExportacion.Name = "swExportacion";
             this.swExportacion.Properties.OffText = "No";
             this.swExportacion.Properties.OnText = "Sí";
-            this.swExportacion.Size = new System.Drawing.Size(95, 24);
+            this.swExportacion.Size = new System.Drawing.Size(95, 23);
             this.swExportacion.TabIndex = 50;
             // 
             // txtOrdendecompra
@@ -3127,7 +3202,7 @@
             // 
             this.labelControl7.Location = new System.Drawing.Point(6, 70);
             this.labelControl7.Name = "labelControl7";
-            this.labelControl7.Size = new System.Drawing.Size(85, 13);
+            this.labelControl7.Size = new System.Drawing.Size(83, 13);
             this.labelControl7.TabIndex = 46;
             this.labelControl7.Text = "Orden de Compra";
             // 
@@ -3135,7 +3210,7 @@
             // 
             this.labelControl5.Location = new System.Drawing.Point(6, 44);
             this.labelControl5.Name = "labelControl5";
-            this.labelControl5.Size = new System.Drawing.Size(35, 13);
+            this.labelControl5.Size = new System.Drawing.Size(34, 13);
             this.labelControl5.TabIndex = 44;
             this.labelControl5.Text = "Agente";
             // 
@@ -3194,7 +3269,7 @@
             // 
             this.labelControl10.Location = new System.Drawing.Point(634, 18);
             this.labelControl10.Name = "labelControl10";
-            this.labelControl10.Size = new System.Drawing.Size(57, 13);
+            this.labelControl10.Size = new System.Drawing.Size(56, 13);
             this.labelControl10.TabIndex = 20;
             this.labelControl10.Text = "Exportación";
             // 
@@ -3202,7 +3277,7 @@
             // 
             this.labelControl3.Location = new System.Drawing.Point(6, 18);
             this.labelControl3.Name = "labelControl3";
-            this.labelControl3.Size = new System.Drawing.Size(33, 13);
+            this.labelControl3.Size = new System.Drawing.Size(32, 13);
             this.labelControl3.TabIndex = 9;
             this.labelControl3.Text = "Cliente";
             // 
@@ -3514,7 +3589,7 @@
             // 
             this.labelControl28.Location = new System.Drawing.Point(418, 13);
             this.labelControl28.Name = "labelControl28";
-            this.labelControl28.Size = new System.Drawing.Size(75, 13);
+            this.labelControl28.Size = new System.Drawing.Size(76, 13);
             this.labelControl28.TabIndex = 72;
             this.labelControl28.Text = "Tipo de relacion";
             // 
@@ -3530,7 +3605,7 @@
             // 
             this.labelControl26.Location = new System.Drawing.Point(1077, 117);
             this.labelControl26.Name = "labelControl26";
-            this.labelControl26.Size = new System.Drawing.Size(30, 13);
+            this.labelControl26.Size = new System.Drawing.Size(28, 13);
             this.labelControl26.TabIndex = 70;
             this.labelControl26.Text = "RetIsr";
             // 
@@ -3538,7 +3613,7 @@
             // 
             this.labelControl25.Location = new System.Drawing.Point(1077, 91);
             this.labelControl25.Name = "labelControl25";
-            this.labelControl25.Size = new System.Drawing.Size(33, 13);
+            this.labelControl25.Size = new System.Drawing.Size(32, 13);
             this.labelControl25.TabIndex = 69;
             this.labelControl25.Text = "RetIva";
             // 
@@ -3546,7 +3621,7 @@
             // 
             this.labelControl24.Location = new System.Drawing.Point(1078, 65);
             this.labelControl24.Name = "labelControl24";
-            this.labelControl24.Size = new System.Drawing.Size(21, 13);
+            this.labelControl24.Size = new System.Drawing.Size(20, 13);
             this.labelControl24.TabIndex = 68;
             this.labelControl24.Text = "Ieps";
             // 
@@ -3554,7 +3629,7 @@
             // 
             this.labelControl23.Location = new System.Drawing.Point(1077, 39);
             this.labelControl23.Name = "labelControl23";
-            this.labelControl23.Size = new System.Drawing.Size(16, 13);
+            this.labelControl23.Size = new System.Drawing.Size(15, 13);
             this.labelControl23.TabIndex = 67;
             this.labelControl23.Text = "Iva";
             // 
@@ -3562,7 +3637,7 @@
             // 
             this.labelControl22.Location = new System.Drawing.Point(1077, 13);
             this.labelControl22.Name = "labelControl22";
-            this.labelControl22.Size = new System.Drawing.Size(40, 13);
+            this.labelControl22.Size = new System.Drawing.Size(39, 13);
             this.labelControl22.TabIndex = 66;
             this.labelControl22.Text = "Subtotal";
             // 
@@ -3678,7 +3753,7 @@
             // 
             this.labelControl21.Location = new System.Drawing.Point(815, 65);
             this.labelControl21.Name = "labelControl21";
-            this.labelControl21.Size = new System.Drawing.Size(51, 13);
+            this.labelControl21.Size = new System.Drawing.Size(52, 13);
             this.labelControl21.TabIndex = 57;
             this.labelControl21.Text = "Descuento";
             // 
@@ -3700,7 +3775,7 @@
             // 
             this.labelControl20.Location = new System.Drawing.Point(815, 39);
             this.labelControl20.Name = "labelControl20";
-            this.labelControl20.Size = new System.Drawing.Size(26, 13);
+            this.labelControl20.Size = new System.Drawing.Size(27, 13);
             this.labelControl20.TabIndex = 55;
             this.labelControl20.Text = "Suma";
             // 
@@ -3719,7 +3794,7 @@
             // 
             this.labelControl17.Location = new System.Drawing.Point(815, 13);
             this.labelControl17.Name = "labelControl17";
-            this.labelControl17.Size = new System.Drawing.Size(65, 13);
+            this.labelControl17.Size = new System.Drawing.Size(63, 13);
             this.labelControl17.TabIndex = 53;
             this.labelControl17.Text = "Descuento %";
             // 
@@ -3753,7 +3828,7 @@
             // 
             this.labelControl16.Location = new System.Drawing.Point(418, 39);
             this.labelControl16.Name = "labelControl16";
-            this.labelControl16.Size = new System.Drawing.Size(95, 13);
+            this.labelControl16.Size = new System.Drawing.Size(94, 13);
             this.labelControl16.TabIndex = 49;
             this.labelControl16.Text = "Factura relacionada";
             // 
@@ -3761,7 +3836,7 @@
             // 
             this.labelControl14.Location = new System.Drawing.Point(6, 65);
             this.labelControl14.Name = "labelControl14";
-            this.labelControl14.Size = new System.Drawing.Size(45, 13);
+            this.labelControl14.Size = new System.Drawing.Size(46, 13);
             this.labelControl14.TabIndex = 47;
             this.labelControl14.Text = "Uso CFDI";
             this.labelControl14.Click += new System.EventHandler(this.labelControl14_Click);
@@ -3780,7 +3855,7 @@
             // 
             this.labelControl11.Location = new System.Drawing.Point(7, 39);
             this.labelControl11.Name = "labelControl11";
-            this.labelControl11.Size = new System.Drawing.Size(78, 13);
+            this.labelControl11.Size = new System.Drawing.Size(79, 13);
             this.labelControl11.TabIndex = 45;
             this.labelControl11.Text = "Metodo de Pago";
             // 
@@ -3968,6 +4043,12 @@
             ((System.ComponentModel.ISupportInitialize)(this.txtMotivo22.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridControlPrincipal)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridViewPrincipal)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).EndInit();
+            this.panelControl1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.GridSigPagina)).EndInit();
+            this.GridSigPagina.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.GridAntPagina)).EndInit();
+            this.GridAntPagina.ResumeLayout(false);
             this.customersNavigationPage.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainerControl1.Panel1)).EndInit();
             this.splitContainerControl1.Panel1.ResumeLayout(false);
@@ -4340,5 +4421,11 @@
         private DevExpress.XtraBars.Ribbon.RibbonPageGroup ribbonPageGroup4;
         private DevExpress.XtraEditors.LookUpEdit cboCanalVentas;
         private DevExpress.XtraEditors.LabelControl labelControl42;
+        private DevExpress.XtraEditors.PanelControl panelControl1;
+        private DevExpress.XtraEditors.PanelControl GridSigPagina;
+        private DevExpress.XtraEditors.PanelControl GridAntPagina;
+        private DevExpress.XtraEditors.SimpleButton btnSigPagina;
+        private DevExpress.XtraEditors.SimpleButton btnAntPagina;
+        private System.Windows.Forms.FlowLayoutPanel flowLayoutPanelPaginas;
     }
 }

@@ -6,6 +6,8 @@ using System.Data;
 using System.Data.SqlClient;
 using System.Configuration;
 using System.Xml;
+using System.Security.RightsManagement;
+using System.Windows.Forms;
 
 namespace VisualSoftErp.Clases
 {
@@ -60,6 +62,7 @@ namespace VisualSoftErp.Clases
                 return "";
             }
         }
+
         public DataTable ComponentesGrid()
         {
             DataTable dt = new DataTable();
@@ -264,6 +267,8 @@ namespace VisualSoftErp.Clases
                 return ex.Message;
             }
         } // Public Class Eliminar
+
+        
 
         #endregion
     }

@@ -84,7 +84,6 @@
             this.xrLabel1 = new DevExpress.XtraReports.UI.XRLabel();
             this.xrLabel11 = new DevExpress.XtraReports.UI.XRLabel();
             this.xrLabel12 = new DevExpress.XtraReports.UI.XRLabel();
-            this.calculatedFieldIva = new DevExpress.XtraReports.UI.CalculatedField();
             this.calculatedFieldUtilidad = new DevExpress.XtraReports.UI.CalculatedField();
             this.calculatedFieldIvaTotal = new DevExpress.XtraReports.UI.CalculatedField();
             this.calculatedFieldUtilidadTotal = new DevExpress.XtraReports.UI.CalculatedField();
@@ -94,6 +93,7 @@
             this.xrLabel7 = new DevExpress.XtraReports.UI.XRLabel();
             this.xrLabel8 = new DevExpress.XtraReports.UI.XRLabel();
             this.xrLabel15 = new DevExpress.XtraReports.UI.XRLabel();
+            this.calculatedFieldIva = new DevExpress.XtraReports.UI.CalculatedField();
             ((System.ComponentModel.ISupportInitialize)(this.table2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.table1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
@@ -101,6 +101,8 @@
             // sqlDataSource1
             // 
             this.sqlDataSource1.ConnectionName = "VisualSoftErpConnectionString";
+            this.sqlDataSource1.ConnectionOptions.CommandTimeout = 1200;
+            this.sqlDataSource1.ConnectionOptions.DbCommandTimeout = 1200;
             this.sqlDataSource1.Name = "sqlDataSource1";
             storedProcQuery1.Name = "VentasUtilidadMarginalPorCliente";
             queryParameter1.Name = "@prmEmp";
@@ -127,20 +129,20 @@
             queryParameter8.Name = "@prmDummy";
             queryParameter8.Type = typeof(DevExpress.DataAccess.Expression);
             queryParameter8.Value = new DevExpress.DataAccess.Expression("?parameter8", typeof(string));
-            storedProcQuery1.Parameters.Add(queryParameter1);
-            storedProcQuery1.Parameters.Add(queryParameter2);
-            storedProcQuery1.Parameters.Add(queryParameter3);
-            storedProcQuery1.Parameters.Add(queryParameter4);
-            storedProcQuery1.Parameters.Add(queryParameter5);
-            storedProcQuery1.Parameters.Add(queryParameter6);
-            storedProcQuery1.Parameters.Add(queryParameter7);
-            storedProcQuery1.Parameters.Add(queryParameter8);
+            storedProcQuery1.Parameters.AddRange(new DevExpress.DataAccess.Sql.QueryParameter[] {
+            queryParameter1,
+            queryParameter2,
+            queryParameter3,
+            queryParameter4,
+            queryParameter5,
+            queryParameter6,
+            queryParameter7,
+            queryParameter8});
             storedProcQuery1.StoredProcName = "VentasUtilidadMarginalPorCliente";
             this.sqlDataSource1.Queries.AddRange(new DevExpress.DataAccess.Sql.SqlQuery[] {
             storedProcQuery1});
             this.sqlDataSource1.ResultSchemaSerializable = resources.GetString("sqlDataSource1.ResultSchemaSerializable");
             this.sqlDataSource1.ConfigureDataConnection += new DevExpress.DataAccess.Sql.ConfigureDataConnectionEventHandler(this.sqlDataSource1_ConfigureDataConnection);
-            this.sqlDataSource1.ConnectionOptions.DbCommandTimeout = 1200;
             // 
             // Title
             // 
@@ -236,6 +238,7 @@
             new DevExpress.XtraReports.UI.GroupField("SubTotal", DevExpress.XtraReports.UI.XRColumnSortOrder.Ascending),
             new DevExpress.XtraReports.UI.GroupField("Costo", DevExpress.XtraReports.UI.XRColumnSortOrder.Ascending),
             new DevExpress.XtraReports.UI.GroupField("calculatedFieldUtilidad", DevExpress.XtraReports.UI.XRColumnSortOrder.Ascending),
+            new DevExpress.XtraReports.UI.GroupField("calculatedFieldIva", DevExpress.XtraReports.UI.XRColumnSortOrder.Ascending),
             new DevExpress.XtraReports.UI.GroupField("calculatedFieldIvaTotal", DevExpress.XtraReports.UI.XRColumnSortOrder.Ascending)});
             this.Detail.BeforePrint += new System.Drawing.Printing.PrintEventHandler(this.Detail_BeforePrint);
             // 
@@ -272,7 +275,7 @@
             this.tableCell8.StylePriority.UseFont = false;
             this.tableCell8.StylePriority.UseTextAlignment = false;
             this.tableCell8.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleRight;
-            this.tableCell8.Weight = 0.051404371031573332D;
+            this.tableCell8.Weight = 0.11506628325250737D;
             // 
             // tableCell9
             // 
@@ -286,7 +289,7 @@
             this.tableCell9.StylePriority.UseFont = false;
             this.tableCell9.StylePriority.UseTextAlignment = false;
             this.tableCell9.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft;
-            this.tableCell9.Weight = 0.50428008867200325D;
+            this.tableCell9.Weight = 0.44061817645106921D;
             // 
             // tableCell11
             // 
@@ -334,6 +337,8 @@
             this.tableCell14.ExpressionBindings.AddRange(new DevExpress.XtraReports.UI.ExpressionBinding[] {
             new DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[calculatedFieldIva]")});
             this.tableCell14.Font = new System.Drawing.Font("Microsoft Sans Serif", 7F);
+            this.tableCell14.InteractiveSorting.FieldName = "calculatedFieldIva";
+            this.tableCell14.InteractiveSorting.TargetBand = this.Detail;
             this.tableCell14.Name = "tableCell14";
             this.tableCell14.StyleName = "DetailData1";
             this.tableCell14.StylePriority.UseFont = false;
@@ -434,7 +439,7 @@
             this.tableCell1.StylePriority.UseForeColor = false;
             this.tableCell1.Text = "ID";
             this.tableCell1.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleRight;
-            this.tableCell1.Weight = 0.045226294025543089D;
+            this.tableCell1.Weight = 0.095669451370440889D;
             this.tableCell1.BeforePrint += new System.Drawing.Printing.PrintEventHandler(this.tableCell1_BeforePrint_1);
             // 
             // tableCell2
@@ -446,7 +451,7 @@
             this.tableCell2.StylePriority.UseBackColor = false;
             this.tableCell2.StylePriority.UseForeColor = false;
             this.tableCell2.Text = "Cliente";
-            this.tableCell2.Weight = 0.41678583342932013D;
+            this.tableCell2.Weight = 0.36634267608442234D;
             this.tableCell2.BeforePrint += new System.Drawing.Printing.PrintEventHandler(this.tableCell2_BeforePrint_1);
             // 
             // tableCell5
@@ -494,7 +499,7 @@
             // 
             // tableCell7
             // 
-            this.tableCell7.InteractiveSorting.FieldName = "calculatedFieldIvaTotal";
+            this.tableCell7.InteractiveSorting.FieldName = "calculatedFieldIva";
             this.tableCell7.InteractiveSorting.TargetBand = this.Detail;
             this.tableCell7.Name = "tableCell7";
             this.tableCell7.StyleName = "DetailCaption1";
@@ -594,15 +599,10 @@
             this.xrLabel12.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopLeft;
             this.xrLabel12.TextFormatString = "{0:dd/MMM/yyyy}";
             // 
-            // calculatedFieldIva
-            // 
-            this.calculatedFieldIva.DataMember = "VentasUtilidadMarginalPorCliente";
-            this.calculatedFieldIva.Name = "calculatedFieldIva";
-            this.calculatedFieldIva.GetValue += new DevExpress.XtraReports.UI.GetValueEventHandler(this.calculatedFieldIva_GetValue);
-            // 
             // calculatedFieldUtilidad
             // 
             this.calculatedFieldUtilidad.DataMember = "VentasUtilidadMarginalPorCliente";
+            this.calculatedFieldUtilidad.Expression = "([SubTotal] - [Costo])";
             this.calculatedFieldUtilidad.Name = "calculatedFieldUtilidad";
             this.calculatedFieldUtilidad.GetValue += new DevExpress.XtraReports.UI.GetValueEventHandler(this.calculatedFieldUtilidad_GetValue);
             // 
@@ -710,6 +710,12 @@
             this.xrLabel15.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopRight;
             this.xrLabel15.TextFormatString = "{0:C0}";
             // 
+            // calculatedFieldIva
+            // 
+            this.calculatedFieldIva.DataMember = "VentasUtilidadMarginalPorCliente";
+            this.calculatedFieldIva.Expression = "(([SubTotal] - [Costo]) / [SubTotal])";
+            this.calculatedFieldIva.Name = "calculatedFieldIva";
+            // 
             // UtilidadmarginalporclienteDesigner
             // 
             this.Bands.AddRange(new DevExpress.XtraReports.UI.Band[] {
@@ -719,10 +725,10 @@
             this.PageHeader,
             this.ReportFooter});
             this.CalculatedFields.AddRange(new DevExpress.XtraReports.UI.CalculatedField[] {
-            this.calculatedFieldIva,
             this.calculatedFieldUtilidad,
             this.calculatedFieldIvaTotal,
-            this.calculatedFieldUtilidadTotal});
+            this.calculatedFieldUtilidadTotal,
+            this.calculatedFieldIva});
             this.ComponentStorage.AddRange(new System.ComponentModel.IComponent[] {
             this.sqlDataSource1});
             this.DataMember = "VentasUtilidadMarginalPorCliente";
@@ -744,7 +750,7 @@
             this.DetailData1,
             this.DetailData3_Odd,
             this.PageInfo});
-            this.Version = "20.2";
+            this.Version = "21.2";
             ((System.ComponentModel.ISupportInitialize)(this.table2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.table1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this)).EndInit();
@@ -786,7 +792,6 @@
         private DevExpress.XtraReports.UI.XRLabel xrLabel1;
         private DevExpress.XtraReports.UI.XRLabel xrLabel11;
         private DevExpress.XtraReports.UI.XRLabel xrLabel12;
-        private DevExpress.XtraReports.UI.CalculatedField calculatedFieldIva;
         private DevExpress.XtraReports.UI.CalculatedField calculatedFieldUtilidad;
         private DevExpress.XtraReports.UI.CalculatedField calculatedFieldIvaTotal;
         private DevExpress.XtraReports.UI.CalculatedField calculatedFieldUtilidadTotal;
@@ -806,5 +811,6 @@
         private DevExpress.XtraReports.UI.XRTableCell xrTableCell1;
         private DevExpress.XtraReports.UI.XRTableCell tableCell6;
         private DevExpress.XtraReports.UI.XRTableCell tableCell7;
+        private DevExpress.XtraReports.UI.CalculatedField calculatedFieldIva;
     }
 }

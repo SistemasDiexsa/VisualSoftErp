@@ -57,6 +57,7 @@
             this.gridControlPrincipal = new DevExpress.XtraGrid.GridControl();
             this.gridViewPrincipal = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.customersNavigationPage = new DevExpress.XtraBars.Navigation.NavigationPage();
+            this.txtCapturista = new DevExpress.XtraEditors.TextEdit();
             this.swActualizarExistenciaInventarioFisico = new DevExpress.XtraEditors.ToggleSwitch();
             this.labelControl47 = new DevExpress.XtraEditors.LabelControl();
             this.swCambiarFechaRM = new DevExpress.XtraEditors.ToggleSwitch();
@@ -151,7 +152,8 @@
             this.txtNombre = new DevExpress.XtraEditors.TextEdit();
             this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
             this.tabbedView = new DevExpress.XtraBars.Docking2010.Views.Tabbed.TabbedView(this.components);
-            this.txtCapturista = new DevExpress.XtraEditors.TextEdit();
+            this.labelControl48 = new DevExpress.XtraEditors.LabelControl();
+            this.swCancelarOrdenesCompra = new DevExpress.XtraEditors.ToggleSwitch();
             ((System.ComponentModel.ISupportInitialize)(this.ribbonControl)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.officeNavigationBar)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.navigationFrame)).BeginInit();
@@ -160,6 +162,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.gridControlPrincipal)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridViewPrincipal)).BeginInit();
             this.customersNavigationPage.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.txtCapturista.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.swActualizarExistenciaInventarioFisico.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.swCambiarFechaRM.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.swCancelarFacturas.Properties)).BeginInit();
@@ -207,7 +210,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.txtLogin.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtNombre.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tabbedView)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtCapturista.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.swCancelarOrdenesCompra.Properties)).BeginInit();
             this.SuspendLayout();
             // 
             // ribbonStatusBar
@@ -464,6 +467,8 @@
             // 
             // customersNavigationPage
             // 
+            this.customersNavigationPage.Controls.Add(this.swCancelarOrdenesCompra);
+            this.customersNavigationPage.Controls.Add(this.labelControl48);
             this.customersNavigationPage.Controls.Add(this.txtCapturista);
             this.customersNavigationPage.Controls.Add(this.swActualizarExistenciaInventarioFisico);
             this.customersNavigationPage.Controls.Add(this.labelControl47);
@@ -560,6 +565,15 @@
             this.customersNavigationPage.Controls.Add(this.labelControl1);
             this.customersNavigationPage.Name = "customersNavigationPage";
             this.customersNavigationPage.Size = new System.Drawing.Size(1686, 565);
+            // 
+            // txtCapturista
+            // 
+            this.txtCapturista.Location = new System.Drawing.Point(1202, 240);
+            this.txtCapturista.MenuManager = this.ribbonControl;
+            this.txtCapturista.Name = "txtCapturista";
+            this.txtCapturista.Properties.MaxLength = 5;
+            this.txtCapturista.Size = new System.Drawing.Size(95, 20);
+            this.txtCapturista.TabIndex = 96;
             // 
             // swActualizarExistenciaInventarioFisico
             // 
@@ -1440,14 +1454,24 @@
             this.labelControl1.TabIndex = 0;
             this.labelControl1.Text = "Login";
             // 
-            // txtCapturista
+            // labelControl48
             // 
-            this.txtCapturista.Location = new System.Drawing.Point(1202, 240);
-            this.txtCapturista.MenuManager = this.ribbonControl;
-            this.txtCapturista.Name = "txtCapturista";
-            this.txtCapturista.Properties.MaxLength = 5;
-            this.txtCapturista.Size = new System.Drawing.Size(95, 20);
-            this.txtCapturista.TabIndex = 96;
+            this.labelControl48.Location = new System.Drawing.Point(1344, 475);
+            this.labelControl48.Name = "labelControl48";
+            this.labelControl48.Size = new System.Drawing.Size(141, 13);
+            this.labelControl48.TabIndex = 97;
+            this.labelControl48.Text = "Cancelar Ordenes de Compra";
+            // 
+            // swCancelarOrdenesCompra
+            // 
+            this.swCancelarOrdenesCompra.EnterMoveNextControl = true;
+            this.swCancelarOrdenesCompra.Location = new System.Drawing.Point(1557, 472);
+            this.swCancelarOrdenesCompra.MenuManager = this.ribbonControl;
+            this.swCancelarOrdenesCompra.Name = "swCancelarOrdenesCompra";
+            this.swCancelarOrdenesCompra.Properties.OffText = "Off";
+            this.swCancelarOrdenesCompra.Properties.OnText = "On";
+            this.swCancelarOrdenesCompra.Size = new System.Drawing.Size(95, 24);
+            this.swCancelarOrdenesCompra.TabIndex = 98;
             // 
             // Usuarios
             // 
@@ -1472,6 +1496,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.gridViewPrincipal)).EndInit();
             this.customersNavigationPage.ResumeLayout(false);
             this.customersNavigationPage.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.txtCapturista.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.swActualizarExistenciaInventarioFisico.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.swCambiarFechaRM.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.swCancelarFacturas.Properties)).EndInit();
@@ -1519,7 +1544,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.txtLogin.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtNombre.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.tabbedView)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtCapturista.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.swCancelarOrdenesCompra.Properties)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1649,5 +1674,7 @@
         private DevExpress.XtraEditors.ToggleSwitch swActualizarExistenciaInventarioFisico;
         private DevExpress.XtraEditors.LabelControl labelControl47;
         private DevExpress.XtraEditors.TextEdit txtCapturista;
+        private DevExpress.XtraEditors.LabelControl labelControl48;
+        private DevExpress.XtraEditors.ToggleSwitch swCancelarOrdenesCompra;
     }
 }

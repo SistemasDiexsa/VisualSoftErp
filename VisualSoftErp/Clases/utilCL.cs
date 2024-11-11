@@ -20,6 +20,7 @@ namespace VisualSoftErp.Clases
         #endregion
 
         #region METODOS
+
         public string fillNumberString(string sender, int maxLength)
         {
             string result = string.Empty;

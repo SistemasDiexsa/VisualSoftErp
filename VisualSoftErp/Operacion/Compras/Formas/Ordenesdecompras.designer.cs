@@ -316,6 +316,8 @@
             this.labelControl15 = new DevExpress.XtraEditors.LabelControl();
             this.labelControl4 = new DevExpress.XtraEditors.LabelControl();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.cboRequisicionMaterial = new DevExpress.XtraEditors.LookUpEdit();
+            this.labelControl25 = new DevExpress.XtraEditors.LabelControl();
             this.labelControl6 = new DevExpress.XtraEditors.LabelControl();
             this.labelControl10 = new DevExpress.XtraEditors.LabelControl();
             this.labelControl11 = new DevExpress.XtraEditors.LabelControl();
@@ -361,24 +363,16 @@
             this.gridColumnImporte = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumnIva = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumnIeps = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumnRetencionISR = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumnNeto = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumnPiva = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumnPieps = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumnPRetencionISR = new DevExpress.XtraGrid.Columns.GridColumn();
             this.navigationPage1 = new DevExpress.XtraBars.Navigation.NavigationPage();
             this.navigationPage2 = new DevExpress.XtraBars.Navigation.NavigationPage();
             this.gridControlParcialidades = new DevExpress.XtraGrid.GridControl();
             this.gridViewParcialidades = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.popupControlContainerNuevaFecha = new DevExpress.XtraBars.PopupControlContainer(this.components);
-            this.groupControlNuevaFecha = new DevExpress.XtraEditors.GroupControl();
-            this.labelControl21 = new DevExpress.XtraEditors.LabelControl();
-            this.swNuevaFechatodalacompra = new DevExpress.XtraEditors.ToggleSwitch();
-            this.lblArtNuevaFecha = new DevExpress.XtraEditors.LabelControl();
-            this.dFechaNueva = new DevExpress.XtraEditors.DateEdit();
-            this.simpleButton1 = new DevExpress.XtraEditors.SimpleButton();
-            this.labelControl22 = new DevExpress.XtraEditors.LabelControl();
-            this.simpleButton3 = new DevExpress.XtraEditors.SimpleButton();
-            this.labelControl23 = new DevExpress.XtraEditors.LabelControl();
-            this.labelControl24 = new DevExpress.XtraEditors.LabelControl();
             this.popUpAutorizar = new DevExpress.XtraBars.PopupControlContainer(this.components);
             this.groupControl1 = new DevExpress.XtraEditors.GroupControl();
             this.simpleButton2 = new DevExpress.XtraEditors.SimpleButton();
@@ -389,6 +383,16 @@
             this.txtLogin = new DevExpress.XtraEditors.TextEdit();
             this.labelControl18 = new DevExpress.XtraEditors.LabelControl();
             this.labelControl17 = new DevExpress.XtraEditors.LabelControl();
+            this.groupControlNuevaFecha = new DevExpress.XtraEditors.GroupControl();
+            this.labelControl21 = new DevExpress.XtraEditors.LabelControl();
+            this.swNuevaFechatodalacompra = new DevExpress.XtraEditors.ToggleSwitch();
+            this.lblArtNuevaFecha = new DevExpress.XtraEditors.LabelControl();
+            this.dFechaNueva = new DevExpress.XtraEditors.DateEdit();
+            this.simpleButton1 = new DevExpress.XtraEditors.SimpleButton();
+            this.labelControl22 = new DevExpress.XtraEditors.LabelControl();
+            this.simpleButton3 = new DevExpress.XtraEditors.SimpleButton();
+            this.labelControl23 = new DevExpress.XtraEditors.LabelControl();
+            this.labelControl24 = new DevExpress.XtraEditors.LabelControl();
             ((System.ComponentModel.ISupportInitialize)(this.tabbedView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnAutorizar)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.documentViewerRibbonController1)).BeginInit();
@@ -414,6 +418,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.cboEmbarcarA.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cboMoneda.Properties)).BeginInit();
             this.panel2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.cboRequisicionMaterial.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtCondiciones.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtCorrespondencia.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtAtencionA.Properties)).BeginInit();
@@ -443,17 +448,17 @@
             ((System.ComponentModel.ISupportInitialize)(this.gridViewParcialidades)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.popupControlContainerNuevaFecha)).BeginInit();
             this.popupControlContainerNuevaFecha.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.groupControlNuevaFecha)).BeginInit();
-            this.groupControlNuevaFecha.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.swNuevaFechatodalacompra.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dFechaNueva.Properties.CalendarTimeProperties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dFechaNueva.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.popUpAutorizar)).BeginInit();
             this.popUpAutorizar.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl1)).BeginInit();
             this.groupControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.txtPassword.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtLogin.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.groupControlNuevaFecha)).BeginInit();
+            this.groupControlNuevaFecha.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.swNuevaFechatodalacompra.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dFechaNueva.Properties.CalendarTimeProperties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dFechaNueva.Properties)).BeginInit();
             this.SuspendLayout();
             // 
             // btnAutorizar
@@ -2202,6 +2207,8 @@
             // panel2
             // 
             this.panel2.AutoSize = true;
+            this.panel2.Controls.Add(this.cboRequisicionMaterial);
+            this.panel2.Controls.Add(this.labelControl25);
             this.panel2.Controls.Add(this.labelControl6);
             this.panel2.Controls.Add(this.labelControl10);
             this.panel2.Controls.Add(this.labelControl11);
@@ -2211,12 +2218,31 @@
             this.panel2.Location = new System.Drawing.Point(379, 5);
             this.panel2.Margin = new System.Windows.Forms.Padding(0, 5, 0, 0);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(370, 79);
+            this.panel2.Size = new System.Drawing.Size(370, 103);
             this.panel2.TabIndex = 1;
+            // 
+            // cboRequisicionMaterial
+            // 
+            this.cboRequisicionMaterial.Location = new System.Drawing.Point(130, 80);
+            this.cboRequisicionMaterial.MenuManager = this.btnAutorizar;
+            this.cboRequisicionMaterial.Name = "cboRequisicionMaterial";
+            this.cboRequisicionMaterial.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.cboRequisicionMaterial.Size = new System.Drawing.Size(237, 20);
+            this.cboRequisicionMaterial.TabIndex = 57;
+            this.cboRequisicionMaterial.EditValueChanged += new System.EventHandler(this.cboRequisicionMaterial_EditValueChanged);
+            // 
+            // labelControl25
+            // 
+            this.labelControl25.Location = new System.Drawing.Point(3, 87);
+            this.labelControl25.Name = "labelControl25";
+            this.labelControl25.Size = new System.Drawing.Size(120, 13);
+            this.labelControl25.TabIndex = 56;
+            this.labelControl25.Text = "Requisicion de Materiales";
             // 
             // labelControl6
             // 
-            this.labelControl6.Location = new System.Drawing.Point(42, 6);
+            this.labelControl6.Location = new System.Drawing.Point(72, 6);
             this.labelControl6.Name = "labelControl6";
             this.labelControl6.Size = new System.Drawing.Size(51, 13);
             this.labelControl6.TabIndex = 47;
@@ -2224,7 +2250,7 @@
             // 
             // labelControl10
             // 
-            this.labelControl10.Location = new System.Drawing.Point(3, 33);
+            this.labelControl10.Location = new System.Drawing.Point(33, 33);
             this.labelControl10.Name = "labelControl10";
             this.labelControl10.Size = new System.Drawing.Size(90, 13);
             this.labelControl10.TabIndex = 53;
@@ -2232,7 +2258,7 @@
             // 
             // labelControl11
             // 
-            this.labelControl11.Location = new System.Drawing.Point(36, 59);
+            this.labelControl11.Location = new System.Drawing.Point(66, 59);
             this.labelControl11.Name = "labelControl11";
             this.labelControl11.Size = new System.Drawing.Size(57, 13);
             this.labelControl11.TabIndex = 54;
@@ -2241,28 +2267,28 @@
             // txtCondiciones
             // 
             this.txtCondiciones.EnterMoveNextControl = true;
-            this.txtCondiciones.Location = new System.Drawing.Point(99, 56);
+            this.txtCondiciones.Location = new System.Drawing.Point(129, 56);
             this.txtCondiciones.MenuManager = this.btnAutorizar;
             this.txtCondiciones.Name = "txtCondiciones";
-            this.txtCondiciones.Size = new System.Drawing.Size(268, 20);
+            this.txtCondiciones.Size = new System.Drawing.Size(238, 20);
             this.txtCondiciones.TabIndex = 39;
             // 
             // txtCorrespondencia
             // 
             this.txtCorrespondencia.EnterMoveNextControl = true;
-            this.txtCorrespondencia.Location = new System.Drawing.Point(99, 30);
+            this.txtCorrespondencia.Location = new System.Drawing.Point(129, 30);
             this.txtCorrespondencia.MenuManager = this.btnAutorizar;
             this.txtCorrespondencia.Name = "txtCorrespondencia";
-            this.txtCorrespondencia.Size = new System.Drawing.Size(268, 20);
+            this.txtCorrespondencia.Size = new System.Drawing.Size(238, 20);
             this.txtCorrespondencia.TabIndex = 38;
             // 
             // txtAtencionA
             // 
             this.txtAtencionA.EnterMoveNextControl = true;
-            this.txtAtencionA.Location = new System.Drawing.Point(99, 4);
+            this.txtAtencionA.Location = new System.Drawing.Point(129, 4);
             this.txtAtencionA.MenuManager = this.btnAutorizar;
             this.txtAtencionA.Name = "txtAtencionA";
-            this.txtAtencionA.Size = new System.Drawing.Size(268, 20);
+            this.txtAtencionA.Size = new System.Drawing.Size(238, 20);
             this.txtAtencionA.TabIndex = 37;
             // 
             // panel4
@@ -2547,9 +2573,11 @@
             this.gridColumnImporte,
             this.gridColumnIva,
             this.gridColumnIeps,
+            this.gridColumnRetencionISR,
             this.gridColumnNeto,
             this.gridColumnPiva,
-            this.gridColumnPieps});
+            this.gridColumnPieps,
+            this.gridColumnPRetencionISR});
             this.gridViewDetalle.GridControl = this.gridControlDetalle;
             this.gridViewDetalle.Name = "gridViewDetalle";
             this.gridViewDetalle.OptionsView.ShowGroupPanel = false;
@@ -2678,6 +2706,18 @@
             this.gridColumnIeps.Visible = true;
             this.gridColumnIeps.VisibleIndex = 9;
             // 
+            // gridColumnRetencionISR
+            // 
+            this.gridColumnRetencionISR.Caption = "RetencionISR";
+            this.gridColumnRetencionISR.DisplayFormat.FormatString = "{0:c2}";
+            this.gridColumnRetencionISR.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
+            this.gridColumnRetencionISR.FieldName = "RetencionISR";
+            this.gridColumnRetencionISR.Name = "gridColumnRetencionISR";
+            this.gridColumnRetencionISR.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
+            new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "RetencionISR", "{0:c2}")});
+            this.gridColumnRetencionISR.Visible = true;
+            this.gridColumnRetencionISR.VisibleIndex = 10;
+            // 
             // gridColumnNeto
             // 
             this.gridColumnNeto.Caption = "Neto";
@@ -2688,7 +2728,7 @@
             this.gridColumnNeto.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
             new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "Neto", "{0:c2}")});
             this.gridColumnNeto.Visible = true;
-            this.gridColumnNeto.VisibleIndex = 10;
+            this.gridColumnNeto.VisibleIndex = 11;
             // 
             // gridColumnPiva
             // 
@@ -2701,6 +2741,11 @@
             this.gridColumnPieps.Caption = "Pieps";
             this.gridColumnPieps.FieldName = "Pieps";
             this.gridColumnPieps.Name = "gridColumnPieps";
+            // 
+            // gridColumnPRetencionISR
+            // 
+            this.gridColumnPRetencionISR.Caption = "gridColumnPRetencionISR";
+            this.gridColumnPRetencionISR.Name = "gridColumnPRetencionISR";
             // 
             // navigationPage1
             // 
@@ -2747,6 +2792,112 @@
             this.popupControlContainerNuevaFecha.Size = new System.Drawing.Size(453, 219);
             this.popupControlContainerNuevaFecha.TabIndex = 6;
             this.popupControlContainerNuevaFecha.Visible = false;
+            // 
+            // popUpAutorizar
+            // 
+            this.popUpAutorizar.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.Simple;
+            this.popUpAutorizar.Controls.Add(this.groupControl1);
+            this.popUpAutorizar.Location = new System.Drawing.Point(500, 300);
+            this.popUpAutorizar.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.popUpAutorizar.Name = "popUpAutorizar";
+            this.popUpAutorizar.Ribbon = this.btnAutorizar;
+            this.popUpAutorizar.ShowCloseButton = true;
+            this.popUpAutorizar.ShowSizeGrip = true;
+            this.popUpAutorizar.Size = new System.Drawing.Size(453, 219);
+            this.popUpAutorizar.TabIndex = 4;
+            this.popUpAutorizar.Visible = false;
+            // 
+            // groupControl1
+            // 
+            this.groupControl1.Controls.Add(this.simpleButton2);
+            this.groupControl1.Controls.Add(this.labelControl20);
+            this.groupControl1.Controls.Add(this.labelControl19);
+            this.groupControl1.Controls.Add(this.btnAut);
+            this.groupControl1.Controls.Add(this.txtPassword);
+            this.groupControl1.Controls.Add(this.txtLogin);
+            this.groupControl1.Controls.Add(this.labelControl18);
+            this.groupControl1.Controls.Add(this.labelControl17);
+            this.groupControl1.Location = new System.Drawing.Point(26, 14);
+            this.groupControl1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.groupControl1.Name = "groupControl1";
+            this.groupControl1.Size = new System.Drawing.Size(402, 189);
+            this.groupControl1.TabIndex = 5;
+            this.groupControl1.Text = "Autorizar la órden de compra";
+            // 
+            // simpleButton2
+            // 
+            this.simpleButton2.Location = new System.Drawing.Point(27, 143);
+            this.simpleButton2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.simpleButton2.Name = "simpleButton2";
+            this.simpleButton2.Size = new System.Drawing.Size(81, 24);
+            this.simpleButton2.TabIndex = 12;
+            this.simpleButton2.Text = "Cerrar";
+            this.simpleButton2.Click += new System.EventHandler(this.simpleButton2_Click_1);
+            // 
+            // labelControl20
+            // 
+            this.labelControl20.Location = new System.Drawing.Point(27, 80);
+            this.labelControl20.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.labelControl20.Name = "labelControl20";
+            this.labelControl20.Size = new System.Drawing.Size(46, 13);
+            this.labelControl20.TabIndex = 11;
+            this.labelControl20.Text = "Password";
+            // 
+            // labelControl19
+            // 
+            this.labelControl19.Location = new System.Drawing.Point(27, 45);
+            this.labelControl19.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.labelControl19.Name = "labelControl19";
+            this.labelControl19.Size = new System.Drawing.Size(25, 13);
+            this.labelControl19.TabIndex = 10;
+            this.labelControl19.Text = "Login";
+            // 
+            // btnAut
+            // 
+            this.btnAut.Location = new System.Drawing.Point(298, 143);
+            this.btnAut.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnAut.Name = "btnAut";
+            this.btnAut.Size = new System.Drawing.Size(81, 24);
+            this.btnAut.TabIndex = 9;
+            this.btnAut.Text = "Proceder";
+            this.btnAut.Click += new System.EventHandler(this.btnAut_Click);
+            // 
+            // txtPassword
+            // 
+            this.txtPassword.Location = new System.Drawing.Point(121, 79);
+            this.txtPassword.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.txtPassword.MenuManager = this.btnAutorizar;
+            this.txtPassword.Name = "txtPassword";
+            this.txtPassword.Properties.PasswordChar = '*';
+            this.txtPassword.Size = new System.Drawing.Size(180, 20);
+            this.txtPassword.TabIndex = 8;
+            // 
+            // txtLogin
+            // 
+            this.txtLogin.Location = new System.Drawing.Point(121, 40);
+            this.txtLogin.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.txtLogin.MenuManager = this.btnAutorizar;
+            this.txtLogin.Name = "txtLogin";
+            this.txtLogin.Size = new System.Drawing.Size(180, 20);
+            this.txtLogin.TabIndex = 7;
+            // 
+            // labelControl18
+            // 
+            this.labelControl18.Location = new System.Drawing.Point(-100, 49);
+            this.labelControl18.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.labelControl18.Name = "labelControl18";
+            this.labelControl18.Size = new System.Drawing.Size(46, 13);
+            this.labelControl18.TabIndex = 6;
+            this.labelControl18.Text = "Password";
+            // 
+            // labelControl17
+            // 
+            this.labelControl17.Location = new System.Drawing.Point(-100, 10);
+            this.labelControl17.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.labelControl17.Name = "labelControl17";
+            this.labelControl17.Size = new System.Drawing.Size(25, 13);
+            this.labelControl17.TabIndex = 5;
+            this.labelControl17.Text = "Login";
             // 
             // groupControlNuevaFecha
             // 
@@ -2854,112 +3005,6 @@
             this.labelControl24.TabIndex = 5;
             this.labelControl24.Text = "Login";
             // 
-            // popUpAutorizar
-            // 
-            this.popUpAutorizar.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.Simple;
-            this.popUpAutorizar.Controls.Add(this.groupControl1);
-            this.popUpAutorizar.Location = new System.Drawing.Point(500, 300);
-            this.popUpAutorizar.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.popUpAutorizar.Name = "popUpAutorizar";
-            this.popUpAutorizar.Ribbon = this.btnAutorizar;
-            this.popUpAutorizar.ShowCloseButton = true;
-            this.popUpAutorizar.ShowSizeGrip = true;
-            this.popUpAutorizar.Size = new System.Drawing.Size(453, 219);
-            this.popUpAutorizar.TabIndex = 4;
-            this.popUpAutorizar.Visible = false;
-            // 
-            // groupControl1
-            // 
-            this.groupControl1.Controls.Add(this.simpleButton2);
-            this.groupControl1.Controls.Add(this.labelControl20);
-            this.groupControl1.Controls.Add(this.labelControl19);
-            this.groupControl1.Controls.Add(this.btnAut);
-            this.groupControl1.Controls.Add(this.txtPassword);
-            this.groupControl1.Controls.Add(this.txtLogin);
-            this.groupControl1.Controls.Add(this.labelControl18);
-            this.groupControl1.Controls.Add(this.labelControl17);
-            this.groupControl1.Location = new System.Drawing.Point(26, 14);
-            this.groupControl1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.groupControl1.Name = "groupControl1";
-            this.groupControl1.Size = new System.Drawing.Size(402, 189);
-            this.groupControl1.TabIndex = 5;
-            this.groupControl1.Text = "Autorizar la órden de compra";
-            // 
-            // simpleButton2
-            // 
-            this.simpleButton2.Location = new System.Drawing.Point(27, 143);
-            this.simpleButton2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.simpleButton2.Name = "simpleButton2";
-            this.simpleButton2.Size = new System.Drawing.Size(81, 24);
-            this.simpleButton2.TabIndex = 12;
-            this.simpleButton2.Text = "Cerrar";
-            this.simpleButton2.Click += new System.EventHandler(this.simpleButton2_Click_1);
-            // 
-            // labelControl20
-            // 
-            this.labelControl20.Location = new System.Drawing.Point(27, 80);
-            this.labelControl20.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.labelControl20.Name = "labelControl20";
-            this.labelControl20.Size = new System.Drawing.Size(46, 13);
-            this.labelControl20.TabIndex = 11;
-            this.labelControl20.Text = "Password";
-            // 
-            // labelControl19
-            // 
-            this.labelControl19.Location = new System.Drawing.Point(27, 45);
-            this.labelControl19.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.labelControl19.Name = "labelControl19";
-            this.labelControl19.Size = new System.Drawing.Size(25, 13);
-            this.labelControl19.TabIndex = 10;
-            this.labelControl19.Text = "Login";
-            // 
-            // btnAut
-            // 
-            this.btnAut.Location = new System.Drawing.Point(298, 143);
-            this.btnAut.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.btnAut.Name = "btnAut";
-            this.btnAut.Size = new System.Drawing.Size(81, 24);
-            this.btnAut.TabIndex = 9;
-            this.btnAut.Text = "Proceder";
-            this.btnAut.Click += new System.EventHandler(this.btnAut_Click_1);
-            // 
-            // txtPassword
-            // 
-            this.txtPassword.Location = new System.Drawing.Point(121, 79);
-            this.txtPassword.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.txtPassword.MenuManager = this.btnAutorizar;
-            this.txtPassword.Name = "txtPassword";
-            this.txtPassword.Properties.PasswordChar = '*';
-            this.txtPassword.Size = new System.Drawing.Size(180, 20);
-            this.txtPassword.TabIndex = 8;
-            // 
-            // txtLogin
-            // 
-            this.txtLogin.Location = new System.Drawing.Point(121, 40);
-            this.txtLogin.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.txtLogin.MenuManager = this.btnAutorizar;
-            this.txtLogin.Name = "txtLogin";
-            this.txtLogin.Size = new System.Drawing.Size(180, 20);
-            this.txtLogin.TabIndex = 7;
-            // 
-            // labelControl18
-            // 
-            this.labelControl18.Location = new System.Drawing.Point(-100, 49);
-            this.labelControl18.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.labelControl18.Name = "labelControl18";
-            this.labelControl18.Size = new System.Drawing.Size(46, 13);
-            this.labelControl18.TabIndex = 6;
-            this.labelControl18.Text = "Password";
-            // 
-            // labelControl17
-            // 
-            this.labelControl17.Location = new System.Drawing.Point(-100, 10);
-            this.labelControl17.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.labelControl17.Name = "labelControl17";
-            this.labelControl17.Size = new System.Drawing.Size(25, 13);
-            this.labelControl17.TabIndex = 5;
-            this.labelControl17.Text = "Login";
-            // 
             // Ordenesdecompras
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -3005,6 +3050,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.cboMoneda.Properties)).EndInit();
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.cboRequisicionMaterial.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtCondiciones.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtCorrespondencia.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtAtencionA.Properties)).EndInit();
@@ -3037,12 +3083,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.gridViewParcialidades)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.popupControlContainerNuevaFecha)).EndInit();
             this.popupControlContainerNuevaFecha.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.groupControlNuevaFecha)).EndInit();
-            this.groupControlNuevaFecha.ResumeLayout(false);
-            this.groupControlNuevaFecha.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.swNuevaFechatodalacompra.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dFechaNueva.Properties.CalendarTimeProperties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dFechaNueva.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.popUpAutorizar)).EndInit();
             this.popUpAutorizar.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.groupControl1)).EndInit();
@@ -3050,6 +3090,12 @@
             this.groupControl1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.txtPassword.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtLogin.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.groupControlNuevaFecha)).EndInit();
+            this.groupControlNuevaFecha.ResumeLayout(false);
+            this.groupControlNuevaFecha.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.swNuevaFechatodalacompra.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dFechaNueva.Properties.CalendarTimeProperties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dFechaNueva.Properties)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -3268,5 +3314,9 @@
         private DevExpress.XtraEditors.TextEdit txtCorrespondencia;
         private DevExpress.XtraEditors.LabelControl labelControl7;
         private DevExpress.XtraEditors.TextEdit txtDiastraslado;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumnRetencionISR;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumnPRetencionISR;
+        private DevExpress.XtraEditors.LookUpEdit cboRequisicionMaterial;
+        private DevExpress.XtraEditors.LabelControl labelControl25;
     }
 }

@@ -157,7 +157,7 @@ namespace VisualSoftErp.Operacion.CxP.Formas
                 string strRetIvaProv = string.Empty;
                 string strRetIsrProv = string.Empty;
                 string strMonedaprov = string.Empty;
-                string strFPProv = string.Empty;
+                string strFPProv = string.Empty; 
                 string strMPProv = string.Empty;
                 string strUsoProv = string.Empty;
                 string strRetIsr = string.Empty;

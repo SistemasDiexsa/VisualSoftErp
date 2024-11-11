@@ -10,6 +10,14 @@ using System.Windows.Forms;
 using DevExpress.XtraEditors;
 using VisualSoftErp.Clases;
 using DevExpress.XtraNavBar;
+using VisualSoftErp.Operacion.CxP.Informes;
+using VisualSoftErp.Operacion.Inventario.Designers;
+using DevExpress.XtraReports.UI;
+using DevExpress.XtraPrinting.Preview;
+using DevExpress.XtraEditors.Repository;
+using DevExpress.XtraGrid.Blending;
+using DevExpress.XtraGrid;
+using DevExpress.XtraGrid.Views.Grid;
 
 namespace VisualSoftErp.Operacion.Inventarios.Formas
 {
@@ -23,39 +31,26 @@ namespace VisualSoftErp.Operacion.Inventarios.Formas
         bool blNuevo;
         int AñoFiltro;
         int MesFiltro;
-
+        public class detalleCL
+        {
+            public string CantidadCortada { get; set; }
+            public string Articulo { get; set; }
+            public string DesCortada { get; set; }
+            public string LetraCortada { get; set; }
+            public string CantidadProducida { get; set; }
+            public string ArticuloProducido { get; set; }
+            public string LetraProducida { get; set; }
+            public string AlmacenProducido { get; set; }
+            public string DesProducido { get; set; }
+            public string letraproducida { get; set; }
+            public string UltimoCostoCortado { get; set; }
+            public string CostoProducido { get; set; }
+            public string Maquina { get; set; }
+        }
 
         public Produccion()
         {
             InitializeComponent();
-
-            gridViewDetalle.OptionsView.NewItemRowPosition = DevExpress.XtraGrid.Views.Grid.NewItemRowPosition.Bottom;
-            gridViewDetalle.OptionsView.ShowFooter = true;
-            gridViewDetalle.OptionsNavigation.EnterMoveNextColumn = true;
-            gridViewDetalle.OptionsNavigation.AutoMoveRowFocus = true;
-
-            gridViewPrincipal.OptionsBehavior.ReadOnly = true;
-            gridViewPrincipal.OptionsBehavior.Editable = false;
-            gridViewPrincipal.OptionsView.ShowViewCaption = true;
-            gridViewPrincipal.ViewCaption = "Producción";
-
-            BuscarSerie();
-
-
-            AñoFiltro = DateTime.Now.Year;
-            MesFiltro = DateTime.Now.Month;
-            LlenarGrid(AñoFiltro, MesFiltro);
-            gridViewPrincipal.ActiveFilter.Clear();
-
-            //SiguienteID();
-
-            txtFecha.Text = DateTime.Now.ToShortDateString();
-
-            CargaCombos();
-
-            AgregaAñosNavBar();
-
-            DevExpress.XtraSplashScreen.SplashScreenManager.CloseDefaultWaitForm();
         }
 
         private void AgregaAñosNavBar()
@@ -69,8 +64,6 @@ namespace VisualSoftErp.Operacion.Inventarios.Formas
                 dt = cl.NavbarAños();
 
                 NavBarItem item1 = new NavBarItem();
-
-
                 foreach (DataRow dr in dt.Rows)
                 {
                     item1.Caption = dr["Año"].ToString();
@@ -81,7 +74,6 @@ namespace VisualSoftErp.Operacion.Inventarios.Formas
                 }
 
                 navBarControl.ActiveGroup = navBarControl.Groups[0];
-
             }
             catch (Exception ex)
             {
@@ -114,40 +106,40 @@ namespace VisualSoftErp.Operacion.Inventarios.Formas
             if (Result == "OK")
             {
                 if (cl.strSerie == "")
-                { cboSerie.ReadOnly = false; }
+                    cboSerie.ReadOnly = false;
                 else
                 {
                     cboSerie.EditValue = cl.strSerie;
                     cboSerie.ReadOnly = true;
                 }
-
             }
             else
             {
                 MessageBox.Show(Result);
             }
             return "";
-        } //BuscaSerie
+        }
 
-        private void LlenarGrid(int intYear, int intMes)///gridprincipal
+        private void LlenarGrid(int intYear, int intMes)
         {
 
             CortesCL cl = new CortesCL();
             cl.intAño = intYear;
             cl.intMes = intMes;
             gridControlPrincipal.DataSource = cl.CortesGrid();
+
             //Global, manda el nombre del grid para la clase Global
             globalCL clg = new globalCL();
             clg.strGridLayout = "gridCortes";
             clg.restoreLayout(gridViewPrincipal);
             gridViewPrincipal.OptionsView.ShowAutoFilterRow = true;
-        } //LlenarGrid()
+        }
 
         private void CargaCombos()
         {
             combosCL cl = new combosCL();
 
-           
+            #region ALMACENES CORTADO
             cl.strTabla = "Almacenes";
             cboAlmacenCortado.Properties.ValueMember = "Clave";
             cboAlmacenCortado.Properties.DisplayMember = "Des";
@@ -157,7 +149,9 @@ namespace VisualSoftErp.Operacion.Inventarios.Formas
             cboAlmacenCortado.Properties.PopulateColumns();
             cboAlmacenCortado.Properties.Columns["Clave"].Visible = false;
             cboAlmacenCortado.Properties.NullText = "Seleccionar almacen cortado";
+            #endregion ALMACENES CORTADO
 
+            #region ARTICULO CORTADO
             cl.strTabla = "Articulos";
             repositoryItemLookUpEditArticulo.ValueMember = "Clave";
             repositoryItemLookUpEditArticulo.DisplayMember = "Des";
@@ -165,7 +159,10 @@ namespace VisualSoftErp.Operacion.Inventarios.Formas
             repositoryItemLookUpEditArticulo.ForceInitialize();
             repositoryItemLookUpEditArticulo.PopupFilterMode = DevExpress.XtraEditors.PopupFilterMode.Contains;
             repositoryItemLookUpEditArticulo.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.Standard;
+            repositoryItemLookUpEditArticulo.NullText = "Seleccione el articulo a cortar";
+            #endregion ARTCULO CORTADO
 
+            #region ARTICULO PRODUCIDO
             cl.strTabla = "Articulos";
             repositoryItemLookUpEditArticuloProducido.ValueMember = "Clave";
             repositoryItemLookUpEditArticuloProducido.DisplayMember = "Des";
@@ -173,7 +170,10 @@ namespace VisualSoftErp.Operacion.Inventarios.Formas
             repositoryItemLookUpEditArticuloProducido.ForceInitialize();
             repositoryItemLookUpEditArticuloProducido.PopupFilterMode = DevExpress.XtraEditors.PopupFilterMode.Contains;
             repositoryItemLookUpEditArticuloProducido.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.Standard;
+            repositoryItemLookUpEditArticuloProducido.NullText = "Seleccione el articulo a producir";
+            #endregion ARTICULO PRODUCIDO
 
+            #region ALMACEN PRODUCIDO
             cl.strTabla = "Almacenes";
             repositoryItemLookUpEditAlmacenProd.ValueMember = "Clave";
             repositoryItemLookUpEditAlmacenProd.DisplayMember = "Des";
@@ -181,36 +181,19 @@ namespace VisualSoftErp.Operacion.Inventarios.Formas
             repositoryItemLookUpEditAlmacenProd.ForceInitialize();
             repositoryItemLookUpEditAlmacenProd.PopupFilterMode = DevExpress.XtraEditors.PopupFilterMode.Contains;
             repositoryItemLookUpEditAlmacenProd.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.Standard;
+            #endregion ALMACEN PRODUCIDO
 
+            #region SERIE
             cl.strTabla = "Serie";
             cboSerie.Properties.ValueMember = "Clave";
             cboSerie.Properties.DisplayMember = "Clave";
             cboSerie.Properties.DataSource = cl.CargaCombos();
-            cboSerie.Properties.ForceInitialize();
             cboSerie.Properties.PopupFilterMode = DevExpress.XtraEditors.PopupFilterMode.Contains;
+            cboSerie.Properties.ForceInitialize();
             cboSerie.Properties.PopulateColumns();
             cboSerie.Properties.Columns["Des"].Visible = false;
             cboSerie.EditValue = cboSerie.Properties.GetDataSourceValue(cboSerie.Properties.ValueMember, 0);
-
-        }//CargaCombo
-
-        public class detalleCL
-        {
-      
-            public string CantidadCortada { get; set; }
-            public string Articulo { get; set; }
-            public string DesCortada { get; set; }
-            public string LetraCortada { get; set; }
-            public string CantidadProducida  { get; set; }
-            public string ArticuloProducido { get; set; }
-            public string LetraProducida { get; set; }
-            public string AlmacenProducido { get; set; }
-            public string DesProducido { get; set; }
-            public string letraproducida { get; set; }
-            public string UltimoCostoCortado { get; set; }
-            public string CostoProducido { get; set; }  public string Maquina { get; set; }
-
-
+            #endregion SERIE
         }
 
         private void LimpiaCajas()
@@ -225,22 +208,21 @@ namespace VisualSoftErp.Operacion.Inventarios.Formas
             Inicialisalista();
         }
 
-        private void Nuevo(int Op)
+        private void Nuevo()
         {
-            if (Op==0)
-            {
-                LimpiaCajas();
-                BotonesEdicion();
-            }
-           
+            intFolio = 0;
             blNuevo = true;
+            LimpiaCajas();
+            BotonesEdicion();
+           
+            globalCL global = new globalCL();
+            global.strDoc = "Cortes";
+            global.strSerie = cboSerie.EditValue.ToString();
+            // Manual:
+            // -- Definir la condicion necesaria para traer el siguiente ID --
+            // clg.sCondicion = sCondicion;
 
-   
-            globalCL clg = new globalCL();
-            clg.strDoc = "Cortes";
-            clg.strSerie = cboSerie.EditValue.ToString();
-            //Manual: --- Definir la condicion necesaria para traer el siguiente ID ---------------------         clg.sCondicion = sCondicion;
-            string Result = clg.DocumentosSiguienteID();
+            string Result = global.DocumentosSiguienteID();
             if (Result != "OK")
             {
                 MessageBox.Show("No se pudo leer el siguiente folio");
@@ -248,21 +230,22 @@ namespace VisualSoftErp.Operacion.Inventarios.Formas
             }
             else
             {
-                txtFolio.Text = clg.iFolio.ToString();
+                txtFolio.Text = global.iFolio.ToString();
             }
         }
 
         private void BotonesEdicion()
         {
             ribbonPageGroup1.Visible = false;
-            ribbonPageGroup2.Visible = true;
             navBarControl.Visible = false;
+
+            ribbonPageGroup2.Visible = true;
             navigationFrame.SelectedPageIndex = 1;
 
             globalCL clg = new globalCL();
             clg.strGridLayout = "gridCortesDetalle";
             clg.restoreLayout(gridViewDetalle);
-        }
+        }   
 
         private string Valida()
         {
@@ -282,10 +265,9 @@ namespace VisualSoftErp.Operacion.Inventarios.Formas
             {
                 return "El campo Elaboro no puede ir vacio";
             }
-            
 
             return "OK";
-        } //Valida
+        }
 
         private void Inicialisalista()
         {
@@ -302,10 +284,10 @@ namespace VisualSoftErp.Operacion.Inventarios.Formas
         {
             combosCL cl = new combosCL();
             cl.strTabla = "AlmacenesProducido";
-            cl.intClave = Convert.ToInt32(cboAlmacenCortado.EditValue);
+            cl.iCondicion = Convert.ToInt32(cboAlmacenCortado.EditValue);
             repositoryItemLookUpEditAlmacenProd.ValueMember = "Clave";
             repositoryItemLookUpEditAlmacenProd.DisplayMember = "Des";
-            repositoryItemLookUpEditAlmacenProd.DataSource = cl.CargaCombosCondicion();
+            repositoryItemLookUpEditAlmacenProd.DataSource = cl.CargaCombos();
             repositoryItemLookUpEditAlmacenProd.ForceInitialize();
             repositoryItemLookUpEditAlmacenProd.PopupFilterMode = DevExpress.XtraEditors.PopupFilterMode.Contains;
             repositoryItemLookUpEditAlmacenProd.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.Standard;
@@ -443,13 +425,13 @@ namespace VisualSoftErp.Operacion.Inventarios.Formas
              
                 cl.intUsuarioID = intUsuarioID;
                 cl.strMaquina = Environment.MachineName;
-                Result = cl.ProduccionCrud();
+                Result = cl.CortesCRUD();
                 if (Result == "OK")
                 {
-                    MessageBox.Show("Guardado Correctamente: Folio: " + intFolio.ToString());
+                    DialogResult dialog = MessageBox.Show("¿Desea generar nuevo registro?", "Guardado Correctamente: Folio: " + intFolio.ToString(), MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                    if(dialog == DialogResult.Yes)
                     {
-                        LimpiaCajas();
-                        Nuevo(1);
+                        Nuevo();
                     }
                 }
                 else
@@ -461,17 +443,15 @@ namespace VisualSoftErp.Operacion.Inventarios.Formas
             {
                 MessageBox.Show("Guardar: " + ex.Message);
             }
-        } //Guardar
+        }
 
         private void Editar()
         {
-           
             DetalleLlenaCajas();
-
             BotonesEdicion();
             bbiGuardar.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
             blNuevo = false;
-        }//ver
+        }
 
         private void DetalleLlenaCajas()
         {
@@ -497,211 +477,83 @@ namespace VisualSoftErp.Operacion.Inventarios.Formas
             }
 
 
-        }//detalleLlenacajas
-
-        #region Filtros de bbi Meses
-
-        private void navBarItemEne_LinkClicked(object sender, DevExpress.XtraNavBar.NavBarLinkEventArgs e)
-        {
-            //gridViewPrincipal.ActiveFilterString = "[Año]=" + DateTime.Now.Year.ToString() + " and [Mes]= 1";
         }
 
-        private void navBarItemFeb_LinkClicked(object sender, DevExpress.XtraNavBar.NavBarLinkEventArgs e)
+        private void GenerarReporte()
         {
-            //gridViewPrincipal.ActiveFilterString = "[Año]=" + DateTime.Now.Year.ToString() + " and [Mes]= 2";
-        }
+            try
+            {
+                globalCL global = new globalCL();
+                string result = global.Datosdecontrol();
+                if (result != "OK")
+                {
+                    MessageBox.Show(result);
+                    return;
+                }
+                HojaProduccionCortesDesigner rep = new HojaProduccionCortesDesigner();
+                rep.Parameters["parameter1"].Value = strSerie;
+                rep.Parameters["parameter2"].Value = intFolio;
 
-        private void navBarItemMar_LinkClicked(object sender, DevExpress.XtraNavBar.NavBarLinkEventArgs e)
-        {
-            //gridViewPrincipal.ActiveFilterString = "[Año]=" + DateTime.Now.Year.ToString() + " and [Mes]= 3";
-        }
-
-        private void navBarItemAbr_LinkClicked(object sender, DevExpress.XtraNavBar.NavBarLinkEventArgs e)
-        {
-            //gridViewPrincipal.ActiveFilterString = "[Año]=" + DateTime.Now.Year.ToString() + " and [Mes]= 4";
-        }
-
-        private void navBarItemMay_LinkClicked(object sender, DevExpress.XtraNavBar.NavBarLinkEventArgs e)
-        {
-            //gridViewPrincipal.ActiveFilterString = "[Año]=" + DateTime.Now.Year.ToString() + " and [Mes]= 5";
-        }
-
-        private void navBarItemJun_LinkClicked(object sender, DevExpress.XtraNavBar.NavBarLinkEventArgs e)
-        {
-            //gridViewPrincipal.ActiveFilterString = "[Año]=" + DateTime.Now.Year.ToString() + " and [Mes]= 6";
-        }
-
-        private void navBarItemJul_LinkClicked(object sender, DevExpress.XtraNavBar.NavBarLinkEventArgs e)
-        {
-            //gridViewPrincipal.ActiveFilterString = "[Año]=" + DateTime.Now.Year.ToString() + " and [Mes]= 7";
-        }
-
-        private void navBarItemAgo_LinkClicked(object sender, DevExpress.XtraNavBar.NavBarLinkEventArgs e)
-        {
-            //gridViewPrincipal.ActiveFilterString = "[Año]=" + DateTime.Now.Year.ToString() + " and [Mes]= 8";
-        }
-
-        private void navBarItemsep_LinkClicked(object sender, DevExpress.XtraNavBar.NavBarLinkEventArgs e)
-        {
-            //gridViewPrincipal.ActiveFilterString = "[Año]=" + DateTime.Now.Year.ToString() + " and [Mes]= 9";
-        }
-
-        private void navBarItemOct_LinkClicked(object sender, DevExpress.XtraNavBar.NavBarLinkEventArgs e)
-        {
-            //gridViewPrincipal.ActiveFilterString = "[Año]=" + DateTime.Now.Year.ToString() + " and [Mes]= 10";
-        }
-
-        private void navBarItemNov_LinkClicked(object sender, DevExpress.XtraNavBar.NavBarLinkEventArgs e)
-        {
-            //gridViewPrincipal.ActiveFilterString = "[Año]=" + DateTime.Now.Year.ToString() + " and [Mes]= 11";
-        }
-
-        private void navBarItemDic_LinkClicked(object sender, DevExpress.XtraNavBar.NavBarLinkEventArgs e)
-        {
-            //gridViewPrincipal.ActiveFilterString = "[Año]=" + DateTime.Now.Year.ToString() + " and [Mes]= 12";
-        }
-
-        private void navBarItemTodos_LinkClicked(object sender, DevExpress.XtraNavBar.NavBarLinkEventArgs e)
-        {
-            //gridViewPrincipal.ActiveFilter.Clear();
+                if (global.iImpresiondirecta == 1)
+                {
+                    ReportPrintTool rpt = new DevExpress.XtraReports.UI.ReportPrintTool(rep);
+                    rpt.Print();
+                    return;
+                }
+                else
+                {
+                    rep.CreateDocument();
+                    documentViewer.DocumentSource = rep;
+                    RibbonPagePrint.Visible = true;
+                    ribbonControl.MergeOwner.SelectedPage = ribbonControl.MergeOwner.TotalPageCategory.GetPageByText(RibbonPagePrint.Text);
+                    navigationFrame.SelectedPage = navigationPageDocument;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error al generar reporte", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
 
 
-        #endregion
-
-        void navBarControl_ActiveGroupChanged(object sender, DevExpress.XtraNavBar.NavBarGroupEventArgs e)
+        #region AL CARGAR
+        private void Produccion_Load(object sender, EventArgs e)
         {
-            navigationFrame.SelectedPageIndex = navBarControl.Groups.IndexOf(e.Group);
-        }
-        void barButtonNavigation_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
-        {
-            int barItemIndex = barSubItemNavigation.ItemLinks.IndexOf(e.Link);
-            navBarControl.ActiveGroup = navBarControl.Groups[barItemIndex];
-        }
-
-        private void bbiNuevo_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
-        {
-            Nuevo(0);
-        }
-
-        private void bbiRegresar_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
-        {
-            ribbonPageGroup1.Visible = true;
-            ribbonPageGroup2.Visible = false;
-            navBarControl.Visible = true;
+            InitGridPrincipal();
+            InitGridDetalle();
+            BuscarSerie();
+            txtFecha.Text = DateTime.Now.ToShortDateString();
+            AñoFiltro = DateTime.Now.Year;
+            MesFiltro = DateTime.Now.Month;
             LlenarGrid(AñoFiltro, MesFiltro);
-            LimpiaCajas();
-            navigationFrame.SelectedPageIndex = 0;
-            bbiGuardar.Visibility = DevExpress.XtraBars.BarItemVisibility.Always;
-            strSerie = "";
-            intFolio = 0;
-
-
-            globalCL clg = new globalCL();
-            clg.strGridLayout = "gridCortesDetalle";
-            String Result = clg.SaveGridLayout(gridViewDetalle);
-            if (Result != "OK")
-            {
-                MessageBox.Show(Result);
-            }
+            CargaCombos();
+            AgregaAñosNavBar();
+            DevExpress.XtraSplashScreen.SplashScreenManager.CloseDefaultWaitForm();
         }
+        #endregion AL CARGAR
 
 
-        private void cboAlmacenCortado_EditValueChanged(object sender, EventArgs e)
+        #region INIT GRID
+        private void InitGridPrincipal()
         {
-            CargaComboAlmacenProd();
+            gridViewPrincipal.OptionsBehavior.ReadOnly = true;
+            gridViewPrincipal.OptionsBehavior.Editable = false;
+            gridViewPrincipal.OptionsView.ShowViewCaption = true;
+            gridViewPrincipal.ViewCaption = "Producción";
+            gridViewPrincipal.ActiveFilter.Clear();
         }
-
-        private void bbiGuardar_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        private void InitGridDetalle()
         {
-            Guardar();
+            gridViewDetalle.OptionsView.NewItemRowPosition = DevExpress.XtraGrid.Views.Grid.NewItemRowPosition.Bottom;
+            gridViewDetalle.OptionsView.ShowFooter = true;
+            gridViewDetalle.OptionsNavigation.EnterMoveNextColumn = true;
+            gridViewDetalle.OptionsNavigation.AutoMoveRowFocus = true;
         }
-
-        private void gridViewDetalle_CellValueChanged(object sender, DevExpress.XtraGrid.Views.Base.CellValueChangedEventArgs e)
-        {
-            string artProducido = "", art = "";
-            articulosCL cl = new articulosCL();
-            //Sacamos datos del artículo
-            if (e.Column.Name == "gridColumnArticulo")
-            {
-              
-                art = gridViewDetalle.GetRowCellValue(gridViewDetalle.FocusedRowHandle, "Articulo").ToString();
-                if (art.Length > 0) //validamos que haya algo en la celda
-                {
-                    cl.intArticulosID = Convert.ToInt32(art);
-                    string result = cl.articulosLlenaCajas();
-                    if (result == "OK")
-                    {
-                        gridViewDetalle.SetFocusedRowCellValue("DesCortada", cl.strArticulo);
-
-                    }
-                }
-                
-            }
-          
-            if (e.Column.Name == "gridColumnArticuloProducido")
-            {
-                artProducido = gridViewDetalle.GetRowCellValue(gridViewDetalle.FocusedRowHandle, "ArticuloProducido").ToString();
-                art = gridViewDetalle.GetRowCellValue(gridViewDetalle.FocusedRowHandle, "Articulo").ToString();
-                if (artProducido.Length > 0) //validamos que haya algo en la celda
-                {
-                    cl.intArticulosID = Convert.ToInt32(artProducido);
-                    string result = cl.articulosLlenaCajas();
-                    if (result == "OK")
-                    {
-                        gridViewDetalle.SetFocusedRowCellValue("DesProducido", cl.strArticulo);
-
-                    }
-
-                    if (art == artProducido)
-                    {
-                        MessageBox.Show("El articulo cortado y producido no puede ser iguales, Seleccione un articulo terminado diferente");
-                       
-                    }
-                }
-            }
-           
+        #endregion INIT GRID
 
 
-        }
-
-        private void bbiVer_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
-        {
-            if (intFolio == 0)
-            {
-                MessageBox.Show("Selecciona un renglón");
-            }
-            else
-            {
-                Editar();
-            }
-        }
-       
-
-        private void gridViewPrincipal_RowClick(object sender, DevExpress.XtraGrid.Views.Grid.RowClickEventArgs e)
-        {
-            intFolio = Convert.ToInt32(gridViewPrincipal.GetRowCellValue(gridViewPrincipal.FocusedRowHandle, "Folio"));
-            strSerie = Convert.ToString(gridViewPrincipal.GetRowCellValue(gridViewPrincipal.FocusedRowHandle, "Serie"));
-        }
-
-        private void bbiVista_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
-        {
-            gridControlPrincipal.ShowRibbonPrintPreview();
-        }
-
-        private void bbiCerrar_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
-        {
-            globalCL clg = new globalCL();
-            clg.strGridLayout = "gridCortes";
-            String Result = clg.SaveGridLayout(gridViewPrincipal);
-            if (Result != "OK")
-            {
-                MessageBox.Show(Result);
-            }
-            this.Close();
-        }
-
+        #region NAVEGACION
         private void navBarControl_LinkClicked(object sender, DevExpress.XtraNavBar.NavBarLinkEventArgs e)
         {
             globalCL clg = new globalCL();
@@ -755,10 +607,187 @@ namespace VisualSoftErp.Operacion.Inventarios.Formas
                         MesFiltro = 0;
                         break;
                 }
-
                 LlenarGrid(AñoFiltro, MesFiltro);
-
             }
         }
+        #endregion NAVEGACION
+
+
+        #region BOTONES
+        private void bbiNuevo_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            Nuevo();
+        }
+        private void bbiRegresar_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            ribbonPageGroup1.Visible = true;
+            ribbonPageGroup2.Visible = false;
+            navBarControl.Visible = true;
+            LlenarGrid(AñoFiltro, MesFiltro);
+            LimpiaCajas();
+            ribbonControl.MergeOwner.SelectedPage = ribbonControl.MergeOwner.TotalPageCategory.GetPageByText(ribbonPage1.Text);
+            navigationFrame.SelectedPageIndex = 0;
+            bbiGuardar.Visibility = DevExpress.XtraBars.BarItemVisibility.Always;
+            strSerie = "";
+            intFolio = 0;
+
+
+            globalCL clg = new globalCL();
+            clg.strGridLayout = "gridCortesDetalle";
+            String Result = clg.SaveGridLayout(gridViewDetalle);
+            if (Result != "OK")
+            {
+                MessageBox.Show(Result);
+            }
+        }
+        private void bbiGuardar_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            Guardar();
+        }
+        private void bbiVer_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            if (intFolio == 0)
+                MessageBox.Show("Selecciona un renglón");
+            else
+                Editar();
+        }
+        private void bbiVista_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            gridControlPrincipal.ShowRibbonPrintPreview();
+        }
+        private void bbiCerrar_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            globalCL clg = new globalCL();
+            clg.strGridLayout = "gridCortes";
+            String Result = clg.SaveGridLayout(gridViewPrincipal);
+            if (Result != "OK")
+            {
+                MessageBox.Show(Result);
+            }
+            this.Close();
+        }
+        // Desde grid Principal
+        private void bbiImprimir2_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            DevExpress.XtraSplashScreen.SplashScreenManager.ShowDefaultWaitForm();
+            if (intFolio == 0)
+                MessageBox.Show("Selecciona un renglón");
+            else
+                GenerarReporte();
+            DevExpress.XtraSplashScreen.SplashScreenManager.CloseDefaultWaitForm();
+        }
+        // Desde form
+        private void bbiImprimir_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            DevExpress.XtraSplashScreen.SplashScreenManager.ShowDefaultWaitForm();
+            if (intFolio == 0)
+                MessageBox.Show("Primero guardar y después generar el reporte");
+            else
+                GenerarReporte();
+            DevExpress.XtraSplashScreen.SplashScreenManager.CloseDefaultWaitForm();
+        }
+        #endregion BOTONES
+
+
+        #region INTERACCIONES DE USUARIO
+        private void cboAlmacenCortado_EditValueChanged(object sender, EventArgs e)
+        {
+            CargaComboAlmacenProd();
+        }
+        private void gridControlPrincipal_DoubleClick(object sender, EventArgs e)
+        {
+            GridControl gridPrincipal = (GridControl)sender;
+            if(gridPrincipal != null)
+            {
+                intFolio = Convert.ToInt32(gridViewPrincipal.GetRowCellValue(gridViewPrincipal.FocusedRowHandle, "Folio"));
+                strSerie = Convert.ToString(gridViewPrincipal.GetRowCellValue(gridViewPrincipal.FocusedRowHandle, "Serie"));
+                Editar();
+            }
+        }
+        private void gridViewPrincipal_RowClick(object sender, DevExpress.XtraGrid.Views.Grid.RowClickEventArgs e)
+        {
+            intFolio = Convert.ToInt32(gridViewPrincipal.GetRowCellValue(gridViewPrincipal.FocusedRowHandle, "Folio"));
+            strSerie = Convert.ToString(gridViewPrincipal.GetRowCellValue(gridViewPrincipal.FocusedRowHandle, "Serie"));
+        }
+        private void gridControlDetalle_ProcessGridKey(object sender, KeyEventArgs e)
+        {
+            var grid = sender as GridControl;
+            var view = grid.FocusedView as GridView;
+            if (e.KeyData == Keys.Delete)
+            {
+                view.DeleteRow(gridViewDetalle.FocusedRowHandle);
+                e.Handled = true;
+            }
+        }
+        private void gridViewDetalle_CellValueChanged(object sender, DevExpress.XtraGrid.Views.Base.CellValueChangedEventArgs e)
+        {
+            string artProducido = "", art = "";
+            articulosCL cl = new articulosCL();
+
+            //Sacamos datos del artículo
+             if (e.Column.Name == "gridColumnArticulo")
+            {
+                art = gridViewDetalle.GetRowCellValue(gridViewDetalle.FocusedRowHandle, "Articulo").ToString();
+                if (art.Length > 0)
+                {
+                    //int articuloSeleccionado = 0;
+                    //for (int i = 0; i < gridViewDetalle.RowCount; i++ )
+                    //{
+                    //    object row = gridViewDetalle.GetRow(i);
+                    //    if (row != null)
+                    //    {
+                    //        articuloSeleccionado = Convert.ToInt32(gridViewDetalle.GetRowCellValue(i, "Articulo"));
+                    //        if (i != gridViewDetalle.FocusedRowHandle)
+                    //        {
+                    //            if (Convert.ToInt32(art) == articuloSeleccionado)
+                    //            {   
+                    //                gridViewDetalle.SetRowCellValue(gridViewDetalle.FocusedRowHandle, "Articulo", 0);
+                    //                MessageBox.Show("Este artículo ya fué seleccionado.\nFavor de modificar la cantidad cortada", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    //                return;
+                    //            }
+                    //        }
+                    //    }
+                    //}
+
+                    cl.intArticulosID = Convert.ToInt32(art);
+                    string result = cl.articulosLlenaCajas();
+                    if (result == "OK")
+                    {
+                        gridViewDetalle.SetFocusedRowCellValue("DesCortada", cl.strArticulo);
+                    }
+                }
+                
+            }
+          
+            if (e.Column.Name == "gridColumnArticuloProducido")
+            {
+                artProducido = gridViewDetalle.GetRowCellValue(gridViewDetalle.FocusedRowHandle, "ArticuloProducido").ToString();
+                art = gridViewDetalle.GetRowCellValue(gridViewDetalle.FocusedRowHandle, "Articulo").ToString();
+                if (artProducido.Length > 0)
+                {
+                    //var dataRowArticuloProducido = repositoryItemLookUpEditArticuloProducido.GetDataSourceRowByKeyValue(artProducido) as DataRowView;
+                    //if (dataRowArticuloProducido != null)
+                    //{
+                    //    int articuloBaseID = Convert.ToInt32(dataRowArticuloProducido["ArticulobaseparacosteoID"]);
+                    //    if (Convert.ToInt32(art) != articuloBaseID)
+                    //    {
+                    //        gridViewDetalle.SetRowCellValue(gridViewDetalle.FocusedRowHandle, "ArticuloProducido", 0);
+                    //        MessageBox.Show("Este articulo no puede ser producido con el articulo que seleccíonó para cortar.\nSeleccione un artículo 'hijo' del artículo cortado.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    //        return;
+                    //    }
+                    //}
+
+                    cl.intArticulosID = Convert.ToInt32(artProducido);
+                    string result = cl.articulosLlenaCajas();
+                    if (result == "OK")
+                        gridViewDetalle.SetFocusedRowCellValue("DesProducido", cl.strArticulo);
+                    
+                    if (art == artProducido)
+                        MessageBox.Show("El articulo cortado y producido no puede ser iguales, Seleccione un articulo terminado diferente");
+                }
+            }
+        }
+        #endregion INTERACCIONES DE USUARIO
+
     }
 }

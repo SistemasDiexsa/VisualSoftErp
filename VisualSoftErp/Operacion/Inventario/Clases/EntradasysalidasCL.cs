@@ -310,6 +310,42 @@ namespace VisualSoftErp.Clases
             catch (Exception ex) { return dt; }
         } //cotizacionesGrid
 
+        public string EntradasySalidasCancelar()
+        {
+            try
+            {
+                string result = string.Empty;
+                SqlConnection cnn = new SqlConnection();
+                cnn.ConnectionString = strCnn;
+                cnn.Open();
+
+                SqlCommand cmd = new SqlCommand();
+                cmd.CommandText = "EntradasySalidasCancelar";
+                cmd.Parameters.AddWithValue("@prmSerie", strSerie);
+                cmd.Parameters.AddWithValue("@prmFolio", intFolio);
+                cmd.Parameters.AddWithValue("@prmTipoMovimiento", intTiposdemovimientoinvID);
+                
+                cmd.CommandType = System.Data.CommandType.StoredProcedure;
+                cmd.Connection = cnn;
+                SqlDataReader dr = cmd.ExecuteReader();
+                if (dr.HasRows)
+                {
+                    dr.Read();
+                    result = dr["result"].ToString();
+                }
+                else
+                {
+                    result = "no read";
+                }
+                dr.Close();
+                cnn.Close();
+                return result;
+            }
+            catch (Exception ex)
+            {
+                return ex.Message;
+            }
+        }
 
         #endregion
     }

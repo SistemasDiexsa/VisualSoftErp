@@ -15,6 +15,7 @@ namespace VisualSoftErp.Catalogos.Ventas
 {
     public partial class Listasdeprecios : DevExpress.XtraBars.Ribbon.RibbonForm
     {
+        private bool permisosEscritura;
         private bool blnNuevo;
         private int intFolioSeleccionado;
         string strNom = string.Empty;
@@ -23,6 +24,7 @@ namespace VisualSoftErp.Catalogos.Ventas
         public Listasdeprecios()
         {
             InitializeComponent();
+            PermisosEscritura();
             strGridActual = "principal";
             gridViewPrincipal.OptionsBehavior.ReadOnly = true;
             gridViewPrincipal.OptionsBehavior.Editable = false;
@@ -61,6 +63,16 @@ namespace VisualSoftErp.Catalogos.Ventas
             public string Des { get; set; }
         }
 
+        private void PermisosEscritura()
+        {
+            globalCL clg = new globalCL();
+            UsuariosCL usuarios = new UsuariosCL();
+
+            clg.strPrograma = "0410";
+            if (clg.accesoSoloLectura()) permisosEscritura = false;
+            else permisosEscritura = true;
+        }
+
         private void LLenaGridMaster()
         {
             ListasdeprecioCL cl = new ListasdeprecioCL();
@@ -87,16 +99,10 @@ namespace VisualSoftErp.Catalogos.Ventas
                 clg.strGridLayout = "gridLpDetalle";
                 clg.restoreLayout(gridViewDetalle);
 
-                
                 if (!blnNuevo)
-                {
                     gridViewDetalle.ActiveFilterString = "[Precio]<>0.00";
-                }
                 else
-                {
                     gridViewDetalle.ActiveFilter.Clear();
-                }
-
             }
             catch(Exception ex)
             {
@@ -150,9 +156,8 @@ namespace VisualSoftErp.Catalogos.Ventas
 
         private void BotonesEdicion()
         {
-//            LimpiaCajas();
-
             bbiGuardar.Visibility = DevExpress.XtraBars.BarItemVisibility.Always;
+            bbiGuardar.Enabled = permisosEscritura;
             bbiRegresar.Visibility = DevExpress.XtraBars.BarItemVisibility.Always;
             bbiNuevo.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
             bbiEditar.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;           
@@ -232,6 +237,7 @@ namespace VisualSoftErp.Catalogos.Ventas
                 gridViewDetalle.SetRowCellValue(gridViewDetalle.FocusedRowHandle, "PrecioNeto",Neto);
             }
         }
+        
         private void CargaCombos()
         {
 
@@ -416,7 +422,7 @@ namespace VisualSoftErp.Catalogos.Ventas
 
         private void bbiEditar_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            if (intFolioSeleccionado == 0)
+            if (intFolioSeleccionado == 0 && strNom != "PUBLICO")
             {
                 MessageBox.Show("Selecciona un renglón");
             }

@@ -159,7 +159,7 @@ namespace VisualSoftErp.Operacion.Compras.Formas
                     result = cl.AuxiliarImportaciones(Op);
                     if (result == "OK")
                     {
-                        gridControl2.DataSource = cl.AuxiliarImportaciones(Op);
+                        gridControl2.DataSource = cl.dtResult;
                         CalculaDatos(gridView2);
                         clg.strGridLayout = "gridAuxArt";
                         clg.restoreLayout(gridView2);
@@ -170,9 +170,7 @@ namespace VisualSoftErp.Operacion.Compras.Formas
                     }
 
                 }
-
                 DevExpress.XtraSplashScreen.SplashScreenManager.CloseDefaultWaitForm();
-
             }
             catch(Exception ex)
             {

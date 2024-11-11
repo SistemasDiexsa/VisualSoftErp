@@ -53,8 +53,8 @@ namespace VisualSoftErp.Operacion.Ventas.Informes
             cboFamilias.Properties.ValueMember = "Clave";
             cboFamilias.Properties.DisplayMember = "Des";
             cl.strTabla = "FamiliasLineas";
-            cl.intClave = Convert.ToInt32(cboLineas.EditValue);
-            src.DataSource = cl.CargaCombosCondicion();
+            cl.iCondicion = Convert.ToInt32(cboLineas.EditValue);
+            src.DataSource = cl.CargaCombos();
             cboFamilias.Properties.DataSource = clg.AgregarOpcionTodos(src);
             cboFamilias.Properties.ForceInitialize();
             cboFamilias.Properties.PopupFilterMode = DevExpress.XtraEditors.PopupFilterMode.Contains;

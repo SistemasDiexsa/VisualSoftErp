@@ -171,12 +171,6 @@ namespace VisualSoftErp.Operacion.Inventarios.Designers
                 xrLabel5.Text = "Todos";
         }
 
-        //private void tableCell3_BeforePrint(object sender, System.Drawing.Printing.PrintEventArgs e)
-        //{
-        //    tableCell3.BackColor = Color.FromArgb(gbr, gbg, gbb);
-        //    tableCell3.ForeColor = Color.FromArgb(gfr, gfg, gfb);
-        //}
-
         private void calculatedFieldValor_GetValue(object sender, GetValueEventArgs e)
         {
             decCosto = Convert.ToDecimal(GetCurrentColumnValue("Costo"));

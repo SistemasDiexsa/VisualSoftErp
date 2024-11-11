@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
@@ -43,6 +44,7 @@ using VisualSoftErp.Operacion.Inventario.Informes;
 using VisualSoftErp.Operacion.Tesk;
 using VisualSoftErp.CCP.Catalogos;
 using VisualSoftErp.Operacion.Inventario.Formas;
+using System.Reflection;
 
 namespace VisualSoftErp
 {
@@ -57,13 +59,13 @@ namespace VisualSoftErp
         public Form1()
         {
             InitializeComponent();
-           // UserLookAndFeel.Default.SkinName = Settings.Default["ApplicationSkinName"].ToString();
+            UserLookAndFeel.Default.SkinName = Settings.Default["ApplicationSkinName"].ToString();
             Accesos();
 
             //Version
-            string fileExe = System.Configuration.ConfigurationManager.AppSettings["pathlocalexe"].ToString();
+            Version version = Assembly.GetExecutingAssembly().GetName().Version;
 
-            bsiEmpresa.Caption = globalCL.gv_NombreEmpresa + " | Ver " + FileVersionInfo.GetVersionInfo(fileExe).FileVersion; ;
+            bsiEmpresa.Caption = globalCL.gv_NombreEmpresa + " | Ver " + version.ToString(); ;
             bsiUsuario.Caption = globalCL.gv_UsuarioNombre;
 
             CargaAlertas();
@@ -107,10 +109,7 @@ namespace VisualSoftErp
             this.tabbedView.AddDocument(frm);
         }
 
-        private void Form1_Load(object sender, EventArgs e)
-        {
-           
-        }
+
         private void Form1_SizeChanged(object sender, EventArgs e)
         {
             globalCL.gv_intAnchoVentana = this.Width;
@@ -687,14 +686,13 @@ namespace VisualSoftErp
 
                 foreach (DataRow row in dt.Rows)
                 {
-                    
                     HabilitaAccesos(row["ProgramaID"].ToString());
                     HabilitaRibbon(row["RibbonPageGroup"].ToString());
                 }
 
                 //Regresamos al page donde estaba al salir
                 //Se lee la última RibbonPageSelected
-                string Path = System.Configuration.ConfigurationManager.AppSettings["ribbonselectedpage"].ToString();
+                string Path = ConfigurationManager.AppSettings["ribbonselectedpage"].ToString();
 
                 if (File.Exists(Path))
                 {
@@ -1059,6 +1057,12 @@ namespace VisualSoftErp
                 case "0343":
                     bbi0343.Visibility = BarItemVisibility.Always;
                     break;
+                case "0344":
+                    bbi0344.Visibility = BarItemVisibility.Always;
+                    break;
+                case "0345":
+                    bbi0345.Visibility = BarItemVisibility.Always;
+                    break;
                 //Ventas
                 case "0401":
                     bbi0401.Visibility = BarItemVisibility.Always;
@@ -1248,6 +1252,9 @@ namespace VisualSoftErp
                     break;
                 case "0449":
                     bbi0449.Visibility = BarItemVisibility.Always;
+                    break;
+                case "0450":
+                    bbi0450.Visibility = BarItemVisibility.Always;
                     break;
                 case "0538":
                     bbi0538.Visibility = BarItemVisibility.Always;
@@ -1505,7 +1512,6 @@ namespace VisualSoftErp
 
             Dispose();
             System.Windows.Forms.Application.Exit();
-            //this.Close();
         }
 
         private void bbi0435_ItemClick(object sender, ItemClickEventArgs e)
@@ -2045,7 +2051,7 @@ namespace VisualSoftErp
         {
             DevExpress.XtraSplashScreen.SplashScreenManager.ShowDefaultWaitForm();
             globalCL.gv_RibbonPage = ribbonPageInventarios;
-            Componentes frm = new Componentes();
+            Componentes frm = new Componentes(0);
             this.tabbedView.AddDocument(frm);
         }
 
@@ -2740,6 +2746,22 @@ namespace VisualSoftErp
             DevExpress.XtraSplashScreen.SplashScreenManager.ShowDefaultWaitForm();
             globalCL.gv_RibbonPage = ribbonPageVentas;
             ArticulosAlmacen frm = new ArticulosAlmacen();
+            this.tabbedView.AddDocument(frm);
+        }
+
+        private void bbi0344_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            DevExpress.XtraSplashScreen.SplashScreenManager.ShowDefaultWaitForm();
+            globalCL.gv_RibbonPage = ribbonPageInventarios;
+            Produccion2Form frm = new Produccion2Form();
+            this.tabbedView.AddDocument(frm);
+        }
+
+        private void bbi0345_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            DevExpress.XtraSplashScreen.SplashScreenManager.ShowDefaultWaitForm();
+            globalCL.gv_RibbonPage = ribbonPageInventarios;
+            RequisicionMaterial frm = new RequisicionMaterial();
             this.tabbedView.AddDocument(frm);
         }
     }

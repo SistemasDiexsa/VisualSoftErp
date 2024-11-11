@@ -53,7 +53,6 @@ namespace VisualSoftErp.Operacion.CxP.Informes
 
         }   
 
-
         private void Reporte()
         {
             try

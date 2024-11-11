@@ -500,7 +500,6 @@
             this.bbiCancelar.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("bbiCancelar.ImageOptions.Image")));
             this.bbiCancelar.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("bbiCancelar.ImageOptions.LargeImage")));
             this.bbiCancelar.Name = "bbiCancelar";
-            this.bbiCancelar.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
             this.bbiCancelar.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.bbiCancelar_ItemClick);
             // 
             // bbiCerrar

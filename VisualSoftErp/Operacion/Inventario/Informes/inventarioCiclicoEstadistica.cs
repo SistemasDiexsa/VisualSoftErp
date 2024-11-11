@@ -10,11 +10,22 @@ using System.Windows.Forms;
 using DevExpress.XtraEditors;
 using VisualSoftErp.Operacion.Inventarios.Clases;
 using VisualSoftErp.Clases;
+using DevExpress.XtraSpreadsheet;
+using DevExpress.XtraGrid;
+using DevExpress.Spreadsheet;
+using DevExpress.ClipboardSource.SpreadsheetML;
+using DevExpress.XtraGrid.Views.Grid;
+using System.Xml.Linq;
+using System.IO;
+using SpreadsheetLight;
 
 namespace VisualSoftErp.Operacion.Inventario.Informes
 {
     public partial class inventarioCiclicoEstadistica : DevExpress.XtraBars.Ribbon.RibbonForm
     {
+        DataTable dtYM;
+        DataTable dtDia;
+        DataTable dtDet;
         public inventarioCiclicoEstadistica()
         {
             InitializeComponent();
@@ -42,9 +53,9 @@ namespace VisualSoftErp.Operacion.Inventario.Informes
                 DataSet ds = new DataSet();
                 ds = cl.InventarioCilicoEstadistica();
 
-                DataTable dtYM = new DataTable();
-                DataTable dtDia = new DataTable();
-                DataTable dtDet = new DataTable();
+                dtYM = new DataTable();
+                dtDia = new DataTable();
+                dtDet = new DataTable();
 
                 dtDet = ds.Tables[0];
                 dtDia= ds.Tables[1];
@@ -83,6 +94,7 @@ namespace VisualSoftErp.Operacion.Inventario.Informes
                 gridControlDia.DataSource = dtDia;
                 gridControlYearMes.DataSource = dtYM;
 
+
                 gridViewDia.Columns["Porcentaje"].Caption = "Confiabilidad";
                 gridViewyearMes.Columns["Porcentaje"].Caption = "Confiabilidad";
 
@@ -100,11 +112,101 @@ namespace VisualSoftErp.Operacion.Inventario.Informes
                 gridViewDia.Columns["Fecha"].DisplayFormat.FormatString = "d";
                 gridViewDia.Columns["Porcentaje"].DisplayFormat.FormatString = "n2";
 
-
+                bbiVistaPrevia.Enabled = true;
             }
             catch (Exception ex)
             {
+                bbiVistaPrevia.Enabled = false;
                 MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void bbiVistaPrevia_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            try
+            {
+                SLDocument excel = new SLDocument();
+                excel.DeleteWorksheet("");
+
+                SLStyle titulo = excel.CreateStyle();
+                titulo.Font.Bold = true;
+                titulo.SetPatternFill(DocumentFormat.OpenXml.Spreadsheet.PatternValues.Solid, System.Drawing.Color.CadetBlue, System.Drawing.Color.CadetBlue);
+                titulo.SetHorizontalAlignment(DocumentFormat.OpenXml.Spreadsheet.HorizontalAlignmentValues.Center);
+
+                SLStyle tabla = excel.CreateStyle();
+                tabla.Font.Bold = false;
+                tabla.SetHorizontalAlignment(DocumentFormat.OpenXml.Spreadsheet.HorizontalAlignmentValues.Center);
+                
+                //dtYM
+                excel.AddWorksheet("POR AÑO Y MES");
+                excel.ImportDataTable(2, 2, dtYM, true);
+                excel.SetColumnStyle(2, tabla);
+                excel.SetColumnStyle(3, tabla);
+                excel.SetColumnStyle(4, tabla);
+                excel.SetColumnStyle(5, tabla); 
+                excel.SetColumnStyle(6, tabla);
+                excel.SetCellStyle(2, 2, 2, 6, titulo);
+                excel.AutoFitColumn(2);
+                excel.AutoFitColumn(3);
+                excel.AutoFitColumn(4);
+                excel.AutoFitColumn(5);
+                excel.AutoFitColumn(6);
+
+                //dtDia
+                excel.AddWorksheet("POR FECHA");
+                excel.ImportDataTable(2, 2, dtDia, true);
+                excel.SetColumnStyle(2, tabla);
+                excel.SetColumnStyle(3, tabla);
+                excel.SetColumnStyle(4, tabla);
+                excel.SetColumnStyle(5, tabla);
+                excel.SetCellStyle(2, 2, 2, 5, titulo);
+                excel.AutoFitColumn(2);
+                excel.AutoFitColumn(3);
+                excel.AutoFitColumn(4);
+                excel.AutoFitColumn(5);
+
+                //dtDet
+                excel.AddWorksheet("CAPTURA DIARIA POR ARTICULO");
+                excel.ImportDataTable(2, 2, dtDet, true);
+                excel.SetColumnStyle(2, tabla);
+                excel.SetColumnStyle(3, tabla);
+                excel.SetColumnStyle(4, tabla);
+                excel.SetColumnStyle(5, tabla);
+                excel.SetColumnStyle(6, tabla);
+                excel.SetColumnStyle(7, tabla);
+                excel.SetColumnStyle(8, tabla);
+                excel.SetColumnStyle(9, tabla);
+                excel.SetColumnStyle(10, tabla);
+                excel.SetColumnStyle(11, tabla);
+                excel.SetCellStyle(2, 2, 2, 11, titulo);
+                excel.AutoFitColumn(2);
+                excel.AutoFitColumn(3);
+                excel.AutoFitColumn(4);
+                excel.AutoFitColumn(5);
+                excel.AutoFitColumn(6);
+                excel.AutoFitColumn(7);
+                excel.AutoFitColumn(8);
+                excel.AutoFitColumn(9);
+                excel.AutoFitColumn(10);
+                excel.AutoFitColumn(11);
+
+                // Solicitar al usuario la ubicación y el nombre del archivo
+                using (SaveFileDialog saveFileDialog = new SaveFileDialog())
+                {
+                    saveFileDialog.Filter = "Archivos de Excel (*.xlsx)|*.xlsx";
+                    saveFileDialog.Title = "Guardar como";
+                    saveFileDialog.FileName = "InventarioCiclicoEstadistica.xlsx";
+
+                    if (saveFileDialog.ShowDialog() == DialogResult.OK)
+                    {
+                        excel.SaveAs(saveFileDialog.FileName);
+                        MessageBox.Show("Exportación completada exitosamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Ocurrió un error durante la exportación: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
     }

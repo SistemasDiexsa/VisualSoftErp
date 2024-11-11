@@ -19,7 +19,7 @@ namespace VisualSoftErp.Operacion.Ventas.Designers
         int dfg = 0;
         int dfb = 0;
         string stipoLogo;
-        decimal decIVA = 0, decIVATOTAL, decUtiliT, decSubT, decUtilidad = 0, decCosto = 0, decSubtotal=0;      
+        decimal decIVA = 0, decIVATOTAL, decUtiliT, decSubT, decUtilidad = 0, decCosto = 0, decSubtotal = 0;
 
         public VentasutilidadmarginalporfacturaDesigner()
         {
@@ -43,9 +43,10 @@ namespace VisualSoftErp.Operacion.Ventas.Designers
         private void calculatedFieldUtilidadTotal_GetValue(object sender, GetValueEventArgs e)
         {
             if (decUtiliT == 0) { }
-            else { 
-            e.Value = decUtiliT;
-                }
+            else
+            {
+                e.Value = decUtiliT;
+            }
         }
 
         private void tableCell1_BeforePrint(object sender, System.Drawing.Printing.PrintEventArgs e)
@@ -136,7 +137,7 @@ namespace VisualSoftErp.Operacion.Ventas.Designers
 
         private void tableCell13_BeforePrint(object sender, System.Drawing.Printing.PrintEventArgs e)
         {
-            
+
         }
 
         private void tableCell5_BeforePrint_1(object sender, System.Drawing.Printing.PrintEventArgs e)
@@ -188,7 +189,7 @@ namespace VisualSoftErp.Operacion.Ventas.Designers
             if (decUtiliT == 0) { }
             if (decSubT == 0) { }
             else { e.Value = Math.Round(decUtiliT / decSubT, 4); }
-    
+
         }
 
         private void calculatedFieldIva_GetValue(object sender, GetValueEventArgs e)
@@ -197,8 +198,8 @@ namespace VisualSoftErp.Operacion.Ventas.Designers
             decCosto = Convert.ToDecimal(GetCurrentColumnValue("Costo"));
             decUtilidad = Math.Round(decSubtotal - decCosto, 2);
 
-            decIVA = Math.Round((decUtilidad / decSubtotal)*100, 2);
-            e.Value = decIVA;
+            decIVA = Math.Round((decUtilidad / decSubtotal) * 100, 2);
+            // e.Value = decIVA;
 
             decSubT += decSubtotal;
         }
@@ -210,7 +211,7 @@ namespace VisualSoftErp.Operacion.Ventas.Designers
             decCosto = Convert.ToDecimal(GetCurrentColumnValue("Costo"));
             decUtilidad = Math.Round(decSubtotal - decCosto, 2);
 
-            e.Value = decUtilidad;
+            // e.Value = decUtilidad;
 
             decUtiliT += decUtilidad;
         }

@@ -6,6 +6,7 @@ using System.Data;
 using System.Data.SqlClient;
 using System.Configuration;
 using System.Xml;
+using Facturacion.Clases;
 
 namespace VisualSoftErp.Clases
 {
@@ -13,7 +14,8 @@ namespace VisualSoftErp.Clases
     {
         #region Propiedades
         string strCnn = globalCL.gv_strcnn;
-        public int intFolio { get; set; }  public int intProductoTerminado { get; set; }
+        public int intFolio { get; set; }  
+        public int intProductoTerminado { get; set; }
         public int intSeq { get; set; }
         public DateTime fFecha { get; set; }
         public string strPT { get; set; }
@@ -37,6 +39,7 @@ namespace VisualSoftErp.Clases
         public int intEfectoCuprum { get; set; }
         public int intAño { get; set; }
         public int intMes { get; set; }
+        public DataTable dtComponentes { get; set; }
         #endregion
 
         #region Constructor
@@ -271,15 +274,43 @@ namespace VisualSoftErp.Clases
             }
         } // public class LlenaCajas
 
+        public string ValidarExistenciasComponentesProductoTerminado()
+        {
+            string result = string.Empty;
+            try
+            {
+                using (SqlConnection cnn = new SqlConnection(globalCL.gv_strcnn))
+                {
+                    cnn.Open();
+                    using (SqlCommand cmd = new SqlCommand("ValidarExistenciasComponentesProductoTerminado", cnn))
+                    {
+                        cmd.CommandType = CommandType.StoredProcedure;
+                        cmd.Parameters.AddWithValue("@prmArticulosID", intProductoTerminado);
+                        cmd.Parameters.AddWithValue("@prmCantidad", decCantidad);
+                        using (SqlDataReader dr = cmd.ExecuteReader())
+                        {
+                            if (dr.HasRows)
+                            {
+                                dr.Read();
+                                result = dr["result"].ToString();
+                            }
+                            else
+                                result = "no read";
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                result = ex.Message;
+            }
+            return result;
+        }
 
         public string BFCancelar()
         {
             try
             {
-
-
-
-
                 string result = string.Empty;
                 SqlConnection cnn = new SqlConnection();
                 cnn.ConnectionString = strCnn;
@@ -311,6 +342,37 @@ namespace VisualSoftErp.Clases
             {
                 return ex.Message;
             }
+        }
+
+        public string ProduccionHojaFormatoPrev()
+        {
+            DataSet ds = new DataSet();
+            DataTable dt = new DataTable();
+            string result = string.Empty;
+            try
+            {
+                using (SqlConnection cnn = new SqlConnection(globalCL.gv_strcnn))
+                {
+                    cnn.Open();
+                    using (SqlCommand cmd = new SqlCommand("ProduccionHojaFormatoPrev", cnn))
+                    {
+                        cmd.CommandType = CommandType.StoredProcedure;
+                        cmd.Parameters.AddWithValue("@prmArticulosID", intArticulosID);
+                        using (SqlDataAdapter ad = new SqlDataAdapter(cmd))
+                        {
+                            ad.Fill(ds);
+                        }
+                    }
+                }
+                dtComponentes = ds.Tables[0];
+                dt = ds.Tables[1];
+                result = dt.Rows[0]["result"].ToString();
+            }
+            catch (Exception ex)
+            {
+                result = ex.Message;
+            }
+            return result;
         }
 
         #endregion

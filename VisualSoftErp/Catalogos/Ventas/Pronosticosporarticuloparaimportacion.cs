@@ -60,7 +60,7 @@ namespace VisualSoftErp.Operacion.Ventas.Formas
             cboTipo.ItemIndex = 0;
 
             // COMBO FAMILIAS
-            cboFamilia.Properties.NullText = "";
+            cboFamilia.Properties.NullText = "Seleccione una Familia";
 
             // COMBO MESES
             List<ClaseGenricaCL> ListadoMeses = new List<ClaseGenricaCL>();
@@ -97,16 +97,14 @@ namespace VisualSoftErp.Operacion.Ventas.Formas
             cboFamilia.Properties.ValueMember = "Clave";
             cboFamilia.Properties.DisplayMember = "Des";
             cl.strTabla = "FamiliasLineas";
-            cl.intClave = Convert.ToInt32(cboLinea.EditValue);
-            src.DataSource = cl.CargaCombosCondicion();
+            cl.iCondicion = Convert.ToInt32(cboLinea.EditValue);
+            src.DataSource = cl.CargaCombos();
             cboFamilia.Properties.DataSource = clg.AgregarOpcionTodos(src);
             cboFamilia.Properties.ForceInitialize();
-            cboFamilia.Properties.PopupFilterMode = DevExpress.XtraEditors.PopupFilterMode.Contains;
-            cboFamilia.Properties.ForceInitialize();
             cboFamilia.Properties.PopulateColumns();
+            cboFamilia.Properties.PopupFilterMode = DevExpress.XtraEditors.PopupFilterMode.Contains;
             cboFamilia.Properties.Columns["Clave"].Visible = false;
-            cboFamilia.ItemIndex = 0;
-
+            cboFamilia.EditValue = null;
         }
 
         private void Nuevo()
@@ -227,7 +225,7 @@ namespace VisualSoftErp.Operacion.Ventas.Formas
                 MessageBox.Show(Result);
                 return;
             }
-            Inicialisalista();
+            
             try
             {
                 MetaporarticuloCL cl = new MetaporarticuloCL();
@@ -236,13 +234,16 @@ namespace VisualSoftErp.Operacion.Ventas.Formas
                 Año= Convert.ToInt32(txtA.Text);
                 Mes = Convert.ToInt32(cboMeses.EditValue);
 
-                if (Mes > 1)
-                    Mes = Mes - 1;
-                else
-                {
-                    Mes = 12;
-                    Año = Año - 1;
-                }
+
+                // PETICION DE RAQUENEL: 
+                // SE QUITA ESTA PARTE PARA QUE CARGUE EL PRONOSTICO DE CADA MES Y NO EL DEL MES PASADO
+                //if (Mes > 1)
+                //    Mes = Mes - 1;
+                //else
+                //{
+                //    Mes = 12;
+                //    Año = Año - 1;
+                //}
 
                 cl.intEmp = 1;
                 cl.intSuc = 0;
@@ -329,194 +330,76 @@ namespace VisualSoftErp.Operacion.Ventas.Formas
                 int intA = Convert.ToInt32(txtA.Text);
                 int intArticulosID = 0;
                 string dato = "";
-                decimal dENEP = 0;
-                decimal dFEBP = 0;
-                decimal dMARP = 0;
-                decimal dABRP = 0;
-                decimal dMAYP = 0;
-                decimal dJUNP = 0;
-                decimal dJULP = 0;
-                decimal dAGOP = 0;
-                decimal dSEPP = 0;
-                decimal dOCTP = 0;
-                decimal dNOVP = 0;
-                decimal dDICP = 0;
+                decimal dENEP;
+                decimal dFEBP;
+                decimal dMARP;
+                decimal dABRP;
+                decimal dMAYP;
+                decimal dJUNP;
+                decimal dJULP;
+                decimal dAGOP;
+                decimal dSEPP;
+                decimal dOCTP;
+                decimal dNOVP;
+                decimal dDICP;
                 for (int i = 0; i <= gridViewDetalle.RowCount - 1; i++)
                 {
                     dato = gridViewDetalle.GetRowCellValue(i, "ArticulosID").ToString();
                     if (dato.Length > 0)
                     {
+                        dENEP = 0;
+                        dFEBP = 0;
+                        dMARP = 0;
+                        dABRP = 0;
+                        dMAYP = 0;
+                        dJUNP = 0;
+                        dJULP = 0;
+                        dAGOP = 0;
+                        dSEPP = 0;
+                        dOCTP = 0;
+                        dNOVP = 0;
+                        dDICP = 0;
                         intArticulosID = Convert.ToInt32(gridViewDetalle.GetRowCellValue(i, "ArticulosID"));
 
                         switch (intM)
                         {
                             case 1:
                                 dENEP = Convert.ToDecimal(gridViewDetalle.GetRowCellValue(i, "Proyectado"));
-                                dFEBP = 0;
-                                dMARP = 0;
-                                dABRP = 0;
-                                dMAYP = 0;
-                                dJUNP = 0;
-                                dJULP = 0;
-                                dAGOP = 0;
-                                dSEPP = 0;
-                                dOCTP = 0;
-                                dNOVP = 0;
-                                dDICP = 0;
                                 break;
                             case 2:
-                                dENEP = 0;
                                 dFEBP = Convert.ToDecimal(gridViewDetalle.GetRowCellValue(i, "Proyectado"));
-                                dMARP = 0;
-                                dABRP = 0;
-                                dMAYP = 0;
-                                dJUNP = 0;
-                                dJULP = 0;
-                                dAGOP = 0;
-                                dSEPP = 0;
-                                dOCTP = 0;
-                                dNOVP = 0;
-                                dDICP = 0;
                                 break;
                             case 3:
-                                dENEP = 0;
-                                dFEBP = 0;
                                 dMARP = Convert.ToDecimal(gridViewDetalle.GetRowCellValue(i, "Proyectado"));
-                                dABRP = 0;
-                                dMAYP = 0;
-                                dJUNP = 0;
-                                dJULP = 0;
-                                dAGOP = 0;
-                                dSEPP = 0;
-                                dOCTP = 0;
-                                dNOVP = 0;
-                                dDICP = 0;
                                 break;
                             case 4:
-                                dENEP = 0;
-                                dFEBP = 0;
-                                dMARP = 0;
                                 dABRP = Convert.ToDecimal(gridViewDetalle.GetRowCellValue(i, "Proyectado"));
-                                dMAYP = 0;
-                                dJUNP = 0;
-                                dJULP = 0;
-                                dAGOP = 0;
-                                dSEPP = 0;
-                                dOCTP = 0;
-                                dNOVP = 0;
-                                dDICP = 0;
                                 break;
                             case 5:
-                                dENEP = 0;
-                                dFEBP = 0;
-                                dMARP = 0;
-                                dABRP = 0;
                                 dMAYP = Convert.ToDecimal(gridViewDetalle.GetRowCellValue(i, "Proyectado"));
-                                dJUNP = 0;
-                                dJULP = 0;
-                                dAGOP = 0;
-                                dSEPP = 0;
-                                dOCTP = 0;
-                                dNOVP = 0;
-                                dDICP = 0;
                                 break;
                             case 6:
-                                dENEP = 0;
-                                dFEBP = 0;
-                                dMARP = 0;
-                                dABRP = 0;
-                                dMAYP = 0;
                                 dJUNP = Convert.ToDecimal(gridViewDetalle.GetRowCellValue(i, "Proyectado"));
-                                dJULP = 0;
-                                dAGOP = 0;
-                                dSEPP = 0;
-                                dOCTP = 0;
-                                dNOVP = 0;
-                                dDICP = 0;
                                 break;
                             case 7:
-                                dENEP = 0;
-                                dFEBP = 0;
-                                dMARP = 0;
-                                dABRP = 0;
-                                dMAYP = 0;
-                                dJUNP = 0;
                                 dJULP = Convert.ToDecimal(gridViewDetalle.GetRowCellValue(i, "Proyectado"));
-                                dAGOP = 0;
-                                dSEPP = 0;
-                                dOCTP = 0;
-                                dNOVP = 0;
-                                dDICP = 0;
-                                break;
+                               break;
                             case 8:
-                                dENEP = 0;
-                                dFEBP = 0;
-                                dMARP = 0;
-                                dABRP = 0;
-                                dMAYP = 0;
-                                dJUNP = 0;
-                                dJULP = 0;
                                 dAGOP = Convert.ToDecimal(gridViewDetalle.GetRowCellValue(i, "Proyectado"));
-                                dSEPP = 0;
-                                dOCTP = 0;
-                                dNOVP = 0;
-                                dDICP = 0;
                                 break;
                             case 9:
-                                dENEP = 0;
-                                dFEBP = 0;
-                                dMARP = 0;
-                                dABRP = 0;
-                                dMAYP = 0;
-                                dJUNP = 0;
-                                dJULP = 0;
-                                dAGOP = 0;
                                 dSEPP = Convert.ToDecimal(gridViewDetalle.GetRowCellValue(i, "Proyectado"));
-                                dOCTP = 0;
-                                dNOVP = 0;
-                                dDICP = 0;
                                 break;
                             case 10:
-                                dENEP = 0;
-                                dFEBP = 0;
-                                dMARP = 0;
-                                dABRP = 0;
-                                dMAYP = 0;
-                                dJUNP = 0;
-                                dJULP = 0;
-                                dAGOP = 0;
-                                dSEPP = 0;
                                 dOCTP = Convert.ToDecimal(gridViewDetalle.GetRowCellValue(i, "Proyectado"));
-                                dNOVP = 0;
-                                dDICP = 0;
                                 break;
                             case 11:
-                                dENEP = 0;
-                                dFEBP = 0;
-                                dMARP = 0;
-                                dABRP = 0;
-                                dMAYP = 0;
-                                dJUNP = 0;
-                                dJULP = 0;
-                                dAGOP = 0;
-                                dSEPP = 0;
-                                dOCTP = 0;
                                 dNOVP = Convert.ToDecimal(gridViewDetalle.GetRowCellValue(i, "Proyectado"));
-                                dDICP = 0;
                                 break;
                             case 12:
-                                dENEP = 0;
-                                dFEBP = 0;
-                                dMARP = 0;
-                                dABRP = 0;
-                                dMAYP = 0;
-                                dJUNP = 0;
-                                dJULP = 0;
-                                dAGOP = 0;
-                                dSEPP = 0;
-                                dOCTP = 0;
-                                dNOVP = 0;
                                 dDICP = Convert.ToDecimal(gridViewDetalle.GetRowCellValue(i, "Proyectado"));
+                                break;
+                            default:
                                 break;
                         }
 

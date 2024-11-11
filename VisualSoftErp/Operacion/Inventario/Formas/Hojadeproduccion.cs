@@ -19,16 +19,18 @@ namespace VisualSoftErp.Operacion.Inventarios.Formas
     public partial class Hojadeproduccion : DevExpress.XtraBars.Ribbon.RibbonForm
     {
         string origenImp = string.Empty;
-        int intUsuarioID = globalCL.gv_UsuarioID
-            , intFolio;
+        int intUsuarioID = globalCL.gv_UsuarioID;
+        int intFolio;
         int impDirecto = 0;
         int AñoFiltro;
         int MesFiltro;
         DateTime dfecha;
+        bool permisosEscritura;
 
         public Hojadeproduccion()
         {
             InitializeComponent();
+            PermisosEscritura();
             gridViewPrincipal.OptionsBehavior.ReadOnly = true;
             gridViewPrincipal.OptionsBehavior.Editable = false;
             gridViewPrincipal.OptionsView.ShowViewCaption = true;
@@ -41,8 +43,46 @@ namespace VisualSoftErp.Operacion.Inventarios.Formas
             MesFiltro = DateTime.Now.Month;
             llenarGrid(AñoFiltro, MesFiltro);
             gridViewPrincipal.ActiveFilter.Clear();
+            Inicialisalista();
             CargarCombos();
             AgregaAñosNavBar();
+        }   
+
+        private void Inicialisalista()
+        {
+            gridColumnCantidad.OptionsColumn.ReadOnly = true;
+            gridColumnCantidad.OptionsColumn.AllowFocus = false;
+
+            gridColumnUnidad.OptionsColumn.ReadOnly = true;
+            gridColumnUnidad.OptionsColumn.AllowFocus = false;
+
+            gridColumnPiezas.OptionsColumn.ReadOnly = true;
+            gridColumnPiezas.OptionsColumn.AllowFocus = false;
+
+            gridColumnProducir.OptionsColumn.ReadOnly = true;
+            gridColumnProducir.OptionsColumn.AllowFocus = false;
+
+            gridColumnArticulo.OptionsColumn.ReadOnly = true;
+            gridColumnArticulo.OptionsColumn.AllowFocus = false;
+
+            gridColumnDescripcion.OptionsColumn.ReadOnly = true;
+            gridColumnDescripcion.OptionsColumn.AllowFocus = false;
+
+            gridColumnExistencia.OptionsColumn.ReadOnly = true;
+            gridColumnExistencia.OptionsColumn.AllowFocus = false;
+
+            gridColumnDiferencia.OptionsColumn.ReadOnly = true;
+            gridColumnDiferencia.OptionsColumn.AllowFocus = false;
+        }
+        
+        private void PermisosEscritura()
+        {
+            globalCL clg = new globalCL();
+            UsuariosCL usuarios = new UsuariosCL();
+
+            clg.strPrograma = "0327";
+            if (clg.accesoSoloLectura()) permisosEscritura = false;
+            else permisosEscritura = true;
         }
 
         private void AgregaAñosNavBar()
@@ -56,19 +96,14 @@ namespace VisualSoftErp.Operacion.Inventarios.Formas
                 dt = cl.NavbarAños();
 
                 NavBarItem item1 = new NavBarItem();
-
-
                 foreach (DataRow dr in dt.Rows)
                 {
                     item1.Caption = dr["Año"].ToString();
                     item1.Name = dr["Año"].ToString();
                     navBarGroupAño.ItemLinks.Add(item1);
                     item1 = new NavBarItem();
-
                 }
-
                 navBarControl.ActiveGroup = navBarControl.Groups[0];
-
             }
             catch (Exception ex)
             {
@@ -86,7 +121,56 @@ namespace VisualSoftErp.Operacion.Inventarios.Formas
             globalCL clg = new globalCL();
             clg.strGridLayout = "gridBF";
             clg.restoreLayout(gridViewPrincipal);
-        } //LlenarGrid()
+        }
+
+        private void LlenarGridComponentes()
+        {
+            try
+            {
+                BFCL cl = new BFCL();
+                cl.intArticulosID = Convert.ToInt32(cboProductoterminado.EditValue);
+                string result = cl.ProduccionHojaFormatoPrev();
+                if (result != "OK")
+                {
+                    MessageBox.Show(result);
+                    return;
+                }
+                else
+                {
+                    gridControlComponentes.DataSource = cl.dtComponentes;
+                    globalCL clg = new globalCL();
+                    clg.strGridLayout = "gridComponentes";
+                    clg.restoreLayout(gridViewComponentes);
+
+                    if (txtCantidad.Text != string.Empty && Convert.ToInt32(txtCantidad.Text) > 0)
+                    {
+                        decimal cantidad = Convert.ToDecimal(txtCantidad.Text);
+                        for (int i = 0; i <= gridViewComponentes.RowCount; i++)
+                        {
+                            object row = gridViewComponentes.GetRow(i);
+                            if (row != null)
+                            {
+                                decimal cantidadRow = Convert.ToDecimal(gridViewComponentes.GetRowCellValue(i, gridColumnCantidad));
+                                cantidadRow = Math.Round(cantidadRow * cantidad, 2);
+                                gridViewComponentes.SetRowCellValue(i, gridColumnCantidad, cantidadRow);
+
+                                decimal producirRow = Convert.ToDecimal(gridViewComponentes.GetRowCellValue(i, gridColumnProducir));
+                                producirRow = Math.Round(producirRow * cantidad, 2);
+                                gridViewComponentes.SetRowCellValue(i, gridColumnProducir, producirRow);
+
+                                decimal diferenciaRow = Convert.ToDecimal(gridViewComponentes.GetRowCellValue(i, gridColumnDiferencia));
+                                diferenciaRow = Math.Round(diferenciaRow - producirRow, 2);
+                                gridViewComponentes.SetRowCellValue(i, gridColumnDiferencia, diferenciaRow);
+                            }
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
 
         private void CargarCombos()
         {
@@ -102,12 +186,23 @@ namespace VisualSoftErp.Operacion.Inventarios.Formas
             cboProductoterminado.Properties.Columns["Clave"].Visible = false;
             //cboArticulos.ItemIndex = 0;
             cboProductoterminado.Properties.NullText = "Seleccione un producto terminado";
+
+            cl.strTabla = "Componentes";
+            cl.intClave = 0;
+            repositoryItemLookUpEditArticulo.ValueMember = "Clave";
+            repositoryItemLookUpEditArticulo.DisplayMember = "Des";
+            repositoryItemLookUpEditArticulo.DataSource = cl.CargaCombos();
+            repositoryItemLookUpEditArticulo.ForceInitialize();
+            repositoryItemLookUpEditArticulo.PopupFilterMode = DevExpress.XtraEditors.PopupFilterMode.Contains;
+            repositoryItemLookUpEditArticulo.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.Standard;
+            repositoryItemLookUpEditArticulo.ReadOnly = true;
+            repositoryItemLookUpEditArticulo.Properties.NullText = "Seleccione un componente";
         }
 
         private void LimpiaCajas()
         {
             txtLitros.Text = "0";
-            txtCantidad.Text = "0";
+            txtCantidad.Text = "1";
             cboProductoterminado.EditValue = null;
             txtObservaciones.Text = string.Empty;
             txtFolio.Text = string.Empty;
@@ -138,20 +233,21 @@ namespace VisualSoftErp.Operacion.Inventarios.Formas
             {
                 return "El campo Fecha no puede ir vacio";
             }
-            else
-            {
-                BFCL cl = new BFCL();
-                cl.intProductoTerminado = Convert.ToInt32(cboProductoterminado.EditValue);
-                String Result = cl.ValidarProductoTerminado();
-                if (Result != "OK")
-                {
-                    return("El producto terminado: " + cboProductoterminado.Text + " no tiene componentes registrados");
-                }
-            }
+            
+            BFCL cl = new BFCL();
+            cl.intProductoTerminado = Convert.ToInt32(cboProductoterminado.EditValue);
+            cl.decCantidad = Convert.ToDecimal(txtCantidad.Text);
+
+            string result = cl.ValidarProductoTerminado();
+            if (result != "OK")
+                return("El producto terminado: " + cboProductoterminado.Text + " no tiene componentes registrados");
+
+            result = cl.ValidarExistenciasComponentesProductoTerminado();
+            if (result != "OK")
+                return result;
 
             globalCL clg = new globalCL();
-
-            string result = clg.GM_CierredemodulosStatus(Convert.ToDateTime(txtFecha.Text).Year, Convert.ToDateTime(txtFecha.Text).Month, "INV");
+            result = clg.GM_CierredemodulosStatus(Convert.ToDateTime(txtFecha.Text).Year, Convert.ToDateTime(txtFecha.Text).Month, "INV");
             if (result == "C")
             {
                 return "Este mes está cerrado, no se puede actualizar";
@@ -178,7 +274,6 @@ namespace VisualSoftErp.Operacion.Inventarios.Formas
                 cl.fFecha = Convert.ToDateTime(txtFecha.Text);
                 cl.strPT = Convert.ToString(cboProductoterminado.EditValue);
                 cl.decCantidad = Convert.ToDecimal(txtCantidad.Text);
-                //cl.fFechaSistema = "";
                 cl.dLitros = Convert.ToDecimal(txtLitros.Text);
                 cl.strStatus = "";
                 cl.fFechaCan = Convert.ToDateTime(null);
@@ -206,43 +301,6 @@ namespace VisualSoftErp.Operacion.Inventarios.Formas
             catch (Exception ex)
             {
                 MessageBox.Show("Guardar: " + ex.Message);
-            }
-        }
-
-        private void Cancelarenlabasededatos()
-        {
-            //aqui cancelar
-            try
-            {
-
-                globalCL clg = new globalCL();
-
-                string result = clg.GM_CierredemodulosStatus(dfecha.Year, dfecha.Month, "INV");
-                if (result == "C")
-                {
-                    MessageBox.Show("Este mes está cerrado, no se puede actualizar");
-                    return;
-                }
-
-                BFCL cl = new BFCL();
-                cl.intFolio = intFolio;
-                cl.intUsuarioID = globalCL.gv_UsuarioID;
-                cl.strMaquina = Environment.MachineName;
-                cl.strRazon = txtRazondecancelacion.Text;
-                result = cl.BFCancelar();
-                if (result == "OK")
-                {
-                    MessageBox.Show("Se canceló correctamente");
-                    llenarGrid(AñoFiltro,MesFiltro);
-                }
-                else
-                {
-                    MessageBox.Show(result);
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("CambiarStatus: " + ex.Message);
             }
         }
 
@@ -297,62 +355,11 @@ namespace VisualSoftErp.Operacion.Inventarios.Formas
             SerieCL cl = new SerieCL();
             String Result = cl.BuscarFoliodeProduccion();
             if (Result == "OK")
-            {
-                txtFolio.Text = cl.intFolio.ToString(); 
-
-            }
+                txtFolio.Text = cl.intFolio.ToString();
             else
-            {
                 MessageBox.Show(Result);
-            }
         }
-
-        private void bbiGuardar_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
-        {
-            Guardar();
-        }
-
-        private void bbiCerrar_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
-        {
-            globalCL clg = new globalCL();
-            clg.strGridLayout = "gridBF";
-            string result = clg.SaveGridLayout(gridViewPrincipal);
-            if (result != "OK")
-            {
-                MessageBox.Show(result);
-            }
-            this.Close();
-        }
-
-        private void bbiLimpiar_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
-        {
-            LimpiaCajas();
-        }
-
-        private void bbiNuevo_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
-        {
-            ribbonPageGroupHome.Visible = false;
-            ribbonPageGroupAcciones.Visible = true;
-            navBarControl.Visible = false;
-            SiguienteFolio();
-            navigationFrame.SelectedPageIndex = 1;
-        }
-
-        private void bbiRegresar_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
-        {
-            ribbonPageGroupHome.Visible = true;
-            LimpiaCajas();
-            llenarGrid(AñoFiltro, MesFiltro);
-            ribbonPageGroupAcciones.Visible = false;
-            navigationFrame.SelectedPageIndex = 0;
-            navBarControl.Visible = true;
-        }
-
-        private void simpleButton2_Click(object sender, EventArgs e)
-        {
-            CierraPopUp();
-        }
-
+        
         private void CierraPopUp()
         {
             popUpCancelar.Visible = false;
@@ -361,82 +368,8 @@ namespace VisualSoftErp.Operacion.Inventarios.Formas
             txtRazondecancelacion.Text = string.Empty;
         }
 
-        private void btnAut_Click(object sender, EventArgs e)
-        {
-            UsuariosCL clU = new UsuariosCL();
-            clU.strLogin = txtLogin.Text;
-            clU.strClave = txtPassword.Text;
-            clU.strPermiso = "CancelarHP";
-            string result = clU.UsuariosPermisos();
-            if (result != "OK")
-            {
-                MessageBox.Show(result);
-                return;
-            }
 
-            CierraPopUp();
-            //if (timbrado == 1)
-            //{
-            //    Cancelar();
-            //}
-            //else
-            //{
-            Cancelarenlabasededatos();
-            //}
-        }
-        
-
-        private void gridViewPrincipal_RowCellStyle(object sender, DevExpress.XtraGrid.Views.Grid.RowCellStyleEventArgs e)
-        {
-            try
-            {
-                GridView view = (GridView)sender;
-                string strStatus = Convert.ToString(view.GetRowCellValue(e.RowHandle, "Status"));
-
-                if (strStatus == "5")
-                {
-                    e.Appearance.ForeColor = Color.Red;
-                }
-
-            }
-            catch (Exception ex)
-            {
-                e.Appearance.ForeColor = Color.Black;
-            }
-        }
-
-        private void gridViewPrincipal_RowClick(object sender, RowClickEventArgs e)
-        {
-            intFolio = Convert.ToInt32(gridViewPrincipal.GetRowCellValue(gridViewPrincipal.FocusedRowHandle, "Folio"));
-            dfecha = Convert.ToDateTime(gridViewPrincipal.GetRowCellValue(gridViewPrincipal.FocusedRowHandle, "Fecha"));
-        }
-
-        private void bbiImprimir_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
-        {
-            if (intFolio == 0)
-            {
-                MessageBox.Show("Selecciona un renglón");
-            }
-            else
-            {
-                origenImp = "Principal";
-                Reporte();
-            }
-        }
-
-        private void bbiRegresarImp_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
-        {
-            ribbonControl.MergeOwner.SelectedPage = ribbonControl.MergeOwner.TotalPageCategory.GetPageByText(ribbonPageHome.Text);
-            if (origenImp == "Principal")
-            {
-                navigationFrame.SelectedPageIndex = 0;
-                navBarControl.Visible = true;
-            }
-                
-            else
-                navigationFrame.SelectedPageIndex = 1;
-        }
-
+        #region NAVEGACION
         private void navBarControl_LinkClicked(object sender, DevExpress.XtraNavBar.NavBarLinkEventArgs e)
         {
             globalCL clg = new globalCL();
@@ -495,7 +428,119 @@ namespace VisualSoftErp.Operacion.Inventarios.Formas
 
             }
         }
+        #endregion NAVEGACION
 
+
+        #region BOTONES
+        private void bbiNuevo_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            ribbonPageGroupHome.Visible = false;
+            ribbonPageGroupAcciones.Visible = true;
+            navBarControl.Visible = false;
+            SiguienteFolio();
+            navigationFrame.SelectedPageIndex = 1;
+        }
+        private void btnCancelar_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                UsuariosCL clU = new UsuariosCL();
+                clU.strLogin = txtLogin.Text;
+                clU.strClave = txtPassword.Text;
+                clU.strPermiso = "CancelarHP";
+
+                string result = clU.UsuariosPermisos();
+                if (result != "OK")
+                {
+                    MessageBox.Show(result);
+                    return;
+                }
+
+                globalCL clg = new globalCL();
+                result = clg.GM_CierredemodulosStatus(dfecha.Year, dfecha.Month, "INV");
+                if (result == "C")
+                {
+                    MessageBox.Show("Este mes está cerrado, no se puede actualizar");
+                    return;
+                }
+
+                BFCL cl = new BFCL();
+                cl.intFolio = intFolio;
+                cl.intUsuarioID = globalCL.gv_UsuarioID;
+                cl.strMaquina = Environment.MachineName;
+                cl.strRazon = txtRazondecancelacion.Text;
+                result = cl.BFCancelar();
+                if (result == "OK")
+                {
+                    CierraPopUp();
+                    llenarGrid(AñoFiltro, MesFiltro);
+                    MessageBox.Show("Se canceló correctamente");
+                }
+                else
+                {
+                    MessageBox.Show(result);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Línea " + ex.LineNumber() + ": \n" + ex.Message, "Error en btnCancelar_Click", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+        private void bbiImprimir_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            if (intFolio == 0)
+            {
+                MessageBox.Show("Selecciona un renglón");
+            }
+            else
+            {
+                origenImp = "Principal";
+                Reporte();
+            }
+        }
+        private void bbiCerrar_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            globalCL clg = new globalCL();
+            clg.strGridLayout = "gridBF";
+            string result = clg.SaveGridLayout(gridViewPrincipal);
+            if (result != "OK")
+            {
+                MessageBox.Show(result);
+            }
+            this.Close();
+        }
+        private void bbiGuardar_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            Guardar();
+        }
+        private void bbiLimpiar_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            LimpiaCajas();
+        }
+        private void bbiRegresar_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            ribbonPageGroupHome.Visible = true;
+            LimpiaCajas();
+            llenarGrid(AñoFiltro, MesFiltro);
+            ribbonPageGroupAcciones.Visible = false;
+            navigationFrame.SelectedPageIndex = 0;
+            navBarControl.Visible = true;
+        }
+        private void simpleButton2_Click(object sender, EventArgs e)
+        {
+            CierraPopUp();
+        }
+        private void bbiRegresarImp_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            ribbonControl.MergeOwner.SelectedPage = ribbonControl.MergeOwner.TotalPageCategory.GetPageByText(ribbonPageHome.Text);
+            if (origenImp == "Principal")
+            {
+                navigationFrame.SelectedPageIndex = 0;
+                navBarControl.Visible = true;
+            }
+            else
+                navigationFrame.SelectedPageIndex = 1;
+        }
         private void bbiCancelar_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
             if (intFolio == 0)
@@ -509,5 +554,50 @@ namespace VisualSoftErp.Operacion.Inventarios.Formas
                 txtLogin.Focus();
             }
         }
+
+        #endregion BOTONES
+
+
+        #region INTERACCIONES USUARIO
+        private void gridViewPrincipal_RowClick(object sender, RowClickEventArgs e)
+        {
+            intFolio = Convert.ToInt32(gridViewPrincipal.GetRowCellValue(gridViewPrincipal.FocusedRowHandle, "Folio"));
+            dfecha = Convert.ToDateTime(gridViewPrincipal.GetRowCellValue(gridViewPrincipal.FocusedRowHandle, "Fecha"));
+        }
+        private void gridViewPrincipal_RowCellStyle(object sender, DevExpress.XtraGrid.Views.Grid.RowCellStyleEventArgs e)
+        {
+            try
+            {
+                GridView view = (GridView)sender;
+                string strStatus = Convert.ToString(view.GetRowCellValue(e.RowHandle, "Status"));
+
+                if (strStatus == "5")
+                {
+                    e.Appearance.ForeColor = Color.Red;
+                }
+
+            }
+            catch (Exception ex)
+            {
+                e.Appearance.ForeColor = Color.Black;
+            }
+        }
+        private void cboProductoterminado_EditValueChanged(object sender, EventArgs e)
+        {
+            if (!cboProductoterminado.IsPopupOpen)
+            {
+                LlenarGridComponentes();
+            }
+        }
+        private void txtCantidad_EditValueChanged(object sender, EventArgs e)
+        {
+            TextEdit textEdit = (TextEdit)sender;
+            if (textEdit != null)
+            {
+                LlenarGridComponentes();
+            }
+        }
+        #endregion INTERACCIONES USUARIO
+
     }
 }

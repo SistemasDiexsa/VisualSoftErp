@@ -74,7 +74,6 @@
             this.pELogo.Properties.SizeMode = DevExpress.XtraEditors.Controls.PictureSizeMode.Stretch;
             this.pELogo.Size = new System.Drawing.Size(101, 20);
             this.pELogo.TabIndex = 0;
-            this.pELogo.EditValueChanged += new System.EventHandler(this.pELogo_EditValueChanged);
             // 
             // labelControl1
             // 
@@ -209,7 +208,7 @@
             this.swPassword.Name = "swPassword";
             this.swPassword.Properties.OffText = "No";
             this.swPassword.Properties.OnText = "Sí";
-            this.swPassword.Size = new System.Drawing.Size(87, 24);
+            this.swPassword.Size = new System.Drawing.Size(87, 23);
             this.swPassword.TabIndex = 8;
             // 
             // labelControl3
@@ -217,7 +216,7 @@
             this.labelControl3.Location = new System.Drawing.Point(235, 328);
             this.labelControl3.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.labelControl3.Name = "labelControl3";
-            this.labelControl3.Size = new System.Drawing.Size(93, 13);
+            this.labelControl3.Size = new System.Drawing.Size(92, 13);
             this.labelControl3.TabIndex = 9;
             this.labelControl3.Text = "Recordar password";
             // 
@@ -271,7 +270,7 @@
             this.labelControl4.Location = new System.Drawing.Point(17, 46);
             this.labelControl4.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.labelControl4.Name = "labelControl4";
-            this.labelControl4.Size = new System.Drawing.Size(219, 13);
+            this.labelControl4.Size = new System.Drawing.Size(213, 13);
             this.labelControl4.TabIndex = 0;
             this.labelControl4.Text = "Está en modo de pruebas, avise a sistemas!!!";
             // 
@@ -293,6 +292,7 @@
             this.Controls.Add(this.labelControl2);
             this.Controls.Add(this.labelControl1);
             this.Controls.Add(this.pELogo);
+            this.IconOptions.Image = global::VisualSoftErp.Properties.Resources.Diexsa_LogoFinal_01_1_;
             this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Name = "Login";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;

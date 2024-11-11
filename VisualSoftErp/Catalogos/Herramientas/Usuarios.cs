@@ -57,8 +57,8 @@ namespace VisualSoftErp.Catalogos
             cboSerie.Properties.ValueMember = "Clave";
             cboSerie.Properties.DisplayMember = "Clave";
             cboSerie.Properties.DataSource = cl.CargaCombos();
-            cboSerie.Properties.ForceInitialize();
             cboSerie.Properties.PopupFilterMode = DevExpress.XtraEditors.PopupFilterMode.Contains;
+            cboSerie.Properties.ForceInitialize();
             cboSerie.Properties.PopulateColumns();
             cboSerie.Properties.Columns["Des"].Visible = false;
             cboSerie.Properties.NullText = "Seleccione una serie";
@@ -125,6 +125,7 @@ namespace VisualSoftErp.Catalogos
             swCambiarFechaRM.IsOn = false;
             swCancelarFacturas.IsOn = false;
             swActualizarExistenciaInventarioFisico.IsOn = false;
+            swCancelarOrdenesCompra.IsOn = false;
 
         }
 
@@ -196,6 +197,7 @@ namespace VisualSoftErp.Catalogos
                 cl.iFirmaElectronicaSalidas = swIFirmaElectronicaSalidas.IsOn ? 1 : 0;
                 cl.intModificaFamiliasArticulos = swModificaFamiliasArticulos.IsOn ? 1 : 0;
                 cl.intModificaSubFamiliasArticulos = swModificaSubFamiliasArticulos.IsOn ? 1 : 0;
+                cl.intCancelarOrdenesCompra = swCancelarOrdenesCompra.IsOn ? 1 : 0;
                 Result = cl.UsuariosCrud();
                 if (Result == "OK")
                 {
@@ -297,6 +299,8 @@ namespace VisualSoftErp.Catalogos
                 swIFirmaElectronicaSalidas.IsOn = cl.iFirmaElectronicaSalidas == 1 ? true : false;
                 swModificaFamiliasArticulos.IsOn = cl.intModificaFamiliasArticulos == 1 ? true : false;
                 swModificaSubFamiliasArticulos.IsOn = cl.intModificaSubFamiliasArticulos == 1 ? true : false;
+
+                swCancelarOrdenesCompra.IsOn = cl.intCancelarOrdenesCompra == 1 ? true : false;
             }
             else
             {

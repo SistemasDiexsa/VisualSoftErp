@@ -15,6 +15,8 @@ using DevExpress.CodeParser;
 using System.IO;
 using System.Diagnostics;
 using VisualSoftErp.Herramientas.Formas;
+using DevExpress.Map.Kml;
+using System.Reflection;
 
 namespace VisualSoftErp
 {
@@ -22,7 +24,8 @@ namespace VisualSoftErp
     {
         public Login()
         {
-            AppDomain.CurrentDomain.FirstChanceException += (sender, e) => {
+            AppDomain.CurrentDomain.FirstChanceException += (sender, e) =>
+            {
                 System.Text.StringBuilder msg = new System.Text.StringBuilder();
                 msg.AppendLine(e.Exception.GetType().FullName);
                 msg.AppendLine(e.Exception.Message);
@@ -36,10 +39,9 @@ namespace VisualSoftErp
             InitializeComponent();
             UserLookAndFeel.Default.SkinName = Settings.Default["ApplicationSkinName"].ToString();
 
-
-            //Version
-            string fileExe = System.Configuration.ConfigurationManager.AppSettings["pathlocalexe"].ToString();
-            barHeaderVersion.Caption = FileVersionInfo.GetVersionInfo(fileExe).FileVersion;
+            //Version            
+            Version version = Assembly.GetExecutingAssembly().GetName().Version;
+            barHeaderVersion.Caption = version.ToString();
 
             //Busca el login y password
             string data = string.Empty;
@@ -50,7 +52,7 @@ namespace VisualSoftErp
             if (File.Exists(ruta))
             {
                 data = System.IO.File.ReadAllText(@ruta);
-                txtLogin.Text = data.Substring(0,data.Length-2);
+                txtLogin.Text = data.Substring(0, data.Length - 2);
 
                 if (File.Exists(rutaPassword))
                 {
@@ -72,12 +74,8 @@ namespace VisualSoftErp
                 popupContainerControl1.Show();
             }
         }
-       
 
-        private void pELogo_EditValueChanged(object sender, EventArgs e)
-        {
 
-        }
 
         private void txtPassword_KeyPress(object sender, KeyPressEventArgs e)
         {
@@ -91,7 +89,7 @@ namespace VisualSoftErp
         {
             try
             {
-                if (txtLogin.Text.Length==0 || txtPassword.Text.Length==0)
+                if (txtLogin.Text.Length == 0 || txtPassword.Text.Length == 0)
                 {
                     MessageBox.Show("Teclee el login y password");
                     return;
@@ -103,28 +101,28 @@ namespace VisualSoftErp
                 cl.sLogin = txtLogin.Text;
                 cl.sPassword = txtPassword.Text;
 
-              
-                
+
+
                 string result = cl.Login();
-                if (result=="OK")
+                if (result == "OK")
                 {
                     grabaLogin();
 
                     globalCL.gv_UsuarioID = cl.iUsuarioId;
                     globalCL.gv_UsuarioNombre = cl.sNombre;
                     globalCL.gv_NombreEmpresa = cl.sNomEmp;
-                  
+
                     Form1 frm = new Form1();
                     frm.Show();
                     this.Hide();
-                                             
+
                 }
                 else
                 {
                     MessageBox.Show("Login:" + txtLogin.Text + " o password:" + txtPassword.Text + " incorrectos");
                 }
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
             }
@@ -140,7 +138,7 @@ namespace VisualSoftErp
                 rutapassword = ruta + "ps.txt";
 
                 try
-                {                    
+                {
 
                     using (StreamWriter writer = new StreamWriter(ruta))
                     {
@@ -170,7 +168,7 @@ namespace VisualSoftErp
                     MessageBox.Show("Menu.FormClosing: " + ex.Message);
                 }
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 MessageBox.Show("Al grabar login:" + ex.Message);
             }
@@ -202,14 +200,7 @@ namespace VisualSoftErp
             frm.Dispose();
         }
 
-        private void simpleButton1_Click(object sender, EventArgs e)
-        {
-            LoginCL cl = new LoginCL();
-            //cl.sLogin = "fchapa";
-            //cl.sPassword = "411Pge"; 
 
-            //string result = cl.LeeConexion();
-        }
 
         private void simpleButton1_Click_1(object sender, EventArgs e)
         {

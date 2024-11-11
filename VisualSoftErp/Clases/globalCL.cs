@@ -54,6 +54,7 @@ namespace VisualSoftErp.Clases
         public DataTable dtxml;
         public int intEjer { get; set; }
         public int intMes { get; set; }
+        public int intAnio { get; set; }
         public string strMaq { get; set; }
         public string strTipoProv { get; set; }
         public int intFolio {get; set;}
@@ -82,8 +83,14 @@ namespace VisualSoftErp.Clases
         public int intSolicitudesDeRegistro { get; set; }
 
         public DateTime fechaUltimoDiadelMes { get; set; }        
-        
+        public int intLineasID { get; set; }
+        public int intFamiliasID { get; set; }
+        public int intSubFamiliasID { get; set; }
+        public int intAlmacenesID { get; set; }
+        public int intActivo { get; set; }
         #endregion
+
+
         #region Constructor
         public globalCL()
         {
@@ -111,14 +118,25 @@ namespace VisualSoftErp.Clases
             intOrdenesPorAtender = 0;
             intSalidasporautorizar = 0;
             intSolicitudesDeRegistro = 0;
+
+            intMes = 0;
+            intAnio = 0;
+            intLineasID = 0;
+            intFamiliasID = 0;
+            intSubFamiliasID = 0;
+            intAlmacenesID = 0;
+            intActivo = 0;
         }
         #endregion
         #region Metodos
+
 
         public string NombreDeMes(int Mes)
         {
             switch (Mes)
             {
+                case 0:
+                    return "todos el año";
                 case 1:
                     return "ENE";
                 case 2:
@@ -148,6 +166,41 @@ namespace VisualSoftErp.Clases
             return ""; //Aqui nunca va llegar, solo se pone para que no marque error la funcion
         }
 
+        public string NombreDeMesCompleto(int Mes)
+        {
+            switch (Mes)
+            {
+                case 0:
+                    return "todo el año";
+                case 1:
+                    return "enero";
+                case 2:
+                    return "febrero";
+                case 3:
+                    return "marzo";
+                case 4:
+                    return "abril";
+                case 5:
+                    return "mayo";
+                case 6:
+                    return "junio";
+                case 7:
+                    return "julio";
+                case 8:
+                    return "agosto";
+                case 9:
+                    return "septiembre";
+                case 10:
+                    return "octubre";
+                case 11:
+                    return "noviembre";
+                case 12:
+                    return "diciembre";
+            }
+
+            return ""; //Aqui nunca va llegar, solo se pone para que no marque error la funcion
+        }
+
         public DataTable AgregarOpcionTodos(BindingSource src)
         {
             try
@@ -164,6 +217,7 @@ namespace VisualSoftErp.Clases
                 return null;
             }
         }
+        
         public DataTable AgregarOpcionNoManeja(BindingSource src)
         {
             try
@@ -235,6 +289,7 @@ namespace VisualSoftErp.Clases
                 return "Error ultimo dia del mes:" + ex.Message;
             }
         }
+        
         public string fechaSQL(DateTime fecha)
         {
             try
@@ -264,6 +319,7 @@ namespace VisualSoftErp.Clases
                 return string.Empty;
             }
         }
+        
         public bool esNumerico(string dato)
         {
             try
@@ -299,6 +355,7 @@ namespace VisualSoftErp.Clases
             grid.SaveLayoutToXml(filename);
             return "OK";
         }
+        
         public string restoreLayout(DevExpress.XtraGrid.Views.Grid.GridView grid)
         {
             string path = ConfigurationManager.AppSettings["gridlayout"].ToString();
@@ -309,6 +366,7 @@ namespace VisualSoftErp.Clases
             }
             return "OK";
         }
+        
         public String GM_CierredemodulosStatus(int ejercicio,int mes,String Modulo)
         {
             try
@@ -377,6 +435,7 @@ namespace VisualSoftErp.Clases
                 return ex.Message;
             }
         } // Datosdecontrol
+        
         public string xmlBoxBuscaCompraoCR()
         {
             try
@@ -660,6 +719,7 @@ namespace VisualSoftErp.Clases
 
             return sMes;
         }
+        
         public void AbreOutlook(string serie, int Folio, DateTime Fecha, string strTo)
         {
             Microsoft.Office.Interop.Outlook.Application m_Outlook = null;
@@ -873,6 +933,7 @@ namespace VisualSoftErp.Clases
                 return error;
             }
         }
+        
         public string EnviaCorreo(string strEmailTo,string strSerie,int intFolio,DateTime dFecha,string sDoc)
         {
             try
@@ -1458,6 +1519,7 @@ namespace VisualSoftErp.Clases
             }
             catch (Exception ex) { return dt; }
         } //XmlBoxGrid
+        
         public DataTable NavbarAños()
         {
             DataTable dt = new DataTable();
@@ -1561,6 +1623,7 @@ namespace VisualSoftErp.Clases
             }
 
         }//CatalogoSAT_LeeNombre()
+        
         public int CargaInicialLeer()
         {
             try
@@ -1599,6 +1662,7 @@ namespace VisualSoftErp.Clases
                 return 1;
             }
         } // Datosdecontrol
+        
         public string DocumentosSiguienteID()
         {
             try
@@ -1672,6 +1736,7 @@ namespace VisualSoftErp.Clases
                 return ex.Message;
             }
         } // AppOrdendesporatender
+        
         public string Salidasporautorizar()
         {
             try
@@ -1754,8 +1819,51 @@ namespace VisualSoftErp.Clases
                 return "";
             }
         }
+        
+        #region PAGINADO
+        
+        public int NumeroFilasGrid()
+        {
+            int result = 0;
+            try
+            {
+                using (SqlConnection cnn = new SqlConnection(globalCL.gv_strcnn))
+                {
+                    cnn.Open();
+                    using (SqlCommand cmd = new SqlCommand("CargarNumeroFilas", cnn))
+                    {
+                        cmd.CommandType = CommandType.StoredProcedure;
+                        cmd.Parameters.AddWithValue("@prmTabla", strTabla);
+                        cmd.Parameters.AddWithValue("@prmMes", intMes);
+                        cmd.Parameters.AddWithValue("@prmAnio", intAnio);
+                        cmd.Parameters.AddWithValue("@prmLineasID", intLineasID);
+                        cmd.Parameters.AddWithValue("@prmFamiliasID", intFamiliasID);
+                        cmd.Parameters.AddWithValue("@prmSubFamiliasID", intSubFamiliasID);
+                        cmd.Parameters.AddWithValue("@prmAlmacenesID", intAlmacenesID);
+                        cmd.Parameters.AddWithValue("@prmActivo", intActivo);
 
-
+                        using (SqlDataReader dr =  cmd.ExecuteReader())
+                        {
+                            if (dr.HasRows)
+                            {
+                                dr.Read();
+                                result = Convert.ToInt32(dr["result"]);
+                            }
+                            else
+                                result = 0;
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error al leer filas", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            return result;
+        }
+        
+        #endregion PAGINADO
+        
         #endregion
 
         #region FTP

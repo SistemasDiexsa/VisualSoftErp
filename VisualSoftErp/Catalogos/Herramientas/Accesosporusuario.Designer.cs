@@ -469,7 +469,7 @@
             // 
             this.labelControl2.Location = new System.Drawing.Point(21, 24);
             this.labelControl2.Name = "labelControl2";
-            this.labelControl2.Size = new System.Drawing.Size(46, 13);
+            this.labelControl2.Size = new System.Drawing.Size(45, 13);
             this.labelControl2.TabIndex = 2;
             this.labelControl2.Text = "Programa";
             // 

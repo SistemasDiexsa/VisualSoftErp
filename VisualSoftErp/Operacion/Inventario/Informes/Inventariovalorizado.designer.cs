@@ -272,6 +272,10 @@
             this.ribbonPageGroup2 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.navigationFrame = new DevExpress.XtraBars.Navigation.NavigationFrame();
             this.employeesNavigationPage = new DevExpress.XtraBars.Navigation.NavigationPage();
+            this.swConcentradoAlmacenes = new DevExpress.XtraEditors.ToggleSwitch();
+            this.labelControl7 = new DevExpress.XtraEditors.LabelControl();
+            this.swSoloFueraLinea = new DevExpress.XtraEditors.ToggleSwitch();
+            this.labelControl6 = new DevExpress.XtraEditors.LabelControl();
             this.txtFechadecorte = new DevExpress.XtraEditors.DateEdit();
             this.labelControl5 = new DevExpress.XtraEditors.LabelControl();
             this.swSolo = new DevExpress.XtraEditors.ToggleSwitch();
@@ -291,6 +295,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.navigationFrame)).BeginInit();
             this.navigationFrame.SuspendLayout();
             this.employeesNavigationPage.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.swConcentradoAlmacenes.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.swSoloFueraLinea.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtFechadecorte.Properties.CalendarTimeProperties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtFechadecorte.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.swSolo.Properties)).BeginInit();
@@ -383,7 +389,7 @@
             this.repositoryItemZoomTrackBar1});
             this.ribbonControl.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonControlStyle.Office2013;
             this.ribbonControl.ShowApplicationButton = DevExpress.Utils.DefaultBoolean.False;
-            this.ribbonControl.Size = new System.Drawing.Size(790, 178);
+            this.ribbonControl.Size = new System.Drawing.Size(790, 147);
             this.ribbonControl.StatusBar = this.ribbonStatusBar;
             this.ribbonControl.ToolbarLocation = DevExpress.XtraBars.Ribbon.RibbonQuickAccessToolbarLocation.Hidden;
             this.ribbonControl.TransparentEditorsMode = DevExpress.Utils.DefaultBoolean.True;
@@ -446,7 +452,7 @@
             this.documentViewer1.IsMetric = true;
             this.documentViewer1.Location = new System.Drawing.Point(0, 0);
             this.documentViewer1.Name = "documentViewer1";
-            this.documentViewer1.Size = new System.Drawing.Size(790, 392);
+            this.documentViewer1.Size = new System.Drawing.Size(790, 429);
             this.documentViewer1.TabIndex = 0;
             // 
             // ribbonStatusBar
@@ -456,10 +462,10 @@
             this.ribbonStatusBar.ItemLinks.Add(this.printPreviewBarItem52);
             this.ribbonStatusBar.ItemLinks.Add(this.printPreviewStaticItem2);
             this.ribbonStatusBar.ItemLinks.Add(this.zoomTrackBarEditItem1);
-            this.ribbonStatusBar.Location = new System.Drawing.Point(0, 570);
+            this.ribbonStatusBar.Location = new System.Drawing.Point(0, 576);
             this.ribbonStatusBar.Name = "ribbonStatusBar";
             this.ribbonStatusBar.Ribbon = this.ribbonControl;
-            this.ribbonStatusBar.Size = new System.Drawing.Size(790, 29);
+            this.ribbonStatusBar.Size = new System.Drawing.Size(790, 23);
             // 
             // printPreviewStaticItem1
             // 
@@ -1450,9 +1456,9 @@
             // ribbonPageGroup
             // 
             this.ribbonPageGroup.AllowTextClipping = false;
+            this.ribbonPageGroup.CaptionButtonVisible = DevExpress.Utils.DefaultBoolean.False;
             this.ribbonPageGroup.ItemLinks.Add(this.skinRibbonGalleryBarItem);
             this.ribbonPageGroup.Name = "ribbonPageGroup";
-            this.ribbonPageGroup.ShowCaptionButton = false;
             this.ribbonPageGroup.Text = "Appearance";
             // 
             // ribbonPageHome
@@ -1487,17 +1493,18 @@
             // printPreviewRibbonPageGroup1
             // 
             this.printPreviewRibbonPageGroup1.AllowTextClipping = false;
+            this.printPreviewRibbonPageGroup1.CaptionButtonVisible = DevExpress.Utils.DefaultBoolean.False;
             this.printPreviewRibbonPageGroup1.ContextSpecifier = this.documentViewerRibbonController1;
             this.printPreviewRibbonPageGroup1.ItemLinks.Add(this.printPreviewBarItem50);
             this.printPreviewRibbonPageGroup1.ItemLinks.Add(this.printPreviewBarItem51);
             this.printPreviewRibbonPageGroup1.Kind = DevExpress.XtraPrinting.Preview.PrintPreviewRibbonPageGroupKind.Document;
             this.printPreviewRibbonPageGroup1.Name = "printPreviewRibbonPageGroup1";
-            this.printPreviewRibbonPageGroup1.ShowCaptionButton = false;
             this.printPreviewRibbonPageGroup1.Text = "Document";
             // 
             // printPreviewRibbonPageGroup2
             // 
             this.printPreviewRibbonPageGroup2.AllowTextClipping = false;
+            this.printPreviewRibbonPageGroup2.CaptionButtonVisible = DevExpress.Utils.DefaultBoolean.False;
             this.printPreviewRibbonPageGroup2.ContextSpecifier = this.documentViewerRibbonController1;
             this.printPreviewRibbonPageGroup2.ItemLinks.Add(this.printPreviewBarItem7);
             this.printPreviewRibbonPageGroup2.ItemLinks.Add(this.printPreviewBarItem8);
@@ -1505,7 +1512,6 @@
             this.printPreviewRibbonPageGroup2.ItemLinks.Add(this.printPreviewBarItem3);
             this.printPreviewRibbonPageGroup2.Kind = DevExpress.XtraPrinting.Preview.PrintPreviewRibbonPageGroupKind.Print;
             this.printPreviewRibbonPageGroup2.Name = "printPreviewRibbonPageGroup2";
-            this.printPreviewRibbonPageGroup2.ShowCaptionButton = false;
             this.printPreviewRibbonPageGroup2.Text = "Print";
             // 
             // printPreviewRibbonPageGroup3
@@ -1532,6 +1538,7 @@
             // printPreviewRibbonPageGroup4
             // 
             this.printPreviewRibbonPageGroup4.AllowTextClipping = false;
+            this.printPreviewRibbonPageGroup4.CaptionButtonVisible = DevExpress.Utils.DefaultBoolean.False;
             this.printPreviewRibbonPageGroup4.ContextSpecifier = this.documentViewerRibbonController1;
             this.printPreviewRibbonPageGroup4.ItemLinks.Add(this.printPreviewBarItem4);
             this.printPreviewRibbonPageGroup4.ItemLinks.Add(this.printPreviewBarItem5);
@@ -1543,12 +1550,12 @@
             this.printPreviewRibbonPageGroup4.ItemLinks.Add(this.printPreviewBarItem21);
             this.printPreviewRibbonPageGroup4.Kind = DevExpress.XtraPrinting.Preview.PrintPreviewRibbonPageGroupKind.Navigation;
             this.printPreviewRibbonPageGroup4.Name = "printPreviewRibbonPageGroup4";
-            this.printPreviewRibbonPageGroup4.ShowCaptionButton = false;
             this.printPreviewRibbonPageGroup4.Text = "Navigation";
             // 
             // printPreviewRibbonPageGroup5
             // 
             this.printPreviewRibbonPageGroup5.AllowTextClipping = false;
+            this.printPreviewRibbonPageGroup5.CaptionButtonVisible = DevExpress.Utils.DefaultBoolean.False;
             this.printPreviewRibbonPageGroup5.ContextSpecifier = this.documentViewerRibbonController1;
             this.printPreviewRibbonPageGroup5.ItemLinks.Add(this.printPreviewBarItem12);
             this.printPreviewRibbonPageGroup5.ItemLinks.Add(this.printPreviewBarItem13);
@@ -1559,29 +1566,28 @@
             this.printPreviewRibbonPageGroup5.ItemLinks.Add(this.printPreviewBarItem16);
             this.printPreviewRibbonPageGroup5.Kind = DevExpress.XtraPrinting.Preview.PrintPreviewRibbonPageGroupKind.Zoom;
             this.printPreviewRibbonPageGroup5.Name = "printPreviewRibbonPageGroup5";
-            this.printPreviewRibbonPageGroup5.ShowCaptionButton = false;
             this.printPreviewRibbonPageGroup5.Text = "Zoom";
             // 
             // printPreviewRibbonPageGroup6
             // 
             this.printPreviewRibbonPageGroup6.AllowTextClipping = false;
+            this.printPreviewRibbonPageGroup6.CaptionButtonVisible = DevExpress.Utils.DefaultBoolean.False;
             this.printPreviewRibbonPageGroup6.ContextSpecifier = this.documentViewerRibbonController1;
             this.printPreviewRibbonPageGroup6.ItemLinks.Add(this.printPreviewBarItem23);
             this.printPreviewRibbonPageGroup6.ItemLinks.Add(this.printPreviewBarItem24);
             this.printPreviewRibbonPageGroup6.Kind = DevExpress.XtraPrinting.Preview.PrintPreviewRibbonPageGroupKind.Background;
             this.printPreviewRibbonPageGroup6.Name = "printPreviewRibbonPageGroup6";
-            this.printPreviewRibbonPageGroup6.ShowCaptionButton = false;
             this.printPreviewRibbonPageGroup6.Text = "Page Background";
             // 
             // printPreviewRibbonPageGroup7
             // 
             this.printPreviewRibbonPageGroup7.AllowTextClipping = false;
+            this.printPreviewRibbonPageGroup7.CaptionButtonVisible = DevExpress.Utils.DefaultBoolean.False;
             this.printPreviewRibbonPageGroup7.ContextSpecifier = this.documentViewerRibbonController1;
             this.printPreviewRibbonPageGroup7.ItemLinks.Add(this.printPreviewBarItem25);
             this.printPreviewRibbonPageGroup7.ItemLinks.Add(this.printPreviewBarItem26);
             this.printPreviewRibbonPageGroup7.Kind = DevExpress.XtraPrinting.Preview.PrintPreviewRibbonPageGroupKind.Export;
             this.printPreviewRibbonPageGroup7.Name = "printPreviewRibbonPageGroup7";
-            this.printPreviewRibbonPageGroup7.ShowCaptionButton = false;
             this.printPreviewRibbonPageGroup7.Text = "Export";
             // 
             // ribbonPageGroup2
@@ -1597,19 +1603,23 @@
             this.navigationFrame.Controls.Add(this.employeesNavigationPage);
             this.navigationFrame.Controls.Add(this.customersNavigationPage);
             this.navigationFrame.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.navigationFrame.Location = new System.Drawing.Point(0, 178);
+            this.navigationFrame.Location = new System.Drawing.Point(0, 147);
             this.navigationFrame.Name = "navigationFrame";
             this.navigationFrame.Pages.AddRange(new DevExpress.XtraBars.Navigation.NavigationPageBase[] {
             this.employeesNavigationPage,
             this.customersNavigationPage});
             this.navigationFrame.RibbonAndBarsMergeStyle = DevExpress.XtraBars.Docking2010.Views.RibbonAndBarsMergeStyle.Always;
             this.navigationFrame.SelectedPage = this.employeesNavigationPage;
-            this.navigationFrame.Size = new System.Drawing.Size(790, 392);
+            this.navigationFrame.Size = new System.Drawing.Size(790, 429);
             this.navigationFrame.TabIndex = 0;
             this.navigationFrame.Text = "navigationFrame";
             // 
             // employeesNavigationPage
             // 
+            this.employeesNavigationPage.Controls.Add(this.swConcentradoAlmacenes);
+            this.employeesNavigationPage.Controls.Add(this.labelControl7);
+            this.employeesNavigationPage.Controls.Add(this.swSoloFueraLinea);
+            this.employeesNavigationPage.Controls.Add(this.labelControl6);
             this.employeesNavigationPage.Controls.Add(this.txtFechadecorte);
             this.employeesNavigationPage.Controls.Add(this.labelControl5);
             this.employeesNavigationPage.Controls.Add(this.swSolo);
@@ -1621,19 +1631,59 @@
             this.employeesNavigationPage.Controls.Add(this.labelControl1);
             this.employeesNavigationPage.Controls.Add(this.cboLinea);
             this.employeesNavigationPage.Name = "employeesNavigationPage";
-            this.employeesNavigationPage.Size = new System.Drawing.Size(790, 392);
+            this.employeesNavigationPage.Size = new System.Drawing.Size(790, 429);
+            // 
+            // swConcentradoAlmacenes
+            // 
+            this.swConcentradoAlmacenes.Location = new System.Drawing.Point(210, 282);
+            this.swConcentradoAlmacenes.MenuManager = this.ribbonControl;
+            this.swConcentradoAlmacenes.Name = "swConcentradoAlmacenes";
+            this.swConcentradoAlmacenes.Properties.OffText = "No";
+            this.swConcentradoAlmacenes.Properties.OnText = "Sí";
+            this.swConcentradoAlmacenes.Size = new System.Drawing.Size(95, 24);
+            this.swConcentradoAlmacenes.TabIndex = 16;
+            this.swConcentradoAlmacenes.Visible = false;
+            this.swConcentradoAlmacenes.Toggled += new System.EventHandler(this.swConcentradoAlmacenes_Toggled);
+            // 
+            // labelControl7
+            // 
+            this.labelControl7.Location = new System.Drawing.Point(69, 287);
+            this.labelControl7.Name = "labelControl7";
+            this.labelControl7.Size = new System.Drawing.Size(131, 13);
+            this.labelControl7.TabIndex = 15;
+            this.labelControl7.Text = "Concentrado de Almacenes";
+            this.labelControl7.Visible = false;
+            // 
+            // swSoloFueraLinea
+            // 
+            this.swSoloFueraLinea.Location = new System.Drawing.Point(210, 241);
+            this.swSoloFueraLinea.MenuManager = this.ribbonControl;
+            this.swSoloFueraLinea.Name = "swSoloFueraLinea";
+            this.swSoloFueraLinea.Properties.OffText = "No";
+            this.swSoloFueraLinea.Properties.OnText = "Sí";
+            this.swSoloFueraLinea.Size = new System.Drawing.Size(95, 24);
+            this.swSoloFueraLinea.TabIndex = 14;
+            this.swSoloFueraLinea.Toggled += new System.EventHandler(this.swSoloFueraLinea_Toggled);
+            // 
+            // labelControl6
+            // 
+            this.labelControl6.Location = new System.Drawing.Point(69, 246);
+            this.labelControl6.Name = "labelControl6";
+            this.labelControl6.Size = new System.Drawing.Size(132, 13);
+            this.labelControl6.TabIndex = 13;
+            this.labelControl6.Text = "Solo artículos fuera de línea";
             // 
             // txtFechadecorte
             // 
             this.txtFechadecorte.EditValue = null;
-            this.txtFechadecorte.Location = new System.Drawing.Point(180, 162);
+            this.txtFechadecorte.Location = new System.Drawing.Point(210, 161);
             this.txtFechadecorte.MenuManager = this.ribbonControl;
             this.txtFechadecorte.Name = "txtFechadecorte";
             this.txtFechadecorte.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.txtFechadecorte.Properties.CalendarTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.txtFechadecorte.Size = new System.Drawing.Size(179, 22);
+            this.txtFechadecorte.Size = new System.Drawing.Size(179, 20);
             this.txtFechadecorte.TabIndex = 12;
             // 
             // labelControl5
@@ -1646,12 +1696,12 @@
             // 
             // swSolo
             // 
-            this.swSolo.Location = new System.Drawing.Point(180, 199);
+            this.swSolo.Location = new System.Drawing.Point(210, 200);
             this.swSolo.MenuManager = this.ribbonControl;
             this.swSolo.Name = "swSolo";
             this.swSolo.Properties.OffText = "No";
             this.swSolo.Properties.OnText = "Sí";
-            this.swSolo.Size = new System.Drawing.Size(95, 26);
+            this.swSolo.Size = new System.Drawing.Size(95, 24);
             this.swSolo.TabIndex = 8;
             // 
             // labelControl4
@@ -1672,12 +1722,12 @@
             // 
             // cboAlmacen
             // 
-            this.cboAlmacen.Location = new System.Drawing.Point(180, 123);
+            this.cboAlmacen.Location = new System.Drawing.Point(210, 122);
             this.cboAlmacen.MenuManager = this.ribbonControl;
             this.cboAlmacen.Name = "cboAlmacen";
             this.cboAlmacen.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.cboAlmacen.Size = new System.Drawing.Size(282, 22);
+            this.cboAlmacen.Size = new System.Drawing.Size(282, 20);
             this.cboAlmacen.TabIndex = 4;
             // 
             // labelControl2
@@ -1690,12 +1740,12 @@
             // 
             // cboFamilia
             // 
-            this.cboFamilia.Location = new System.Drawing.Point(180, 84);
+            this.cboFamilia.Location = new System.Drawing.Point(210, 85);
             this.cboFamilia.MenuManager = this.ribbonControl;
             this.cboFamilia.Name = "cboFamilia";
             this.cboFamilia.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.cboFamilia.Size = new System.Drawing.Size(282, 22);
+            this.cboFamilia.Size = new System.Drawing.Size(282, 20);
             this.cboFamilia.TabIndex = 2;
             // 
             // labelControl1
@@ -1705,16 +1755,15 @@
             this.labelControl1.Size = new System.Drawing.Size(25, 13);
             this.labelControl1.TabIndex = 1;
             this.labelControl1.Text = "Línea";
-            this.labelControl1.Click += new System.EventHandler(this.labelControl1_Click);
             // 
             // cboLinea
             // 
-            this.cboLinea.Location = new System.Drawing.Point(180, 49);
+            this.cboLinea.Location = new System.Drawing.Point(210, 49);
             this.cboLinea.MenuManager = this.ribbonControl;
             this.cboLinea.Name = "cboLinea";
             this.cboLinea.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.cboLinea.Size = new System.Drawing.Size(282, 22);
+            this.cboLinea.Size = new System.Drawing.Size(282, 20);
             this.cboLinea.TabIndex = 0;
             this.cboLinea.EditValueChanged += new System.EventHandler(this.cboLinea_EditValueChanged);
             // 
@@ -1722,7 +1771,7 @@
             // 
             this.customersNavigationPage.Controls.Add(this.documentViewer1);
             this.customersNavigationPage.Name = "customersNavigationPage";
-            this.customersNavigationPage.Size = new System.Drawing.Size(790, 392);
+            this.customersNavigationPage.Size = new System.Drawing.Size(790, 429);
             // 
             // Inventariovalorizado
             // 
@@ -1745,6 +1794,8 @@
             this.navigationFrame.ResumeLayout(false);
             this.employeesNavigationPage.ResumeLayout(false);
             this.employeesNavigationPage.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.swConcentradoAlmacenes.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.swSoloFueraLinea.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtFechadecorte.Properties.CalendarTimeProperties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtFechadecorte.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.swSolo.Properties)).EndInit();
@@ -1855,5 +1906,9 @@
         private DevExpress.XtraEditors.LabelControl labelControl5;
         private DevExpress.XtraEditors.ToggleSwitch swSolo;
         private DevExpress.XtraEditors.DateEdit txtFechadecorte;
+        private DevExpress.XtraEditors.LabelControl labelControl6;
+        private DevExpress.XtraEditors.ToggleSwitch swSoloFueraLinea;
+        private DevExpress.XtraEditors.ToggleSwitch swConcentradoAlmacenes;
+        private DevExpress.XtraEditors.LabelControl labelControl7;
     }
 }

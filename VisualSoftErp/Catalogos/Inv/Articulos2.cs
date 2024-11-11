@@ -104,6 +104,8 @@ namespace VisualSoftErp.Catalogos.Inv
         
         public void llenarcombos()
         {
+            BindingSource bindingSource = new BindingSource();
+            globalCL globalCL = new globalCL();
             combosCL cl = new combosCL();
 
             cboFamiliasClasificaciones.Properties.ValueMember = "Clave";
@@ -247,6 +249,18 @@ namespace VisualSoftErp.Catalogos.Inv
             cboTipodecorte.Properties.PopulateColumns();
             cboTipodecorte.Properties.Columns["Clave"].Visible = false;
             cboTipodecorte.Properties.NullText = "Seleccione un tipo de corte";
+
+            // COMBO CANALES DE VENTAS
+            cl.strTabla = "canalesdeventa";
+            cboCanalVentasID.Properties.ValueMember = "Clave";
+            cboCanalVentasID.Properties.DisplayMember = "Des";
+            bindingSource.DataSource = cl.CargaCombos();
+            cboCanalVentasID.Properties.DataSource = globalCL.AgregarOpcionTodos(bindingSource);
+            cboCanalVentasID.Properties.PopupFilterMode = DevExpress.XtraEditors.PopupFilterMode.Contains;
+            cboCanalVentasID.Properties.ForceInitialize();
+            cboCanalVentasID.Properties.PopulateColumns();
+            cboCanalVentasID.Properties.Columns["Clave"].Visible = false;
+            cboCanalVentasID.Properties.NullText = "Seleccione un canal de ventas";
 
         }//llenarcombos
 
@@ -455,7 +469,7 @@ namespace VisualSoftErp.Catalogos.Inv
                 cl.dDimenAncho = Convert.ToDecimal(txtDimenAncho.Text);
 
                 cl.intDisponibleTiendaonline = swDisponibleentienda.IsOn ? 1 : 0;
-
+                cl.intCanalVenta = Convert.ToInt32(cboCanalVentasID.EditValue);
                 result = cl.ArticulosCrud();
 
                 if (result == "OK")
@@ -593,8 +607,10 @@ namespace VisualSoftErp.Catalogos.Inv
                         return "Los master normalmente no van en la tienda";
                     }
                 }
-
             }
+
+            if (cboCanalVentasID.EditValue == null)
+                return "Seleccione el canal de venta al cual pertenece el artículo";
 
             return "OK";
         }//Valida()
@@ -727,6 +743,7 @@ namespace VisualSoftErp.Catalogos.Inv
                 txtDimenAncho.Text = cl.dDimenAncho.ToString();
 
                 strArticuloBase = cl.strArtBase;
+                cboCanalVentasID.EditValue = cl.intCanalVenta;
 
                 gridControlCostos.DataSource = cl.ArticulosCostosGrid();
                 //CargaSubFamilias();

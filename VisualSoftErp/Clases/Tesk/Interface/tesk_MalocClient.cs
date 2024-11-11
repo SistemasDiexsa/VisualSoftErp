@@ -21,8 +21,8 @@ namespace VisualSoftErp.Clases.Tesk.Interface
             try
             {
                 RestClient restclient = new RestClient(url + action);
-                var request = new RestRequest(Method.GET);
-                IRestResponse restResponse = restclient.Execute(request);
+                var request = new RestRequest(Method.Get.ToString());
+                RestResponse restResponse = restclient.Execute(request);
                 modelo = JsonConvert.DeserializeObject<T>(restResponse.Content);
 
             }
@@ -43,13 +43,13 @@ namespace VisualSoftErp.Clases.Tesk.Interface
             {
 
                 RestClient restclient = new RestClient(url + action);
-                var request = new RestRequest(Method.POST);
+                var request = new RestRequest(Method.Post.ToString());
                 if (Datos != null)
                 {
                     JObject dataRequest = JObject.FromObject(Datos);
                     request.AddParameter("application/json", dataRequest.ToString(Newtonsoft.Json.Formatting.None), ParameterType.RequestBody);
                 }
-                IRestResponse restResponse = restclient.Execute(request);
+                RestResponse restResponse = restclient.Execute(request);
 
                 teskloginresponse login = new teskloginresponse();
                 login.token = JsonConvert.DeserializeObject<string>(restResponse.Content);
@@ -78,7 +78,7 @@ namespace VisualSoftErp.Clases.Tesk.Interface
             try
             {
                 RestClient restclient = new RestClient(url + action);
-                var request = new RestRequest(Method.POST);
+                var request = new RestRequest(Method.Get.ToString());
                 request.AddHeader("Authorization", "Bearer " + token);
                 request.AddHeader("CodigoEmpresa", codigoempresa);
                 if (Datos != null)
@@ -86,7 +86,7 @@ namespace VisualSoftErp.Clases.Tesk.Interface
                     JObject dataRequest = JObject.FromObject(Datos);
                     request.AddParameter("application/json", dataRequest.ToString(Newtonsoft.Json.Formatting.None), ParameterType.RequestBody);
                 }
-                IRestResponse restResponse = restclient.Execute(request);
+                RestResponse restResponse = restclient.Execute(request);
                 modelo = JsonConvert.DeserializeObject<T>(restResponse.Content);
 
 
@@ -116,7 +116,7 @@ namespace VisualSoftErp.Clases.Tesk.Interface
             try
             {
                 RestClient restclient = new RestClient(url + action);
-                var request = new RestRequest(Method.POST);
+                var request = new RestRequest(Method.Post.ToString());
                 request.AddHeader("Authorization", "Bearer " + token);
                 request.AddHeader("CodigoEmpresa", codigoempresa);
                 if (Datos != null)
@@ -124,7 +124,7 @@ namespace VisualSoftErp.Clases.Tesk.Interface
                     JObject dataRequest = JObject.FromObject(Datos);
                     request.AddParameter("application/json", dataRequest.ToString(Newtonsoft.Json.Formatting.None), ParameterType.RequestBody);
                 }
-                IRestResponse restResponse = restclient.Execute(request);
+                RestResponse restResponse = restclient.Execute(request);
                 modelo = JsonConvert.DeserializeObject<T>(restResponse.Content);
 
                 string location = string.Empty;
@@ -160,7 +160,7 @@ namespace VisualSoftErp.Clases.Tesk.Interface
             try
             {
                 RestClient restclient = new RestClient(url + action);
-                var request = new RestRequest(Method.POST);
+                var request = new RestRequest(Method.Post.ToString());
                 request.AddHeader("Authorization", "Bearer " + token);
                 request.AddHeader("CodigoEmpresa", codigoempresa);
                 if (Datos != null)
@@ -168,7 +168,7 @@ namespace VisualSoftErp.Clases.Tesk.Interface
                     JObject dataRequest = JObject.FromObject(Datos);
                     request.AddParameter("application/json", dataRequest.ToString(Newtonsoft.Json.Formatting.None), ParameterType.RequestBody);
                 }
-                IRestResponse restResponse = restclient.Execute(request);
+                RestResponse restResponse = restclient.Execute(request);
                 //modelo = JsonConvert.DeserializeObject<T>(restResponse.Content);
                 if (restResponse.StatusCode == System.Net.HttpStatusCode.OK)
                     modelo = null;

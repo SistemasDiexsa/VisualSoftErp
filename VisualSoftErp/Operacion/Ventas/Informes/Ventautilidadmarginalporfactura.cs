@@ -150,16 +150,16 @@ namespace VisualSoftErp.Operacion.Ventas.Informes
 
             BindingSource src = new BindingSource();
 
-            if (cboLinea.ItemIndex==0)
+            if (cboLinea.ItemIndex == 0)
             {
                 cl.strTabla = "Familias";
             }
             else
             {
                 cl.strTabla = "FamiliasLineas";
-                cl.intClave = Convert.ToInt32(cboLinea.EditValue);
+                cl.iCondicion = Convert.ToInt32(cboLinea.EditValue);
             }
-            src.DataSource = cl.CargaCombosCondicion();
+            src.DataSource = cl.CargaCombos();
             cboFamilia.Properties.ValueMember = "Clave";
             cboFamilia.Properties.DisplayMember = "Des";
             cboFamilia.Properties.DataSource = clg.AgregarOpcionTodos(src);
@@ -186,9 +186,9 @@ namespace VisualSoftErp.Operacion.Ventas.Informes
             else
             {
                 cl.strTabla = "SubFamiliasXFamilia";
-                cl.intClave = Convert.ToInt32(cboFamilia.EditValue);
+                cl.iCondicion = Convert.ToInt32(cboFamilia.EditValue);
             }
-            src.DataSource = cl.CargaCombosCondicion();
+            src.DataSource = cl.CargaCombos();
             cboSubFamilia.Properties.ValueMember = "Clave";
             cboSubFamilia.Properties.DisplayMember = "Des";
             cboSubFamilia.Properties.DataSource = clg.AgregarOpcionTodos(src);

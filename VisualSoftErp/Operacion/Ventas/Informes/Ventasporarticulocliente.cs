@@ -41,8 +41,8 @@ namespace VisualSoftErp.Operacion.Ventas.Informes
             cboCliente.Properties.ValueMember = "Clave";
             cboCliente.Properties.DisplayMember = "Des";
             cboCliente.Properties.DataSource = clg.AgregarOpcionTodos(src);
-            cboCliente.Properties.ForceInitialize();
             cboCliente.Properties.PopupFilterMode = DevExpress.XtraEditors.PopupFilterMode.Contains;
+            cboCliente.Properties.ForceInitialize();
             cboCliente.Properties.PopulateColumns();
             cboCliente.Properties.Columns["Clave"].Visible = false; //con esta propiedad puedo ocultar campos en el cbo
             //cboCliente.Properties.Columns["AgentesID"].Visible = false;
@@ -84,16 +84,18 @@ namespace VisualSoftErp.Operacion.Ventas.Informes
             cboCanaldeventa.Properties.Columns["Clave"].Visible = false;
             cboCanaldeventa.ItemIndex = 0;
 
-            //cl.strTabla = "Familias";
-            //src.DataSource = cl.CargaCombos();
-            //cboFamilia.Properties.ValueMember = "Clave";
-            //cboFamilia.Properties.DisplayMember = "Des";
-            //cboFamilia.Properties.DataSource = src;
-            //cboFamilia.Properties.ForceInitialize();
-            //cboFamilia.Properties.PopupFilterMode = DevExpress.XtraEditors.PopupFilterMode.Contains;
-            //cboFamilia.Properties.PopulateColumns();
-            //cboFamilia.Properties.Columns["Clave"].Visible = false;
-            //cboFamilia.Properties.NullText = "Seleccione una familia";
+            cl.strTabla = "Familias";
+            src.DataSource = cl.CargaCombos();
+            cboFamilia.Properties.ValueMember = "Clave";
+            cboFamilia.Properties.DisplayMember = "Des";
+            cboFamilia.Properties.DataSource = clg.AgregarOpcionTodos(src);
+            cboFamilia.Properties.PopupFilterMode = DevExpress.XtraEditors.PopupFilterMode.Contains;
+            cboFamilia.Properties.ForceInitialize();
+            cboFamilia.Properties.PopulateColumns();
+            cboFamilia.Properties.Columns["Clave"].Visible = false;
+            cboFamilia.Properties.Columns["CodigoArticulo"].Visible = false;
+            cboFamilia.Properties.Columns["LineasID"].Visible = false;
+            cboFamilia.Properties.NullText = "Seleccione una familia";
 
             cl.strTabla = "Lineas";
             src.DataSource = cl.CargaCombos();
@@ -281,8 +283,8 @@ namespace VisualSoftErp.Operacion.Ventas.Informes
                     combosCL cl = new combosCL();
                     globalCL clg = new globalCL();
                     cl.strTabla = "FamiliaxLinea";
-                    cl.intClave = Convert.ToInt32(cboLinea.EditValue);
-                    src.DataSource= cl.CargaCombosCondicion();
+                    cl.iCondicion = Convert.ToInt32(cboLinea.EditValue);
+                    src.DataSource= cl.CargaCombos();
                     cboFamilia.Properties.ValueMember = "Clave";
                     cboFamilia.Properties.DisplayMember = "Des";
                     cboFamilia.Properties.DataSource = clg.AgregarOpcionTodos(src); 
@@ -336,10 +338,10 @@ namespace VisualSoftErp.Operacion.Ventas.Informes
                 combosCL cl = new combosCL();
                 globalCL clg = new globalCL();
                 cl.strTabla = "ArticulosxFamilia";
-                cl.intClave = Convert.ToInt32(cboFamilia.EditValue);
+                cl.iCondicion = Convert.ToInt32(cboFamilia.EditValue);
                 cboArticulo.Properties.ValueMember = "Clave";
                 cboArticulo.Properties.DisplayMember = "Des";
-                src.DataSource = cl.CargaCombosCondicion();
+                src.DataSource = cl.CargaCombos();
                 cboArticulo.Properties.DataSource = clg.AgregarOpcionTodos(src);
                 cboArticulo.Properties.ForceInitialize();
                 cboArticulo.Properties.PopupFilterMode = DevExpress.XtraEditors.PopupFilterMode.Contains;

@@ -892,30 +892,65 @@ namespace VisualSoftErp.Operacion.CxP.Formas
             EnviaCorreo();
         }
 
+        private void cboProveedoresID_CloseUp(object sender, DevExpress.XtraEditors.Controls.CloseUpEventArgs e)
+        {
+            LookUpEdit cboProveedoresID = (LookUpEdit)sender;
+            if (cboProveedoresID != null)
+            {
+                if (cboProveedoresID.EditValue != null)
+                {
+                    object orow = cboProveedoresID.Properties.GetDataSourceRowByKeyValue(cboProveedoresID.EditValue);
+                    if (orow != null)
+                    {
+                        int bancoOrd = Convert.ToInt32(((DataRowView)orow)["BancosID"]);
+                        string cta = ((DataRowView)orow)["Cuentabancaria"].ToString();
+                        string fp = ((DataRowView)orow)["C_Formapago"].ToString();
+                    
+                        if (bancoOrd > 0)
+                        {
+                            cboBancosId.EditValue = bancoOrd;
+                        }
+                        if (fp.Length > 0)
+                        {
+                            cboC_Formapago.EditValue = fp;
+                        }
+                        txtCuentaordenante.Text = cta;
+                        Cargarfacturas();
+                    }
+                }
+            }
+        }
+
         private void cboProveedoresID_EditValueChanged(object sender, EventArgs e)
         {
-            object orow = cboProveedoresID.Properties.GetDataSourceRowByKeyValue(cboProveedoresID.EditValue);
-            if (orow != null)
+            LookUpEdit cboProveedoresID = (LookUpEdit)sender;
+            if (cboProveedoresID != null)
             {
-                int bancoOrd = Convert.ToInt32(((DataRowView)orow)["BancosID"]);
-                string cta = ((DataRowView)orow)["Cuentabancaria"].ToString();
-                string fp = ((DataRowView)orow)["C_Formapago"].ToString();
-
-
-                if (bancoOrd > 0)
+                if (cboProveedoresID.IsPopupOpen) return;
+                if (cboProveedoresID.EditValue != null)
                 {
-                    cboBancosId.EditValue = bancoOrd;
-                }
-                if (fp.Length > 0)
-                {
-                    cboC_Formapago.EditValue = fp;
-                }
+                    object orow = cboProveedoresID.Properties.GetDataSourceRowByKeyValue(cboProveedoresID.EditValue);
+                    if (orow != null)
+                    {
+                        int bancoOrd = Convert.ToInt32(((DataRowView)orow)["BancosID"]);
+                        string cta = ((DataRowView)orow)["Cuentabancaria"].ToString();
+                        string fp = ((DataRowView)orow)["C_Formapago"].ToString();
 
-                txtCuentaordenante.Text = cta;
-                Cargarfacturas();
-                
+
+                        if (bancoOrd > 0)
+                        {
+                            cboBancosId.EditValue = bancoOrd;
+                        }
+                        if (fp.Length > 0)
+                        {
+                            cboC_Formapago.EditValue = fp;
+                        }
+
+                        txtCuentaordenante.Text = cta;
+                        Cargarfacturas();
+                    }
+                }
             }
-
         }
 
         private void cboProveedoresID_EditValueChanging(object sender, DevExpress.XtraEditors.Controls.ChangingEventArgs e)
@@ -1484,5 +1519,6 @@ namespace VisualSoftErp.Operacion.CxP.Formas
         {
 
         }
+
     }
 }

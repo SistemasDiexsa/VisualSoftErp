@@ -117,6 +117,23 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <assembly alias="DevExpress.Data.v21.2" name="DevExpress.Data.v21.2, Version=21.2.13.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+  <data name="skinRibbonGalleryBarItem.ImageOptions.SvgImage" type="DevExpress.Utils.Svg.SvgImage, DevExpress.Data.v21.2" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        AAEAAAD/////AQAAAAAAAAAMAgAAAFpEZXZFeHByZXNzLkRhdGEudjIxLjIsIFZlcnNpb249MjEuMi4x
+        My4wLCBDdWx0dXJlPW5ldXRyYWwsIFB1YmxpY0tleVRva2VuPWI4OGQxNzU0ZDcwMGU0OWEFAQAAAB1E
+        ZXZFeHByZXNzLlV0aWxzLlN2Zy5TdmdJbWFnZQEAAAAERGF0YQcCAgAAAAkDAAAADwMAAADiAQAAAu+7
+        vzw/eG1sIHZlcnNpb249JzEuMCcgZW5jb2Rpbmc9J1VURi04Jz8+DQo8c3ZnIHZpZXdCb3g9IjAgMCA0
+        OCA0OCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiBpZD0iR3VpZGVzIj4NCiAgPGRl
+        ZnM+DQogICAgPHN0eWxlPi5jbHMtMXtmaWxsOiNmZWZlZmU7fS5jbHMtMntmaWxsOiM2MDcyOGM7fTwv
+        c3R5bGU+DQogIDwvZGVmcz4NCiAgPHBhdGggZD0iTTE3Ljc2LDMwLjM5LDguMjUsMzcuMTIsMywzNC41
+        di0yMWw1LjI1LTMsOS41NCw3LjMzTDMzLjksMi4zOCw0NSw1LjYyVjQyLjM4TDMzLjczLDQ2LjA2WiIg
+        Y2xhc3M9ImNscy0xIiAvPg0KICA8cGF0aCBkPSJNNDIsOC41NywzNC4yOSw2LDE4LDIxLjcxbC05Ljg0
+        LTcuNUw2LDE1LjI4VjMyLjc0TDguMTQsMzMuOCwxOCwyNi4zMSwzNC4yOSw0Miw0MiwzOS40M1pNOSwy
+        OFYyMGw0LjcxLDRaTTMzLDE3LjE3VjMwLjg0TDI0LDI0WiIgY2xhc3M9ImNscy0yIiAvPg0KPC9zdmc+
+        Cw==
+</value>
+  </data>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="bbiNuevo.ImageOptions.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -138,7 +155,6 @@
         AtAFGgXi8AbPTIW8JLQPzQAAAABJRU5ErkJggg==
 </value>
   </data>
-  <assembly alias="DevExpress.Data.v21.2" name="DevExpress.Data.v21.2, Version=21.2.13.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
   <data name="bbiEditar.ImageOptions.SvgImage" type="DevExpress.Utils.Svg.SvgImage, DevExpress.Data.v21.2" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         AAEAAAD/////AQAAAAAAAAAMAgAAAFpEZXZFeHByZXNzLkRhdGEudjIxLjIsIFZlcnNpb249MjEuMi4x

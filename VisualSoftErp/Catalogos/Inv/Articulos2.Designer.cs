@@ -212,6 +212,8 @@
             this.swTiendaOnline = new DevExpress.XtraEditors.ToggleSwitch();
             this.labelControl50 = new DevExpress.XtraEditors.LabelControl();
             this.barButtonItem2 = new DevExpress.XtraBars.BarButtonItem();
+            this.labelControl63 = new DevExpress.XtraEditors.LabelControl();
+            this.cboCanalVentasID = new DevExpress.XtraEditors.LookUpEdit();
             ((System.ComponentModel.ISupportInitialize)(this.tabbedView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.RibbonControl)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.officeNavigationBar)).BeginInit();
@@ -313,6 +315,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.txtPesoKg.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.swDisponibleentienda.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.swTiendaOnline.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cboCanalVentasID.Properties)).BeginInit();
             this.SuspendLayout();
             // 
             // RibbonControl
@@ -904,6 +907,8 @@
             // 
             // groupControl2
             // 
+            this.groupControl2.Controls.Add(this.cboCanalVentasID);
+            this.groupControl2.Controls.Add(this.labelControl63);
             this.groupControl2.Controls.Add(this.cboSubFamiliasIDClasificaciones);
             this.groupControl2.Controls.Add(this.labelControl6);
             this.groupControl2.Controls.Add(this.cboTA);
@@ -1997,6 +2002,24 @@
             this.barButtonItem2.Id = 47;
             this.barButtonItem2.Name = "barButtonItem2";
             // 
+            // labelControl63
+            // 
+            this.labelControl63.Location = new System.Drawing.Point(16, 114);
+            this.labelControl63.Name = "labelControl63";
+            this.labelControl63.Size = new System.Drawing.Size(78, 13);
+            this.labelControl63.TabIndex = 117;
+            this.labelControl63.Text = "Canal de Ventas";
+            // 
+            // cboCanalVentasID
+            // 
+            this.cboCanalVentasID.EnterMoveNextControl = true;
+            this.cboCanalVentasID.Location = new System.Drawing.Point(117, 111);
+            this.cboCanalVentasID.Name = "cboCanalVentasID";
+            this.cboCanalVentasID.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.cboCanalVentasID.Size = new System.Drawing.Size(286, 20);
+            this.cboCanalVentasID.TabIndex = 118;
+            // 
             // Articulos2
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -2122,6 +2145,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.txtPesoKg.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.swDisponibleentienda.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.swTiendaOnline.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cboCanalVentasID.Properties)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -2309,5 +2333,7 @@
         private DevExpress.XtraEditors.LabelControl labelControl62;
         private DevExpress.XtraEditors.LookUpEdit cboSubFamiliasID;
         private DevExpress.XtraEditors.LookUpEdit cboFamilias;
+        private DevExpress.XtraEditors.LabelControl labelControl63;
+        private DevExpress.XtraEditors.LookUpEdit cboCanalVentasID;
     }
 }

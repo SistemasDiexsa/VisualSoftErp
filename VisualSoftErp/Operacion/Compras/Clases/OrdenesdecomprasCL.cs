@@ -62,6 +62,7 @@ namespace VisualSoftErp.Clases
         public bool blnDesautorizando { get; set; }
         public int intAño { get; set; }
         public int intMes { get; set; }
+        public int intFolioRequisicionMaterial { get; set; }
         #endregion
 
         #region Constructor
@@ -101,6 +102,7 @@ namespace VisualSoftErp.Clases
             dPtjeIeps = 0;
             dPtjeIva = 0;
             intArticulosID = 0;
+            intFolioRequisicionMaterial = 0;
         }
         #endregion
 
@@ -214,6 +216,7 @@ namespace VisualSoftErp.Clases
                 cmd.Parameters.AddWithValue("@prmUsuario", intUsuarioID);
                 cmd.Parameters.AddWithValue("@prmMaquina", strMaquina);
                 cmd.Parameters.AddWithValue("@prmPrograma", strPrograma);
+                cmd.Parameters.AddWithValue("@prmFolioRequisicionMaterial", intFolioRequisicionMaterial);
                 cmd.CommandType = System.Data.CommandType.StoredProcedure;
                 cmd.Connection = cnn;
                 SqlDataReader dr = cmd.ExecuteReader();
@@ -339,7 +342,7 @@ namespace VisualSoftErp.Clases
             }
         } // public class LlenaCajas
 
-        public string OrdenesdecomprasEliminar()
+        public string OrdenesdecomprasCancelar()
         {
             try
             {

@@ -105,9 +105,8 @@ namespace VisualSoftErp.Operacion.Inventario.Informes
             BindingSource src = new BindingSource();
 
             cl.strTabla = "Almacenes";
-
-            cl.intClave = 0;
-            src.DataSource = cl.CargaCombosCondicion();
+            cl.iCondicion = 0;
+            src.DataSource = cl.CargaCombos();
             cboAlm.Properties.ValueMember = "Clave";
             cboAlm.Properties.DisplayMember = "Des";
             cboAlm.Properties.DataSource = clg.AgregarOpcionTodos(src);
@@ -124,9 +123,8 @@ namespace VisualSoftErp.Operacion.Inventario.Informes
             BindingSource src = new BindingSource();
 
             cl.strTabla = "Familias";
-
-            cl.intClave = 0;
-            src.DataSource = cl.CargaCombosCondicion();
+            cl.iCondicion = 0;
+            src.DataSource = cl.CargaCombos();
             cboFamilia.Properties.ValueMember = "Clave";
             cboFamilia.Properties.DisplayMember = "Des";
             cboFamilia.Properties.DataSource = clg.AgregarOpcionTodos(src);
@@ -147,8 +145,8 @@ namespace VisualSoftErp.Operacion.Inventario.Informes
             BindingSource src = new BindingSource();
 
             cl.strTabla = "SubFamiliasXFamilia";
-            cl.intClave = Convert.ToInt32(cboFamilia.EditValue);
-            src.DataSource = cl.CargaCombosCondicion();
+            cl.iCondicion = Convert.ToInt32(cboFamilia.EditValue);
+            src.DataSource = cl.CargaCombos();
 
             cboSubFamilias.Properties.ValueMember = "Clave";
             cboSubFamilias.Properties.DisplayMember = "Des";
@@ -169,7 +167,7 @@ namespace VisualSoftErp.Operacion.Inventario.Informes
             cl.strTabla = "ArticulosxSubFamilia";
             cl.intFam = Convert.ToInt32(cboFamilia.EditValue);
             cl.intSubFamilias = Convert.ToInt32(cboSubFamilias.EditValue);
-            src.DataSource = cl.CargaCombosCondicion();
+            src.DataSource = cl.CargaCombos();
 
             cl.intSubFamilias = Convert.ToInt32(cboSubFamilias.EditValue);
             cboArticulos.Properties.ValueMember = "Clave";

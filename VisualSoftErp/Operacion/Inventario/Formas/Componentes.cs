@@ -18,33 +18,50 @@ namespace VisualSoftErp.Operacion.Inventarios.Informes
     public partial class Componentes : DevExpress.XtraBars.Ribbon.RibbonForm
     {
         double dblFactorUm2;
-        int intComponente
-            , intProductoTerminadoID
-            ;
-
+        int intComponente, intProductoTerminadoID;
         int intUsuarioID = globalCL.gv_UsuarioID;
         public BindingList<detalleCL> detalle;
         public bool blNuevo;
         int intTiposdemovimientoinvID;
 
-
-        public Componentes()
+        public Componentes(int articulosID)
         {
-            InitializeComponent();
-            gridViewPrincipal.OptionsView.ShowViewCaption = true;
-
-            cboArticulos.EnterMoveNextControl = true;
-
-            gridViewPrincipal.OptionsView.NewItemRowPosition = DevExpress.XtraGrid.Views.Grid.NewItemRowPosition.Bottom;
-            gridViewPrincipal.OptionsView.ShowFooter = true;
-            gridViewPrincipal.OptionsNavigation.EnterMoveNextColumn = true;
-            gridViewPrincipal.OptionsNavigation.AutoMoveRowFocus = true;
-            CargaCombos();
-            CargaComboGrid();
-            Inicialisalista();
-            DevExpress.XtraSplashScreen.SplashScreenManager.CloseDefaultWaitForm();
+            if (articulosID == 0) 
+            {
+                InitializeComponent();
+                gridViewPrincipal.OptionsView.ShowViewCaption = true;
+                cboArticulos.EnterMoveNextControl = true;
+                gridViewPrincipal.OptionsView.NewItemRowPosition = DevExpress.XtraGrid.Views.Grid.NewItemRowPosition.Bottom;
+                gridViewPrincipal.OptionsView.ShowFooter = true;
+                gridViewPrincipal.OptionsNavigation.EnterMoveNextColumn = true;
+                gridViewPrincipal.OptionsNavigation.AutoMoveRowFocus = true;
+                CargaCombos();
+                CargaComboGrid();
+                Inicialisalista();
+                DevExpress.XtraSplashScreen.SplashScreenManager.CloseDefaultWaitForm();
+            }
+            else
+            {
+                InitializeComponent();
+                gridViewPrincipal.OptionsView.ShowViewCaption = true;
+                cboArticulos.EnterMoveNextControl = true;
+                gridViewPrincipal.OptionsView.NewItemRowPosition = DevExpress.XtraGrid.Views.Grid.NewItemRowPosition.Bottom;
+                gridViewPrincipal.OptionsView.ShowFooter = true;
+                gridViewPrincipal.OptionsNavigation.EnterMoveNextColumn = true;
+                gridViewPrincipal.OptionsNavigation.AutoMoveRowFocus = true;
+                CargaCombos();
+                CargaComboGrid();
+                Inicialisalista();
+                cboArticulos.EditValue = articulosID;
+                CargaComponentes();
+                DevExpress.XtraSplashScreen.SplashScreenManager.CloseDefaultWaitForm();
+            }
         }
 
+        private void Componentes_Load(object sender, EventArgs e)
+        {
+            
+        }
 
         private void LlenarGrid()
         {
@@ -112,7 +129,7 @@ namespace VisualSoftErp.Operacion.Inventarios.Informes
             cl.intClave = intComponente;
             repositoryItemLookUpEditArticulo.ValueMember = "Clave";
             repositoryItemLookUpEditArticulo.DisplayMember = "Des";
-            repositoryItemLookUpEditArticulo.DataSource = cl.CargaCombosCondicion();
+            repositoryItemLookUpEditArticulo.DataSource = cl.CargaCombos();
             repositoryItemLookUpEditArticulo.ForceInitialize();
             repositoryItemLookUpEditArticulo.PopupFilterMode = DevExpress.XtraEditors.PopupFilterMode.Contains;
             repositoryItemLookUpEditArticulo.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.Standard;
@@ -283,6 +300,7 @@ namespace VisualSoftErp.Operacion.Inventarios.Informes
             gridViewPrincipal.ViewCaption = cboArticulos.Text;
             gridControlPrincipal.ShowRibbonPrintPreview();
         }
+
 
         private void gridViewDetalle_CellValueChanged(object sender, DevExpress.XtraGrid.Views.Base.CellValueChangedEventArgs e)
         {

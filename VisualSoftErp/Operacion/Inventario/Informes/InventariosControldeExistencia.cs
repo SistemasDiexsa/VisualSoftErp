@@ -96,8 +96,8 @@ namespace VisualSoftErp.Operacion.Inventarios.Informes
             cboFamilias.Properties.ValueMember = "Clave";
             cboFamilias.Properties.DisplayMember = "Des";
             cl.strTabla = "FamiliaxLinea";
-            cl.intClave = Convert.ToInt32(cboLinea.EditValue);
-            src.DataSource = cl.CargaCombosCondicion();
+            cl.iCondicion = Convert.ToInt32(cboLinea.EditValue);
+            src.DataSource = cl.CargaCombos();
             cboFamilias.Properties.DataSource = clg.AgregarOpcionTodos(src);
             cboFamilias.Properties.ForceInitialize();
             cboFamilias.Properties.PopupFilterMode = DevExpress.XtraEditors.PopupFilterMode.Contains;
@@ -116,8 +116,8 @@ namespace VisualSoftErp.Operacion.Inventarios.Informes
             cbosubFamilia.Properties.ValueMember = "Clave";
             cbosubFamilia.Properties.DisplayMember = "Des";
             cl.strTabla = "SubfamiliasXfamilias";
-            cl.intClave = Convert.ToInt32(cboFamilias.EditValue);
-            src.DataSource = cl.CargaCombosCondicion();
+            cl.iCondicion = Convert.ToInt32(cboFamilias.EditValue);
+            src.DataSource = cl.CargaCombos();
             cbosubFamilia.Properties.DataSource = clg.AgregarOpcionTodos(src);
             cbosubFamilia.Properties.ForceInitialize();
             cbosubFamilia.Properties.PopupFilterMode = DevExpress.XtraEditors.PopupFilterMode.Contains;

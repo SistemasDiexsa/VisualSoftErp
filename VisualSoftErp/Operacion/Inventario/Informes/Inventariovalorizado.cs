@@ -40,7 +40,8 @@ namespace VisualSoftErp.Operacion.Inventarios.Informes
             cboLinea.Properties.PopupFilterMode = DevExpress.XtraEditors.PopupFilterMode.Contains;
             cboLinea.Properties.PopulateColumns();
             cboLinea.Properties.Columns["Clave"].Visible = false;
-            cboLinea.ItemIndex = 0;
+            cboLinea.EditValue = null;
+            cboLinea.Properties.NullText = "Seleccione una Línea";
 
             cl.strTabla = "Almacenes";
             src.DataSource = cl.CargaCombos();
@@ -51,8 +52,8 @@ namespace VisualSoftErp.Operacion.Inventarios.Informes
             cboAlmacen.Properties.PopupFilterMode = DevExpress.XtraEditors.PopupFilterMode.Contains;
             cboAlmacen.Properties.PopulateColumns();
             cboAlmacen.Properties.Columns["Clave"].Visible = false;
-            cboAlmacen.ItemIndex = 0;
-
+            cboAlmacen.EditValue = null;
+            cboAlmacen.Properties.NullText = "Seleccione un Almacen";
 
 
         }
@@ -72,7 +73,7 @@ namespace VisualSoftErp.Operacion.Inventarios.Informes
             if (cboFamilia.EditValue == null)
             {
                 return "El campo Familia no puede ir vacio";
-            }
+            }   
 
             return "OK";
         }
@@ -103,7 +104,7 @@ namespace VisualSoftErp.Operacion.Inventarios.Informes
                 cboFamilia.Properties.PopulateColumns();
                 cboFamilia.Properties.Columns["Clave"].Visible = false;
                 cboFamilia.Properties.NullText = "Seleccione una familia";
-                cboFamilia.ItemIndex = 0;
+                cboFamilia.EditValue = null;
             }
             else
             {
@@ -118,7 +119,7 @@ namespace VisualSoftErp.Operacion.Inventarios.Informes
                 cboFamilia.Properties.PopulateColumns();
                 cboFamilia.Properties.Columns["Clave"].Visible = false;
                 cboFamilia.Properties.NullText = "Seleccione una familia";
-                cboFamilia.ItemIndex = 0;
+                cboFamilia.EditValue = null;
             }
             
         }
@@ -181,7 +182,7 @@ namespace VisualSoftErp.Operacion.Inventarios.Informes
                     rep.Parameters["parameter7"].Visible = false;
                     rep.Parameters["parameter8"].Value = 0;
                     rep.Parameters["parameter8"].Visible = false;
-                    rep.Parameters["parameter9"].Value = "";
+                    rep.Parameters["parameter9"].Value = swSoloFueraLinea.IsOn ? 1: 0;
                     rep.Parameters["parameter9"].Visible = false;
                     ReportPrintTool rpt = new DevExpress.XtraReports.UI.ReportPrintTool(rep);
                     if (swSolo.IsOn)
@@ -207,7 +208,7 @@ namespace VisualSoftErp.Operacion.Inventarios.Informes
                     rep.Parameters["parameter7"].Visible = false;
                     rep.Parameters["parameter8"].Value = 0;
                     rep.Parameters["parameter8"].Visible = false;
-                    rep.Parameters["parameter9"].Value = "";
+                    rep.Parameters["parameter9"].Value = swSoloFueraLinea.IsOn ? 1 : 0;
                     rep.Parameters["parameter9"].Visible = false;
                     documentViewer1.DocumentSource = rep;
                     if (swSolo.IsOn)
@@ -237,9 +238,58 @@ namespace VisualSoftErp.Operacion.Inventarios.Informes
             this.Close();
         }
 
-        private void labelControl1_Click(object sender, EventArgs e)
+        #region INTERACCIONES USUARIO
+        private void swSoloFueraLinea_Toggled(object sender, EventArgs e)
         {
-
+            ToggleSwitch swSoloFueraLinea = (ToggleSwitch)sender;
+            if (swSoloFueraLinea != null)
+            {
+                if (swSoloFueraLinea.IsOn)
+                {
+                    //labelControl7.Visible = true;
+                    //swConcentradoAlmacenes.Visible = true;
+                    cboLinea.EditValue = 0;
+                    cboFamilia.EditValue = 0;
+                    cboAlmacen.EditValue = 0;
+                    cboLinea.Enabled = false;
+                    cboFamilia.Enabled = false;
+                    cboAlmacen.Enabled = false;
+                }
+                else
+                {
+                    //labelControl7.Visible = false;
+                    //swConcentradoAlmacenes.IsOn = false;
+                    //swConcentradoAlmacenes.Visible = false;
+                    cboLinea.EditValue = null;
+                    cboFamilia.EditValue = null;
+                    cboAlmacen.EditValue = null;
+                    cboLinea.Enabled = true;
+                    cboFamilia.Enabled = true;
+                    cboAlmacen.Enabled = true;
+                }
+            }
         }
+        
+        private void swConcentradoAlmacenes_Toggled(object sender, EventArgs e)
+        {
+            ToggleSwitch swConcentradoAlmacenes = (ToggleSwitch)sender;
+            if (swConcentradoAlmacenes != null)
+            {
+                if (swConcentradoAlmacenes.IsOn)
+                {
+                    cboAlmacen.EditValue = 0;
+                    cboAlmacen.Enabled = false;
+                }
+                else
+                {
+                    cboAlmacen.EditValue = null;
+                    cboAlmacen.Enabled = true;
+                }
+            }
+        }
+
+
+        #endregion INTERACCIONES USUARIO
+
     }
 }

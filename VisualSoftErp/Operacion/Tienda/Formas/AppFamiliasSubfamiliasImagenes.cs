@@ -66,10 +66,10 @@ namespace VisualSoftErp.Operacion.Tienda.Formas
         {
             combosCL cl = new combosCL();
             cl.strTabla = "SubfamiliasXfamilias";
-            cl.intClave = Convert.ToInt32(cboFamiliasID.EditValue);
+            cl.iCondicion = Convert.ToInt32(cboFamiliasID.EditValue);
             cboSubFamilias.Properties.ValueMember = "Clave";
             cboSubFamilias.Properties.DisplayMember = "Des";
-            cboSubFamilias.Properties.DataSource = cl.CargaCombosCondicion();
+            cboSubFamilias.Properties.DataSource = cl.CargaCombos();
             cboSubFamilias.Properties.ForceInitialize();
             cboSubFamilias.Properties.PopupFilterMode = DevExpress.XtraEditors.PopupFilterMode.Contains;
             cboSubFamilias.Properties.PopulateColumns();

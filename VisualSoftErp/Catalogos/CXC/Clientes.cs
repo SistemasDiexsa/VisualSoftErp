@@ -775,7 +775,7 @@ namespace VisualSoftErp.Catalogos.CXC
                 return "Seleccione el canal de venta";
             }
 
-            if (cboRegimen == null)
+            if (cboRegimen.EditValue == null)
             {
                 return "Seleccione un régimen fiscal";
             }

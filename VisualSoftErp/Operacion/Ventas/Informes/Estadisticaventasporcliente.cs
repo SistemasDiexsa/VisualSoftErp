@@ -50,13 +50,13 @@ namespace VisualSoftErp.Operacion.Ventas.Informes
             ListadoMeses.Add(new ClaseGenricaCL() { Clave = "11", Des = "Noviembre" });
             ListadoMeses.Add(new ClaseGenricaCL() { Clave = "12", Des = "Diciembre" });
 
+            #region AGENTES
             BindingSource src = new BindingSource();
             cboAgentes.Properties.ValueMember = "Clave";
             cboAgentes.Properties.DisplayMember = "Des";
             cl.strTabla = "Agentes";
             src.DataSource = cl.CargaCombos();
             cboAgentes.Properties.DataSource = clg.AgregarOpcionTodos(src);
-            cboAgentes.Properties.ForceInitialize();
             cboAgentes.Properties.PopupFilterMode = DevExpress.XtraEditors.PopupFilterMode.Contains;
             cboAgentes.Properties.ForceInitialize();
             cboAgentes.Properties.PopulateColumns();
@@ -64,15 +64,15 @@ namespace VisualSoftErp.Operacion.Ventas.Informes
             cboAgentes.Properties.Columns["Encabezado"].Visible = false;
             cboAgentes.Properties.Columns["Piedepagina"].Visible = false;
             cboAgentes.Properties.Columns["Email"].Visible = false;
-
             cboAgentes.ItemIndex = 0;
+            #endregion AGENTES
 
+            #region CLIENTES
             cboClientes.Properties.ValueMember = "Clave";
             cboClientes.Properties.DisplayMember = "Des";
             cl.strTabla = "Clientes";
             src.DataSource = cl.CargaCombos();
             cboClientes.Properties.DataSource = clg.AgregarOpcionTodos(src);
-            cboClientes.Properties.ForceInitialize();
             cboClientes.Properties.PopupFilterMode = DevExpress.XtraEditors.PopupFilterMode.Contains;
             cboClientes.Properties.ForceInitialize();
             cboClientes.Properties.PopulateColumns();
@@ -95,42 +95,52 @@ namespace VisualSoftErp.Operacion.Ventas.Informes
             cboClientes.Properties.Columns["Moneda"].Visible = false;
             cboClientes.Properties.Columns["DescuentoBase"].Visible = false;
             cboClientes.Properties.Columns["DesctoPP"].Visible = false;
+            cboClientes.Properties.Columns["Desglosardescuentoalfacturar"].Visible = false;
+            cboClientes.Properties.Columns["TransportesID"].Visible = false;
+            cboClientes.Properties.Columns["Addenda"].Visible = false;
+            cboClientes.Properties.Columns["SerieEle"].Visible = false;
+            cboClientes.Properties.Columns["CanalesdeventaID"].Visible = false;
             cboClientes.ItemIndex = 0;
+            #endregion CLIENTES
 
+            #region AÑOS
             cboAños.Properties.ValueMember = "Clave";
             cboAños.Properties.DisplayMember = "Des";
             cl.strTabla = "Añosventas";
             src.DataSource = cl.CargaCombos();
             cboAños.Properties.DataSource = src.DataSource;
-            cboAños.Properties.ForceInitialize();
             cboAños.Properties.PopupFilterMode = DevExpress.XtraEditors.PopupFilterMode.Contains;
             cboAños.Properties.ForceInitialize();
             cboAños.Properties.PopulateColumns();
             cboAños.Properties.Columns["Clave"].Visible = false;
             cboAños.ItemIndex = 0;
+            #endregion AÑOS
 
+            #region MESES
             cboMeses.Properties.ValueMember = "Clave";
             cboMeses.Properties.DisplayMember = "Des";
             cboMeses.Properties.DataSource = ListadoMeses;
-            cboMeses.Properties.ForceInitialize();
             cboMeses.Properties.PopupFilterMode = DevExpress.XtraEditors.PopupFilterMode.Contains;
             cboMeses.Properties.ForceInitialize();
             cboMeses.Properties.PopulateColumns();
             cboMeses.Properties.Columns["Clave"].Visible = false;
+            cboMeses.Properties.Columns["Description"].Visible = false;
+            cboMeses.Properties.Columns["Value"].Visible = false;
             cboMeses.ItemIndex = DateTime.Now.Month;
+            #endregion MESES
 
-            //Canalesdeventa
+            #region CANAL DE VENTA
             cboCanaldeventas.Properties.ValueMember = "Clave";
             cboCanaldeventas.Properties.DisplayMember = "Des";
             cl.strTabla = "Canalesdeventa";
             src.DataSource = cl.CargaCombos();
             cboCanaldeventas.Properties.DataSource = clg.AgregarOpcionTodos(src);
-            cboCanaldeventas.Properties.ForceInitialize();
             cboCanaldeventas.Properties.PopupFilterMode = DevExpress.XtraEditors.PopupFilterMode.Contains;
             cboCanaldeventas.Properties.ForceInitialize();
             cboCanaldeventas.Properties.PopulateColumns();
             cboCanaldeventas.Properties.Columns["Clave"].Visible = false;
             cboCanaldeventas.ItemIndex = 0;
+            #endregion CANAL DE VENTA
         }
 
         private void Reporte()
@@ -147,103 +157,61 @@ namespace VisualSoftErp.Operacion.Ventas.Informes
                 globalCL cl = new globalCL();
                 string result = cl.Datosdecontrol();
                 if (result == "OK")
-                {
                     impDirecto = cl.iImpresiondirecta;
-                }
                 else
-                {
                     impDirecto = 0;
-                }
+
+                string IMPCANT = string.Empty;
+                if (swCantidadOImporte.IsOn)
+                    IMPCANT = "Importe";
+                else
+                    IMPCANT = "Cantidad";
 
                 EstadisticaventasporclienteDesigner rep = new EstadisticaventasporclienteDesigner();
-
-
                 rep.DefaultPrinterSettingsUsing.UseLandscape = false;
                 rep.Landscape = true;
+                rep.Parameters["parameter1"].Value = 0;
+                rep.Parameters["parameter1"].Visible = false;
+                rep.Parameters["parameter2"].Value = 0;
+                rep.Parameters["parameter2"].Visible = false;
+                rep.Parameters["parameter3"].Value = Año;
+                rep.Parameters["parameter3"].Visible = false;
+                rep.Parameters["parameter4"].Value = Mes;
+                rep.Parameters["parameter4"].Visible = false;
+                rep.Parameters["parameter5"].Value = Cliente;
+                rep.Parameters["parameter5"].Visible = false;
+                rep.Parameters["parameter6"].Value = Agente;
+                rep.Parameters["parameter6"].Visible = false;
+                rep.Parameters["parameter7"].Value = Canaldeventa;    //Duumy
+                rep.Parameters["parameter7"].Visible = false;
+                rep.Parameters["parameter8"].Value = Canaldeventa;    //Duumy
+                rep.Parameters["parameter8"].Visible = false;
+                rep.Parameters["parameter9"].Value = "Resumen";    // resmen o detalle
+                rep.Parameters["parameter9"].Visible = false;
+                rep.Parameters["parameter10"].Value = IMPCANT;   // importe o cantidad
+                rep.Parameters["parameter10"].Visible = false;
 
                 if (impDirecto == 1)
                 {
-
-                    string IMPCANT;
-                    if (swCantidadOImporte.IsOn)
-                    {
-                        IMPCANT = "Importe";
-                    }
-                    else
-                    {
-                        IMPCANT = "Cantidad";
-                    }
-
-
-                    rep.Parameters["parameter1"].Value = 0;
-                    rep.Parameters["parameter1"].Visible = false;
-                    rep.Parameters["parameter2"].Value = 0;
-                    rep.Parameters["parameter2"].Visible = false;
-                    rep.Parameters["parameter3"].Value = Año;
-                    rep.Parameters["parameter3"].Visible = false;
-                    rep.Parameters["parameter4"].Value = Mes;
-                    rep.Parameters["parameter4"].Visible = false;
-                    rep.Parameters["parameter5"].Value = Cliente;
-                    rep.Parameters["parameter5"].Visible = false;
-                    rep.Parameters["parameter6"].Value = Agente;
-                    rep.Parameters["parameter6"].Visible = false;
-                    rep.Parameters["parameter7"].Value = Canaldeventa;     //Duumy
-                    rep.Parameters["parameter7"].Visible = false;
-                    rep.Parameters["parameter8"].Value = Canaldeventa;    //Duumy
-                    rep.Parameters["parameter8"].Visible = false;
-                    rep.Parameters["parameter9"].Value = "Resumen";     // resmen o detalle
-                    rep.Parameters["parameter9"].Visible = false;
-                    rep.Parameters["parameter10"].Value = IMPCANT;     // importe o cantidad
-                    rep.Parameters["parameter10"].Visible = false;
                     ReportPrintTool rpt = new DevExpress.XtraReports.UI.ReportPrintTool(rep);
                     rpt.Print();
                     return;
                 }
                 else
                 {
-                    string IMPCANT;
-                    if (swCantidadOImporte.IsOn)
-                    {
-                        IMPCANT = "Importe";
-                    }
-                    else
-                    {
-                        IMPCANT = "Cantidad";
-                    }
-                    rep.Parameters["parameter1"].Value = 0;
-                    rep.Parameters["parameter1"].Visible = false;
-                    rep.Parameters["parameter2"].Value = 0;
-                    rep.Parameters["parameter2"].Visible = false;
-                    rep.Parameters["parameter3"].Value = Año;
-                    rep.Parameters["parameter3"].Visible = false;
-                    rep.Parameters["parameter4"].Value = Mes;
-                    rep.Parameters["parameter4"].Visible = false;
-                    rep.Parameters["parameter5"].Value = Cliente;
-                    rep.Parameters["parameter5"].Visible = false;
-                    rep.Parameters["parameter6"].Value = Agente;
-                    rep.Parameters["parameter6"].Visible = false;
-                    rep.Parameters["parameter7"].Value = Canaldeventa;    //Duumy
-                    rep.Parameters["parameter7"].Visible = false;
-                    rep.Parameters["parameter8"].Value = Canaldeventa;    //Duumy
-                    rep.Parameters["parameter8"].Visible = false;
-                    rep.Parameters["parameter9"].Value = "Resumen";    // resmen o detalle
-                    rep.Parameters["parameter9"].Visible = false;
-                    rep.Parameters["parameter10"].Value = IMPCANT;   // importe o cantidad
-                    rep.Parameters["parameter10"].Visible = false;
                     documentViewer1.DocumentSource = rep;
                     rep.CreateDocument();
                     ribbonControl.MergeOwner.SelectedPage = ribbonControl.MergeOwner.TotalPageCategory.GetPageByText(ribbonPageImpresion.Text);
                     navigationFrame.SelectedPageIndex = 1;
                 }
-
-
             }
             catch (Exception ex)
             {
                 MessageBox.Show("Reporte: " + ex.Message);
             }
         }
-        private void Reporte2()
+        
+        private void ReporteDetallado()
         {
             try
             {
@@ -363,6 +331,7 @@ namespace VisualSoftErp.Operacion.Ventas.Informes
                 MessageBox.Show("Reporte: " + ex.Message);
             }
         }
+
         private void bbiPrevia_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
             
@@ -370,7 +339,7 @@ namespace VisualSoftErp.Operacion.Ventas.Informes
             if(swResumenDetalle.IsOn)
                 this.Reporte();
             else
-                this.Reporte2();
+                this.ReporteDetallado();
             DevExpress.XtraSplashScreen.SplashScreenManager.CloseDefaultWaitForm();
         }
 

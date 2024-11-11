@@ -18,6 +18,7 @@ namespace VisualSoftErp.Clases
         public string strSerie;
         public int intFolio;
         #endregion
+
         #region Constructor
         public SerieCL()
         {
@@ -27,6 +28,7 @@ namespace VisualSoftErp.Clases
            
         }
         #endregion
+
         #region Metodos
         public string BuscarSerieporUsuario()
         {

@@ -12,7 +12,7 @@ using VisualSoftErp.Clases;
 using DevExpress.XtraGrid.Views.Grid;
 
 namespace VisualSoftErp.Operacion.CxP.Formas
-{
+{   
     public partial class AnticiposCxP : DevExpress.XtraBars.Ribbon.RibbonForm
     {
         string Monedadelachequera;

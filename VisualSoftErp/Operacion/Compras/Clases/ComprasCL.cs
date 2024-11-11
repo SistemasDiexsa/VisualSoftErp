@@ -84,6 +84,7 @@ namespace VisualSoftErp.Clases
         public DataTable dtResult { get; set; }
 
         public decimal decCargoVario { get; set; }
+        public decimal decAjusteFactura { get; set; }
         #endregion
 
         #region Constructor
@@ -1078,6 +1079,7 @@ namespace VisualSoftErp.Clases
                 cmd.Parameters.AddWithValue("@prmMaquina", Environment.MachineName);
                 cmd.Parameters.AddWithValue("@prmUUID", strUUID);
                 cmd.Parameters.AddWithValue("@prmCargoVario", decCargoVario);
+                cmd.Parameters.AddWithValue("@prmAjusteFactura", decAjusteFactura);
 
                 cmd.CommandType = System.Data.CommandType.StoredProcedure;
                 cmd.Connection = cnn;
