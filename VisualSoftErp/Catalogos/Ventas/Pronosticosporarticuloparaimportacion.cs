@@ -16,7 +16,31 @@ namespace VisualSoftErp.Operacion.Ventas.Formas
     public partial class Pronosticosporarticuloparaimportacion : DevExpress.XtraBars.Ribbon.RibbonForm
     {
 
-        public BindingList<detalleCL> detalle;
+        public BindingList<detalleCL> detalle = new BindingList<detalleCL>();
+        public class detalleCL
+        {
+            public string NomLin { get; set; }
+            public string NomFam { get; set; }
+            public int ArticulosID { get; set; }
+            public string Articulo { get; set; }
+            public string NomArt { get; set; }
+            public int Ene { get; set; }
+            public int Feb { get; set; }
+            public int Mar { get; set; }
+            public int Abr { get; set; }
+            public int May { get; set; }
+            public int Jun { get; set; }
+            public int Jul { get; set; }
+            public int Ago { get; set; }
+            public int Sep { get; set; }
+            public int Oct { get; set; }
+            public int Nov { get; set; }
+            public int Dic { get; set; }
+            public int Total { get; set; }
+            public int Promedio { get; set; }
+            public int Proyectado { get; set; }
+        }
+        
         bool blNuevo;
         public Pronosticosporarticuloparaimportacion()
         {
@@ -111,10 +135,7 @@ namespace VisualSoftErp.Operacion.Ventas.Formas
         {
             ribbonPageGroup1.Visible = false;
             blNuevo = true;
-            Inicialisalista();
             llenarGridDetalle();
-            BotonesEdicion();
-
         }
 
         private void BotonesEdicion()
@@ -125,96 +146,84 @@ namespace VisualSoftErp.Operacion.Ventas.Formas
             navigationFrame.SelectedPageIndex = 1;
         }
 
-        private void LimpiaCajas()
-        {
-            //cboFamiliasID.EditValue = null;
-            //cboSubFamiliasID.EditValue = null;
-        }
-
-        public class detalleCL
-        {
-            public string NomLin { get; set; }
-            public string NomFam { get; set; }
-            public int ArticulosID { get; set; }
-            public string Articulo { get; set; }
-            public string NomArt { get; set; }
-            public int Ene { get; set; }
-            public int Feb { get; set; }
-            public int Mar { get; set; }
-            public int Abr { get; set; }
-            public int May { get; set; }
-            public int Jun { get; set; }
-            public int Jul { get; set; }
-            public int Ago { get; set; }
-            public int Sep { get; set; }
-            public int Oct { get; set; }
-            public int Nov { get; set; }
-            public int Dic { get; set; }
-            public int Total { get; set; }
-            public int Promedio { get; set; }
-            public int Proyectado { get; set; }
-        }
-
         private void Inicialisalista()
         {
-            detalle = new BindingList<detalleCL>();
-            detalle.AllowNew = true;
-            gridControlDetalle.DataSource = detalle;
+            //detalle = new BindingList<detalleCL>();
+            //detalle.AllowNew = true;
+            //gridControlDetalle.DataSource = detalle;
 
-            gridColumnNomLin.OptionsColumn.ReadOnly = true;
-            gridColumnNomLin.OptionsColumn.AllowFocus = false;
+            gridViewDetalle.Columns["NomLin"].Caption = "Lineas";
+            gridViewDetalle.Columns["NomLin"].OptionsColumn.ReadOnly = true;
+            gridViewDetalle.Columns["NomLin"].OptionsColumn.AllowFocus = false;
 
-            gridColumnNomFam.OptionsColumn.ReadOnly = true;
-            gridColumnNomFam.OptionsColumn.AllowFocus = false;
+            gridViewDetalle.Columns["NomFam"].Caption = "Familia";
+            gridViewDetalle.Columns["NomFam"].OptionsColumn.ReadOnly = true;
+            gridViewDetalle.Columns["NomFam"].OptionsColumn.AllowFocus = false;
 
-            gridColumnArticulosID.OptionsColumn.ReadOnly = true;
-            gridColumnArticulosID.OptionsColumn.AllowFocus = false;
+            gridViewDetalle.Columns["Articulo"].OptionsColumn.ReadOnly = true;
+            gridViewDetalle.Columns["Articulo"].OptionsColumn.AllowFocus = false;
 
-            gridColumnArticulo.OptionsColumn.ReadOnly = true;
-            gridColumnArticulo.OptionsColumn.AllowFocus = false;
+            gridViewDetalle.Columns["NomArt"].Caption = "Nombre Artículo";
+            gridViewDetalle.Columns["NomArt"].OptionsColumn.ReadOnly = true;
+            gridViewDetalle.Columns["NomArt"].OptionsColumn.AllowFocus = false;
 
-            gridColumnEne.OptionsColumn.ReadOnly = true;
-            gridColumnEne.OptionsColumn.AllowFocus = false;
 
-            gridColumnFeb.OptionsColumn.ReadOnly = true;
-            gridColumnFeb.OptionsColumn.AllowFocus = false;
+            gridViewDetalle.Columns["ENE"].Caption = "Enero";
+            gridViewDetalle.Columns["ENE"].OptionsColumn.ReadOnly = true;
+            gridViewDetalle.Columns["ENE"].OptionsColumn.AllowFocus = false;
 
-            gridColumnMar.OptionsColumn.ReadOnly = true;
-            gridColumnMar.OptionsColumn.AllowFocus = false;
+            gridViewDetalle.Columns["FEB"].Caption = "Febrero";
+            gridViewDetalle.Columns["FEB"].OptionsColumn.ReadOnly = true;
+            gridViewDetalle.Columns["FEB"].OptionsColumn.AllowFocus = false;
 
-            gridColumnAbr.OptionsColumn.ReadOnly = true;
-            gridColumnAbr.OptionsColumn.AllowFocus = false;
+            gridViewDetalle.Columns["MAR"].Caption = "Marzo";
+            gridViewDetalle.Columns["MAR"].OptionsColumn.ReadOnly = true;
+            gridViewDetalle.Columns["MAR"].OptionsColumn.AllowFocus = false;
 
-            gridColumnMay.OptionsColumn.ReadOnly = true;
-            gridColumnMay.OptionsColumn.AllowFocus = false;
+            gridViewDetalle.Columns["ABR"].Caption = "Abril";
+            gridViewDetalle.Columns["ABR"].OptionsColumn.ReadOnly = true;
+            gridViewDetalle.Columns["ABR"].OptionsColumn.AllowFocus = false;
 
-            gridColumnJun.OptionsColumn.ReadOnly = true;
-            gridColumnJun.OptionsColumn.AllowFocus = false;
+            gridViewDetalle.Columns["MAY"].Caption = "Mayo";
+            gridViewDetalle.Columns["MAY"].OptionsColumn.ReadOnly = true;
+            gridViewDetalle.Columns["MAY"].OptionsColumn.AllowFocus = false;
 
-            gridColumnJul.OptionsColumn.ReadOnly = true;
-            gridColumnJul.OptionsColumn.AllowFocus = false;
+            gridViewDetalle.Columns["JUN"].Caption = "Junio";
+            gridViewDetalle.Columns["JUN"].OptionsColumn.ReadOnly = true;
+            gridViewDetalle.Columns["JUN"].OptionsColumn.AllowFocus = false;
 
-            gridColumnAgo.OptionsColumn.ReadOnly = true;
-            gridColumnAgo.OptionsColumn.AllowFocus = false;
+            gridViewDetalle.Columns["JUL"].Caption = "Julio";
+            gridViewDetalle.Columns["JUL"].OptionsColumn.ReadOnly = true;
+            gridViewDetalle.Columns["JUL"].OptionsColumn.AllowFocus = false;
 
-            gridColumnSep.OptionsColumn.ReadOnly = true;
-            gridColumnSep.OptionsColumn.AllowFocus = false;
+            gridViewDetalle.Columns["AGO"].Caption = "Agosto";
+            gridViewDetalle.Columns["AGO"].OptionsColumn.ReadOnly = true;
+            gridViewDetalle.Columns["AGO"].OptionsColumn.AllowFocus = false;
 
-            gridColumnOct.OptionsColumn.ReadOnly = true;
-            gridColumnOct.OptionsColumn.AllowFocus = false;
+            gridViewDetalle.Columns["SEP"].Caption = "Septiembre";
+            gridViewDetalle.Columns["SEP"].OptionsColumn.ReadOnly = true;
+            gridViewDetalle.Columns["SEP"].OptionsColumn.AllowFocus = false;
 
-            gridColumnNov.OptionsColumn.ReadOnly = true;
-            gridColumnNov.OptionsColumn.AllowFocus = false;
+            gridViewDetalle.Columns["OCT"].Caption = "Octubre";
+            gridViewDetalle.Columns["OCT"].OptionsColumn.ReadOnly = true;
+            gridViewDetalle.Columns["OCT"].OptionsColumn.AllowFocus = false;
 
-            gridColumnDic.OptionsColumn.ReadOnly = true;
-            gridColumnDic.OptionsColumn.AllowFocus = false;
+            gridViewDetalle.Columns["NOV"].Caption = "Noviembre";
+            gridViewDetalle.Columns["NOV"].OptionsColumn.ReadOnly = true;
+            gridViewDetalle.Columns["NOV"].OptionsColumn.AllowFocus = false;
 
-            gridColumnPromedio.OptionsColumn.ReadOnly = true;
-            gridColumnPromedio.OptionsColumn.AllowFocus = false;
+            gridViewDetalle.Columns["DIC"].Caption = "Diciembre";
+            gridViewDetalle.Columns["DIC"].OptionsColumn.ReadOnly = true;
+            gridViewDetalle.Columns["DIC"].OptionsColumn.AllowFocus = false;
 
-            gridColumnProyectado.OptionsColumn.ReadOnly = false;
-            gridColumnProyectado.OptionsColumn.AllowFocus = true;
+            gridViewDetalle.Columns["Total"].OptionsColumn.ReadOnly = true;
+            gridViewDetalle.Columns["Total"].OptionsColumn.AllowFocus = false;
 
+            gridViewDetalle.Columns["Promedio"].Caption = "Promedio";
+            gridViewDetalle.Columns["Promedio"].OptionsColumn.ReadOnly = true;
+            gridViewDetalle.Columns["Promedio"].OptionsColumn.AllowFocus = false;
+
+            gridViewDetalle.Columns["Proyectado"].Caption = "Proyectado";
         }
 
         private void llenarGridDetalle()
@@ -234,63 +243,24 @@ namespace VisualSoftErp.Operacion.Ventas.Formas
                 Año= Convert.ToInt32(txtA.Text);
                 Mes = Convert.ToInt32(cboMeses.EditValue);
 
-
-                // PETICION DE RAQUENEL: 
-                // SE QUITA ESTA PARTE PARA QUE CARGUE EL PRONOSTICO DE CADA MES Y NO EL DEL MES PASADO
-                //if (Mes > 1)
-                //    Mes = Mes - 1;
-                //else
-                //{
-                //    Mes = 12;
-                //    Año = Año - 1;
-                //}
-
-                cl.intEmp = 1;
+                cl.intEmp = swImporteCantidad.IsOn ? 1 : 0;
                 cl.intSuc = 0;
                 cl.intEje = Año;
                 cl.intMes = Mes;
                 cl.intLin = Convert.ToInt32(cboLinea.EditValue);
                 cl.intFam = Convert.ToInt32(cboFamilia.EditValue);
                 cl.intTipo = Convert.ToInt32(cboTipo.EditValue);
+                gridControlDetalle.DataSource = null;
                 gridControlDetalle.DataSource = cl.MetaporarticuloGridDetalle();
-
-                //Se calcula el promedio
-                int promedio = 0;
-                int total = 0;
-                
-                for (int i = 0; i <= gridViewDetalle.RowCount - 1; i++)
-                {
-                    promedio = Convert.ToInt32(gridViewDetalle.GetRowCellValue(i, "Ene"));
-                    promedio = promedio + Convert.ToInt32(gridViewDetalle.GetRowCellValue(i, "Feb"));
-                    promedio = promedio + Convert.ToInt32(gridViewDetalle.GetRowCellValue(i, "Mar"));
-                    promedio = promedio + Convert.ToInt32(gridViewDetalle.GetRowCellValue(i, "Abr"));
-                    promedio = promedio + Convert.ToInt32(gridViewDetalle.GetRowCellValue(i, "May"));
-                    promedio = promedio + Convert.ToInt32(gridViewDetalle.GetRowCellValue(i, "Jun"));
-                    promedio = promedio + Convert.ToInt32(gridViewDetalle.GetRowCellValue(i, "Jul"));
-                    promedio = promedio + Convert.ToInt32(gridViewDetalle.GetRowCellValue(i, "Ago"));
-                    promedio = promedio + Convert.ToInt32(gridViewDetalle.GetRowCellValue(i, "Sep"));
-                    promedio = promedio + Convert.ToInt32(gridViewDetalle.GetRowCellValue(i, "Oct"));
-                    promedio = promedio + Convert.ToInt32(gridViewDetalle.GetRowCellValue(i, "Nov"));
-                    promedio = promedio + Convert.ToInt32(gridViewDetalle.GetRowCellValue(i, "Dic"));
-
-                    total = promedio;
-                    gridViewDetalle.FocusedRowHandle = i;
-                    gridViewDetalle.SetFocusedRowCellValue("Total", total);
-                    if (promedio > 0)
-                    {
-                        promedio = total / Mes;
-                        gridViewDetalle.SetFocusedRowCellValue("Promedio", promedio);
-                    }                                            
-                }
 
                 globalCL clg = new globalCL();
                 clg.strGridLayout = "gridMetaporarticuloDetalle";
                 clg.restoreLayout(gridViewDetalle);
-
                 gridViewDetalle.OptionsView.ShowViewCaption = true;
-
                 gridViewDetalle.ViewCaption = "PRONOSTICO PARA " + clg.NombreDeMes(Convert.ToInt32(cboMeses.EditValue), 0) + " DEL " + txtA.Text;
                 gridViewDetalle.FocusedRowHandle = 0;
+                Inicialisalista();
+                BotonesEdicion();
             }
             catch (Exception ex)
             {

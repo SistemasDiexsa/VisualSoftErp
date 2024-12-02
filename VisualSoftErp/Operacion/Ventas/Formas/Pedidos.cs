@@ -147,6 +147,7 @@ namespace VisualSoftErp.Catalogos.Ventas
                     cboAgente.Enabled = false;
             }
         }
+
         private void LlenarGrid(int Año,int Mes)///gridprincipal
         {
             PedidosCL cl = new PedidosCL();
@@ -905,8 +906,8 @@ namespace VisualSoftErp.Catalogos.Ventas
                     dIvaTotal,
                     RetPIva, 
                     dIepsTotal, 
-                    dNetoTotal, 
-                    dDescuento, 
+                    dNetoTotal,
+                    dDescuentoTotal, 
                     pObservaciones,
                     strCondicionesdepago, 
                     intPlazo, 
@@ -1587,9 +1588,9 @@ namespace VisualSoftErp.Catalogos.Ventas
                     gridViewDetalle.SetFocusedRowCellValue("Neto", NETO);
                     gridViewDetalle.SetFocusedRowCellValue("TotalArticulo", NETO);
                     gridViewDetalle.SetFocusedRowCellValue("IEPS", ieps);
+
+
                     CalculaDescuento(gridViewDetalle.FocusedRowHandle);
-
-
 
                 }
             }
@@ -1718,6 +1719,15 @@ namespace VisualSoftErp.Catalogos.Ventas
                 gridViewDetalle.SetFocusedRowCellValue("Iva", iva); //Le ponemos el valor a la celda Iva del grid
                 gridViewDetalle.SetFocusedRowCellValue("Neto", neto); //Le ponemos el valor a la celda neto del grid
                 gridViewDetalle.SetFocusedRowCellValue("Descuento", descuento); //Le ponemos el valor a la celda descuento del grid
+
+                descuento = 0;
+                for (int i = 0; i < gridViewDetalle.RowCount; i++)
+                {
+                    decimal descRenglon = Convert.ToDecimal(gridViewDetalle.GetRowCellValue(i, gridColumnDescuento));
+                    descuento += descRenglon;
+                }
+
+                txtDescuento.Text = descuento.ToString();
             }
             catch (Exception ex)
             {

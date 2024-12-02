@@ -1,11 +1,13 @@
 ﻿using DevExpress.XtraGrid.Views.Grid;
 using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Data;
 using System.IO;
 using System.Linq;
 using System.Web;
 using System.Windows.Forms;
+using VisualSoftErp.Catalogos.Ventas;
 using VisualSoftErp.Clases;
 
 
@@ -36,11 +38,13 @@ namespace ViajesNet.Clases
         public decimal pInteres { get; set; }
         public string TipoRelacion { get; set; }
         public string UUIDRelacion { get; set; }
+        public bool IsPublicoGeneral { get; set; }
         #endregion
         #region Constructor
         public complementodepagoCL()
         {
             pFactorInteres = 0;
+            IsPublicoGeneral = false;
         }
         #endregion
         //-------------------------- COMPLEMENTO DE PAGO -----------------------
@@ -136,6 +140,15 @@ namespace ViajesNet.Clases
                 else
                 {
                     return "No se pudo leer los datos del cliente";
+                }
+
+                if (IsPublicoGeneral)
+                {
+                    vs.ReceptorNombre = "VENTAS AL PUBLICO EN GENERAL";
+                    vs.ReceptorRfc33 = "XAXX010101000";
+                    vs.ReceptorDomFiscal = ConfigurationManager.AppSettings["Ambiente"] != "Productivo" ? "20928" : cl1.pEmisorCP;
+                    vs.ReceptorRegimenFiscal = "616";
+                    vs.UsoCfdi33 = "S01";
                 }
 
                 //Factoraje

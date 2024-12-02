@@ -857,7 +857,7 @@ namespace VisualSoftErp.Operacion.Ventas.Formas
                     dNetoTotal = Convert.ToDecimal(txtNeto.Text.Replace("$", ""));
                     dSubTotal = Convert.ToDecimal(txtSubtotal.Text.Replace("$", ""));
                     pTotalImpuestosTrasladados = Convert.ToDecimal(txtIva.Text.Replace("$", ""));
-                    dSumaDesc = 0;
+                    dSumaDesc = Convert.ToDecimal(txtDescuento.Text.Replace("$", ""));
                     pLugarExpedicionCP = "64810";
 
                     serieFac = serieElectronica;

@@ -746,7 +746,7 @@ namespace VisualSoftErp.Catalogos.Ventas
                 decimal TotalSubtotal = 0, TotalIEPS = 0, TotalIVA = 0, TotalISR = 0, TotalRetIVA = 0, TotalNeto = 0;
                
                 //Notas
-                //Ver el procedimiento Guardar como se llena dtFacturas y copiar ese codigo aqúi y llenar las variables antede de pasarlas al DT
+                //Ver el procedimiento Guardar como se llena dtFacturas y copiar ese codigo aqúi y llenar las variables ante de de pasarlas al DT
                 //Recorrer el griddetalle para extraer los datos y pasarlos al dt
                 for (int i = 0; i < gridViewDetalle.RowCount - 1; i++)
                 {
@@ -777,72 +777,72 @@ namespace VisualSoftErp.Catalogos.Ventas
 
                         //Aqui llenar todo el datatable dtfacturas que se definió arriba
                         dtFacturas.Rows.Add(
-                        cboSerie.EditValue,
-                        txtFolio.Text,
-                        txtFecha.Text,
-                    cboFormadePago.EditValue,
-                    cboCondicionesdepago.SelectedIndex,
-                    dSubTotal,
-                    dSumaDesc,
-                    cboMonedas.EditValue,
-                    intParidad,
-                    dNetoTotal,
-                    pc_Tipodecomprobante,
-                    strMetododepago,
-                    pLugarExpedicionCP,
-                    pConfirmacion,
-                    strTipoRelacion,
-                    txtFolioacturarelacionada.Text,
-                    intClienteID,
-                    cboUsocfdi.EditValue,
-                    pTotalmpuestosRetenidos,
-                    pTotalImpuestosTrasladados,
-                    intuuid,
-                    intAgenteID,
-                    intStatus,
-                    txtPlazo.Text,
-                    FechaCancelacion,
-                    strRazonCancelacion,
-                    intUsuarioID,
-                    intAlmacenes,
-                    intExportacion,
-                    txtObservaciones.Text,
-                    txtPredial.Text,
-                    txtOrdendecompra.Text,
-                    txtSeriefacturarelacionada.Text,
-                   intFolioFacturaRelacionada,
-
-                        intSeq,
-                        intArticulosID,
-                        dCantidad,
-                        strClaveProdServ,
-                        pc_ClaveUnidad,
-                        strUnidadM,
-                        strDescripcion,
-                        pValorUnitario,
-                        dImporte,
-                        dPorcentajededescuento,
-                        dDescuento,
-                        dIvaPorcentaje,
-                        dIvaImporte,
-                        dPIeps,
-                        dIeps,
-                        pNumeroPedimento,
-                        pUltimoCosto,
-                        pValorUnitario,
-                        PtjeRetIva,
-                        PtjeRetIsr,
-                        RetPIva,
-                        RetPIsr,
-                        strNombreCliente,
-                        strRegimenFiscal,
-                        TotalIVA,
-                        TotalISR,
-                        TotalIEPS,
-                        TotalRetIVA,
-                        TotalNeto,
-                        TotalSubtotal,
-                        NomEmp);
+                            cboSerie.EditValue,
+                            txtFolio.Text,
+                            txtFecha.Text,
+                            cboFormadePago.EditValue,
+                            cboCondicionesdepago.SelectedIndex,
+                            dSubTotal,
+                            dSumaDesc,
+                            cboMonedas.EditValue,
+                            intParidad,
+                            dNetoTotal,
+                            pc_Tipodecomprobante,
+                            strMetododepago,
+                            pLugarExpedicionCP,
+                            pConfirmacion,
+                            strTipoRelacion,
+                            txtFolioacturarelacionada.Text,
+                            intClienteID,
+                            cboUsocfdi.EditValue,
+                            pTotalmpuestosRetenidos,
+                            pTotalImpuestosTrasladados,
+                            intuuid,
+                            intAgenteID,
+                            intStatus,
+                            txtPlazo.Text,
+                            FechaCancelacion,
+                            strRazonCancelacion,
+                            intUsuarioID,
+                            intAlmacenes,
+                            intExportacion,
+                            txtObservaciones.Text,
+                            txtPredial.Text,
+                            txtOrdendecompra.Text,
+                            txtSeriefacturarelacionada.Text,
+                            intFolioFacturaRelacionada,
+                            intSeq,
+                            intArticulosID,
+                            dCantidad,
+                            strClaveProdServ,
+                            pc_ClaveUnidad,
+                            strUnidadM,
+                            strDescripcion,
+                            pValorUnitario,
+                            dImporte,
+                            dPorcentajededescuento,
+                            dDescuento,
+                            dIvaPorcentaje,
+                            dIvaImporte,
+                            dPIeps,
+                            dIeps,
+                            pNumeroPedimento,
+                            pUltimoCosto,
+                            pValorUnitario,
+                            PtjeRetIva,
+                            PtjeRetIsr,
+                            RetPIva,
+                            RetPIsr,
+                            strNombreCliente,
+                            strRegimenFiscal,
+                            TotalIVA,
+                            TotalISR,
+                            TotalIEPS,
+                            TotalRetIVA,
+                            TotalNeto,
+                            TotalSubtotal,
+                            NomEmp
+                        );
 
 
                     }
@@ -929,7 +929,7 @@ namespace VisualSoftErp.Catalogos.Ventas
                 decimal pTotalmpuestosRetenidos = Convert.ToDecimal(vs.ExtraeValor(strrutaxmltimbrado, "cfdi:Impuestos", "TotalImpuestosRetenidos"));
                 valor = vs.ExtraeValor(strrutaxmltimbrado, "cfdi:Comprobante", "Descuento");
 
-                decimal dSumaDesc = 0;
+                decimal dSumaDesc = Convert.ToDecimal(txtDescuento.Text.Replace("$", ""));
                 if (Decimal.TryParse(valor, out dSumaDesc))
                 {
                     //Se aigna el valor en el Out y si no ya lo asignamos en cero
@@ -1703,6 +1703,15 @@ namespace VisualSoftErp.Catalogos.Ventas
                 gridViewDetalle.SetFocusedRowCellValue("IEPS", ieps); //Le ponemos el valor a la celda Iva del grid
                 gridViewDetalle.SetFocusedRowCellValue("TotalArticulo", neto); //Le ponemos el valor a la celda neto del grid
                 gridViewDetalle.SetFocusedRowCellValue("Descuento", descuento); //Le ponemos el valor a la celda descuento del grid
+
+                descuento = 0;
+                for (int i = 0; i < gridViewDetalle.RowCount; i++)
+                {
+                    decimal descRenglon = Convert.ToDecimal(gridViewDetalle.GetRowCellValue(i, gridColumnDescuento));
+                    descuento += descRenglon;
+                }
+
+                txtDescuento.Text = descuento.ToString();
             }
             catch (Exception ex)
             {
@@ -1784,18 +1793,18 @@ namespace VisualSoftErp.Catalogos.Ventas
                 result = Timbrar();
                 if (result == "OK")
                 {
-                    
+
                     globalCL clg = new globalCL();
-                
-                    for (int i=0;i<100;i++)
+
+                    for (int i = 0; i < 100; i++)
                     {
                         if (!clg.HayInternet())
                         {
                             DialogResult dialogResult = MessageBox.Show("Desea re-intentar? (Sí da click en NO, deberá cancelar el XML timbrado)", "Falla de internet", MessageBoxButtons.YesNo);
                             if (dialogResult == DialogResult.No)
                             {
-                                result=clg.RenombrarXMLTimbrado(cboSerie.EditValue.ToString(),Convert.ToInt32(txtFolio.Text),Convert.ToDateTime(txtFecha.Text));
-                                if (result=="OK")
+                                result = clg.RenombrarXMLTimbrado(cboSerie.EditValue.ToString(), Convert.ToInt32(txtFolio.Text), Convert.ToDateTime(txtFecha.Text));
+                                if (result == "OK")
                                 {
                                     MessageBox.Show("Archivo renombrado correctamente, vaya a Herramientas-Cancelaciones directas y cancele");
                                     clg.Bitacora("Facturas. Se renombra XML de Folio:" + cboSerie.EditValue.ToString() + txtFolio.Text + " por falla de internet. Usuario:" + globalCL.gv_UsuarioID.ToString());
@@ -1807,8 +1816,8 @@ namespace VisualSoftErp.Catalogos.Ventas
                         {
                             break;
                         }
-                       
-                    }                   
+
+                    }
                     Guardar();
                     DevExpress.XtraSplashScreen.SplashScreenManager.CloseDefaultWaitForm();
                 }    

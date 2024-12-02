@@ -50,6 +50,8 @@
             this.ribbonStatusBar = new DevExpress.XtraBars.Ribbon.RibbonStatusBar();
             this.navigationFrame = new DevExpress.XtraBars.Navigation.NavigationFrame();
             this.employeesNavigationPage = new DevExpress.XtraBars.Navigation.NavigationPage();
+            this.swImporteCantidad = new DevExpress.XtraEditors.ToggleSwitch();
+            this.cboMeses = new DevExpress.XtraEditors.LookUpEdit();
             this.labelControl2 = new DevExpress.XtraEditors.LabelControl();
             this.txtA = new DevExpress.XtraEditors.TextEdit();
             this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
@@ -62,32 +64,13 @@
             this.customersNavigationPage = new DevExpress.XtraBars.Navigation.NavigationPage();
             this.gridControlDetalle = new DevExpress.XtraGrid.GridControl();
             this.gridViewDetalle = new DevExpress.XtraGrid.Views.Grid.GridView();
-            this.gridColumnNomLin = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.gridColumnNomFam = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.gridColumnArticulosID = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.gridColumnArticulo = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.gridColumnNomArt = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.gridColumnEne = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.gridColumnFeb = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.gridColumnMar = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.gridColumnAbr = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.gridColumnMay = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.gridColumnJun = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.gridColumnJul = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.gridColumnAgo = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.gridColumnSep = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.gridColumnOct = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.gridColumnNov = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.gridColumnDic = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.gridColumnTotal = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.gridColumnPromedio = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.gridColumnProyectado = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.cboMeses = new DevExpress.XtraEditors.LookUpEdit();
             ((System.ComponentModel.ISupportInitialize)(this.tabbedView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ribbonControl)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.navigationFrame)).BeginInit();
             this.navigationFrame.SuspendLayout();
             this.employeesNavigationPage.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.swImporteCantidad.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cboMeses.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtA.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cboTipo.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cboFamilia.Properties)).BeginInit();
@@ -95,7 +78,6 @@
             this.customersNavigationPage.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridControlDetalle)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridViewDetalle)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.cboMeses.Properties)).BeginInit();
             this.SuspendLayout();
             // 
             // ribbonControl
@@ -269,6 +251,7 @@
             // 
             // employeesNavigationPage
             // 
+            this.employeesNavigationPage.Controls.Add(this.swImporteCantidad);
             this.employeesNavigationPage.Controls.Add(this.cboMeses);
             this.employeesNavigationPage.Controls.Add(this.labelControl2);
             this.employeesNavigationPage.Controls.Add(this.txtA);
@@ -282,11 +265,32 @@
             this.employeesNavigationPage.Name = "employeesNavigationPage";
             this.employeesNavigationPage.Size = new System.Drawing.Size(1140, 429);
             // 
+            // swImporteCantidad
+            // 
+            this.swImporteCantidad.EditValue = true;
+            this.swImporteCantidad.Location = new System.Drawing.Point(320, 90);
+            this.swImporteCantidad.MenuManager = this.ribbonControl;
+            this.swImporteCantidad.Name = "swImporteCantidad";
+            this.swImporteCantidad.Properties.OffText = "Importe";
+            this.swImporteCantidad.Properties.OnText = "Cantidad";
+            this.swImporteCantidad.Size = new System.Drawing.Size(148, 23);
+            this.swImporteCantidad.TabIndex = 28;
+            // 
+            // cboMeses
+            // 
+            this.cboMeses.Location = new System.Drawing.Point(137, 92);
+            this.cboMeses.MenuManager = this.ribbonControl;
+            this.cboMeses.Name = "cboMeses";
+            this.cboMeses.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.cboMeses.Size = new System.Drawing.Size(148, 20);
+            this.cboMeses.TabIndex = 27;
+            // 
             // labelControl2
             // 
             this.labelControl2.Location = new System.Drawing.Point(41, 60);
             this.labelControl2.Name = "labelControl2";
-            this.labelControl2.Size = new System.Drawing.Size(78, 13);
+            this.labelControl2.Size = new System.Drawing.Size(75, 13);
             this.labelControl2.TabIndex = 26;
             this.labelControl2.Text = "Año a proyectar";
             // 
@@ -305,7 +309,7 @@
             // 
             this.labelControl1.Location = new System.Drawing.Point(41, 95);
             this.labelControl1.Name = "labelControl1";
-            this.labelControl1.Size = new System.Drawing.Size(78, 13);
+            this.labelControl1.Size = new System.Drawing.Size(76, 13);
             this.labelControl1.TabIndex = 24;
             this.labelControl1.Text = "Mes a proyectar";
             // 
@@ -313,7 +317,7 @@
             // 
             this.labelControl6.Location = new System.Drawing.Point(41, 205);
             this.labelControl6.Name = "labelControl6";
-            this.labelControl6.Size = new System.Drawing.Size(20, 13);
+            this.labelControl6.Size = new System.Drawing.Size(21, 13);
             this.labelControl6.TabIndex = 22;
             this.labelControl6.Text = "Tipo";
             // 
@@ -339,7 +343,7 @@
             // 
             this.labelControl3.Location = new System.Drawing.Point(41, 129);
             this.labelControl3.Name = "labelControl3";
-            this.labelControl3.Size = new System.Drawing.Size(25, 13);
+            this.labelControl3.Size = new System.Drawing.Size(26, 13);
             this.labelControl3.TabIndex = 19;
             this.labelControl3.Text = "Linea";
             // 
@@ -384,229 +388,10 @@
             // 
             // gridViewDetalle
             // 
-            this.gridViewDetalle.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
-            this.gridColumnNomLin,
-            this.gridColumnNomFam,
-            this.gridColumnArticulosID,
-            this.gridColumnArticulo,
-            this.gridColumnNomArt,
-            this.gridColumnEne,
-            this.gridColumnFeb,
-            this.gridColumnMar,
-            this.gridColumnAbr,
-            this.gridColumnMay,
-            this.gridColumnJun,
-            this.gridColumnJul,
-            this.gridColumnAgo,
-            this.gridColumnSep,
-            this.gridColumnOct,
-            this.gridColumnNov,
-            this.gridColumnDic,
-            this.gridColumnTotal,
-            this.gridColumnPromedio,
-            this.gridColumnProyectado});
             this.gridViewDetalle.GridControl = this.gridControlDetalle;
             this.gridViewDetalle.Name = "gridViewDetalle";
             this.gridViewDetalle.OptionsView.ShowGroupPanel = false;
             this.gridViewDetalle.CellValueChanged += new DevExpress.XtraGrid.Views.Base.CellValueChangedEventHandler(this.gridViewDetalle_CellValueChanged);
-            // 
-            // gridColumnNomLin
-            // 
-            this.gridColumnNomLin.Caption = "Linea";
-            this.gridColumnNomLin.FieldName = "NomLin";
-            this.gridColumnNomLin.Name = "gridColumnNomLin";
-            this.gridColumnNomLin.Visible = true;
-            this.gridColumnNomLin.VisibleIndex = 0;
-            // 
-            // gridColumnNomFam
-            // 
-            this.gridColumnNomFam.Caption = "Familia";
-            this.gridColumnNomFam.FieldName = "NomFam";
-            this.gridColumnNomFam.Name = "gridColumnNomFam";
-            this.gridColumnNomFam.Visible = true;
-            this.gridColumnNomFam.VisibleIndex = 1;
-            // 
-            // gridColumnArticulosID
-            // 
-            this.gridColumnArticulosID.Caption = "ArticulosID";
-            this.gridColumnArticulosID.FieldName = "ArticulosID";
-            this.gridColumnArticulosID.Name = "gridColumnArticulosID";
-            // 
-            // gridColumnArticulo
-            // 
-            this.gridColumnArticulo.Caption = "Articulo";
-            this.gridColumnArticulo.FieldName = "Articulo";
-            this.gridColumnArticulo.Name = "gridColumnArticulo";
-            this.gridColumnArticulo.Visible = true;
-            this.gridColumnArticulo.VisibleIndex = 2;
-            // 
-            // gridColumnNomArt
-            // 
-            this.gridColumnNomArt.Caption = "Descripcion";
-            this.gridColumnNomArt.FieldName = "NomArt";
-            this.gridColumnNomArt.Name = "gridColumnNomArt";
-            this.gridColumnNomArt.Visible = true;
-            this.gridColumnNomArt.VisibleIndex = 3;
-            // 
-            // gridColumnEne
-            // 
-            this.gridColumnEne.Caption = "Enero";
-            this.gridColumnEne.DisplayFormat.FormatString = "{0:n0}";
-            this.gridColumnEne.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
-            this.gridColumnEne.FieldName = "Ene";
-            this.gridColumnEne.Name = "gridColumnEne";
-            this.gridColumnEne.Visible = true;
-            this.gridColumnEne.VisibleIndex = 4;
-            // 
-            // gridColumnFeb
-            // 
-            this.gridColumnFeb.Caption = "Febrero";
-            this.gridColumnFeb.DisplayFormat.FormatString = "{0:n0}";
-            this.gridColumnFeb.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
-            this.gridColumnFeb.FieldName = "Feb";
-            this.gridColumnFeb.Name = "gridColumnFeb";
-            this.gridColumnFeb.Visible = true;
-            this.gridColumnFeb.VisibleIndex = 5;
-            // 
-            // gridColumnMar
-            // 
-            this.gridColumnMar.Caption = "Marzo";
-            this.gridColumnMar.DisplayFormat.FormatString = "{0:n0}";
-            this.gridColumnMar.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
-            this.gridColumnMar.FieldName = "Mar";
-            this.gridColumnMar.Name = "gridColumnMar";
-            this.gridColumnMar.Visible = true;
-            this.gridColumnMar.VisibleIndex = 6;
-            // 
-            // gridColumnAbr
-            // 
-            this.gridColumnAbr.Caption = "Abril";
-            this.gridColumnAbr.DisplayFormat.FormatString = "{0:n0}";
-            this.gridColumnAbr.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
-            this.gridColumnAbr.FieldName = "Abr";
-            this.gridColumnAbr.Name = "gridColumnAbr";
-            this.gridColumnAbr.Visible = true;
-            this.gridColumnAbr.VisibleIndex = 7;
-            // 
-            // gridColumnMay
-            // 
-            this.gridColumnMay.Caption = "Mayo";
-            this.gridColumnMay.DisplayFormat.FormatString = "{0:n0}";
-            this.gridColumnMay.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
-            this.gridColumnMay.FieldName = "May";
-            this.gridColumnMay.Name = "gridColumnMay";
-            this.gridColumnMay.Visible = true;
-            this.gridColumnMay.VisibleIndex = 8;
-            // 
-            // gridColumnJun
-            // 
-            this.gridColumnJun.Caption = "Junio";
-            this.gridColumnJun.DisplayFormat.FormatString = "{0:n0}";
-            this.gridColumnJun.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
-            this.gridColumnJun.FieldName = "Jun";
-            this.gridColumnJun.Name = "gridColumnJun";
-            this.gridColumnJun.Visible = true;
-            this.gridColumnJun.VisibleIndex = 9;
-            // 
-            // gridColumnJul
-            // 
-            this.gridColumnJul.Caption = "Julio";
-            this.gridColumnJul.DisplayFormat.FormatString = "{0:n0}";
-            this.gridColumnJul.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
-            this.gridColumnJul.FieldName = "Jul";
-            this.gridColumnJul.Name = "gridColumnJul";
-            this.gridColumnJul.Visible = true;
-            this.gridColumnJul.VisibleIndex = 10;
-            // 
-            // gridColumnAgo
-            // 
-            this.gridColumnAgo.Caption = "Agosto";
-            this.gridColumnAgo.DisplayFormat.FormatString = "{0:n0}";
-            this.gridColumnAgo.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
-            this.gridColumnAgo.FieldName = "Ago";
-            this.gridColumnAgo.Name = "gridColumnAgo";
-            this.gridColumnAgo.Visible = true;
-            this.gridColumnAgo.VisibleIndex = 11;
-            // 
-            // gridColumnSep
-            // 
-            this.gridColumnSep.Caption = "Septiembre";
-            this.gridColumnSep.DisplayFormat.FormatString = "{0:n0}";
-            this.gridColumnSep.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
-            this.gridColumnSep.FieldName = "Sep";
-            this.gridColumnSep.Name = "gridColumnSep";
-            this.gridColumnSep.Visible = true;
-            this.gridColumnSep.VisibleIndex = 12;
-            // 
-            // gridColumnOct
-            // 
-            this.gridColumnOct.Caption = "Octubre";
-            this.gridColumnOct.DisplayFormat.FormatString = "{0:n0}";
-            this.gridColumnOct.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
-            this.gridColumnOct.FieldName = "Oct";
-            this.gridColumnOct.Name = "gridColumnOct";
-            this.gridColumnOct.Visible = true;
-            this.gridColumnOct.VisibleIndex = 13;
-            // 
-            // gridColumnNov
-            // 
-            this.gridColumnNov.Caption = "Noviembre";
-            this.gridColumnNov.DisplayFormat.FormatString = "{0:n0}";
-            this.gridColumnNov.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
-            this.gridColumnNov.FieldName = "Nov";
-            this.gridColumnNov.Name = "gridColumnNov";
-            this.gridColumnNov.Visible = true;
-            this.gridColumnNov.VisibleIndex = 14;
-            // 
-            // gridColumnDic
-            // 
-            this.gridColumnDic.Caption = "Diciembre";
-            this.gridColumnDic.DisplayFormat.FormatString = "{0:n0}";
-            this.gridColumnDic.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
-            this.gridColumnDic.FieldName = "Dic";
-            this.gridColumnDic.Name = "gridColumnDic";
-            this.gridColumnDic.Visible = true;
-            this.gridColumnDic.VisibleIndex = 15;
-            // 
-            // gridColumnTotal
-            // 
-            this.gridColumnTotal.Caption = "Total";
-            this.gridColumnTotal.DisplayFormat.FormatString = "{0:n0}";
-            this.gridColumnTotal.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
-            this.gridColumnTotal.FieldName = "Total";
-            this.gridColumnTotal.Name = "gridColumnTotal";
-            this.gridColumnTotal.Visible = true;
-            this.gridColumnTotal.VisibleIndex = 16;
-            // 
-            // gridColumnPromedio
-            // 
-            this.gridColumnPromedio.Caption = "Promedio";
-            this.gridColumnPromedio.DisplayFormat.FormatString = "{0:n0}";
-            this.gridColumnPromedio.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
-            this.gridColumnPromedio.FieldName = "Promedio";
-            this.gridColumnPromedio.Name = "gridColumnPromedio";
-            this.gridColumnPromedio.Visible = true;
-            this.gridColumnPromedio.VisibleIndex = 17;
-            // 
-            // gridColumnProyectado
-            // 
-            this.gridColumnProyectado.Caption = "Proyectado";
-            this.gridColumnProyectado.DisplayFormat.FormatString = "{0:n0}";
-            this.gridColumnProyectado.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
-            this.gridColumnProyectado.FieldName = "Proyectado";
-            this.gridColumnProyectado.Name = "gridColumnProyectado";
-            this.gridColumnProyectado.Visible = true;
-            this.gridColumnProyectado.VisibleIndex = 18;
-            // 
-            // cboMeses
-            // 
-            this.cboMeses.Location = new System.Drawing.Point(137, 92);
-            this.cboMeses.MenuManager = this.ribbonControl;
-            this.cboMeses.Name = "cboMeses";
-            this.cboMeses.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.cboMeses.Size = new System.Drawing.Size(148, 20);
-            this.cboMeses.TabIndex = 27;
             // 
             // Pronosticosporarticuloparaimportacion
             // 
@@ -626,6 +411,8 @@
             this.navigationFrame.ResumeLayout(false);
             this.employeesNavigationPage.ResumeLayout(false);
             this.employeesNavigationPage.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.swImporteCantidad.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cboMeses.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtA.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.cboTipo.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.cboFamilia.Properties)).EndInit();
@@ -633,7 +420,6 @@
             this.customersNavigationPage.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.gridControlDetalle)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridViewDetalle)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.cboMeses.Properties)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -671,27 +457,8 @@
         private DevExpress.XtraEditors.LabelControl labelControl2;
         private DevExpress.XtraEditors.TextEdit txtA;
         private DevExpress.XtraEditors.LabelControl labelControl1;
-        private DevExpress.XtraGrid.Columns.GridColumn gridColumnNomLin;
-        private DevExpress.XtraGrid.Columns.GridColumn gridColumnNomFam;
-        private DevExpress.XtraGrid.Columns.GridColumn gridColumnArticulosID;
-        private DevExpress.XtraGrid.Columns.GridColumn gridColumnArticulo;
-        private DevExpress.XtraGrid.Columns.GridColumn gridColumnNomArt;
-        private DevExpress.XtraGrid.Columns.GridColumn gridColumnEne;
-        private DevExpress.XtraGrid.Columns.GridColumn gridColumnFeb;
-        private DevExpress.XtraGrid.Columns.GridColumn gridColumnMar;
-        private DevExpress.XtraGrid.Columns.GridColumn gridColumnAbr;
-        private DevExpress.XtraGrid.Columns.GridColumn gridColumnMay;
-        private DevExpress.XtraGrid.Columns.GridColumn gridColumnJun;
-        private DevExpress.XtraGrid.Columns.GridColumn gridColumnJul;
-        private DevExpress.XtraGrid.Columns.GridColumn gridColumnAgo;
-        private DevExpress.XtraGrid.Columns.GridColumn gridColumnSep;
-        private DevExpress.XtraGrid.Columns.GridColumn gridColumnOct;
-        private DevExpress.XtraGrid.Columns.GridColumn gridColumnNov;
-        private DevExpress.XtraGrid.Columns.GridColumn gridColumnDic;
-        private DevExpress.XtraGrid.Columns.GridColumn gridColumnTotal;
-        private DevExpress.XtraGrid.Columns.GridColumn gridColumnPromedio;
-        private DevExpress.XtraGrid.Columns.GridColumn gridColumnProyectado;
         private DevExpress.XtraBars.BarButtonItem bbiPrevio;
         private DevExpress.XtraEditors.LookUpEdit cboMeses;
+        private DevExpress.XtraEditors.ToggleSwitch swImporteCantidad;
     }
 }

@@ -66,11 +66,11 @@
             this.gridColumn4 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn5 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn6 = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.gridColumn7 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn8 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn9 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn10 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn11 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn24ExistenciaTotal = new DevExpress.XtraGrid.Columns.GridColumn();
             this.customersNavigationPage = new DevExpress.XtraBars.Navigation.NavigationPage();
             this.gridControl2 = new DevExpress.XtraGrid.GridControl();
             this.gridView2 = new DevExpress.XtraGrid.Views.Grid.GridView();
@@ -89,6 +89,7 @@
             this.navigationPage1 = new DevExpress.XtraBars.Navigation.NavigationPage();
             this.gridControl3 = new DevExpress.XtraGrid.GridControl();
             this.gridView3 = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.gridColumn7 = new DevExpress.XtraGrid.Columns.GridColumn();
             ((System.ComponentModel.ISupportInitialize)(this.tabbedView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ribbonControl)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.officeNavigationBar)).BeginInit();
@@ -116,7 +117,6 @@
             // 
             // ribbonControl
             // 
-            this.ribbonControl.EmptyAreaImageOptions.ImagePadding = new System.Windows.Forms.Padding(35, 37, 35, 37);
             this.ribbonControl.ExpandCollapseItem.Id = 0;
             this.ribbonControl.Items.AddRange(new DevExpress.XtraBars.BarItem[] {
             this.ribbonControl.ExpandCollapseItem,
@@ -132,17 +132,15 @@
             this.bbiRegresar,
             this.bbiArtsConsmo});
             this.ribbonControl.Location = new System.Drawing.Point(0, 0);
-            this.ribbonControl.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.ribbonControl.MaxItemId = 54;
             this.ribbonControl.MdiMergeStyle = DevExpress.XtraBars.Ribbon.RibbonMdiMergeStyle.Always;
             this.ribbonControl.Name = "ribbonControl";
-            this.ribbonControl.OptionsMenuMinWidth = 385;
             this.ribbonControl.Pages.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPage[] {
             this.ribbonPage,
             this.ribbonPageHome});
             this.ribbonControl.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonControlStyle.Office2013;
             this.ribbonControl.ShowApplicationButton = DevExpress.Utils.DefaultBoolean.False;
-            this.ribbonControl.Size = new System.Drawing.Size(1391, 181);
+            this.ribbonControl.Size = new System.Drawing.Size(1192, 147);
             this.ribbonControl.StatusBar = this.ribbonStatusBar;
             this.ribbonControl.ToolbarLocation = DevExpress.XtraBars.Ribbon.RibbonQuickAccessToolbarLocation.Hidden;
             // 
@@ -265,19 +263,17 @@
             // 
             // ribbonStatusBar
             // 
-            this.ribbonStatusBar.Location = new System.Drawing.Point(0, 708);
-            this.ribbonStatusBar.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.ribbonStatusBar.Location = new System.Drawing.Point(0, 576);
             this.ribbonStatusBar.Name = "ribbonStatusBar";
             this.ribbonStatusBar.Ribbon = this.ribbonControl;
-            this.ribbonStatusBar.Size = new System.Drawing.Size(1391, 29);
+            this.ribbonStatusBar.Size = new System.Drawing.Size(1192, 23);
             // 
             // officeNavigationBar
             // 
             this.officeNavigationBar.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.officeNavigationBar.Location = new System.Drawing.Point(0, 656);
-            this.officeNavigationBar.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.officeNavigationBar.Location = new System.Drawing.Point(0, 534);
             this.officeNavigationBar.Name = "officeNavigationBar";
-            this.officeNavigationBar.Size = new System.Drawing.Size(1391, 52);
+            this.officeNavigationBar.Size = new System.Drawing.Size(1192, 42);
             this.officeNavigationBar.TabIndex = 1;
             this.officeNavigationBar.Text = "officeNavigationBar";
             // 
@@ -289,8 +285,7 @@
             this.navigationFrame.Controls.Add(this.customersNavigationPage);
             this.navigationFrame.Controls.Add(this.navigationPage1);
             this.navigationFrame.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.navigationFrame.Location = new System.Drawing.Point(0, 181);
-            this.navigationFrame.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.navigationFrame.Location = new System.Drawing.Point(0, 147);
             this.navigationFrame.Name = "navigationFrame";
             this.navigationFrame.Pages.AddRange(new DevExpress.XtraBars.Navigation.NavigationPageBase[] {
             this.employeesNavigationPage,
@@ -298,23 +293,22 @@
             this.navigationPage1});
             this.navigationFrame.RibbonAndBarsMergeStyle = DevExpress.XtraBars.Docking2010.Views.RibbonAndBarsMergeStyle.Always;
             this.navigationFrame.SelectedPage = this.employeesNavigationPage;
-            this.navigationFrame.Size = new System.Drawing.Size(1391, 475);
+            this.navigationFrame.Size = new System.Drawing.Size(1192, 387);
             this.navigationFrame.TabIndex = 0;
             this.navigationFrame.Text = "navigationFrame";
             // 
             // employeesNavigationPage
             // 
             this.employeesNavigationPage.Controls.Add(this.splitContainerControl1);
-            this.employeesNavigationPage.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.employeesNavigationPage.Name = "employeesNavigationPage";
-            this.employeesNavigationPage.Size = new System.Drawing.Size(1391, 475);
+            this.employeesNavigationPage.Size = new System.Drawing.Size(1192, 387);
             // 
             // splitContainerControl1
             // 
             this.splitContainerControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.splitContainerControl1.Horizontal = false;
             this.splitContainerControl1.Location = new System.Drawing.Point(0, 0);
-            this.splitContainerControl1.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
+            this.splitContainerControl1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.splitContainerControl1.Name = "splitContainerControl1";
             // 
             // splitContainerControl1.Panel1
@@ -331,76 +325,75 @@
             // 
             this.splitContainerControl1.Panel2.Controls.Add(this.gridControl1);
             this.splitContainerControl1.Panel2.Text = "Panel2";
-            this.splitContainerControl1.Size = new System.Drawing.Size(1739, 594);
-            this.splitContainerControl1.SplitterPosition = 123;
+            this.splitContainerControl1.Size = new System.Drawing.Size(1192, 387);
             this.splitContainerControl1.TabIndex = 0;
             // 
             // txtMes
             // 
-            this.txtMes.Location = new System.Drawing.Point(111, 89);
-            this.txtMes.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
+            this.txtMes.Location = new System.Drawing.Point(95, 72);
+            this.txtMes.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txtMes.MenuManager = this.ribbonControl;
             this.txtMes.Name = "txtMes";
-            this.txtMes.Size = new System.Drawing.Size(125, 22);
+            this.txtMes.Size = new System.Drawing.Size(107, 20);
             this.txtMes.TabIndex = 5;
             // 
             // txtAño
             // 
-            this.txtAño.Location = new System.Drawing.Point(111, 52);
-            this.txtAño.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
+            this.txtAño.Location = new System.Drawing.Point(95, 42);
+            this.txtAño.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txtAño.MenuManager = this.ribbonControl;
             this.txtAño.Name = "txtAño";
-            this.txtAño.Size = new System.Drawing.Size(125, 22);
+            this.txtAño.Size = new System.Drawing.Size(107, 20);
             this.txtAño.TabIndex = 4;
             // 
             // cboProveedores
             // 
-            this.cboProveedores.Location = new System.Drawing.Point(111, 20);
-            this.cboProveedores.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
+            this.cboProveedores.Location = new System.Drawing.Point(95, 16);
+            this.cboProveedores.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.cboProveedores.MenuManager = this.ribbonControl;
             this.cboProveedores.Name = "cboProveedores";
             this.cboProveedores.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.cboProveedores.Size = new System.Drawing.Size(652, 22);
+            this.cboProveedores.Size = new System.Drawing.Size(559, 20);
             this.cboProveedores.TabIndex = 3;
             // 
             // labelControl3
             // 
-            this.labelControl3.Location = new System.Drawing.Point(31, 92);
-            this.labelControl3.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
+            this.labelControl3.Location = new System.Drawing.Point(27, 75);
+            this.labelControl3.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.labelControl3.Name = "labelControl3";
-            this.labelControl3.Size = new System.Drawing.Size(23, 16);
+            this.labelControl3.Size = new System.Drawing.Size(20, 13);
             this.labelControl3.TabIndex = 2;
             this.labelControl3.Text = "Mes";
             // 
             // labelControl2
             // 
-            this.labelControl2.Location = new System.Drawing.Point(31, 52);
-            this.labelControl2.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
+            this.labelControl2.Location = new System.Drawing.Point(27, 42);
+            this.labelControl2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.labelControl2.Name = "labelControl2";
-            this.labelControl2.Size = new System.Drawing.Size(22, 16);
+            this.labelControl2.Size = new System.Drawing.Size(19, 13);
             this.labelControl2.TabIndex = 1;
             this.labelControl2.Text = "Año";
             // 
             // labelControl1
             // 
-            this.labelControl1.Location = new System.Drawing.Point(31, 20);
-            this.labelControl1.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
+            this.labelControl1.Location = new System.Drawing.Point(27, 16);
+            this.labelControl1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.labelControl1.Name = "labelControl1";
-            this.labelControl1.Size = new System.Drawing.Size(58, 16);
+            this.labelControl1.Size = new System.Drawing.Size(49, 13);
             this.labelControl1.TabIndex = 0;
             this.labelControl1.Text = "Proveedor";
             // 
             // gridControl1
             // 
             this.gridControl1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.gridControl1.EmbeddedNavigator.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
+            this.gridControl1.EmbeddedNavigator.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.gridControl1.Location = new System.Drawing.Point(0, 0);
             this.gridControl1.MainView = this.gridView1;
-            this.gridControl1.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
+            this.gridControl1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.gridControl1.MenuManager = this.ribbonControl;
             this.gridControl1.Name = "gridControl1";
-            this.gridControl1.Size = new System.Drawing.Size(1739, 456);
+            this.gridControl1.Size = new System.Drawing.Size(1192, 275);
             this.gridControl1.TabIndex = 0;
             this.gridControl1.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridView1});
@@ -418,7 +411,9 @@
             this.gridColumn8,
             this.gridColumn9,
             this.gridColumn10,
-            this.gridColumn11});
+            this.gridColumn11,
+            this.gridColumn24ExistenciaTotal});
+            this.gridView1.DetailHeight = 284;
             this.gridView1.GridControl = this.gridControl1;
             this.gridView1.Name = "gridView1";
             this.gridView1.OptionsView.ShowGroupPanel = false;
@@ -431,21 +426,21 @@
             this.gridColumn1.DisplayFormat.FormatString = "{0:n0}";
             this.gridColumn1.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
             this.gridColumn1.FieldName = "GpoID";
-            this.gridColumn1.MinWidth = 24;
+            this.gridColumn1.MinWidth = 21;
             this.gridColumn1.Name = "gridColumn1";
             this.gridColumn1.Visible = true;
             this.gridColumn1.VisibleIndex = 0;
-            this.gridColumn1.Width = 94;
+            this.gridColumn1.Width = 81;
             // 
             // gridColumn2
             // 
             this.gridColumn2.Caption = "Material";
             this.gridColumn2.FieldName = "Material";
-            this.gridColumn2.MinWidth = 24;
+            this.gridColumn2.MinWidth = 21;
             this.gridColumn2.Name = "gridColumn2";
             this.gridColumn2.Visible = true;
             this.gridColumn2.VisibleIndex = 1;
-            this.gridColumn2.Width = 94;
+            this.gridColumn2.Width = 81;
             // 
             // gridColumn3
             // 
@@ -453,11 +448,11 @@
             this.gridColumn3.DisplayFormat.FormatString = "{0:n0}";
             this.gridColumn3.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
             this.gridColumn3.FieldName = "Consumo";
-            this.gridColumn3.MinWidth = 24;
+            this.gridColumn3.MinWidth = 21;
             this.gridColumn3.Name = "gridColumn3";
             this.gridColumn3.Visible = true;
             this.gridColumn3.VisibleIndex = 2;
-            this.gridColumn3.Width = 94;
+            this.gridColumn3.Width = 81;
             // 
             // gridColumn4
             // 
@@ -465,11 +460,11 @@
             this.gridColumn4.DisplayFormat.FormatString = "{0:n0}";
             this.gridColumn4.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
             this.gridColumn4.FieldName = "OC";
-            this.gridColumn4.MinWidth = 24;
+            this.gridColumn4.MinWidth = 21;
             this.gridColumn4.Name = "gridColumn4";
             this.gridColumn4.Visible = true;
             this.gridColumn4.VisibleIndex = 3;
-            this.gridColumn4.Width = 94;
+            this.gridColumn4.Width = 81;
             // 
             // gridColumn5
             // 
@@ -477,11 +472,11 @@
             this.gridColumn5.DisplayFormat.FormatString = "{0:n0}";
             this.gridColumn5.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
             this.gridColumn5.FieldName = "Existencia";
-            this.gridColumn5.MinWidth = 24;
+            this.gridColumn5.MinWidth = 21;
             this.gridColumn5.Name = "gridColumn5";
             this.gridColumn5.Visible = true;
             this.gridColumn5.VisibleIndex = 4;
-            this.gridColumn5.Width = 94;
+            this.gridColumn5.Width = 81;
             // 
             // gridColumn6
             // 
@@ -489,23 +484,11 @@
             this.gridColumn6.DisplayFormat.FormatString = "{0:n0}";
             this.gridColumn6.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
             this.gridColumn6.FieldName = "Pedidossinfacturar";
-            this.gridColumn6.MinWidth = 24;
+            this.gridColumn6.MinWidth = 21;
             this.gridColumn6.Name = "gridColumn6";
             this.gridColumn6.Visible = true;
             this.gridColumn6.VisibleIndex = 5;
-            this.gridColumn6.Width = 94;
-            // 
-            // gridColumn7
-            // 
-            this.gridColumn7.Caption = "Total existencia";
-            this.gridColumn7.DisplayFormat.FormatString = "{0:n0}";
-            this.gridColumn7.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
-            this.gridColumn7.FieldName = "TotalExistencia";
-            this.gridColumn7.MinWidth = 24;
-            this.gridColumn7.Name = "gridColumn7";
-            this.gridColumn7.Visible = true;
-            this.gridColumn7.VisibleIndex = 6;
-            this.gridColumn7.Width = 94;
+            this.gridColumn6.Width = 81;
             // 
             // gridColumn8
             // 
@@ -513,11 +496,11 @@
             this.gridColumn8.DisplayFormat.FormatString = "{0:n0}";
             this.gridColumn8.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
             this.gridColumn8.FieldName = "Diferencia";
-            this.gridColumn8.MinWidth = 24;
+            this.gridColumn8.MinWidth = 21;
             this.gridColumn8.Name = "gridColumn8";
             this.gridColumn8.Visible = true;
             this.gridColumn8.VisibleIndex = 7;
-            this.gridColumn8.Width = 94;
+            this.gridColumn8.Width = 81;
             // 
             // gridColumn9
             // 
@@ -525,11 +508,11 @@
             this.gridColumn9.DisplayFormat.FormatString = "{0:n0}";
             this.gridColumn9.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
             this.gridColumn9.FieldName = "Reorden";
-            this.gridColumn9.MinWidth = 24;
+            this.gridColumn9.MinWidth = 21;
             this.gridColumn9.Name = "gridColumn9";
             this.gridColumn9.Visible = true;
             this.gridColumn9.VisibleIndex = 8;
-            this.gridColumn9.Width = 94;
+            this.gridColumn9.Width = 81;
             // 
             // gridColumn10
             // 
@@ -537,11 +520,11 @@
             this.gridColumn10.DisplayFormat.FormatString = "{0:n0}";
             this.gridColumn10.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
             this.gridColumn10.FieldName = "Sugerido";
-            this.gridColumn10.MinWidth = 24;
+            this.gridColumn10.MinWidth = 21;
             this.gridColumn10.Name = "gridColumn10";
             this.gridColumn10.Visible = true;
             this.gridColumn10.VisibleIndex = 9;
-            this.gridColumn10.Width = 94;
+            this.gridColumn10.Width = 81;
             // 
             // gridColumn11
             // 
@@ -549,29 +532,37 @@
             this.gridColumn11.DisplayFormat.FormatString = "{0:n0}";
             this.gridColumn11.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
             this.gridColumn11.FieldName = "Diasstock";
-            this.gridColumn11.MinWidth = 24;
+            this.gridColumn11.MinWidth = 21;
             this.gridColumn11.Name = "gridColumn11";
             this.gridColumn11.Visible = true;
             this.gridColumn11.VisibleIndex = 10;
-            this.gridColumn11.Width = 94;
+            this.gridColumn11.Width = 81;
+            // 
+            // gridColumn24ExistenciaTotal
+            // 
+            this.gridColumn24ExistenciaTotal.Caption = "Existencia Total En Almacenes";
+            this.gridColumn24ExistenciaTotal.FieldName = "ExistenciaTotal";
+            this.gridColumn24ExistenciaTotal.Name = "gridColumn24ExistenciaTotal";
+            this.gridColumn24ExistenciaTotal.Visible = true;
+            this.gridColumn24ExistenciaTotal.VisibleIndex = 11;
+            this.gridColumn24ExistenciaTotal.Width = 64;
             // 
             // customersNavigationPage
             // 
             this.customersNavigationPage.Controls.Add(this.gridControl2);
-            this.customersNavigationPage.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.customersNavigationPage.Name = "customersNavigationPage";
-            this.customersNavigationPage.Size = new System.Drawing.Size(1391, 475);
+            this.customersNavigationPage.Size = new System.Drawing.Size(1192, 387);
             // 
             // gridControl2
             // 
             this.gridControl2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.gridControl2.EmbeddedNavigator.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
+            this.gridControl2.EmbeddedNavigator.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.gridControl2.Location = new System.Drawing.Point(0, 0);
             this.gridControl2.MainView = this.gridView2;
-            this.gridControl2.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
+            this.gridControl2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.gridControl2.MenuManager = this.ribbonControl;
             this.gridControl2.Name = "gridControl2";
-            this.gridControl2.Size = new System.Drawing.Size(1739, 594);
+            this.gridControl2.Size = new System.Drawing.Size(1192, 387);
             this.gridControl2.TabIndex = 0;
             this.gridControl2.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridView2});
@@ -591,6 +582,7 @@
             this.gridColumn21,
             this.gridColumn22,
             this.gridColumn23});
+            this.gridView2.DetailHeight = 284;
             this.gridView2.GridControl = this.gridControl2;
             this.gridView2.Name = "gridView2";
             this.gridView2.OptionsView.ShowGroupPanel = false;
@@ -602,31 +594,31 @@
             this.gridColumn12.DisplayFormat.FormatString = "{0:n0}";
             this.gridColumn12.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
             this.gridColumn12.FieldName = "GpoID";
-            this.gridColumn12.MinWidth = 24;
+            this.gridColumn12.MinWidth = 21;
             this.gridColumn12.Name = "gridColumn12";
             this.gridColumn12.Visible = true;
             this.gridColumn12.VisibleIndex = 0;
-            this.gridColumn12.Width = 94;
+            this.gridColumn12.Width = 81;
             // 
             // gridColumn13
             // 
             this.gridColumn13.Caption = "Material";
             this.gridColumn13.FieldName = "Material";
-            this.gridColumn13.MinWidth = 24;
+            this.gridColumn13.MinWidth = 21;
             this.gridColumn13.Name = "gridColumn13";
             this.gridColumn13.Visible = true;
             this.gridColumn13.VisibleIndex = 1;
-            this.gridColumn13.Width = 94;
+            this.gridColumn13.Width = 81;
             // 
             // gridColumn14
             // 
             this.gridColumn14.Caption = "Artículo";
             this.gridColumn14.FieldName = "Articulo";
-            this.gridColumn14.MinWidth = 24;
+            this.gridColumn14.MinWidth = 21;
             this.gridColumn14.Name = "gridColumn14";
             this.gridColumn14.Visible = true;
             this.gridColumn14.VisibleIndex = 2;
-            this.gridColumn14.Width = 94;
+            this.gridColumn14.Width = 81;
             // 
             // gridColumn15
             // 
@@ -634,11 +626,11 @@
             this.gridColumn15.DisplayFormat.FormatString = "{0:n0}";
             this.gridColumn15.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
             this.gridColumn15.FieldName = "Consumo";
-            this.gridColumn15.MinWidth = 24;
+            this.gridColumn15.MinWidth = 21;
             this.gridColumn15.Name = "gridColumn15";
             this.gridColumn15.Visible = true;
             this.gridColumn15.VisibleIndex = 3;
-            this.gridColumn15.Width = 94;
+            this.gridColumn15.Width = 81;
             // 
             // gridColumn16
             // 
@@ -646,11 +638,11 @@
             this.gridColumn16.DisplayFormat.FormatString = "{0:n0}";
             this.gridColumn16.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
             this.gridColumn16.FieldName = "Existencia";
-            this.gridColumn16.MinWidth = 24;
+            this.gridColumn16.MinWidth = 21;
             this.gridColumn16.Name = "gridColumn16";
             this.gridColumn16.Visible = true;
             this.gridColumn16.VisibleIndex = 4;
-            this.gridColumn16.Width = 94;
+            this.gridColumn16.Width = 81;
             // 
             // gridColumn17
             // 
@@ -658,11 +650,11 @@
             this.gridColumn17.DisplayFormat.FormatString = "{0:n0}";
             this.gridColumn17.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
             this.gridColumn17.FieldName = "OC";
-            this.gridColumn17.MinWidth = 24;
+            this.gridColumn17.MinWidth = 21;
             this.gridColumn17.Name = "gridColumn17";
             this.gridColumn17.Visible = true;
             this.gridColumn17.VisibleIndex = 5;
-            this.gridColumn17.Width = 94;
+            this.gridColumn17.Width = 81;
             // 
             // gridColumn18
             // 
@@ -670,11 +662,11 @@
             this.gridColumn18.DisplayFormat.FormatString = "{0:n0}";
             this.gridColumn18.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
             this.gridColumn18.FieldName = "Pedidossinfacturar";
-            this.gridColumn18.MinWidth = 24;
+            this.gridColumn18.MinWidth = 21;
             this.gridColumn18.Name = "gridColumn18";
             this.gridColumn18.Visible = true;
             this.gridColumn18.VisibleIndex = 6;
-            this.gridColumn18.Width = 94;
+            this.gridColumn18.Width = 81;
             // 
             // gridColumn19
             // 
@@ -682,11 +674,11 @@
             this.gridColumn19.DisplayFormat.FormatString = "{0:n0}";
             this.gridColumn19.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
             this.gridColumn19.FieldName = "TotalExistencia";
-            this.gridColumn19.MinWidth = 24;
+            this.gridColumn19.MinWidth = 21;
             this.gridColumn19.Name = "gridColumn19";
             this.gridColumn19.Visible = true;
             this.gridColumn19.VisibleIndex = 7;
-            this.gridColumn19.Width = 94;
+            this.gridColumn19.Width = 81;
             // 
             // gridColumn20
             // 
@@ -694,11 +686,11 @@
             this.gridColumn20.DisplayFormat.FormatString = "{0:n0}";
             this.gridColumn20.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
             this.gridColumn20.FieldName = "Diferencia";
-            this.gridColumn20.MinWidth = 24;
+            this.gridColumn20.MinWidth = 21;
             this.gridColumn20.Name = "gridColumn20";
             this.gridColumn20.Visible = true;
             this.gridColumn20.VisibleIndex = 8;
-            this.gridColumn20.Width = 94;
+            this.gridColumn20.Width = 81;
             // 
             // gridColumn21
             // 
@@ -706,11 +698,11 @@
             this.gridColumn21.DisplayFormat.FormatString = "{0:n0}";
             this.gridColumn21.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
             this.gridColumn21.FieldName = "Reorden";
-            this.gridColumn21.MinWidth = 24;
+            this.gridColumn21.MinWidth = 21;
             this.gridColumn21.Name = "gridColumn21";
             this.gridColumn21.Visible = true;
             this.gridColumn21.VisibleIndex = 9;
-            this.gridColumn21.Width = 94;
+            this.gridColumn21.Width = 81;
             // 
             // gridColumn22
             // 
@@ -718,11 +710,11 @@
             this.gridColumn22.DisplayFormat.FormatString = "{0:n0}";
             this.gridColumn22.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
             this.gridColumn22.FieldName = "Sugerido";
-            this.gridColumn22.MinWidth = 24;
+            this.gridColumn22.MinWidth = 21;
             this.gridColumn22.Name = "gridColumn22";
             this.gridColumn22.Visible = true;
             this.gridColumn22.VisibleIndex = 10;
-            this.gridColumn22.Width = 94;
+            this.gridColumn22.Width = 81;
             // 
             // gridColumn23
             // 
@@ -730,49 +722,54 @@
             this.gridColumn23.DisplayFormat.FormatString = "{0:n0}";
             this.gridColumn23.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
             this.gridColumn23.FieldName = "Diasstock";
-            this.gridColumn23.MinWidth = 24;
+            this.gridColumn23.MinWidth = 21;
             this.gridColumn23.Name = "gridColumn23";
             this.gridColumn23.Visible = true;
             this.gridColumn23.VisibleIndex = 11;
-            this.gridColumn23.Width = 94;
+            this.gridColumn23.Width = 81;
             // 
             // navigationPage1
             // 
             this.navigationPage1.Controls.Add(this.gridControl3);
-            this.navigationPage1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.navigationPage1.Name = "navigationPage1";
-            this.navigationPage1.Size = new System.Drawing.Size(1391, 475);
+            this.navigationPage1.Size = new System.Drawing.Size(1192, 387);
             // 
             // gridControl3
             // 
             this.gridControl3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.gridControl3.EmbeddedNavigator.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.gridControl3.Location = new System.Drawing.Point(0, 0);
             this.gridControl3.MainView = this.gridView3;
-            this.gridControl3.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.gridControl3.MenuManager = this.ribbonControl;
             this.gridControl3.Name = "gridControl3";
-            this.gridControl3.Size = new System.Drawing.Size(1739, 594);
+            this.gridControl3.Size = new System.Drawing.Size(1192, 387);
             this.gridControl3.TabIndex = 0;
             this.gridControl3.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridView3});
             // 
             // gridView3
             // 
-            this.gridView3.DetailHeight = 431;
             this.gridView3.GridControl = this.gridControl3;
             this.gridView3.Name = "gridView3";
             // 
+            // gridColumn7
+            // 
+            this.gridColumn7.Caption = "Total Existencia";
+            this.gridColumn7.DisplayFormat.FormatString = "{0:n0}";
+            this.gridColumn7.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
+            this.gridColumn7.FieldName = "TotalExistencia";
+            this.gridColumn7.Name = "gridColumn7";
+            this.gridColumn7.Visible = true;
+            this.gridColumn7.VisibleIndex = 6;
+            // 
             // AuxiliardecomprasExp
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1391, 737);
+            this.ClientSize = new System.Drawing.Size(1192, 599);
             this.Controls.Add(this.navigationFrame);
             this.Controls.Add(this.officeNavigationBar);
             this.Controls.Add(this.ribbonStatusBar);
             this.Controls.Add(this.ribbonControl);
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "AuxiliardecomprasExp";
             this.Ribbon = this.ribbonControl;
             this.StatusBar = this.ribbonStatusBar;
@@ -846,7 +843,6 @@
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn4;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn5;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn6;
-        private DevExpress.XtraGrid.Columns.GridColumn gridColumn7;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn8;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn9;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn10;
@@ -867,5 +863,7 @@
         private DevExpress.XtraBars.Navigation.NavigationPage navigationPage1;
         private DevExpress.XtraGrid.GridControl gridControl3;
         private DevExpress.XtraGrid.Views.Grid.GridView gridView3;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn24ExistenciaTotal;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn7;
     }
 }

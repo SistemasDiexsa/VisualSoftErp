@@ -6,6 +6,7 @@ using System.Data;
 using System.Data.SqlClient;
 using System.Configuration;
 using System.Xml;
+using DocumentFormat.OpenXml.Office2013.Excel;
 
 namespace VisualSoftErp.Clases
 {
@@ -110,6 +111,8 @@ namespace VisualSoftErp.Clases
         public string strRegimenFiscal { get; set; }
         public string strNom40 { get; set; }
         public string strCfdiVer { get; set; }
+        public string strRecordatorioCumpleañosDestinatario { get; set; }
+        public DateTime dateRecordatorioCumpleañosFecha { get; set; }
 
         #endregion
 
@@ -201,6 +204,8 @@ namespace VisualSoftErp.Clases
             strceCP = string.Empty;
             intClasificacionesportipoID = 0;
             intGirosID = 0;
+            strRecordatorioCumpleañosDestinatario = string.Empty;
+            dateRecordatorioCumpleañosFecha = DateTime.Now;
         }
         #endregion
 
@@ -339,6 +344,8 @@ namespace VisualSoftErp.Clases
                 cmd.Parameters.AddWithValue("@prmNombre40", strNom40);
                 cmd.Parameters.AddWithValue("@prmRegimenFiscal", strRegimenFiscal);
                 cmd.Parameters.AddWithValue("@prmCfdiVer", strCfdiVer);
+                cmd.Parameters.AddWithValue("@prmRecordatorioCumpleañosDestinatario", strRecordatorioCumpleañosDestinatario);
+                cmd.Parameters.AddWithValue("@prmRecordatorioCumpleañosFecha", dateRecordatorioCumpleañosFecha);
 
                 cmd.CommandType = System.Data.CommandType.StoredProcedure;
                 cmd.Connection = cnn;
@@ -465,6 +472,8 @@ namespace VisualSoftErp.Clases
                     strNom40 = dr["Nombre40"].ToString();
                     strRegimenFiscal = dr["RegimenFiscal"].ToString();
                     strCfdiVer = dr["CfdiVer"].ToString();
+                    strRecordatorioCumpleañosDestinatario = dr["RecordatorioCumpleañosDestinatario"].ToString();
+                    dateRecordatorioCumpleañosFecha = Convert.ToDateTime(dr["RecordatorioCumpleañosFecha"]);
 
                     result = "OK";
                 }

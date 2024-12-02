@@ -266,37 +266,21 @@ namespace VisualSoftErp.Operacion.Ventas.Informes
         private void cboLinea_EditValueChanged(object sender, EventArgs e)
         {
             try
-            {
-                //if (Convert.ToInt32(cboLinea.EditValue) == 0) { }
-                //else
-                //{
-                    BindingSource src = new BindingSource();
-                    combosCL cl = new combosCL();
-                    globalCL clg = new globalCL();
-                    cl.strTabla = "FamiliaxLinea";
-                    cl.iCondicion = Convert.ToInt32(cboLinea.EditValue);
-                    src.DataSource = cl.CargaCombos();
-                    cboFamilia.Properties.ValueMember = "Clave";
-                    cboFamilia.Properties.DisplayMember = "Des";
-                    cboFamilia.Properties.DataSource = clg.AgregarOpcionTodos(src);
-                    cboFamilia.Properties.ForceInitialize();
-                    cboFamilia.Properties.PopupFilterMode = DevExpress.XtraEditors.PopupFilterMode.Contains;
-                    cboFamilia.Properties.PopulateColumns();
-                    cboFamilia.Properties.Columns["Clave"].Visible = false;
-                    cboFamilia.ItemIndex = 0;
-
-                    //cl.strTabla = "ArticulosxFamilia";
-                    //cl.intClave = Convert.ToInt32(cboLinea.EditValue);
-                    //cboArticulo.Properties.ValueMember = "Clave";
-                    //cboArticulo.Properties.DisplayMember = "Des";
-                    //cboArticulo.Properties.DataSource = cl.CargaCombosCondicion();
-                    //cboArticulo.Properties.ForceInitialize();
-                    //cboArticulo.Properties.PopupFilterMode = DevExpress.XtraEditors.PopupFilterMode.Contains;
-                    //cboArticulo.Properties.PopulateColumns();
-                    //cboArticulo.Properties.Columns["Clave"].Visible = false;
-                    //cboArticulo.ItemIndex = 0;
-                //}
-
+            {               
+                BindingSource src = new BindingSource();
+                combosCL cl = new combosCL();
+                globalCL clg = new globalCL();
+                cl.strTabla = "FamiliaxLinea";
+                cl.iCondicion = Convert.ToInt32(cboLinea.EditValue);
+                src.DataSource = cl.CargaCombos();
+                cboFamilia.Properties.ValueMember = "Clave";
+                cboFamilia.Properties.DisplayMember = "Des";
+                cboFamilia.Properties.DataSource = clg.AgregarOpcionTodos(src);
+                cboFamilia.Properties.ForceInitialize();
+                cboFamilia.Properties.PopupFilterMode = DevExpress.XtraEditors.PopupFilterMode.Contains;
+                cboFamilia.Properties.PopulateColumns();
+                cboFamilia.Properties.Columns["Clave"].Visible = false;
+                cboFamilia.ItemIndex = 0;
             }
             catch (Exception ex)
             {

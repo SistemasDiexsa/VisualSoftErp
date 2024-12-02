@@ -8,13 +8,12 @@ using VisualSoftErp.Clases;
 
 namespace VisualSoftErp.Operacion.Ventas.Designers
 {
-    public partial class VentaEstadoCanalVenta : DevExpress.XtraReports.UI.XtraReport
+    public partial class ImpresionVentasFamiliaArticulosTodoElAnioDesigner : DevExpress.XtraReports.UI.XtraReport
     {
-        public VentaEstadoCanalVenta()
+        public ImpresionVentasFamiliaArticulosTodoElAnioDesigner()
         {
             InitializeComponent();
         }
-
 
         private void sqlDataSource1_ConfigureDataConnection(object sender, DevExpress.DataAccess.Sql.ConfigureDataConnectionEventArgs e)
         {

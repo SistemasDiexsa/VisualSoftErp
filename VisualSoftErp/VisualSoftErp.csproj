@@ -1057,6 +1057,12 @@
     <Compile Include="Operacion\Ventas\Designers\EstadisticaventasporclienteDesigner.Designer.cs">
       <DependentUpon>EstadisticaventasporclienteDesigner.cs</DependentUpon>
     </Compile>
+    <Compile Include="Operacion\Ventas\Designers\ImpresionVentasFamiliaArticulosTodoElAnioDesigner.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Operacion\Ventas\Designers\ImpresionVentasFamiliaArticulosTodoElAnioDesigner.Designer.cs">
+      <DependentUpon>ImpresionVentasFamiliaArticulosTodoElAnioDesigner.cs</DependentUpon>
+    </Compile>
     <Compile Include="Operacion\Ventas\Informes\ArticulosAlmacen.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -2384,6 +2390,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Operacion\Ventas\Designers\EstadisticaventasporclienteDesigner.resx">
       <DependentUpon>EstadisticaventasporclienteDesigner.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Operacion\Ventas\Designers\ImpresionVentasFamiliaArticulosTodoElAnioDesigner.resx">
+      <DependentUpon>ImpresionVentasFamiliaArticulosTodoElAnioDesigner.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Operacion\Ventas\Informes\ArticulosAlmacen.resx">
       <DependentUpon>ArticulosAlmacen.cs</DependentUpon>

@@ -217,27 +217,18 @@ namespace VisualSoftErp.Operacion.Ventas.Informes
 
         private string Valida()
         {
-            string result = "OK";
             int value = Convert.ToInt32(cboTipoReporte.EditValue);
 
-            if(cboTipoReporte.EditValue == null)
-            {
-                result = "Seleccione el tipo de reporte a generar";
-                return result;
-            }
+            if (cboTipoReporte.EditValue == null)
+                return "Seleccione el tipo de reporte a generar";            
 
             if (value > 0 && cboCanaldeventa.EditValue == null)
-            {
-                result = "El campo Canales de venta no puede ir vacio";
-                return result;
-            }
-
+                return "El campo Canales de venta no puede ir vacio";
+            
             if (value == 2 && cboEdo.EditValue == null)
-            {
-                result = "El campo Estado no puede ir vacio";
-                return result;
-            }
-            return result;
+                return "El campo Estado no puede ir vacio";
+
+            return "OK";
         }
 
         private void cboTipoReporte_EditValueChanged(object sender, EventArgs e)

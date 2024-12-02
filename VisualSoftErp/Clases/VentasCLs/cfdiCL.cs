@@ -387,10 +387,10 @@ namespace VisualSoftErp.Clases
                 case 11:
                     return "NOV";
                 case 12:
-                    return "DIC";                
+                    return "DIC";
+                default:
+                    return "";
             }
-
-            return ""; //Aqui nunca va llegar, solo se pone para que no marque error la funcion
         }
 
         public string GeneraCfdi33(DataTable dtfDet,bool bCCE,int intPublicoengeneral,string strCfdiVer)
@@ -481,9 +481,6 @@ namespace VisualSoftErp.Clases
                 vs.FormaPago33 = pFormaPago;
                 vs.IvaExcento = pIvaexcento;
 
-                //if (strCfdiVer=="3.3")
-                //    pRutaXSLT = System.Configuration.ConfigurationManager.AppSettings["pathxslt"];
-                //else
                 pRutaXSLT = System.Configuration.ConfigurationManager.AppSettings["pathxslt40"];
 
                 pRutaXML = System.Configuration.ConfigurationManager.AppSettings["pathxml"];
@@ -520,11 +517,6 @@ namespace VisualSoftErp.Clases
                     vs.DocumentosRelacionados = 1;
                 }
 
-                //de aqui para abajo cv me quede
-                // if (strCfdiVer=="3.3")
-                //   vs.EmisorNombre33 = pEmisorNombre;
-                //else
-
                 vs.EmisorNombre33 = pEmisorNombre40;
                 vs.EmisorRfc33 = pEmisorRegFed;
                 vs.EmisorRegimenFiscal33 = pEmisorRegimen;
@@ -542,10 +534,7 @@ namespace VisualSoftErp.Clases
                     vs.LlaveCSD33 = "12345678a";
                 }
 
-                // if (strCfdiVer=="3.3")
-                //   vs.ReceptorNombre = pReceptorNombre;
-                // else
-                // { }
+                
                 vs.ReceptorNombre = pReceptorNom40;
                 vs.RegimenFiscalReceptor = pReceptorRegimenFiscal;
                 vs.DomicilioFiscalReceptor = pReceptorCP.ToString();
@@ -553,11 +542,11 @@ namespace VisualSoftErp.Clases
                 vs.Exportacion40 = "01";
                 vs.ReceptorRfc33 = pReceptorRegFed;
 
-                if (intPublicoengeneral==1)
+                if (intPublicoengeneral == 1)
                 {
                     vs.ReceptorNombre = "VENTAS AL PUBLICO EN GENERAL";
                     vs.ReceptorRfc33 = "XAXX010101000";
-                    vs.DomicilioFiscalReceptor = ambiente != "Productivo" ? "20928" : pEmisorCP;      // REVISAR PENDIENTE
+                    vs.DomicilioFiscalReceptor = ambiente != "Productivo" ? "20928" : pEmisorCP;
                     vs.RegimenFiscalReceptor = "616";
                     pUsoCfdi =  "S01";
                 }

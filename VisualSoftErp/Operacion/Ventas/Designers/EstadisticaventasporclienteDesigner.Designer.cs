@@ -150,6 +150,8 @@
             // sqlDataSource1
             // 
             this.sqlDataSource1.ConnectionName = "VisualSoftErpConnectionString";
+            this.sqlDataSource1.ConnectionOptions.CommandTimeout = 600;
+            this.sqlDataSource1.ConnectionOptions.DbCommandTimeout = 600;
             this.sqlDataSource1.Name = "sqlDataSource1";
             storedProcQuery1.Name = "VentasEstadisticaPorClienteRep";
             queryParameter1.Name = "@prmEmp";
@@ -186,8 +188,6 @@
             storedProcQuery1});
             this.sqlDataSource1.ResultSchemaSerializable = resources.GetString("sqlDataSource1.ResultSchemaSerializable");
             this.sqlDataSource1.ConfigureDataConnection += new DevExpress.DataAccess.Sql.ConfigureDataConnectionEventHandler(this.sqlDataSource1_ConfigureDataConnection);
-            this.sqlDataSource1.ConnectionOptions.DbCommandTimeout = 600;
-            
             // 
             // Title
             // 
@@ -821,8 +821,8 @@
             // 
             this.xrLabel16.CanGrow = false;
             this.xrLabel16.ExpressionBindings.AddRange(new DevExpress.XtraReports.UI.ExpressionBinding[] {
-            new DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "sumSum([Total])")});
-            this.xrLabel16.LocationFloat = new DevExpress.Utils.PointFloat(1102.242F, 9.999996F);
+            new DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "sumSum([Totalrenglon])")});
+            this.xrLabel16.LocationFloat = new DevExpress.Utils.PointFloat(1102.242F, 9.999997F);
             this.xrLabel16.Name = "xrLabel16";
             this.xrLabel16.SizeF = new System.Drawing.SizeF(71.79102F, 14.88444F);
             this.xrLabel16.StyleName = "GrandTotalData1";
@@ -838,7 +838,7 @@
             this.xrLabel15.CanGrow = false;
             this.xrLabel15.ExpressionBindings.AddRange(new DevExpress.XtraReports.UI.ExpressionBinding[] {
             new DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "sumSum([Dic])")});
-            this.xrLabel15.LocationFloat = new DevExpress.Utils.PointFloat(1032.242F, 9.999996F);
+            this.xrLabel15.LocationFloat = new DevExpress.Utils.PointFloat(1032.242F, 9.999997F);
             this.xrLabel15.Name = "xrLabel15";
             this.xrLabel15.SizeF = new System.Drawing.SizeF(69.99988F, 14.88444F);
             this.xrLabel15.StyleName = "GrandTotalData1";
@@ -854,7 +854,7 @@
             this.xrLabel14.CanGrow = false;
             this.xrLabel14.ExpressionBindings.AddRange(new DevExpress.XtraReports.UI.ExpressionBinding[] {
             new DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "sumSum([Nov])")});
-            this.xrLabel14.LocationFloat = new DevExpress.Utils.PointFloat(962.2423F, 10F);
+            this.xrLabel14.LocationFloat = new DevExpress.Utils.PointFloat(962.2424F, 9.999997F);
             this.xrLabel14.Name = "xrLabel14";
             this.xrLabel14.SizeF = new System.Drawing.SizeF(70F, 14.88444F);
             this.xrLabel14.StyleName = "GrandTotalData1";

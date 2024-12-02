@@ -79,11 +79,6 @@
             this.table2 = new DevExpress.XtraReports.UI.XRTable();
             this.tableRow2 = new DevExpress.XtraReports.UI.XRTableRow();
             this.tableCell9 = new DevExpress.XtraReports.UI.XRTableCell();
-            this.tableCell10 = new DevExpress.XtraReports.UI.XRTableCell();
-            this.tableCell11 = new DevExpress.XtraReports.UI.XRTableCell();
-            this.tableCell12 = new DevExpress.XtraReports.UI.XRTableCell();
-            this.tableCell13 = new DevExpress.XtraReports.UI.XRTableCell();
-            this.xrTableCell1 = new DevExpress.XtraReports.UI.XRTableCell();
             this.Detail = new DevExpress.XtraReports.UI.DetailBand();
             this.table3 = new DevExpress.XtraReports.UI.XRTable();
             this.tableRow3 = new DevExpress.XtraReports.UI.XRTableRow();
@@ -93,6 +88,11 @@
             this.tableCell17 = new DevExpress.XtraReports.UI.XRTableCell();
             this.tableCell18 = new DevExpress.XtraReports.UI.XRTableCell();
             this.xrTableCell2 = new DevExpress.XtraReports.UI.XRTableCell();
+            this.tableCell10 = new DevExpress.XtraReports.UI.XRTableCell();
+            this.tableCell11 = new DevExpress.XtraReports.UI.XRTableCell();
+            this.tableCell12 = new DevExpress.XtraReports.UI.XRTableCell();
+            this.tableCell13 = new DevExpress.XtraReports.UI.XRTableCell();
+            this.xrTableCell1 = new DevExpress.XtraReports.UI.XRTableCell();
             this.GroupFooter1 = new DevExpress.XtraReports.UI.GroupFooterBand();
             this.label2 = new DevExpress.XtraReports.UI.XRLabel();
             this.GroupFooter2 = new DevExpress.XtraReports.UI.GroupFooterBand();
@@ -171,17 +171,18 @@
             queryParameter11.Name = "@prmDummy";
             queryParameter11.Type = typeof(DevExpress.DataAccess.Expression);
             queryParameter11.Value = new DevExpress.DataAccess.Expression("?parameter11", typeof(string));
-            storedProcQuery1.Parameters.Add(queryParameter1);
-            storedProcQuery1.Parameters.Add(queryParameter2);
-            storedProcQuery1.Parameters.Add(queryParameter3);
-            storedProcQuery1.Parameters.Add(queryParameter4);
-            storedProcQuery1.Parameters.Add(queryParameter5);
-            storedProcQuery1.Parameters.Add(queryParameter6);
-            storedProcQuery1.Parameters.Add(queryParameter7);
-            storedProcQuery1.Parameters.Add(queryParameter8);
-            storedProcQuery1.Parameters.Add(queryParameter9);
-            storedProcQuery1.Parameters.Add(queryParameter10);
-            storedProcQuery1.Parameters.Add(queryParameter11);
+            storedProcQuery1.Parameters.AddRange(new DevExpress.DataAccess.Sql.QueryParameter[] {
+            queryParameter1,
+            queryParameter2,
+            queryParameter3,
+            queryParameter4,
+            queryParameter5,
+            queryParameter6,
+            queryParameter7,
+            queryParameter8,
+            queryParameter9,
+            queryParameter10,
+            queryParameter11});
             storedProcQuery1.StoredProcName = "FacturasRepVentasporLineaFamiliaDetallado";
             this.sqlDataSource1.Queries.AddRange(new DevExpress.DataAccess.Sql.SqlQuery[] {
             storedProcQuery1});
@@ -484,75 +485,6 @@
             this.tableCell9.Weight = 0.25432454427083334D;
             this.tableCell9.BeforePrint += new System.Drawing.Printing.PrintEventHandler(this.tableCell9_BeforePrint);
             // 
-            // tableCell10
-            // 
-            this.tableCell10.InteractiveSorting.FieldName = "NomArt";
-            this.tableCell10.InteractiveSorting.TargetBand = this.Detail;
-            this.tableCell10.Name = "tableCell10";
-            this.tableCell10.StyleName = "DetailCaption1";
-            this.tableCell10.StylePriority.UseBackColor = false;
-            this.tableCell10.StylePriority.UseForeColor = false;
-            this.tableCell10.Text = "Nombre";
-            this.tableCell10.Weight = 0.20574003092447918D;
-            this.tableCell10.BeforePrint += new System.Drawing.Printing.PrintEventHandler(this.tableCell10_BeforePrint);
-            // 
-            // tableCell11
-            // 
-            this.tableCell11.InteractiveSorting.FieldName = "Unidades";
-            this.tableCell11.InteractiveSorting.TargetBand = this.Detail;
-            this.tableCell11.Name = "tableCell11";
-            this.tableCell11.StyleName = "DetailCaption1";
-            this.tableCell11.StylePriority.UseBackColor = false;
-            this.tableCell11.StylePriority.UseForeColor = false;
-            this.tableCell11.StylePriority.UseTextAlignment = false;
-            this.tableCell11.Text = "Unidades";
-            this.tableCell11.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleRight;
-            this.tableCell11.Weight = 0.22787685139973959D;
-            this.tableCell11.BeforePrint += new System.Drawing.Printing.PrintEventHandler(this.tableCell11_BeforePrint);
-            // 
-            // tableCell12
-            // 
-            this.tableCell12.InteractiveSorting.FieldName = "SUBTOT";
-            this.tableCell12.InteractiveSorting.TargetBand = this.Detail;
-            this.tableCell12.Name = "tableCell12";
-            this.tableCell12.StyleName = "DetailCaption1";
-            this.tableCell12.StylePriority.UseBackColor = false;
-            this.tableCell12.StylePriority.UseForeColor = false;
-            this.tableCell12.StylePriority.UseTextAlignment = false;
-            this.tableCell12.Text = "SubTotal";
-            this.tableCell12.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleRight;
-            this.tableCell12.Weight = 0.18166173190199947D;
-            this.tableCell12.BeforePrint += new System.Drawing.Printing.PrintEventHandler(this.tableCell12_BeforePrint);
-            // 
-            // tableCell13
-            // 
-            this.tableCell13.InteractiveSorting.FieldName = "TP";
-            this.tableCell13.InteractiveSorting.TargetBand = this.Detail;
-            this.tableCell13.Name = "tableCell13";
-            this.tableCell13.StyleName = "DetailCaption1";
-            this.tableCell13.StylePriority.UseBackColor = false;
-            this.tableCell13.StylePriority.UseForeColor = false;
-            this.tableCell13.StylePriority.UseTextAlignment = false;
-            this.tableCell13.Text = "TP";
-            this.tableCell13.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleRight;
-            this.tableCell13.Weight = 0.15733817881332721D;
-            this.tableCell13.BeforePrint += new System.Drawing.Printing.PrintEventHandler(this.tableCell13_BeforePrint);
-            // 
-            // xrTableCell1
-            // 
-            this.xrTableCell1.InteractiveSorting.FieldName = "Diferencia";
-            this.xrTableCell1.InteractiveSorting.TargetBand = this.Detail;
-            this.xrTableCell1.Multiline = true;
-            this.xrTableCell1.Name = "xrTableCell1";
-            this.xrTableCell1.StyleName = "DetailCaption1";
-            this.xrTableCell1.StylePriority.UseBackColor = false;
-            this.xrTableCell1.StylePriority.UseForeColor = false;
-            this.xrTableCell1.StylePriority.UseTextAlignment = false;
-            this.xrTableCell1.Text = "Diferencia";
-            this.xrTableCell1.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleRight;
-            this.xrTableCell1.Weight = 0.18542042823324104D;
-            this.xrTableCell1.BeforePrint += new System.Drawing.Printing.PrintEventHandler(this.xrTableCell1_BeforePrint);
-            // 
             // Detail
             // 
             this.Detail.Controls.AddRange(new DevExpress.XtraReports.UI.XRControl[] {
@@ -626,7 +558,7 @@
             this.tableCell17.StyleName = "DetailData1";
             this.tableCell17.StylePriority.UseTextAlignment = false;
             this.tableCell17.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleRight;
-            this.tableCell17.TextFormatString = "{0:C2}";
+            this.tableCell17.TextFormatString = "{0:$#,##0.00}";
             this.tableCell17.Weight = 0.18166184289703413D;
             // 
             // tableCell18
@@ -637,7 +569,7 @@
             this.tableCell18.StyleName = "DetailData1";
             this.tableCell18.StylePriority.UseTextAlignment = false;
             this.tableCell18.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleRight;
-            this.tableCell18.TextFormatString = "{0:C2}";
+            this.tableCell18.TextFormatString = "{0:$#,##0.00}";
             this.tableCell18.Weight = 0.15733806781829254D;
             // 
             // xrTableCell2
@@ -650,8 +582,77 @@
             this.xrTableCell2.StylePriority.UseTextAlignment = false;
             this.xrTableCell2.Text = "xrTableCell2";
             this.xrTableCell2.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleRight;
-            this.xrTableCell2.TextFormatString = "{0:c2}";
+            this.xrTableCell2.TextFormatString = "{0:$#,##0.00}";
             this.xrTableCell2.Weight = 0.18542042823324104D;
+            // 
+            // tableCell10
+            // 
+            this.tableCell10.InteractiveSorting.FieldName = "NomArt";
+            this.tableCell10.InteractiveSorting.TargetBand = this.Detail;
+            this.tableCell10.Name = "tableCell10";
+            this.tableCell10.StyleName = "DetailCaption1";
+            this.tableCell10.StylePriority.UseBackColor = false;
+            this.tableCell10.StylePriority.UseForeColor = false;
+            this.tableCell10.Text = "Nombre";
+            this.tableCell10.Weight = 0.20574003092447918D;
+            this.tableCell10.BeforePrint += new System.Drawing.Printing.PrintEventHandler(this.tableCell10_BeforePrint);
+            // 
+            // tableCell11
+            // 
+            this.tableCell11.InteractiveSorting.FieldName = "Unidades";
+            this.tableCell11.InteractiveSorting.TargetBand = this.Detail;
+            this.tableCell11.Name = "tableCell11";
+            this.tableCell11.StyleName = "DetailCaption1";
+            this.tableCell11.StylePriority.UseBackColor = false;
+            this.tableCell11.StylePriority.UseForeColor = false;
+            this.tableCell11.StylePriority.UseTextAlignment = false;
+            this.tableCell11.Text = "Unidades";
+            this.tableCell11.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleRight;
+            this.tableCell11.Weight = 0.22787685139973959D;
+            this.tableCell11.BeforePrint += new System.Drawing.Printing.PrintEventHandler(this.tableCell11_BeforePrint);
+            // 
+            // tableCell12
+            // 
+            this.tableCell12.InteractiveSorting.FieldName = "SUBTOT";
+            this.tableCell12.InteractiveSorting.TargetBand = this.Detail;
+            this.tableCell12.Name = "tableCell12";
+            this.tableCell12.StyleName = "DetailCaption1";
+            this.tableCell12.StylePriority.UseBackColor = false;
+            this.tableCell12.StylePriority.UseForeColor = false;
+            this.tableCell12.StylePriority.UseTextAlignment = false;
+            this.tableCell12.Text = "SubTotal";
+            this.tableCell12.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleRight;
+            this.tableCell12.Weight = 0.18166173190199947D;
+            this.tableCell12.BeforePrint += new System.Drawing.Printing.PrintEventHandler(this.tableCell12_BeforePrint);
+            // 
+            // tableCell13
+            // 
+            this.tableCell13.InteractiveSorting.FieldName = "TP";
+            this.tableCell13.InteractiveSorting.TargetBand = this.Detail;
+            this.tableCell13.Name = "tableCell13";
+            this.tableCell13.StyleName = "DetailCaption1";
+            this.tableCell13.StylePriority.UseBackColor = false;
+            this.tableCell13.StylePriority.UseForeColor = false;
+            this.tableCell13.StylePriority.UseTextAlignment = false;
+            this.tableCell13.Text = "TP";
+            this.tableCell13.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleRight;
+            this.tableCell13.Weight = 0.15733817881332721D;
+            this.tableCell13.BeforePrint += new System.Drawing.Printing.PrintEventHandler(this.tableCell13_BeforePrint);
+            // 
+            // xrTableCell1
+            // 
+            this.xrTableCell1.InteractiveSorting.FieldName = "Diferencia";
+            this.xrTableCell1.InteractiveSorting.TargetBand = this.Detail;
+            this.xrTableCell1.Multiline = true;
+            this.xrTableCell1.Name = "xrTableCell1";
+            this.xrTableCell1.StyleName = "DetailCaption1";
+            this.xrTableCell1.StylePriority.UseBackColor = false;
+            this.xrTableCell1.StylePriority.UseForeColor = false;
+            this.xrTableCell1.StylePriority.UseTextAlignment = false;
+            this.xrTableCell1.Text = "Diferencia";
+            this.xrTableCell1.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleRight;
+            this.xrTableCell1.Weight = 0.18542042823324104D;
+            this.xrTableCell1.BeforePrint += new System.Drawing.Printing.PrintEventHandler(this.xrTableCell1_BeforePrint);
             // 
             // GroupFooter1
             // 
@@ -704,7 +705,7 @@
             xrSummary1.Running = DevExpress.XtraReports.UI.SummaryRunning.Group;
             this.xrLabel1.Summary = xrSummary1;
             this.xrLabel1.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleRight;
-            this.xrLabel1.TextFormatString = "{0:C2}";
+            this.xrLabel1.TextFormatString = "{0:$#,##0.00}";
             this.xrLabel1.WordWrap = false;
             // 
             // label3
@@ -728,7 +729,7 @@
             xrSummary2.Running = DevExpress.XtraReports.UI.SummaryRunning.Group;
             this.label4.Summary = xrSummary2;
             this.label4.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleRight;
-            this.label4.TextFormatString = "{0:C2}";
+            this.label4.TextFormatString = "{0:$#,##0.00}";
             this.label4.WordWrap = false;
             // 
             // label6
@@ -744,7 +745,7 @@
             xrSummary3.Running = DevExpress.XtraReports.UI.SummaryRunning.Group;
             this.label6.Summary = xrSummary3;
             this.label6.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleRight;
-            this.label6.TextFormatString = "{0:C2}";
+            this.label6.TextFormatString = "{0:$#,##0.00}";
             this.label6.WordWrap = false;
             // 
             // label7
@@ -789,7 +790,7 @@
             xrSummary4.Running = DevExpress.XtraReports.UI.SummaryRunning.Report;
             this.xrLabel2.Summary = xrSummary4;
             this.xrLabel2.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleRight;
-            this.xrLabel2.TextFormatString = "{0:C2}";
+            this.xrLabel2.TextFormatString = "{0:$#,##0.00}";
             this.xrLabel2.WordWrap = false;
             // 
             // label8
@@ -813,7 +814,7 @@
             xrSummary5.Running = DevExpress.XtraReports.UI.SummaryRunning.Report;
             this.label9.Summary = xrSummary5;
             this.label9.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleRight;
-            this.label9.TextFormatString = "{0:C2}";
+            this.label9.TextFormatString = "{0:$#,##0.00}";
             this.label9.WordWrap = false;
             // 
             // label11
@@ -829,7 +830,7 @@
             xrSummary6.Running = DevExpress.XtraReports.UI.SummaryRunning.Report;
             this.label11.Summary = xrSummary6;
             this.label11.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleRight;
-            this.label11.TextFormatString = "{0:C2}";
+            this.label11.TextFormatString = "{0:$#,##0.00}";
             this.label11.WordWrap = false;
             // 
             // label1
@@ -1048,7 +1049,7 @@
             this.GrandTotalData1,
             this.GrandTotalBackground1,
             this.PageInfo});
-            this.Version = "19.1";
+            this.Version = "21.2";
             ((System.ComponentModel.ISupportInitialize)(this.table1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.table2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.table3)).EndInit();

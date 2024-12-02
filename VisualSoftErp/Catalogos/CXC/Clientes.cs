@@ -914,8 +914,9 @@ namespace VisualSoftErp.Catalogos.CXC
                 txtNom40.Text = cl.strNom40;
                 cboRegimen.EditValue = cl.strRegimenFiscal;
                 txtCfdiVer.Text = cl.strCfdiVer;
-                
-            }
+
+                txtRecordatorioCumpleañosDestinatario.Text = cl.strRecordatorioCumpleañosDestinatario;
+                dateRecordatorioCumpleañosFecha.DateTime = cl.dateRecordatorioCumpleañosFecha;            }
 
             else
             {

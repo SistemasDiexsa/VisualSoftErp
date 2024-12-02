@@ -151,7 +151,7 @@
             this.repositoryItemCheckEdit1});
             this.ribbonControl.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonControlStyle.Office2013;
             this.ribbonControl.ShowApplicationButton = DevExpress.Utils.DefaultBoolean.False;
-            this.ribbonControl.Size = new System.Drawing.Size(914, 147);
+            this.ribbonControl.Size = new System.Drawing.Size(959, 147);
             this.ribbonControl.StatusBar = this.ribbonStatusBar;
             this.ribbonControl.ToolbarLocation = DevExpress.XtraBars.Ribbon.RibbonQuickAccessToolbarLocation.Hidden;
             // 
@@ -329,10 +329,10 @@
             // 
             // ribbonStatusBar
             // 
-            this.ribbonStatusBar.Location = new System.Drawing.Point(0, 576);
+            this.ribbonStatusBar.Location = new System.Drawing.Point(0, 589);
             this.ribbonStatusBar.Name = "ribbonStatusBar";
             this.ribbonStatusBar.Ribbon = this.ribbonControl;
-            this.ribbonStatusBar.Size = new System.Drawing.Size(914, 23);
+            this.ribbonStatusBar.Size = new System.Drawing.Size(959, 23);
             // 
             // navigationFrame
             // 
@@ -348,7 +348,7 @@
             this.NavigationPageProgramas});
             this.navigationFrame.RibbonAndBarsMergeStyle = DevExpress.XtraBars.Docking2010.Views.RibbonAndBarsMergeStyle.Always;
             this.navigationFrame.SelectedPage = this.NavigationPageUsuarios;
-            this.navigationFrame.Size = new System.Drawing.Size(757, 429);
+            this.navigationFrame.Size = new System.Drawing.Size(802, 442);
             this.navigationFrame.TabIndex = 0;
             this.navigationFrame.Text = "navigationFrame";
             // 
@@ -356,7 +356,7 @@
             // 
             this.NavigationPageUsuarios.Controls.Add(this.splitContainerControl1);
             this.NavigationPageUsuarios.Name = "NavigationPageUsuarios";
-            this.NavigationPageUsuarios.Size = new System.Drawing.Size(757, 429);
+            this.NavigationPageUsuarios.Size = new System.Drawing.Size(802, 442);
             // 
             // splitContainerControl1
             // 
@@ -380,7 +380,7 @@
             this.splitContainerControl1.Panel2.Appearance.Options.UseBackColor = true;
             this.splitContainerControl1.Panel2.Controls.Add(this.gridControlPrincipal);
             this.splitContainerControl1.Panel2.Text = "Panel2";
-            this.splitContainerControl1.Size = new System.Drawing.Size(757, 429);
+            this.splitContainerControl1.Size = new System.Drawing.Size(802, 442);
             this.splitContainerControl1.SplitterPosition = 62;
             this.splitContainerControl1.TabIndex = 0;
             // 
@@ -411,7 +411,7 @@
             this.gridControlPrincipal.MainView = this.gridViewPrincipal;
             this.gridControlPrincipal.MenuManager = this.ribbonControl;
             this.gridControlPrincipal.Name = "gridControlPrincipal";
-            this.gridControlPrincipal.Size = new System.Drawing.Size(757, 355);
+            this.gridControlPrincipal.Size = new System.Drawing.Size(802, 368);
             this.gridControlPrincipal.TabIndex = 0;
             this.gridControlPrincipal.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridViewPrincipal});
@@ -425,7 +425,7 @@
             // 
             this.NavigationPageProgramas.Controls.Add(this.splitContainerControl3);
             this.NavigationPageProgramas.Name = "NavigationPageProgramas";
-            this.NavigationPageProgramas.Size = new System.Drawing.Size(757, 429);
+            this.NavigationPageProgramas.Size = new System.Drawing.Size(802, 442);
             // 
             // splitContainerControl3
             // 
@@ -449,7 +449,7 @@
             // 
             this.splitContainerControl3.Panel2.Controls.Add(this.gridControlProgramas);
             this.splitContainerControl3.Panel2.Text = "Panel2";
-            this.splitContainerControl3.Size = new System.Drawing.Size(757, 429);
+            this.splitContainerControl3.Size = new System.Drawing.Size(802, 442);
             this.splitContainerControl3.SplitterPosition = 62;
             this.splitContainerControl3.TabIndex = 0;
             // 
@@ -480,7 +480,7 @@
             this.gridControlProgramas.MainView = this.gridViewProgramas;
             this.gridControlProgramas.MenuManager = this.ribbonControl;
             this.gridControlProgramas.Name = "gridControlProgramas";
-            this.gridControlProgramas.Size = new System.Drawing.Size(757, 355);
+            this.gridControlProgramas.Size = new System.Drawing.Size(802, 368);
             this.gridControlProgramas.TabIndex = 0;
             this.gridControlProgramas.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridViewProgramas});
@@ -509,7 +509,7 @@
             // 
             this.splitContainerControl2.Panel2.Controls.Add(this.navigationFrame);
             this.splitContainerControl2.Panel2.Text = "Panel2";
-            this.splitContainerControl2.Size = new System.Drawing.Size(914, 429);
+            this.splitContainerControl2.Size = new System.Drawing.Size(959, 442);
             this.splitContainerControl2.SplitterPosition = 145;
             this.splitContainerControl2.TabIndex = 3;
             // 
@@ -526,7 +526,7 @@
             this.navBarControl1.Name = "navBarControl1";
             this.navBarControl1.OptionsNavPane.ExpandedWidth = 145;
             this.navBarControl1.PaintStyleKind = DevExpress.XtraNavBar.NavBarViewKind.NavigationPane;
-            this.navBarControl1.Size = new System.Drawing.Size(145, 429);
+            this.navBarControl1.Size = new System.Drawing.Size(145, 442);
             this.navBarControl1.TabIndex = 0;
             this.navBarControl1.Text = "navBarControl1";
             this.navBarControl1.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.navBarControl1_LinkClicked);
@@ -554,7 +554,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(914, 599);
+            this.ClientSize = new System.Drawing.Size(959, 612);
             this.Controls.Add(this.splitContainerControl2);
             this.Controls.Add(this.ribbonStatusBar);
             this.Controls.Add(this.ribbonControl);

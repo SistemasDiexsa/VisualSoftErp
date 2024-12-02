@@ -379,6 +379,7 @@ namespace VisualSoftErp.Catalogos
                 decimal dimporte = 0;
                 decimal dIva = 0;
                 decimal dIeps = 0;
+                decimal dRetISR = 0;
                 //decimal dCostoum2 = 0;
                 //decimal dFactorum2 = 0;
                 decimal dPIva = 0;
@@ -418,9 +419,11 @@ namespace VisualSoftErp.Catalogos
 
                             dPIva = Convert.ToDecimal(gridViewOCdetalle.GetRowCellValue(i, "Piva"));
                             dPIeps = Convert.ToDecimal(gridViewOCdetalle.GetRowCellValue(i, "Pieps"));
+                            dRetISR = Convert.ToDecimal(gridViewOCdetalle.GetRowCellValue(i, "PRetISR"));
                             dIva = Math.Round(dimporte * (dPIva / 100),2);
                             dIeps = Math.Round(dimporte * (dPIeps / 100),2);
-                            decNetogrid = dimporte + dIva + dIeps;
+                            dRetencionISR = Math.Round(dimporte * (dRetISR / 100), 2);
+                            decNetogrid = dimporte + dIva + dIeps + dRetencionISR;
 
                             dtRMdetalle.Rows.Add(strSerie, intFolio, intSeq, dCantidad, intArticulosID, dPrecio, dimporte, dIva, dIeps, 0, 0, dPIva, dPIeps, dDescuento, dPDescuento, strSerieOC, intFolioOC, intSeq, decNetogrid, dRetencionISR);
 

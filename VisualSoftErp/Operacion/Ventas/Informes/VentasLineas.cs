@@ -76,18 +76,15 @@ namespace VisualSoftErp.Operacion.Ventas.Informes
 
         private void Reporte()
         {
-            string result = Valida();
-            if (result != "OK")
+            try
             {
-                MessageBox.Show(result);
-                return;
-            }
+                string result = Valida();
+                if (result != "OK")
+                {
+                    MessageBox.Show(result);
+                    return;
+                }
 
-            globalCL cl = new globalCL();
-            result = cl.Datosdecontrol();
-            int impDirecto = result == "OK" ? cl.iImpresiondirecta : 0;
-            if (impDirecto == 1)
-            {
                 VentasLineasDesigner rep = new VentasLineasDesigner();
                 rep.Parameters["parameter1"].Value = Convert.ToInt32(cboLineas.EditValue);
                 rep.Parameters["parameter1"].Visible = false;
@@ -95,23 +92,27 @@ namespace VisualSoftErp.Operacion.Ventas.Informes
                 rep.Parameters["parameter2"].Visible = false;
                 rep.Parameters["parameter3"].Value = Convert.ToDateTime(vsFiltroFechas1.FechaFinal);
                 rep.Parameters["parameter3"].Visible = false;
-                ReportPrintTool rpt = new DevExpress.XtraReports.UI.ReportPrintTool(rep);
-                rpt.Print();
-                return;
+                
+                globalCL cl = new globalCL();
+                result = cl.Datosdecontrol();
+                int impDirecto = result == "OK" ? cl.iImpresiondirecta : 0;
+                if (impDirecto == 1)
+                {
+                    ReportPrintTool rpt = new DevExpress.XtraReports.UI.ReportPrintTool(rep);
+                    rpt.Print();
+                    return;
+                }
+                else
+                {
+                    documentViewer1.DocumentSource = rep;
+                    rep.CreateDocument();
+                    ribbonControl.MergeOwner.SelectedPage = ribbonControl.MergeOwner.TotalPageCategory.GetPageByText(ribbonPagePrint.Text);
+                    navigationFrame1.SelectedPageIndex = 1;
+                }
             }
-            else
+            catch (Exception ex)
             {
-                VentasLineasDesigner rep = new VentasLineasDesigner();
-                rep.Parameters["parameter1"].Value = Convert.ToInt32(cboLineas.EditValue);
-                rep.Parameters["parameter1"].Visible = false;
-                rep.Parameters["parameter2"].Value = Convert.ToDateTime(vsFiltroFechas1.FechaInicial);
-                rep.Parameters["parameter2"].Visible = false;
-                rep.Parameters["parameter3"].Value = Convert.ToDateTime(vsFiltroFechas1.FechaFinal);
-                rep.Parameters["parameter3"].Visible = false;
-                documentViewer1.DocumentSource = rep;
-                rep.CreateDocument();
-                ribbonControl.MergeOwner.SelectedPage = ribbonControl.MergeOwner.TotalPageCategory.GetPageByText(ribbonPagePrint.Text);
-                navigationFrame1.SelectedPageIndex = 1;
+                MessageBox.Show(ex.Message);
             }
         }
 

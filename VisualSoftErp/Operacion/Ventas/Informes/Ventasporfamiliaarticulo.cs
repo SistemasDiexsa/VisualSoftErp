@@ -71,7 +71,9 @@ namespace VisualSoftErp.Operacion.Ventas.Informes
                     case 2:
                         ImpresionVentasFamiliaArticulosDetalle(impDirecto);
                         break;
-
+                    case 3:
+                        ImpresionVentasFamiliaArticulosTodoElAnio(impDirecto);
+                        break;
                     default:
                         break;
                 }
@@ -126,8 +128,8 @@ namespace VisualSoftErp.Operacion.Ventas.Informes
                 rep.Parameters["parameter3"].Visible = false;
                 rep.Parameters["parameter4"].Value = Familia;
                 rep.Parameters["parameter4"].Visible = false;
-                rep.Parameters["parameter5"].Value = Convert.ToDateTime(vsFiltroFechas1.FechaInicial);
                 rep.Parameters["parameter5"].Visible = false;
+                rep.Parameters["parameter5"].Value = Convert.ToDateTime(vsFiltroFechas1.FechaInicial);
                 rep.Parameters["parameter6"].Value = Convert.ToDateTime(vsFiltroFechas1.FechaFinal);
                 rep.Parameters["parameter6"].Visible = false;
                 rep.Parameters["parameter7"].Value = Agente;
@@ -222,6 +224,86 @@ namespace VisualSoftErp.Operacion.Ventas.Informes
             }
         }
 
+        private void ImpresionVentasFamiliaArticulosTodoElAnio(int ImpDirecto)
+        {
+            try
+            {
+                ImpresionVentasFamiliaArticulosTodoElAnioDesigner rep = new ImpresionVentasFamiliaArticulosTodoElAnioDesigner();
+                int intArtIn = 0;
+                int intArtFin = 0;
+
+                if (cboArticulos.EditValue == null)
+                {
+                    intArtIn = 0;
+                    intArtFin = 99999;
+                }
+                else
+                {
+                    intArtIn = Articulo;
+                    intArtFin = Articulo;
+                }
+
+                if (ImpDirecto == 1)
+                {
+
+                    rep.Parameters["parameter1"].Value = Emp;
+                    rep.Parameters["parameter1"].Visible = false;
+                    rep.Parameters["parameter2"].Value = 0;
+                    rep.Parameters["parameter2"].Visible = false;
+                    rep.Parameters["parameter3"].Value = Linea;
+                    rep.Parameters["parameter3"].Visible = false;
+                    rep.Parameters["parameter4"].Value = Familia;
+                    rep.Parameters["parameter4"].Visible = false;
+                    rep.Parameters["parameter5"].Value = Convert.ToDateTime(vsFiltroFechas1.FechaInicial);
+                    rep.Parameters["parameter5"].Visible = false;
+                    rep.Parameters["parameter6"].Value = Convert.ToDateTime(vsFiltroFechas1.FechaFinal);
+                    rep.Parameters["parameter6"].Visible = false;
+                    rep.Parameters["parameter7"].Value = Agente;
+                    rep.Parameters["parameter7"].Visible = false;
+                    rep.Parameters["parameter8"].Value = Canaldeventa;
+                    rep.Parameters["parameter8"].Visible = false;
+                    rep.Parameters["parameter9"].Value = intArtIn;
+                    rep.Parameters["parameter9"].Visible = false;
+                    rep.Parameters["parameter10"].Value = intArtFin;     //Duumy
+                    rep.Parameters["parameter10"].Visible = false;
+                    ReportPrintTool rpt = new DevExpress.XtraReports.UI.ReportPrintTool(rep);
+                    rpt.Print();
+                    return;
+                }
+                else
+                {
+                    rep.Parameters["parameter1"].Value = Emp;
+                    rep.Parameters["parameter1"].Visible = false;
+                    rep.Parameters["parameter2"].Value = 0;
+                    rep.Parameters["parameter2"].Visible = false;
+                    rep.Parameters["parameter3"].Value = Linea;
+                    rep.Parameters["parameter3"].Visible = false;
+                    rep.Parameters["parameter4"].Value = Familia;
+                    rep.Parameters["parameter4"].Visible = false;
+                    rep.Parameters["parameter5"].Value = Convert.ToDateTime(vsFiltroFechas1.FechaInicial);
+                    rep.Parameters["parameter5"].Visible = false;
+                    rep.Parameters["parameter6"].Value = Convert.ToDateTime(vsFiltroFechas1.FechaFinal);
+                    rep.Parameters["parameter6"].Visible = false;
+                    rep.Parameters["parameter7"].Value = Agente;
+                    rep.Parameters["parameter7"].Visible = false;
+                    rep.Parameters["parameter8"].Value = Canaldeventa;
+                    rep.Parameters["parameter8"].Visible = false;
+                    rep.Parameters["parameter9"].Value = intArtIn;
+                    rep.Parameters["parameter9"].Visible = false;
+                    rep.Parameters["parameter10"].Value = intArtFin;     //Duumy
+                    rep.Parameters["parameter10"].Visible = false;
+                    documentViewer1.DocumentSource = rep;
+                    rep.CreateDocument();
+                    ribbonControl.MergeOwner.SelectedPage = ribbonControl.MergeOwner.TotalPageCategory.GetPageByText(ribbonPageImpresion.Text);
+                    navigationFrame.SelectedPageIndex = 1;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                return;
+            }
+        }
         private void Cargacombos()
         {
             combosCL cl = new combosCL();

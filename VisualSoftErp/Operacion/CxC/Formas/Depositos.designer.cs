@@ -143,6 +143,8 @@
             this.txtFolio = new DevExpress.XtraEditors.TextEdit();
             this.cboSerie = new DevExpress.XtraEditors.LookUpEdit();
             this.groupControl2 = new DevExpress.XtraEditors.GroupControl();
+            this.swPublicoGeneral = new DevExpress.XtraEditors.ToggleSwitch();
+            this.swDepositoRecepcion = new DevExpress.XtraEditors.ToggleSwitch();
             this.simpleButton4 = new DevExpress.XtraEditors.SimpleButton();
             this.btnEnabledCte = new DevExpress.XtraEditors.SimpleButton();
             this.txtCte2 = new DevExpress.XtraEditors.TextEdit();
@@ -186,7 +188,6 @@
             this.gridColumnCte = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumnSuPagoconvertido = new DevExpress.XtraGrid.Columns.GridColumn();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.swDepositoRecepcion = new DevExpress.XtraEditors.ToggleSwitch();
             ((System.ComponentModel.ISupportInitialize)(this.tabbedView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ribbonControl)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.navBarControl)).BeginInit();
@@ -237,6 +238,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.cboSerie.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl2)).BeginInit();
             this.groupControl2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.swPublicoGeneral.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.swDepositoRecepcion.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtCte2.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dateEditFecha.Properties.CalendarTimeProperties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dateEditFecha.Properties)).BeginInit();
@@ -253,7 +256,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.cboCuentasbancariaID.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridControlDetalle)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridViewDetalle)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.swDepositoRecepcion.Properties)).BeginInit();
             this.SuspendLayout();
             // 
             // ribbonControl
@@ -698,7 +700,7 @@
             this.labelControl27.Location = new System.Drawing.Point(614, 23);
             this.labelControl27.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.labelControl27.Name = "labelControl27";
-            this.labelControl27.Size = new System.Drawing.Size(57, 13);
+            this.labelControl27.Size = new System.Drawing.Size(56, 13);
             this.labelControl27.TabIndex = 29;
             this.labelControl27.Text = "Solo interno";
             this.labelControl27.Click += new System.EventHandler(this.labelControl27_Click);
@@ -711,7 +713,7 @@
             this.swInterno.Name = "swInterno";
             this.swInterno.Properties.OffText = "No";
             this.swInterno.Properties.OnText = "Sí";
-            this.swInterno.Size = new System.Drawing.Size(109, 24);
+            this.swInterno.Size = new System.Drawing.Size(109, 23);
             this.swInterno.TabIndex = 28;
             // 
             // labelControl40
@@ -730,7 +732,7 @@
             this.labelControl39.Location = new System.Drawing.Point(123, 329);
             this.labelControl39.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.labelControl39.Name = "labelControl39";
-            this.labelControl39.Size = new System.Drawing.Size(272, 13);
+            this.labelControl39.Size = new System.Drawing.Size(269, 13);
             this.labelControl39.TabIndex = 26;
             this.labelControl39.Text = "04 Operación nominativa relacionada en la factura global";
             // 
@@ -739,7 +741,7 @@
             this.labelControl38.Location = new System.Drawing.Point(123, 304);
             this.labelControl38.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.labelControl38.Name = "labelControl38";
-            this.labelControl38.Size = new System.Drawing.Size(163, 13);
+            this.labelControl38.Size = new System.Drawing.Size(165, 13);
             this.labelControl38.TabIndex = 25;
             this.labelControl38.Text = "03 No se llevó a cabo la operación";
             // 
@@ -748,7 +750,7 @@
             this.labelControl37.Location = new System.Drawing.Point(123, 279);
             this.labelControl37.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.labelControl37.Name = "labelControl37";
-            this.labelControl37.Size = new System.Drawing.Size(231, 13);
+            this.labelControl37.Size = new System.Drawing.Size(226, 13);
             this.labelControl37.TabIndex = 24;
             this.labelControl37.Text = "02 Comprobante emitido con errores sin relación";
             // 
@@ -757,7 +759,7 @@
             this.lblMot01.Location = new System.Drawing.Point(123, 253);
             this.lblMot01.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.lblMot01.Name = "lblMot01";
-            this.lblMot01.Size = new System.Drawing.Size(235, 13);
+            this.lblMot01.Size = new System.Drawing.Size(231, 13);
             this.lblMot01.TabIndex = 23;
             this.lblMot01.Text = "01 Comprobante emitido con errores con relación";
             // 
@@ -809,7 +811,7 @@
             this.labelControl33.Location = new System.Drawing.Point(25, 198);
             this.labelControl33.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.labelControl33.Name = "labelControl33";
-            this.labelControl33.Size = new System.Drawing.Size(78, 13);
+            this.labelControl33.Size = new System.Drawing.Size(80, 13);
             this.labelControl33.TabIndex = 17;
             this.labelControl33.Text = "UUID nuevo cfdi";
             // 
@@ -872,7 +874,7 @@
             this.labelControl19.Location = new System.Drawing.Point(27, 45);
             this.labelControl19.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.labelControl19.Name = "labelControl19";
-            this.labelControl19.Size = new System.Drawing.Size(25, 13);
+            this.labelControl19.Size = new System.Drawing.Size(26, 13);
             this.labelControl19.TabIndex = 10;
             this.labelControl19.Text = "Login";
             // 
@@ -917,7 +919,7 @@
             this.labelControl17.Location = new System.Drawing.Point(-100, 10);
             this.labelControl17.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.labelControl17.Name = "labelControl17";
-            this.labelControl17.Size = new System.Drawing.Size(25, 13);
+            this.labelControl17.Size = new System.Drawing.Size(26, 13);
             this.labelControl17.TabIndex = 5;
             this.labelControl17.Text = "Login";
             // 
@@ -958,7 +960,7 @@
             this.labelControl26.Location = new System.Drawing.Point(27, 101);
             this.labelControl26.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.labelControl26.Name = "labelControl26";
-            this.labelControl26.Size = new System.Drawing.Size(49, 13);
+            this.labelControl26.Size = new System.Drawing.Size(50, 13);
             this.labelControl26.TabIndex = 15;
             this.labelControl26.Text = "Saldo tesk";
             // 
@@ -993,7 +995,7 @@
             this.labelControl22.Location = new System.Drawing.Point(27, 71);
             this.labelControl22.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.labelControl22.Name = "labelControl22";
-            this.labelControl22.Size = new System.Drawing.Size(37, 13);
+            this.labelControl22.Size = new System.Drawing.Size(36, 13);
             this.labelControl22.TabIndex = 11;
             this.labelControl22.Text = "Factura";
             // 
@@ -1038,7 +1040,7 @@
             this.labelControl25.Location = new System.Drawing.Point(-100, 10);
             this.labelControl25.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.labelControl25.Name = "labelControl25";
-            this.labelControl25.Size = new System.Drawing.Size(25, 13);
+            this.labelControl25.Size = new System.Drawing.Size(26, 13);
             this.labelControl25.TabIndex = 5;
             this.labelControl25.Text = "Login";
             // 
@@ -1078,6 +1080,7 @@
             // 
             this.splitContainerControl1.Panel1.Appearance.BackColor = System.Drawing.Color.Transparent;
             this.splitContainerControl1.Panel1.Appearance.Options.UseBackColor = true;
+            this.splitContainerControl1.Panel1.Controls.Add(this.swPublicoGeneral);
             this.splitContainerControl1.Panel1.Controls.Add(this.simpleButton5);
             this.splitContainerControl1.Panel1.Controls.Add(this.txtUUIDRelacion);
             this.splitContainerControl1.Panel1.Controls.Add(this.labelControl35);
@@ -1131,7 +1134,7 @@
             this.labelControl35.Appearance.Options.UseForeColor = true;
             this.labelControl35.Location = new System.Drawing.Point(21, 294);
             this.labelControl35.Name = "labelControl35";
-            this.labelControl35.Size = new System.Drawing.Size(69, 13);
+            this.labelControl35.Size = new System.Drawing.Size(70, 13);
             this.labelControl35.TabIndex = 22;
             this.labelControl35.Text = "UUID relación:";
             // 
@@ -1166,7 +1169,7 @@
             this.labelControl34.Appearance.Options.UseForeColor = true;
             this.labelControl34.Location = new System.Drawing.Point(21, 273);
             this.labelControl34.Name = "labelControl34";
-            this.labelControl34.Size = new System.Drawing.Size(66, 13);
+            this.labelControl34.Size = new System.Drawing.Size(65, 13);
             this.labelControl34.TabIndex = 18;
             this.labelControl34.Text = "Folio relación:";
             // 
@@ -1177,7 +1180,7 @@
             this.labelControl29.Appearance.Options.UseForeColor = true;
             this.labelControl29.Location = new System.Drawing.Point(18, 249);
             this.labelControl29.Name = "labelControl29";
-            this.labelControl29.Size = new System.Drawing.Size(68, 13);
+            this.labelControl29.Size = new System.Drawing.Size(67, 13);
             this.labelControl29.TabIndex = 17;
             this.labelControl29.Text = "Serie relación:";
             // 
@@ -1256,7 +1259,7 @@
             // 
             this.labelControl16.Location = new System.Drawing.Point(430, 58);
             this.labelControl16.Name = "labelControl16";
-            this.labelControl16.Size = new System.Drawing.Size(58, 13);
+            this.labelControl16.Size = new System.Drawing.Size(53, 13);
             this.labelControl16.TabIndex = 4;
             this.labelControl16.Text = "% intereses";
             // 
@@ -1264,7 +1267,7 @@
             // 
             this.labelControl15.Location = new System.Drawing.Point(301, 57);
             this.labelControl15.Name = "labelControl15";
-            this.labelControl15.Size = new System.Drawing.Size(51, 13);
+            this.labelControl15.Size = new System.Drawing.Size(48, 13);
             this.labelControl15.TabIndex = 3;
             this.labelControl15.Text = "% recibido";
             // 
@@ -1272,7 +1275,7 @@
             // 
             this.labelControl14.Location = new System.Drawing.Point(173, 58);
             this.labelControl14.Name = "labelControl14";
-            this.labelControl14.Size = new System.Drawing.Size(46, 13);
+            this.labelControl14.Size = new System.Drawing.Size(43, 13);
             this.labelControl14.TabIndex = 2;
             this.labelControl14.Text = "Intereses";
             // 
@@ -1280,7 +1283,7 @@
             // 
             this.labelControl13.Location = new System.Drawing.Point(47, 58);
             this.labelControl13.Name = "labelControl13";
-            this.labelControl13.Size = new System.Drawing.Size(16, 13);
+            this.labelControl13.Size = new System.Drawing.Size(17, 13);
             this.labelControl13.TabIndex = 1;
             this.labelControl13.Text = "Rfc";
             // 
@@ -1312,7 +1315,7 @@
             this.labelControl12.Appearance.Options.UseForeColor = true;
             this.labelControl12.Location = new System.Drawing.Point(1183, 61);
             this.labelControl12.Name = "labelControl12";
-            this.labelControl12.Size = new System.Drawing.Size(26, 13);
+            this.labelControl12.Size = new System.Drawing.Size(25, 13);
             this.labelControl12.TabIndex = 13;
             this.labelControl12.Text = "Folio:";
             // 
@@ -1323,7 +1326,7 @@
             this.labelControl11.Appearance.Options.UseForeColor = true;
             this.labelControl11.Location = new System.Drawing.Point(1181, 31);
             this.labelControl11.Name = "labelControl11";
-            this.labelControl11.Size = new System.Drawing.Size(28, 13);
+            this.labelControl11.Size = new System.Drawing.Size(27, 13);
             this.labelControl11.TabIndex = 12;
             this.labelControl11.Text = "Serie:";
             // 
@@ -1383,6 +1386,28 @@
             this.groupControl2.TabIndex = 2;
             this.groupControl2.Text = "Datos del cliente";
             // 
+            // swPublicoGeneral
+            // 
+            this.swPublicoGeneral.Location = new System.Drawing.Point(1183, 115);
+            this.swPublicoGeneral.Name = "swPublicoGeneral";
+            this.swPublicoGeneral.Properties.OffText = "Cliente";
+            this.swPublicoGeneral.Properties.OnText = "Publico en General";
+            this.swPublicoGeneral.Size = new System.Drawing.Size(143, 23);
+            this.swPublicoGeneral.TabIndex = 86;
+            this.swPublicoGeneral.ToolTip = "Indica si se facturará al cliente o al público en general.";
+            this.swPublicoGeneral.Toggled += new System.EventHandler(this.swPublicoGeneral_Toggled);
+            // 
+            // swDepositoRecepcion
+            // 
+            this.swDepositoRecepcion.Location = new System.Drawing.Point(337, 143);
+            this.swDepositoRecepcion.Name = "swDepositoRecepcion";
+            this.swDepositoRecepcion.Properties.OffText = "Deposito";
+            this.swDepositoRecepcion.Properties.OnText = "Recepción";
+            this.swDepositoRecepcion.Size = new System.Drawing.Size(121, 21);
+            this.swDepositoRecepcion.TabIndex = 85;
+            this.swDepositoRecepcion.ToolTip = "Recepción si se recibe pago en recepción; Deposito si el pago se realizó fuera";
+            this.swDepositoRecepcion.Visible = false;
+            // 
             // simpleButton4
             // 
             this.simpleButton4.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("simpleButton4.ImageOptions.Image")));
@@ -1401,7 +1426,7 @@
             // 
             this.btnEnabledCte.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnEnabledCte.ImageOptions.Image")));
             this.btnEnabledCte.ImageOptions.Location = DevExpress.XtraEditors.ImageLocation.MiddleCenter;
-            this.btnEnabledCte.Location = new System.Drawing.Point(647, 33);
+            this.btnEnabledCte.Location = new System.Drawing.Point(636, 35);
             this.btnEnabledCte.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnEnabledCte.Name = "btnEnabledCte";
             this.btnEnabledCte.Size = new System.Drawing.Size(30, 18);
@@ -1427,7 +1452,7 @@
             this.labelControl21.Appearance.Options.UseForeColor = true;
             this.labelControl21.Location = new System.Drawing.Point(498, 65);
             this.labelControl21.Name = "labelControl21";
-            this.labelControl21.Size = new System.Drawing.Size(42, 13);
+            this.labelControl21.Size = new System.Drawing.Size(41, 13);
             this.labelControl21.TabIndex = 18;
             this.labelControl21.Text = "Cliente 2";
             // 
@@ -1474,7 +1499,7 @@
             this.labelControl10.Appearance.Options.UseForeColor = true;
             this.labelControl10.Location = new System.Drawing.Point(13, 144);
             this.labelControl10.Name = "labelControl10";
-            this.labelControl10.Size = new System.Drawing.Size(76, 13);
+            this.labelControl10.Size = new System.Drawing.Size(74, 13);
             this.labelControl10.TabIndex = 14;
             this.labelControl10.Text = "Forma de pago:";
             // 
@@ -1485,7 +1510,7 @@
             this.labelControl9.Appearance.Options.UseForeColor = true;
             this.labelControl9.Location = new System.Drawing.Point(13, 92);
             this.labelControl9.Name = "labelControl9";
-            this.labelControl9.Size = new System.Drawing.Size(33, 13);
+            this.labelControl9.Size = new System.Drawing.Size(34, 13);
             this.labelControl9.TabIndex = 13;
             this.labelControl9.Text = "Banco:";
             // 
@@ -1496,7 +1521,7 @@
             this.labelControl8.Appearance.Options.UseForeColor = true;
             this.labelControl8.Location = new System.Drawing.Point(13, 66);
             this.labelControl8.Name = "labelControl8";
-            this.labelControl8.Size = new System.Drawing.Size(92, 13);
+            this.labelControl8.Size = new System.Drawing.Size(91, 13);
             this.labelControl8.TabIndex = 12;
             this.labelControl8.Text = "Fecha de depósito:";
             // 
@@ -1524,7 +1549,7 @@
             this.labelControl7.Appearance.Options.UseForeColor = true;
             this.labelControl7.Location = new System.Drawing.Point(498, 146);
             this.labelControl7.Name = "labelControl7";
-            this.labelControl7.Size = new System.Drawing.Size(53, 13);
+            this.labelControl7.Size = new System.Drawing.Size(52, 13);
             this.labelControl7.TabIndex = 9;
             this.labelControl7.Text = "Operación:";
             // 
@@ -1535,7 +1560,7 @@
             this.labelControl6.Appearance.Options.UseForeColor = true;
             this.labelControl6.Location = new System.Drawing.Point(14, 119);
             this.labelControl6.Name = "labelControl6";
-            this.labelControl6.Size = new System.Drawing.Size(39, 13);
+            this.labelControl6.Size = new System.Drawing.Size(37, 13);
             this.labelControl6.TabIndex = 8;
             this.labelControl6.Text = "Cuenta:";
             // 
@@ -1556,7 +1581,7 @@
             this.labelControl5.Appearance.Options.UseForeColor = true;
             this.labelControl5.Location = new System.Drawing.Point(500, 120);
             this.labelControl5.Name = "labelControl5";
-            this.labelControl5.Size = new System.Drawing.Size(27, 13);
+            this.labelControl5.Size = new System.Drawing.Size(26, 13);
             this.labelControl5.TabIndex = 6;
             this.labelControl5.Text = "Hora:";
             // 
@@ -1567,7 +1592,7 @@
             this.labelControl4.Appearance.Options.UseForeColor = true;
             this.labelControl4.Location = new System.Drawing.Point(16, 36);
             this.labelControl4.Name = "labelControl4";
-            this.labelControl4.Size = new System.Drawing.Size(37, 13);
+            this.labelControl4.Size = new System.Drawing.Size(35, 13);
             this.labelControl4.TabIndex = 5;
             this.labelControl4.Text = "Cliente:";
             // 
@@ -1578,7 +1603,7 @@
             this.cboClientesID.Name = "cboClientesID";
             this.cboClientesID.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.cboClientesID.Size = new System.Drawing.Size(516, 22);
+            this.cboClientesID.Size = new System.Drawing.Size(490, 22);
             this.cboClientesID.TabIndex = 0;
             this.cboClientesID.EditValueChanged += new System.EventHandler(this.cboClientesID_EditValueChanged);
             this.cboClientesID.EditValueChanging += new DevExpress.XtraEditors.Controls.ChangingEventHandler(this.cboClientesID_EditValueChanging);
@@ -1637,7 +1662,7 @@
             this.labelControl3.Appearance.Options.UseForeColor = true;
             this.labelControl3.Location = new System.Drawing.Point(16, 96);
             this.labelControl3.Name = "labelControl3";
-            this.labelControl3.Size = new System.Drawing.Size(75, 13);
+            this.labelControl3.Size = new System.Drawing.Size(76, 13);
             this.labelControl3.TabIndex = 10;
             this.labelControl3.Text = "Tipo de cambio:";
             // 
@@ -1656,7 +1681,7 @@
             this.labelControl2.Appearance.Options.UseForeColor = true;
             this.labelControl2.Location = new System.Drawing.Point(16, 65);
             this.labelControl2.Name = "labelControl2";
-            this.labelControl2.Size = new System.Drawing.Size(42, 13);
+            this.labelControl2.Size = new System.Drawing.Size(38, 13);
             this.labelControl2.TabIndex = 2;
             this.labelControl2.Text = "Importe:";
             // 
@@ -1667,7 +1692,7 @@
             this.labelControl1.Appearance.Options.UseForeColor = true;
             this.labelControl1.Location = new System.Drawing.Point(16, 35);
             this.labelControl1.Name = "labelControl1";
-            this.labelControl1.Size = new System.Drawing.Size(39, 13);
+            this.labelControl1.Size = new System.Drawing.Size(37, 13);
             this.labelControl1.TabIndex = 1;
             this.labelControl1.Text = "Cuenta:";
             // 
@@ -1853,17 +1878,6 @@
             this.contextMenuStrip1.Name = "contextMenuStrip1";
             this.contextMenuStrip1.Size = new System.Drawing.Size(61, 4);
             // 
-            // swDepositoRecepcion
-            // 
-            this.swDepositoRecepcion.Location = new System.Drawing.Point(337, 143);
-            this.swDepositoRecepcion.Name = "swDepositoRecepcion";
-            this.swDepositoRecepcion.Properties.OffText = "Deposito";
-            this.swDepositoRecepcion.Properties.OnText = "Recepción";
-            this.swDepositoRecepcion.Size = new System.Drawing.Size(121, 22);
-            this.swDepositoRecepcion.TabIndex = 85;
-            this.swDepositoRecepcion.ToolTip = "Recepción si se recibe pago en recepción; Deposito si el pago se realizó fuera";
-            this.swDepositoRecepcion.Visible = false;
-            // 
             // Depositos
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1933,6 +1947,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.groupControl2)).EndInit();
             this.groupControl2.ResumeLayout(false);
             this.groupControl2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.swPublicoGeneral.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.swDepositoRecepcion.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtCte2.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dateEditFecha.Properties.CalendarTimeProperties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dateEditFecha.Properties)).EndInit();
@@ -1950,7 +1966,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.cboCuentasbancariaID.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridControlDetalle)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridViewDetalle)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.swDepositoRecepcion.Properties)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -2114,5 +2129,6 @@
         private DevExpress.XtraEditors.LabelControl labelControl28;
         private DevExpress.XtraEditors.SimpleButton simpleButton5;
         private DevExpress.XtraEditors.ToggleSwitch swDepositoRecepcion;
+        private DevExpress.XtraEditors.ToggleSwitch swPublicoGeneral;
     }
 }

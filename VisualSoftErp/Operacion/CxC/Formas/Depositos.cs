@@ -592,6 +592,7 @@ namespace VisualSoftErp.Catalogos
                 cl.pFactorInteres = Convert.ToDecimal(txtFactorajeInteres.Text);
                 cl.TipoRelacion = txtTipoRelacion.Text;
                 cl.UUIDRelacion = txtUUIDRelacion.Text;
+                cl.IsPublicoGeneral = swPublicoGeneral.IsOn;
                 //cl.pInteres = Convert.ToDecimal(txtFactorajeInteres.Text);
 
                 if (txtTipoRelacion.Text.Length > 0)
@@ -1072,7 +1073,8 @@ namespace VisualSoftErp.Catalogos
                 }
 
                 txtCuentaordenante.Text = cta;
-
+                
+                if(!cboClientesID.IsPopupOpen) Cargarfacturas();
             }
 
         }
@@ -2021,6 +2023,18 @@ namespace VisualSoftErp.Catalogos
                 swDepositoRecepcion.Visible = false;
                 swDepositoRecepcion.IsOn = false;
             }
+        }
+
+        private void swPublicoGeneral_Toggled(object sender, EventArgs e)
+        {
+            //try
+            //{
+            //    cboClientesID.Enabled = !swPublicoGeneral.IsOn;
+            //}
+            //catch (Exception ex)
+            //{
+            //    MessageBox.Show(ex.Message);
+            //}
         }
     }
 }

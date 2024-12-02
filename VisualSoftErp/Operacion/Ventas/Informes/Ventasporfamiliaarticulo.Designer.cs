@@ -272,6 +272,8 @@
             this.ribbonPageGroup1 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.navigationFrame = new DevExpress.XtraBars.Navigation.NavigationFrame();
             this.employeesNavigationPage = new DevExpress.XtraBars.Navigation.NavigationPage();
+            this.labelControl7 = new DevExpress.XtraEditors.LabelControl();
+            this.swTop = new DevExpress.XtraEditors.ToggleSwitch();
             this.labelControl6 = new DevExpress.XtraEditors.LabelControl();
             this.cboSubFamilias = new DevExpress.XtraEditors.LookUpEdit();
             this.labelControl5 = new DevExpress.XtraEditors.LabelControl();
@@ -288,8 +290,6 @@
             this.cboLinea = new DevExpress.XtraEditors.LookUpEdit();
             this.vsFiltroFechas1 = new VSFiltroFechas.vsFiltroFechas();
             this.customersNavigationPage = new DevExpress.XtraBars.Navigation.NavigationPage();
-            this.labelControl7 = new DevExpress.XtraEditors.LabelControl();
-            this.swTop = new DevExpress.XtraEditors.ToggleSwitch();
             ((System.ComponentModel.ISupportInitialize)(this.tabbedView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ribbonControl)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.documentViewerRibbonController1)).BeginInit();
@@ -298,6 +298,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.navigationFrame)).BeginInit();
             this.navigationFrame.SuspendLayout();
             this.employeesNavigationPage.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.swTop.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cboSubFamilias.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cboArticulos.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl1)).BeginInit();
@@ -308,12 +309,12 @@
             ((System.ComponentModel.ISupportInitialize)(this.cboAgente.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cboLinea.Properties)).BeginInit();
             this.customersNavigationPage.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.swTop.Properties)).BeginInit();
             this.SuspendLayout();
             // 
             // ribbonControl
             // 
             this.ribbonControl.AutoHideEmptyItems = true;
+            this.ribbonControl.EmptyAreaImageOptions.ImagePadding = new System.Windows.Forms.Padding(26, 24, 26, 24);
             this.ribbonControl.ExpandCollapseItem.Id = 0;
             this.ribbonControl.Items.AddRange(new DevExpress.XtraBars.BarItem[] {
             this.ribbonControl.ExpandCollapseItem,
@@ -382,11 +383,9 @@
             this.bbiVistaprevia,
             this.bbiCerrar});
             this.ribbonControl.Location = new System.Drawing.Point(0, 0);
-            this.ribbonControl.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.ribbonControl.MaxItemId = 105;
             this.ribbonControl.MdiMergeStyle = DevExpress.XtraBars.Ribbon.RibbonMdiMergeStyle.Always;
             this.ribbonControl.Name = "ribbonControl";
-            this.ribbonControl.OptionsMenuMinWidth = 385;
             this.ribbonControl.Pages.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPage[] {
             this.ribbonPage,
             this.ribbonPageHome,
@@ -396,7 +395,7 @@
             this.repositoryItemZoomTrackBar1});
             this.ribbonControl.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonControlStyle.Office2013;
             this.ribbonControl.ShowApplicationButton = DevExpress.Utils.DefaultBoolean.False;
-            this.ribbonControl.Size = new System.Drawing.Size(1141, 181);
+            this.ribbonControl.Size = new System.Drawing.Size(978, 147);
             this.ribbonControl.StatusBar = this.ribbonStatusBar;
             this.ribbonControl.ToolbarLocation = DevExpress.XtraBars.Ribbon.RibbonQuickAccessToolbarLocation.Hidden;
             this.ribbonControl.TransparentEditorsMode = DevExpress.Utils.DefaultBoolean.True;
@@ -458,9 +457,8 @@
             this.documentViewer1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.documentViewer1.IsMetric = true;
             this.documentViewer1.Location = new System.Drawing.Point(0, 0);
-            this.documentViewer1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.documentViewer1.Name = "documentViewer1";
-            this.documentViewer1.Size = new System.Drawing.Size(1141, 694);
+            this.documentViewer1.Size = new System.Drawing.Size(838, 458);
             this.documentViewer1.TabIndex = 0;
             // 
             // ribbonStatusBar
@@ -470,11 +468,10 @@
             this.ribbonStatusBar.ItemLinks.Add(this.printPreviewBarItem52);
             this.ribbonStatusBar.ItemLinks.Add(this.printPreviewStaticItem2);
             this.ribbonStatusBar.ItemLinks.Add(this.zoomTrackBarEditItem1);
-            this.ribbonStatusBar.Location = new System.Drawing.Point(0, 875);
-            this.ribbonStatusBar.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.ribbonStatusBar.Location = new System.Drawing.Point(0, 711);
             this.ribbonStatusBar.Name = "ribbonStatusBar";
             this.ribbonStatusBar.Ribbon = this.ribbonControl;
-            this.ribbonStatusBar.Size = new System.Drawing.Size(1141, 29);
+            this.ribbonStatusBar.Size = new System.Drawing.Size(978, 23);
             // 
             // printPreviewStaticItem1
             // 
@@ -1612,15 +1609,14 @@
             this.navigationFrame.Controls.Add(this.employeesNavigationPage);
             this.navigationFrame.Controls.Add(this.customersNavigationPage);
             this.navigationFrame.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.navigationFrame.Location = new System.Drawing.Point(0, 181);
-            this.navigationFrame.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.navigationFrame.Location = new System.Drawing.Point(0, 147);
             this.navigationFrame.Name = "navigationFrame";
             this.navigationFrame.Pages.AddRange(new DevExpress.XtraBars.Navigation.NavigationPageBase[] {
             this.employeesNavigationPage,
             this.customersNavigationPage});
             this.navigationFrame.RibbonAndBarsMergeStyle = DevExpress.XtraBars.Docking2010.Views.RibbonAndBarsMergeStyle.Always;
             this.navigationFrame.SelectedPage = this.employeesNavigationPage;
-            this.navigationFrame.Size = new System.Drawing.Size(1141, 694);
+            this.navigationFrame.Size = new System.Drawing.Size(978, 564);
             this.navigationFrame.TabIndex = 0;
             this.navigationFrame.Text = "navigationFrame";
             // 
@@ -1642,155 +1638,160 @@
             this.employeesNavigationPage.Controls.Add(this.cboAgente);
             this.employeesNavigationPage.Controls.Add(this.cboLinea);
             this.employeesNavigationPage.Controls.Add(this.vsFiltroFechas1);
-            this.employeesNavigationPage.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.employeesNavigationPage.Name = "employeesNavigationPage";
-            this.employeesNavigationPage.Size = new System.Drawing.Size(1141, 694);
+            this.employeesNavigationPage.Size = new System.Drawing.Size(838, 458);
+            // 
+            // labelControl7
+            // 
+            this.labelControl7.Location = new System.Drawing.Point(620, 192);
+            this.labelControl7.Name = "labelControl7";
+            this.labelControl7.Size = new System.Drawing.Size(46, 13);
+            this.labelControl7.TabIndex = 27;
+            this.labelControl7.Text = "Solo TOP";
+            // 
+            // swTop
+            // 
+            this.swTop.Location = new System.Drawing.Point(681, 187);
+            this.swTop.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.swTop.MenuManager = this.ribbonControl;
+            this.swTop.Name = "swTop";
+            this.swTop.Properties.OffText = "No";
+            this.swTop.Properties.OnText = "Sí";
+            this.swTop.Size = new System.Drawing.Size(109, 23);
+            this.swTop.TabIndex = 26;
             // 
             // labelControl6
             // 
-            this.labelControl6.Location = new System.Drawing.Point(30, 295);
-            this.labelControl6.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.labelControl6.Location = new System.Drawing.Point(26, 240);
             this.labelControl6.Name = "labelControl6";
-            this.labelControl6.Size = new System.Drawing.Size(64, 16);
+            this.labelControl6.Size = new System.Drawing.Size(51, 13);
             this.labelControl6.TabIndex = 16;
             this.labelControl6.Text = "Sub familia";
             // 
             // cboSubFamilias
             // 
-            this.cboSubFamilias.Location = new System.Drawing.Point(141, 292);
-            this.cboSubFamilias.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.cboSubFamilias.Location = new System.Drawing.Point(121, 237);
             this.cboSubFamilias.MenuManager = this.ribbonControl;
             this.cboSubFamilias.Name = "cboSubFamilias";
             this.cboSubFamilias.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.cboSubFamilias.Size = new System.Drawing.Size(513, 22);
+            this.cboSubFamilias.Size = new System.Drawing.Size(440, 20);
             this.cboSubFamilias.TabIndex = 7;
             this.cboSubFamilias.EditValueChanged += new System.EventHandler(this.cboSubFamilias_EditValueChanged_1);
             // 
             // labelControl5
             // 
-            this.labelControl5.Location = new System.Drawing.Point(30, 351);
-            this.labelControl5.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.labelControl5.Location = new System.Drawing.Point(26, 285);
             this.labelControl5.Name = "labelControl5";
-            this.labelControl5.Size = new System.Drawing.Size(49, 16);
+            this.labelControl5.Size = new System.Drawing.Size(40, 13);
             this.labelControl5.TabIndex = 14;
             this.labelControl5.Text = "Articulos";
             // 
             // cboArticulos
             // 
-            this.cboArticulos.Location = new System.Drawing.Point(141, 347);
-            this.cboArticulos.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.cboArticulos.Location = new System.Drawing.Point(121, 282);
             this.cboArticulos.MenuManager = this.ribbonControl;
             this.cboArticulos.Name = "cboArticulos";
             this.cboArticulos.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.cboArticulos.Size = new System.Drawing.Size(513, 22);
+            this.cboArticulos.Size = new System.Drawing.Size(440, 20);
             this.cboArticulos.TabIndex = 8;
             // 
             // labelControl4
             // 
-            this.labelControl4.Location = new System.Drawing.Point(30, 242);
-            this.labelControl4.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.labelControl4.Location = new System.Drawing.Point(26, 197);
             this.labelControl4.Name = "labelControl4";
-            this.labelControl4.Size = new System.Drawing.Size(41, 16);
+            this.labelControl4.Size = new System.Drawing.Size(32, 13);
             this.labelControl4.TabIndex = 12;
             this.labelControl4.Text = "Familia";
             // 
             // labelControl3
             // 
-            this.labelControl3.Location = new System.Drawing.Point(30, 180);
-            this.labelControl3.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.labelControl3.Location = new System.Drawing.Point(26, 146);
             this.labelControl3.Name = "labelControl3";
-            this.labelControl3.Size = new System.Drawing.Size(30, 16);
+            this.labelControl3.Size = new System.Drawing.Size(26, 13);
             this.labelControl3.TabIndex = 11;
             this.labelControl3.Text = "Linea";
             // 
             // labelControl2
             // 
-            this.labelControl2.Location = new System.Drawing.Point(30, 112);
-            this.labelControl2.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.labelControl2.Location = new System.Drawing.Point(26, 91);
             this.labelControl2.Name = "labelControl2";
-            this.labelControl2.Size = new System.Drawing.Size(40, 16);
+            this.labelControl2.Size = new System.Drawing.Size(34, 13);
             this.labelControl2.TabIndex = 10;
             this.labelControl2.Text = "Agente";
             // 
             // labelControl1
             // 
-            this.labelControl1.Location = new System.Drawing.Point(30, 58);
-            this.labelControl1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.labelControl1.Location = new System.Drawing.Point(26, 47);
             this.labelControl1.Name = "labelControl1";
-            this.labelControl1.Size = new System.Drawing.Size(91, 16);
+            this.labelControl1.Size = new System.Drawing.Size(77, 13);
             this.labelControl1.TabIndex = 9;
             this.labelControl1.Text = "Canal de ventas";
             // 
             // groupControl1
             // 
             this.groupControl1.Controls.Add(this.rdoNivelinformacion);
-            this.groupControl1.Location = new System.Drawing.Point(721, 54);
-            this.groupControl1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.groupControl1.Location = new System.Drawing.Point(618, 44);
             this.groupControl1.Name = "groupControl1";
-            this.groupControl1.Size = new System.Drawing.Size(147, 156);
+            this.groupControl1.Size = new System.Drawing.Size(126, 127);
             this.groupControl1.TabIndex = 8;
             this.groupControl1.Text = "Nivel de Información";
             // 
             // rdoNivelinformacion
             // 
             this.rdoNivelinformacion.EditValue = ((short)(1));
-            this.rdoNivelinformacion.Location = new System.Drawing.Point(6, 30);
-            this.rdoNivelinformacion.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.rdoNivelinformacion.Location = new System.Drawing.Point(5, 24);
             this.rdoNivelinformacion.MenuManager = this.ribbonControl;
             this.rdoNivelinformacion.Name = "rdoNivelinformacion";
             this.rdoNivelinformacion.Properties.Items.AddRange(new DevExpress.XtraEditors.Controls.RadioGroupItem[] {
             new DevExpress.XtraEditors.Controls.RadioGroupItem(((short)(1)), "Resumen"),
-            new DevExpress.XtraEditors.Controls.RadioGroupItem(((short)(2)), "Detalle")});
-            this.rdoNivelinformacion.Size = new System.Drawing.Size(131, 118);
+            new DevExpress.XtraEditors.Controls.RadioGroupItem(((short)(2)), "Detalle"),
+            new DevExpress.XtraEditors.Controls.RadioGroupItem(3, "Resumen del Año")});
+            this.rdoNivelinformacion.Size = new System.Drawing.Size(112, 96);
             this.rdoNivelinformacion.TabIndex = 0;
             this.rdoNivelinformacion.SelectedIndexChanged += new System.EventHandler(this.rdoNivelinformacion_SelectedIndexChanged);
             this.rdoNivelinformacion.EditValueChanged += new System.EventHandler(this.rdoNivelinformacion_EditValueChanged);
             // 
             // cboFamilia
             // 
-            this.cboFamilia.Location = new System.Drawing.Point(141, 239);
-            this.cboFamilia.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.cboFamilia.Location = new System.Drawing.Point(121, 194);
             this.cboFamilia.MenuManager = this.ribbonControl;
             this.cboFamilia.Name = "cboFamilia";
             this.cboFamilia.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.cboFamilia.Size = new System.Drawing.Size(513, 22);
+            this.cboFamilia.Size = new System.Drawing.Size(440, 20);
             this.cboFamilia.TabIndex = 6;
             this.cboFamilia.EditValueChanged += new System.EventHandler(this.cboFamilia_EditValueChanged_1);
             // 
             // cboCanaldeventas
             // 
-            this.cboCanaldeventas.Location = new System.Drawing.Point(141, 54);
-            this.cboCanaldeventas.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.cboCanaldeventas.Location = new System.Drawing.Point(121, 44);
             this.cboCanaldeventas.MenuManager = this.ribbonControl;
             this.cboCanaldeventas.Name = "cboCanaldeventas";
             this.cboCanaldeventas.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.cboCanaldeventas.Size = new System.Drawing.Size(513, 22);
+            this.cboCanaldeventas.Size = new System.Drawing.Size(440, 20);
             this.cboCanaldeventas.TabIndex = 3;
             // 
             // cboAgente
             // 
-            this.cboAgente.Location = new System.Drawing.Point(141, 110);
-            this.cboAgente.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.cboAgente.Location = new System.Drawing.Point(121, 89);
             this.cboAgente.MenuManager = this.ribbonControl;
             this.cboAgente.Name = "cboAgente";
             this.cboAgente.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.cboAgente.Size = new System.Drawing.Size(513, 22);
+            this.cboAgente.Size = new System.Drawing.Size(440, 20);
             this.cboAgente.TabIndex = 4;
             // 
             // cboLinea
             // 
-            this.cboLinea.Location = new System.Drawing.Point(141, 176);
-            this.cboLinea.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.cboLinea.Location = new System.Drawing.Point(121, 143);
             this.cboLinea.MenuManager = this.ribbonControl;
             this.cboLinea.Name = "cboLinea";
             this.cboLinea.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.cboLinea.Size = new System.Drawing.Size(513, 22);
+            this.cboLinea.Size = new System.Drawing.Size(440, 20);
             this.cboLinea.TabIndex = 5;
             this.cboLinea.EditValueChanged += new System.EventHandler(this.cboLinea_EditValueChanged);
             // 
@@ -1798,47 +1799,26 @@
             // 
             this.vsFiltroFechas1.Appearance.BackColor = System.Drawing.Color.Transparent;
             this.vsFiltroFechas1.Appearance.Options.UseBackColor = true;
-            this.vsFiltroFechas1.Location = new System.Drawing.Point(141, 398);
-            this.vsFiltroFechas1.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
+            this.vsFiltroFechas1.Location = new System.Drawing.Point(121, 323);
+            this.vsFiltroFechas1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.vsFiltroFechas1.Name = "vsFiltroFechas1";
-            this.vsFiltroFechas1.Size = new System.Drawing.Size(503, 241);
+            this.vsFiltroFechas1.Size = new System.Drawing.Size(431, 196);
             this.vsFiltroFechas1.TabIndex = 0;
             // 
             // customersNavigationPage
             // 
             this.customersNavigationPage.Controls.Add(this.documentViewer1);
-            this.customersNavigationPage.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.customersNavigationPage.Name = "customersNavigationPage";
-            this.customersNavigationPage.Size = new System.Drawing.Size(1141, 694);
-            // 
-            // labelControl7
-            // 
-            this.labelControl7.Location = new System.Drawing.Point(723, 236);
-            this.labelControl7.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.labelControl7.Name = "labelControl7";
-            this.labelControl7.Size = new System.Drawing.Size(53, 16);
-            this.labelControl7.TabIndex = 27;
-            this.labelControl7.Text = "Solo TOP";
-            // 
-            // swTop
-            // 
-            this.swTop.Location = new System.Drawing.Point(795, 230);
-            this.swTop.MenuManager = this.ribbonControl;
-            this.swTop.Name = "swTop";
-            this.swTop.Properties.OffText = "No";
-            this.swTop.Properties.OnText = "Sí";
-            this.swTop.Size = new System.Drawing.Size(127, 28);
-            this.swTop.TabIndex = 26;
+            this.customersNavigationPage.Size = new System.Drawing.Size(838, 458);
             // 
             // Ventasporfamiliaarticulo
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1141, 904);
+            this.ClientSize = new System.Drawing.Size(978, 734);
             this.Controls.Add(this.navigationFrame);
             this.Controls.Add(this.ribbonStatusBar);
             this.Controls.Add(this.ribbonControl);
-            this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Name = "Ventasporfamiliaarticulo";
             this.Ribbon = this.ribbonControl;
             this.StatusBar = this.ribbonStatusBar;
@@ -1852,6 +1832,7 @@
             this.navigationFrame.ResumeLayout(false);
             this.employeesNavigationPage.ResumeLayout(false);
             this.employeesNavigationPage.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.swTop.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.cboSubFamilias.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.cboArticulos.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl1)).EndInit();
@@ -1862,7 +1843,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.cboAgente.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.cboLinea.Properties)).EndInit();
             this.customersNavigationPage.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.swTop.Properties)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 

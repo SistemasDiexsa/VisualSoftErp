@@ -152,89 +152,31 @@ namespace VisualSoftErp.Operacion.Ventas.Informes
                 }
 
                 EstadisticadeventasporlineafamiliaarticuloDesigner rep = new EstadisticadeventasporlineafamiliaarticuloDesigner();
-
-                //// Create a Print Tool with an assigned report instance. 
-                //ReportPrintTool printTool = new ReportPrintTool(new EstadisticadeventasporlineafamiliaarticuloDesigner());
-
-                //// Access the Print Tool's Printing System.
-                //PrintingSystemBase printingSystem = printTool.PrintingSystem;
-
-                //// Disable document export to any format.
-                //PrintingSystem.SetCommandVisibility(new PrintingSystemCommand[] {
-                //PrintingSystemCommand.ExportCsv, PrintingSystemCommand.ExportTxt, PrintingSystemCommand.ExportDocx,
-                //PrintingSystemCommand.ExportHtm, PrintingSystemCommand.ExportMht, PrintingSystemCommand.ExportPdf,
-                //PrintingSystemCommand.ExportRtf, PrintingSystemCommand.ExportXls, PrintingSystemCommand.ExportXlsx,
-                //PrintingSystemCommand.ExportGraphic },
-                //            CommandVisibility.None);
-
-                
-
+                rep.Parameters["parameter1"].Value = swUnidades.IsOn ? 1 : 0;
+                rep.Parameters["parameter2"].Value = Estado;
+                rep.Parameters["parameter3"].Value = Año;
+                rep.Parameters["parameter4"].Value = Mes;
+                rep.Parameters["parameter5"].Value = Linea;
+                rep.Parameters["parameter6"].Value = Familia;
+                rep.Parameters["parameter7"].Value = Almacen;
+                rep.Parameters["parameter1"].Visible = false;
+                rep.Parameters["parameter2"].Visible = false;
+                rep.Parameters["parameter3"].Visible = false;
+                rep.Parameters["parameter4"].Visible = false;
+                rep.Parameters["parameter5"].Visible = false;
+                rep.Parameters["parameter6"].Visible = false;
+                rep.Parameters["parameter7"].Visible = false;
 
                 if (impDirecto == 1)
                 {
-
-                    rep.Parameters["parameter1"].Value = swUnidades.IsOn ? 1 : 0;
-                    rep.Parameters["parameter1"].Visible = false;
-                    rep.Parameters["parameter2"].Value = Estado;
-                    rep.Parameters["parameter2"].Visible = false;
-                    rep.Parameters["parameter3"].Value = Año;
-                    rep.Parameters["parameter3"].Visible = false;
-                    rep.Parameters["parameter4"].Value = Mes;
-                    rep.Parameters["parameter4"].Visible = false;
-                    rep.Parameters["parameter5"].Value = Linea;
-                    rep.Parameters["parameter5"].Visible = false;
-                    rep.Parameters["parameter6"].Value = Familia;
-                    rep.Parameters["parameter6"].Visible = false;
-                    rep.Parameters["parameter7"].Value = Almacen;
-                    rep.Parameters["parameter7"].Visible = false;
                     ReportPrintTool rpt = new DevExpress.XtraReports.UI.ReportPrintTool(rep);
                     rpt.Print();
                     return;
                 }
                 else
                 {
-                    rep.Parameters["parameter1"].Value = swUnidades.IsOn ? 1 : 0;
-                    rep.Parameters["parameter1"].Visible = false;
-                    rep.Parameters["parameter2"].Value = Estado;
-                    rep.Parameters["parameter2"].Visible = false;
-                    rep.Parameters["parameter3"].Value = Año;
-                    rep.Parameters["parameter3"].Visible = false;
-                    rep.Parameters["parameter4"].Value = Mes;
-                    rep.Parameters["parameter4"].Visible = false;
-                    rep.Parameters["parameter5"].Value = Linea;
-                    rep.Parameters["parameter5"].Visible = false;
-                    rep.Parameters["parameter6"].Value = Familia;
-                    rep.Parameters["parameter6"].Visible = false;
-                    rep.Parameters["parameter7"].Value = Almacen;
-                    rep.Parameters["parameter7"].Visible = false;
-
                     documentViewer1.DocumentSource = rep;
                     rep.CreateDocument();
-
-
-                    PrintingSystemBase ps = documentViewer1.PrintingSystem;
-
-                    ////// Hide the Watermark toolbar button, and also the Watermark menu item.
-                    ////if (ps.GetCommandVisibility(PrintingSystemCommand.Watermark) != CommandVisibility.None)
-                    ////{
-                    ////    ps.SetCommandVisibility(PrintingSystemCommand.Watermark, CommandVisibility.None);
-                    ////}
-
-                    // Show the Document Map toolbar button and menu item.
-                    ps.SetCommandVisibility(PrintingSystemCommand.DocumentMap, CommandVisibility.All);
-
-                    // Make the "Export to Csv" and "Export to Txt" commands visible.
-                    ps.SetCommandVisibility(new PrintingSystemCommand[]
-                       {PrintingSystemCommand.ExportCsv, PrintingSystemCommand.ExportTxt,
-                       PrintingSystemCommand.ExportHtm,PrintingSystemCommand.ExportMht,
-                       PrintingSystemCommand.ExportRtf,PrintingSystemCommand.ExportXls,
-                       PrintingSystemCommand.ExportGraphic,PrintingSystemCommand.ExportDocx                       
-                       }, 
-                       CommandVisibility.None);
-
-                    //ExportOptions options = ps.ExportOptions;
-                    //options.SetOptionVisibility.
-
                     ribbonControl.MergeOwner.SelectedPage = ribbonControl.MergeOwner.TotalPageCategory.GetPageByText(ribbonPageImpresion.Text);
                     navigationFrame.SelectedPageIndex = 1;
                 }
@@ -246,7 +188,6 @@ namespace VisualSoftErp.Operacion.Ventas.Informes
                 MessageBox.Show("Reporte: " + ex.Message);
             }
         }
-
 
         private void bbiPrevia_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {

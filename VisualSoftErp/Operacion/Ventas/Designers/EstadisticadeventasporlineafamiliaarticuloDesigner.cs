@@ -180,6 +180,18 @@ namespace VisualSoftErp.Operacion.Ventas.Designers
             //xrTableCell6.ForeColor = Color.FromArgb(dfr, dfg, dfb);
         }
 
+        private void xrTableCell2_BeforePrint(object sender, System.Drawing.Printing.PrintEventArgs e)
+        {
+            xrTableCell2.BackColor = Color.FromArgb(dbr, dbg, dbb);
+            xrTableCell2.ForeColor = Color.FromArgb(dfr, dfg, dfb);
+        }
+
+        private void xrTableCell3_BeforePrint(object sender, System.Drawing.Printing.PrintEventArgs e)
+        {
+            xrTableCell3.BackColor = Color.FromArgb(dbr, dbg, dbb);
+            xrTableCell3.ForeColor = Color.FromArgb(dfr, dfg, dfb);
+        }
+
         private void Detail_BeforePrint(object sender, System.Drawing.Printing.PrintEventArgs e)
         {
 
@@ -237,5 +249,6 @@ namespace VisualSoftErp.Operacion.Ventas.Designers
             ((DevExpress.XtraReports.UI.XtraReport)sender).Parameters["parameter4"].Value;
             mes = Convert.ToInt32(xafParameters);
         }
+
     }
 }

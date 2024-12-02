@@ -420,6 +420,8 @@
             this.repositoryItemFechadeEntrega = new DevExpress.XtraEditors.Repository.RepositoryItemDateEdit();
             this.gridColumnPL = new DevExpress.XtraGrid.Columns.GridColumn();
             this.repositoryItemTextEditClaveUnidad = new DevExpress.XtraEditors.Repository.RepositoryItemTextEdit();
+            this.cboCanalVentas = new DevExpress.XtraEditors.LookUpEdit();
+            this.labelControl42 = new DevExpress.XtraEditors.LabelControl();
             this.txtRazonCambioPrecio = new DevExpress.XtraEditors.MemoEdit();
             this.lblRazonCambioPrecio = new DevExpress.XtraEditors.LabelControl();
             this.popUpCxC = new DevExpress.XtraBars.PopupControlContainer(this.components);
@@ -501,8 +503,6 @@
             this.ribbonPageGroup2 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.barButtonItem8 = new DevExpress.XtraBars.BarButtonItem();
             this.barButtonItem9 = new DevExpress.XtraBars.BarButtonItem();
-            this.labelControl42 = new DevExpress.XtraEditors.LabelControl();
-            this.cboCanalVentas = new DevExpress.XtraEditors.LookUpEdit();
             ((System.ComponentModel.ISupportInitialize)(this.tabbedView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.Ribboncontrol1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemTextEdit1)).BeginInit();
@@ -563,6 +563,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemFechadeEntrega)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemFechadeEntrega.CalendarTimeProperties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemTextEditClaveUnidad)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cboCanalVentas.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtRazonCambioPrecio.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.popUpCxC)).BeginInit();
             this.popUpCxC.SuspendLayout();
@@ -626,7 +627,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.splitContainerControl3.Panel2)).BeginInit();
             this.splitContainerControl3.SuspendLayout();
             this.navigationPage5.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.cboCanalVentas.Properties)).BeginInit();
             this.SuspendLayout();
             // 
             // Ribboncontrol1
@@ -2620,7 +2620,7 @@
             this.labelControl31.Location = new System.Drawing.Point(27, 119);
             this.labelControl31.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.labelControl31.Name = "labelControl31";
-            this.labelControl31.Size = new System.Drawing.Size(30, 13);
+            this.labelControl31.Size = new System.Drawing.Size(31, 13);
             this.labelControl31.TabIndex = 13;
             this.labelControl31.Text = "Razón";
             // 
@@ -2648,7 +2648,7 @@
             this.labelControl19.Location = new System.Drawing.Point(27, 45);
             this.labelControl19.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.labelControl19.Name = "labelControl19";
-            this.labelControl19.Size = new System.Drawing.Size(25, 13);
+            this.labelControl19.Size = new System.Drawing.Size(26, 13);
             this.labelControl19.TabIndex = 10;
             this.labelControl19.Text = "Login";
             // 
@@ -2693,7 +2693,7 @@
             this.labelControl28.Location = new System.Drawing.Point(-100, 10);
             this.labelControl28.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.labelControl28.Name = "labelControl28";
-            this.labelControl28.Size = new System.Drawing.Size(25, 13);
+            this.labelControl28.Size = new System.Drawing.Size(26, 13);
             this.labelControl28.TabIndex = 5;
             this.labelControl28.Text = "Login";
             // 
@@ -2799,7 +2799,7 @@
             this.swPublico.Name = "swPublico";
             this.swPublico.Properties.OffText = "No";
             this.swPublico.Properties.OnText = "Sí";
-            this.swPublico.Size = new System.Drawing.Size(95, 24);
+            this.swPublico.Size = new System.Drawing.Size(95, 23);
             this.swPublico.TabIndex = 73;
             this.swPublico.TabStop = false;
             // 
@@ -2807,7 +2807,7 @@
             // 
             this.labelControl41.Location = new System.Drawing.Point(6, 130);
             this.labelControl41.Name = "labelControl41";
-            this.labelControl41.Size = new System.Drawing.Size(33, 13);
+            this.labelControl41.Size = new System.Drawing.Size(35, 13);
             this.labelControl41.TabIndex = 72;
             this.labelControl41.Text = "Público";
             // 
@@ -2841,7 +2841,7 @@
             // 
             this.lblSuc.Location = new System.Drawing.Point(615, 129);
             this.lblSuc.Name = "lblSuc";
-            this.lblSuc.Size = new System.Drawing.Size(40, 13);
+            this.lblSuc.Size = new System.Drawing.Size(41, 13);
             this.lblSuc.TabIndex = 69;
             this.lblSuc.Text = "Sucursal";
             this.lblSuc.Visible = false;
@@ -2900,7 +2900,7 @@
             // 
             this.labelControl4.Location = new System.Drawing.Point(972, 127);
             this.labelControl4.Name = "labelControl4";
-            this.labelControl4.Size = new System.Drawing.Size(54, 13);
+            this.labelControl4.Size = new System.Drawing.Size(53, 13);
             this.labelControl4.TabIndex = 66;
             this.labelControl4.Text = "Tansportes";
             // 
@@ -2908,7 +2908,7 @@
             // 
             this.labelControl30.Location = new System.Drawing.Point(614, 73);
             this.labelControl30.Name = "labelControl30";
-            this.labelControl30.Size = new System.Drawing.Size(85, 13);
+            this.labelControl30.Size = new System.Drawing.Size(84, 13);
             this.labelControl30.TabIndex = 64;
             this.labelControl30.Text = "Fecha de entrega";
             // 
@@ -2920,7 +2920,7 @@
             this.swPosfechado.Name = "swPosfechado";
             this.swPosfechado.Properties.OffText = "No";
             this.swPosfechado.Properties.OnText = "Sí";
-            this.swPosfechado.Size = new System.Drawing.Size(95, 24);
+            this.swPosfechado.Size = new System.Drawing.Size(95, 23);
             this.swPosfechado.TabIndex = 7;
             this.swPosfechado.Visible = false;
             // 
@@ -2940,7 +2940,7 @@
             // 
             this.labelControl29.Location = new System.Drawing.Point(972, 101);
             this.labelControl29.Name = "labelControl29";
-            this.labelControl29.Size = new System.Drawing.Size(40, 13);
+            this.labelControl29.Size = new System.Drawing.Size(41, 13);
             this.labelControl29.TabIndex = 61;
             this.labelControl29.Text = "Almacen";
             // 
@@ -2959,7 +2959,7 @@
             // 
             this.labelControl2.Location = new System.Drawing.Point(331, 97);
             this.labelControl2.Name = "labelControl2";
-            this.labelControl2.Size = new System.Drawing.Size(25, 13);
+            this.labelControl2.Size = new System.Drawing.Size(26, 13);
             this.labelControl2.TabIndex = 58;
             this.labelControl2.Text = "Plazo";
             // 
@@ -2967,7 +2967,7 @@
             // 
             this.labelControl8.Location = new System.Drawing.Point(6, 97);
             this.labelControl8.Name = "labelControl8";
-            this.labelControl8.Size = new System.Drawing.Size(99, 13);
+            this.labelControl8.Size = new System.Drawing.Size(100, 13);
             this.labelControl8.TabIndex = 44;
             this.labelControl8.Text = "Condiciones de pago";
             // 
@@ -3015,7 +3015,7 @@
             // 
             this.labelControl13.Location = new System.Drawing.Point(614, 44);
             this.labelControl13.Name = "labelControl13";
-            this.labelControl13.Size = new System.Drawing.Size(38, 13);
+            this.labelControl13.Size = new System.Drawing.Size(39, 13);
             this.labelControl13.TabIndex = 25;
             this.labelControl13.Text = "Moneda";
             // 
@@ -3023,7 +3023,7 @@
             // 
             this.labelControl15.Location = new System.Drawing.Point(614, 101);
             this.labelControl15.Name = "labelControl15";
-            this.labelControl15.Size = new System.Drawing.Size(56, 13);
+            this.labelControl15.Size = new System.Drawing.Size(57, 13);
             this.labelControl15.TabIndex = 52;
             this.labelControl15.Text = "Posfechado";
             this.labelControl15.Visible = false;
@@ -3032,7 +3032,7 @@
             // 
             this.labelControl9.Location = new System.Drawing.Point(972, 73);
             this.labelControl9.Name = "labelControl9";
-            this.labelControl9.Size = new System.Drawing.Size(29, 13);
+            this.labelControl9.Size = new System.Drawing.Size(30, 13);
             this.labelControl9.TabIndex = 51;
             this.labelControl9.Text = "Fecha";
             // 
@@ -3044,7 +3044,7 @@
             this.swExportacion.Name = "swExportacion";
             this.swExportacion.Properties.OffText = "No";
             this.swExportacion.Properties.OnText = "Sí";
-            this.swExportacion.Size = new System.Drawing.Size(95, 24);
+            this.swExportacion.Size = new System.Drawing.Size(95, 23);
             this.swExportacion.TabIndex = 5;
             // 
             // txtOrdendecompra
@@ -3060,7 +3060,7 @@
             // 
             this.labelControl7.Location = new System.Drawing.Point(6, 70);
             this.labelControl7.Name = "labelControl7";
-            this.labelControl7.Size = new System.Drawing.Size(85, 13);
+            this.labelControl7.Size = new System.Drawing.Size(83, 13);
             this.labelControl7.TabIndex = 46;
             this.labelControl7.Text = "Orden de Compra";
             // 
@@ -3068,7 +3068,7 @@
             // 
             this.labelControl5.Location = new System.Drawing.Point(6, 44);
             this.labelControl5.Name = "labelControl5";
-            this.labelControl5.Size = new System.Drawing.Size(35, 13);
+            this.labelControl5.Size = new System.Drawing.Size(34, 13);
             this.labelControl5.TabIndex = 44;
             this.labelControl5.Text = "Agente";
             // 
@@ -3128,7 +3128,7 @@
             // 
             this.labelControl10.Location = new System.Drawing.Point(614, 18);
             this.labelControl10.Name = "labelControl10";
-            this.labelControl10.Size = new System.Drawing.Size(57, 13);
+            this.labelControl10.Size = new System.Drawing.Size(56, 13);
             this.labelControl10.TabIndex = 20;
             this.labelControl10.Text = "Exportación";
             // 
@@ -3136,7 +3136,7 @@
             // 
             this.labelControl3.Location = new System.Drawing.Point(6, 18);
             this.labelControl3.Name = "labelControl3";
-            this.labelControl3.Size = new System.Drawing.Size(33, 13);
+            this.labelControl3.Size = new System.Drawing.Size(32, 13);
             this.labelControl3.TabIndex = 9;
             this.labelControl3.Text = "Cliente";
             // 
@@ -3418,6 +3418,24 @@
             this.repositoryItemTextEditClaveUnidad.AutoHeight = false;
             this.repositoryItemTextEditClaveUnidad.Name = "repositoryItemTextEditClaveUnidad";
             // 
+            // cboCanalVentas
+            // 
+            this.cboCanalVentas.Location = new System.Drawing.Point(96, 6);
+            this.cboCanalVentas.MenuManager = this.Ribboncontrol1;
+            this.cboCanalVentas.Name = "cboCanalVentas";
+            this.cboCanalVentas.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.cboCanalVentas.Size = new System.Drawing.Size(334, 20);
+            this.cboCanalVentas.TabIndex = 80;
+            // 
+            // labelControl42
+            // 
+            this.labelControl42.Location = new System.Drawing.Point(6, 9);
+            this.labelControl42.Name = "labelControl42";
+            this.labelControl42.Size = new System.Drawing.Size(78, 13);
+            this.labelControl42.TabIndex = 79;
+            this.labelControl42.Text = "Canal de Ventas";
+            // 
             // txtRazonCambioPrecio
             // 
             this.txtRazonCambioPrecio.EnterMoveNextControl = true;
@@ -3647,7 +3665,7 @@
             this.labelControl37.Location = new System.Drawing.Point(73, 236);
             this.labelControl37.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.labelControl37.Name = "labelControl37";
-            this.labelControl37.Size = new System.Drawing.Size(85, 13);
+            this.labelControl37.Size = new System.Drawing.Size(83, 13);
             this.labelControl37.TabIndex = 5;
             this.labelControl37.Text = "Crédito disponible";
             // 
@@ -3656,7 +3674,7 @@
             this.labelControl36.Location = new System.Drawing.Point(73, 204);
             this.labelControl36.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.labelControl36.Name = "labelControl36";
-            this.labelControl36.Size = new System.Drawing.Size(93, 13);
+            this.labelControl36.Size = new System.Drawing.Size(90, 13);
             this.labelControl36.TabIndex = 4;
             this.labelControl36.Text = "Cuentas por cobrar";
             // 
@@ -3674,7 +3692,7 @@
             this.labelControl34.Location = new System.Drawing.Point(73, 139);
             this.labelControl34.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.labelControl34.Name = "labelControl34";
-            this.labelControl34.Size = new System.Drawing.Size(136, 13);
+            this.labelControl34.Size = new System.Drawing.Size(132, 13);
             this.labelControl34.TabIndex = 2;
             this.labelControl34.Text = "Pedidos surtidos sin facturar";
             // 
@@ -3683,7 +3701,7 @@
             this.labelControl33.Location = new System.Drawing.Point(73, 108);
             this.labelControl33.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.labelControl33.Name = "labelControl33";
-            this.labelControl33.Size = new System.Drawing.Size(89, 13);
+            this.labelControl33.Size = new System.Drawing.Size(85, 13);
             this.labelControl33.TabIndex = 1;
             this.labelControl33.Text = "Crédito autorizado";
             // 
@@ -3692,7 +3710,7 @@
             this.labelControl32.Location = new System.Drawing.Point(73, 76);
             this.labelControl32.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.labelControl32.Name = "labelControl32";
-            this.labelControl32.Size = new System.Drawing.Size(25, 13);
+            this.labelControl32.Size = new System.Drawing.Size(26, 13);
             this.labelControl32.TabIndex = 0;
             this.labelControl32.Text = "Plazo";
             // 
@@ -3821,7 +3839,6 @@
             // 
             // btnAplicar
             // 
-            this.btnAplicar.Enabled = false;
             this.btnAplicar.Location = new System.Drawing.Point(980, 9);
             this.btnAplicar.Name = "btnAplicar";
             this.btnAplicar.Size = new System.Drawing.Size(66, 22);
@@ -3841,7 +3858,7 @@
             // 
             this.labelControl26.Location = new System.Drawing.Point(818, 123);
             this.labelControl26.Name = "labelControl26";
-            this.labelControl26.Size = new System.Drawing.Size(30, 13);
+            this.labelControl26.Size = new System.Drawing.Size(28, 13);
             this.labelControl26.TabIndex = 70;
             this.labelControl26.Text = "RetIsr";
             this.labelControl26.Visible = false;
@@ -3850,7 +3867,7 @@
             // 
             this.labelControl25.Location = new System.Drawing.Point(815, 93);
             this.labelControl25.Name = "labelControl25";
-            this.labelControl25.Size = new System.Drawing.Size(33, 13);
+            this.labelControl25.Size = new System.Drawing.Size(32, 13);
             this.labelControl25.TabIndex = 69;
             this.labelControl25.Text = "RetIva";
             this.labelControl25.Visible = false;
@@ -3859,7 +3876,7 @@
             // 
             this.labelControl24.Location = new System.Drawing.Point(1078, 65);
             this.labelControl24.Name = "labelControl24";
-            this.labelControl24.Size = new System.Drawing.Size(21, 13);
+            this.labelControl24.Size = new System.Drawing.Size(20, 13);
             this.labelControl24.TabIndex = 68;
             this.labelControl24.Text = "Ieps";
             // 
@@ -3867,7 +3884,7 @@
             // 
             this.labelControl23.Location = new System.Drawing.Point(1077, 39);
             this.labelControl23.Name = "labelControl23";
-            this.labelControl23.Size = new System.Drawing.Size(16, 13);
+            this.labelControl23.Size = new System.Drawing.Size(15, 13);
             this.labelControl23.TabIndex = 67;
             this.labelControl23.Text = "Iva";
             // 
@@ -3875,7 +3892,7 @@
             // 
             this.labelControl22.Location = new System.Drawing.Point(1077, 13);
             this.labelControl22.Name = "labelControl22";
-            this.labelControl22.Size = new System.Drawing.Size(40, 13);
+            this.labelControl22.Size = new System.Drawing.Size(39, 13);
             this.labelControl22.TabIndex = 66;
             this.labelControl22.Text = "Subtotal";
             // 
@@ -3981,7 +3998,7 @@
             // 
             this.labelControl21.Location = new System.Drawing.Point(815, 65);
             this.labelControl21.Name = "labelControl21";
-            this.labelControl21.Size = new System.Drawing.Size(51, 13);
+            this.labelControl21.Size = new System.Drawing.Size(52, 13);
             this.labelControl21.TabIndex = 57;
             this.labelControl21.Text = "Descuento";
             // 
@@ -4003,7 +4020,7 @@
             // 
             this.labelControl20.Location = new System.Drawing.Point(815, 39);
             this.labelControl20.Name = "labelControl20";
-            this.labelControl20.Size = new System.Drawing.Size(26, 13);
+            this.labelControl20.Size = new System.Drawing.Size(27, 13);
             this.labelControl20.TabIndex = 55;
             this.labelControl20.Text = "Suma";
             // 
@@ -4023,7 +4040,7 @@
             // 
             this.labelControl17.Location = new System.Drawing.Point(815, 13);
             this.labelControl17.Name = "labelControl17";
-            this.labelControl17.Size = new System.Drawing.Size(65, 13);
+            this.labelControl17.Size = new System.Drawing.Size(63, 13);
             this.labelControl17.TabIndex = 53;
             this.labelControl17.Text = "Descuento %";
             // 
@@ -4073,7 +4090,7 @@
             // 
             this.labelControl11.Location = new System.Drawing.Point(6, 24);
             this.labelControl11.Name = "labelControl11";
-            this.labelControl11.Size = new System.Drawing.Size(30, 13);
+            this.labelControl11.Size = new System.Drawing.Size(31, 13);
             this.labelControl11.TabIndex = 0;
             this.labelControl11.Text = "Razón";
             // 
@@ -4284,24 +4301,6 @@
             this.barButtonItem9.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("barButtonItem9.ImageOptions.LargeImage")));
             this.barButtonItem9.Name = "barButtonItem9";
             // 
-            // labelControl42
-            // 
-            this.labelControl42.Location = new System.Drawing.Point(6, 9);
-            this.labelControl42.Name = "labelControl42";
-            this.labelControl42.Size = new System.Drawing.Size(78, 13);
-            this.labelControl42.TabIndex = 79;
-            this.labelControl42.Text = "Canal de Ventas";
-            // 
-            // cboCanalVentas
-            // 
-            this.cboCanalVentas.Location = new System.Drawing.Point(96, 6);
-            this.cboCanalVentas.MenuManager = this.Ribboncontrol1;
-            this.cboCanalVentas.Name = "cboCanalVentas";
-            this.cboCanalVentas.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.cboCanalVentas.Size = new System.Drawing.Size(334, 20);
-            this.cboCanalVentas.TabIndex = 80;
-            // 
             // Pedidos
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -4377,6 +4376,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemFechadeEntrega.CalendarTimeProperties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemFechadeEntrega)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemTextEditClaveUnidad)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cboCanalVentas.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtRazonCambioPrecio.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.popUpCxC)).EndInit();
             this.popUpCxC.ResumeLayout(false);
@@ -4444,7 +4444,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.splitContainerControl3)).EndInit();
             this.splitContainerControl3.ResumeLayout(false);
             this.navigationPage5.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.cboCanalVentas.Properties)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
